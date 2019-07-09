@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+
+{% trans "page_home_title" %}
+
+{% endblock title %}
+
+
+{% block content_top %}
+<section id="intro" class="parallax-block intro">
+
+<div class="columns">
+<div class="column">
+
+<div class="parallax-body">
+<h1 class="is-size-1 is-size-2-mobile"> Prototype Intro </h1>
+
+<h2 class="is-size-3 is-size-4-mobile">
+A description of the prototype
+</h2>
+
+</div>
+
+</div>
+</div>
+
+</section>
+{% endblock content_top %}
+
+{% block content %}
+
+<div class="icon-blocks">
+
+<h2 class="icon-blocks-header">Prototype at a glance</h2>
+
+<div class="columns is-multiline">
+
+<div class="column is-6 icon-block">
+
+<header class="icon-block-header">
+<i class="fas fa-language icon-block-icon"></i>
+<h3>A Feature</h3>
+</header>
+
+<p>
+A description of the feature.
+</p>
+
+</div>
+
+<div class="column is-6 icon-block">
+
+<i class="fab fa-python icon-block-icon"></i>
+
+<header class="icon-block-header">
+<h3>Another Feature</h3>
+</header>
+
+<p>
+A description of the feature.
+</p>
+
+</div>
+
+<div class="column is-6 icon-block">
+
+<i class="fab fa-python icon-block-icon"></i>
+
+<header class="icon-block-header">
+<h3>Another Feature</h3>
+</header>
+
+<p>
+A description of the feature.
+</p>
+
+</div>
+
+</div>
+
+</div>
+{% endblock content %}
+
