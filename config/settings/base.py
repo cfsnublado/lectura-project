@@ -43,6 +43,7 @@ TMP_DIR = MEDIA_ROOT / 'tmp'
 
 STATIC_ROOT = PROJECT_ROOT / 'staticfiles'
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [PROJECT_ROOT / 'static']
 
 ALLOWED_HOSTS = []
 
@@ -72,6 +73,7 @@ INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -122,3 +124,8 @@ TEMPLATES = [
         },
     },
 ]
+
+# Dropbox
+DBX = {
+    'ACCESS_TOKEN': os.environ['DBX_ACCESS_TOKEN']
+}
