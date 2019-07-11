@@ -3,6 +3,7 @@ from django.conf.urls import include
 
 from rest_framework.authtoken import views
 from rest_framework.routers import DefaultRouter
+
 from users.api.views_api import UserViewSet, ProfileViewSet
 
 app_name = 'app'
