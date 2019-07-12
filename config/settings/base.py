@@ -43,7 +43,6 @@ TMP_DIR = MEDIA_ROOT / 'tmp'
 
 STATIC_ROOT = PROJECT_ROOT / 'staticfiles'
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [PROJECT_ROOT / 'static']
 
 ALLOWED_HOSTS = []
 
@@ -61,6 +60,7 @@ LOCAL_APPS = [
     'users',
     'core',
     'security',
+    'reading'
 ]
 
 THIRD_PARTY_APPS = [
