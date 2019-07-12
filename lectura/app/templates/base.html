@@ -147,6 +147,8 @@ aria-label="sidebar-trigger"
 
 <div class="sidebar-body">
 
+{% block sidebar_nav_items %}
+
 <div class="menu">
 
 <p class="menu-label">
@@ -162,6 +164,8 @@ General
 </ul>
 
 </div>
+
+{% endblock sidebar_nav_items %}
 
 </div><!-- end sidebar-body -->
 
@@ -190,6 +194,10 @@ General
 </section>
 
 </div><!-- app-container -->
+
+<script>
+{% block python_to_javascript %}{% endblock python_to_javascript %}
+</script>
 
 {% block scripts %}
 <script>

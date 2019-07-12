@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-09 16:25-0700\n"
+"POT-Creation-Date: 2019-07-12 11:56-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,21 +18,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: config/settings/base.py:91
+#: config/settings/base.py:93
 msgid "English"
 msgstr ""
 
-#: config/settings/base.py:92
+#: config/settings/base.py:94
 msgid "Spanish"
 msgstr ""
 
-#: lectura/core/models.py:53
+#: lectura/core/models.py:54
 msgid "label_date_created"
 msgstr ""
 
-#: lectura/core/models.py:58
+#: lectura/core/models.py:59
 msgid "label_date_updated"
 msgstr ""
+
+#: lectura/core/models.py:89
+#, fuzzy
+#| msgid "label_login"
+msgid "label_slug"
+msgstr "Iniciar sesión"
 
 #: lectura/core/validation.py:11
 msgid "help_text_password"
@@ -80,12 +86,14 @@ msgstr "Éxito"
 msgid "message_error"
 msgstr "Error"
 
-#: lectura/security/forms.py:8 lectura/users/models.py:20
-msgid "label_username"
-msgstr ""
+#: lectura/reading/apps.py:7
+#, fuzzy
+#| msgid "label_profile"
+msgid "label_reading_config"
+msgstr "Perfil"
 
-#: lectura/security/forms.py:11 lectura/security/forms.py:18
-#: lectura/security/tests/test_forms.py:37
+#: lectura/reading/forms.py:16 lectura/security/forms.py:11
+#: lectura/security/forms.py:18 lectura/security/tests/test_forms.py:37
 #: lectura/security/tests/test_forms.py:42
 #: lectura/security/tests/test_views.py:120
 #: lectura/security/tests/test_views.py:121 lectura/users/forms.py:19
@@ -101,6 +109,69 @@ msgstr ""
 #: lectura/users/tests/test_views.py:296 lectura/users/tests/test_views.py:503
 msgid "validation_field_required"
 msgstr "Este campo es requerido"
+
+#: lectura/reading/forms.py:17
+#, fuzzy
+#| msgid "validation_field_required"
+msgid "validation_field_unique"
+msgstr "Este campo es requerido"
+
+#: lectura/reading/forms.py:31
+#, fuzzy
+#| msgid "validation_field_required"
+msgid "validation_project_required"
+msgstr "Este campo es requerido"
+
+#: lectura/reading/forms.py:34
+#, fuzzy
+#| msgid "validation_field_required"
+msgid "validation_creator_required"
+msgstr "Este campo es requerido"
+
+#: lectura/reading/models.py:50 lectura/reading/models.py:87
+msgid "label_name"
+msgstr "Nombre"
+
+#: lectura/reading/models.py:54 lectura/reading/models.py:91
+msgid "label_description"
+msgstr "Descripción"
+
+#: lectura/reading/models.py:62
+#: lectura/app/templates/reading/reading_base.html:12
+msgid "label_project"
+msgstr "Proyecto"
+
+#: lectura/reading/models.py:63
+#, fuzzy
+#| msgid "label_profile_about"
+msgid "label_project_plural"
+msgstr "Acerca de ti"
+
+#: lectura/reading/models.py:95
+#, fuzzy
+#| msgid "label_home"
+msgid "label_content"
+msgstr "Inicio"
+
+#: lectura/reading/models.py:98
+msgid "label_audio_url"
+msgstr "URL del audio"
+
+#: lectura/reading/models.py:106
+#, fuzzy
+#| msgid "label_home"
+msgid "label_entry"
+msgstr "Inicio"
+
+#: lectura/reading/models.py:107
+#, fuzzy
+#| msgid "label_send_email"
+msgid "label_entry_plural"
+msgstr "Enviar correo"
+
+#: lectura/security/forms.py:8 lectura/users/models.py:20
+msgid "label_username"
+msgstr ""
 
 #: lectura/security/forms.py:15 lectura/users/forms.py:46
 msgid "label_password"
@@ -222,7 +293,7 @@ msgstr ""
 msgid "label_login"
 msgstr "Iniciar sesión"
 
-#: lectura/app/templates/base.html:159
+#: lectura/app/templates/base.html:161
 #: lectura/app/templates/includes/_user_menu_items.html:10
 msgid "label_home"
 msgstr "Inicio"
@@ -238,6 +309,18 @@ msgstr "Comparte lecturas y practica tu pronunciación."
 #: lectura/app/templates/includes/_user_menu_items.html:34
 msgid "label_logout"
 msgstr "Salir"
+
+#: lectura/app/templates/reading/auth/entry_create.html:5
+msgid "page_entry_create_title"
+msgstr "Crear entrada"
+
+#: lectura/app/templates/reading/auth/entry_create.html:25
+msgid "label_create"
+msgstr "Crear"
+
+#: lectura/app/templates/reading/reading_base.html:32
+msgid "label_new_entry"
+msgstr "Nueva entrada"
 
 #: lectura/app/templates/security/login.html:7
 msgid "page_login_title"

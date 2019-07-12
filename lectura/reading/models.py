@@ -91,6 +91,9 @@ class Entry(
         verbose_name=_('label_description'),
         blank=True
     )
+    content = models.TextField(
+        verbose_name=_('label_content'),
+    )
     audio_url = models.URLField(
         verbose_name=_('label_audio_url'),
         blank=True

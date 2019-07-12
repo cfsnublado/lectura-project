@@ -6,6 +6,7 @@ const vm = new Vue({
   el: '#app-container',
   delimiters: ['[[', ']]'],
   data: {
+    appSessionUrl: appSessionUrl,
     showSidebar: sidebarExpanded,
     sidebarOpenClass: 'sidebar-expanded',
     showNavbarMenu: false,

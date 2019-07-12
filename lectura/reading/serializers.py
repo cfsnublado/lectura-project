@@ -98,7 +98,7 @@ class EntrySerializer(BaseSerializer, HyperlinkedModelSerializer):
         fields = (
             'url', 'id', 'project_id', 'project', 'project_slug',
             'project_url', 'creator_id', 'creator_url',
-            'name', 'description', 'slug',
+            'name', 'description', 'content', 'slug',
             'date_created', 'date_updated'
         )
         read_only_fields = (
