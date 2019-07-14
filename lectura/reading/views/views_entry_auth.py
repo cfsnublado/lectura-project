@@ -1,7 +1,7 @@
 from django.apps import apps
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
-    CreateView
+    CreateView, UpdateView
 )
 
 from core.views import (
@@ -9,9 +9,10 @@ from core.views import (
 )
 from django.urls import reverse
 
-from ..forms import EntryCreateForm
+from ..forms import EntryCreateForm, EntryUpdateForm
 from ..models import Entry
 from .views_mixins import (
+    EntryMixin, EntryPermissionMixin, EntrySessionMixin,
     ProjectMixin, ProjectSessionMixin
 )
 
@@ -34,5 +35,31 @@ class EntryCreateView(
 
     def get_success_url(self):
         return reverse(
-            'app:home',
+            'reading:entry_update',
+            kwargs={
+                'entry_pk': self.object.pk,
+                'entry_slug': self.object.slug
+            }
+        )
+
+
+class EntryUpdateView(
+    LoginRequiredMixin, EntryMixin,
+    EntrySessionMixin, EntryPermissionMixin,
+    MessageMixin, UpdateView
+):
+    model = Entry
+    form_class = EntryUpdateForm
+    template_name = '{0}/auth/entry_update.html'.format(APP_NAME)
+
+    def get_object(self, **kwargs):
+        return self.entry
+
+    def get_success_url(self):
+        return reverse(
+            'reading:entry_update',
+            kwargs={
+                'entry_pk': self.object.pk,
+                'entry_slug': self.object.slug
+            }
         )

@@ -48,3 +48,232 @@ const NavbarDropdown = {
     </div>
   `  
 }
+
+const FileUploader = {
+  mixins: [BaseFileUploader]
+}
+
+const AudioFileUploader = {
+  mixins: [BaseFileUploader],
+  methods: {
+    validateFile() {
+      validated = false
+
+      if (this.file.type == 'audio/mpeg') {
+        validated = true
+      } else {
+        console.error('Invalid file type')
+      }
+      
+      return validated
+    }
+  }
+}
+
+const convertTimeHHMMSS = (val) => {
+  let hhmmss = new Date(val * 1000).toISOString().substr(11, 8)
+
+  return hhmmss.indexOf("00:") === 0 ? hhmmss.substr(3) : hhmmss
+}
+
+const AudioPlayer = {
+  props: {
+    audioPlayerId: {
+      type: String,
+      default: 'audio-player'
+    },
+    audioFile: {
+      type: String,
+      default: null
+    },
+    autoPlay: {
+      type: Boolean,
+      default: false
+    },
+    initLoop: {
+      type: Boolean,
+      default: false
+    },
+    hasLoopBtn: {
+      type: Boolean,
+      default: true
+    },
+    hasMuteBtn: {
+      type: Boolean,
+      default: true
+    },
+    hasDownloadBtn: {
+      type: Boolean,
+      default: true
+    }
+  },
+  data() {
+    return {
+      audio: null,
+      playing: false,
+      loaded: false,
+      currentSeconds: 0,
+      durationSeconds: 0,
+      loop: false,
+      showVolume: false,
+      previousVolume: 35,
+      volume: 100
+    }
+  },
+  computed: {
+    currentTime() {
+      return convertTimeHHMMSS(this.currentSeconds)
+    },
+    durationTime() {
+      return convertTimeHHMMSS(this.durationSeconds)
+    },
+    percentComplete() {
+      return parseInt(this.currentSeconds / this.durationSeconds * 100)
+    },
+    muted() {
+      return this.volume / 100 === 0
+    }
+  },
+  watch: {
+    playing(value) {
+      if(value) {
+        this.audio.play()
+      } else {
+        this.audio.pause()
+      }
+    },
+    volume(value) {
+      this.showVolume = false
+      this.audio.volume = this.volume / 100
+    }
+  },
+  methods: {
+    download() {
+      this.stop()
+     // window.open(this.audioFile, 'download')
+      window.location.assign(this.audioFile)
+    },
+    load() {
+      if(this.audio.readyState >= 2) {
+        this.loaded = true
+        this.durationSeconds = parseInt(this.audio.duration)
+
+        return this.playing = this.autoPlay
+      }
+
+      throw new Error('Failed to load sound file.')
+    },
+    mute() {
+      if(this.muted) {
+        return this.volume = this.previousVolume
+      }
+
+      this.previousVolume = this.volume
+      this.volume = 0
+    },
+    seek(e) {
+      if(!this.playing || e.target.tagName === 'SPAN') {
+        return
+      }
+      
+      const el = e.target.getBoundingClientRect()
+      const seekPos = (e.clientX - el.left) / el.width
+
+      this.audio.currentTime = parseInt(this.audio.duration * seekPos)
+    },
+    stop() {
+      this.playing = false
+      this.audio.currentTime = 0
+    },
+    update(e) {
+      this.currentSeconds = parseInt(this.audio.currentTime)
+    }
+  },
+  created() {
+    this.loop = this.initLoop
+  },
+  mounted() {
+    this.audio = this.$el.querySelector('#' + this.audioPlayerId)
+    this.audio.addEventListener('play', () => { this.playing = true })
+    this.audio.addEventListener('pause', () => { this.playing = false });
+    this.audio.addEventListener('ended', () => { this.stop() })
+    this.audio.addEventListener('timeupdate', this.update)
+    this.audio.addEventListener('loadeddata', this.load)
+  },
+  template: `
+    <div class="audio-player">
+
+    <div class="audio-player-controls">
+
+    <div class="player-control">
+    <a @click.prevent="stop" title="Stop" href="#">
+    <i class="fas fa-stop"></i>
+    </a>
+    </div>
+
+    <div class="player-control">
+    <a @click.prevent="playing = !playing" title="Play/Pause" href="#">
+    <i v-if="!playing" class="fas fa-play"></i>
+    <i v-else class="fas fa-pause"></i>
+    </a>
+    </div>
+
+    <div class="audio-player-control">
+
+    <div @click="seek" class="audio-player-progress" title="Time played : Total time">
+
+    <div :style="{ width: this.percentComplete + '%' }" class="audio-player-seeker"></div>
+
+    </div><!-- audio-player-progress -->
+
+    <div class="audio-player-time">
+
+    <div class="audio-player-time-current">{{ currentTime }}</div>
+    <div class="audio-player-time-total">{{ durationTime }}</div>
+
+    </div><!-- audio-player-time -->
+
+    </div>
+
+    <div v-if="hasDownloadBtn" class="player-control">
+    <a @click.prevent="download" href="#">
+    <i class="fas fa-download"></i>
+    </a>
+    </div>
+
+    <div v-if="hasLoopBtn" class="player-control">
+    <a @click.prevent="loop = !loop" href="#">
+    <i v-if="!loop" class="fas fa-long-arrow-alt-right"></i>
+    <i v-else class="fas fa-sync"></i>
+    </a>
+    </div>
+
+    <div v-if="hasMuteBtn" class="player-control">
+    <a @click.prevent="mute" title="Mute" href="#">
+    <i v-if="!muted" class="fas fa-volume-down"></i>
+    <i v-else class="fas fa-volume-mute"></i>
+    </a>
+    </div>
+
+    <div class="player-control">
+    <a @click.prevent="showVolume = !showVolume" title="Volume" href="#">
+    <i class="fas fa-signal"></i>
+    <input v-model.lazy.number="volume" v-show="showVolume" type="range" min="0" max="100"/>
+    </a>
+    </div>
+
+    </div><!-- audio-player-controls -->
+
+    <audio
+    :id="audioPlayerId" 
+    :loop="loop"
+    :src="audioFile" 
+    preload="auto"
+    style="display: none;"
+    ref="audiofile"
+    >
+    </audio>
+
+    </div><!-- audio-player -->
+  `
+}

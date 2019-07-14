@@ -29,11 +29,27 @@
 </label>
 
 <div class="control">
-{% render_field form.description class+="textarea" %}
+{% render_field form.description class+="input" %}
 </div>
 
 <div id="{{ form.description.auto_id }}-errors" class="errors">
 {{ form.description.errors }}
+</div>
+
+</div>
+
+<div class="field">
+
+<label class="label" for="content">
+{{ form.content.label }}
+</label>
+
+<div class="control">
+{% render_field form.content class+="textarea" %}
+</div>
+
+<div id="{{ form.content.auto_id }}-errors" class="errors">
+{{ form.content.errors }}
 </div>
 
 </div>

@@ -1,5 +1,8 @@
 Vue.component('alert-message', AlertMessage)
 Vue.component('navbar-dropdown', NavbarDropdown)
+Vue.component('audio-file-uploader', AudioFileUploader)
+Vue.component('audio-player', AudioPlayer)
+
 
 // Instantiate main app instance.
 const vm = new Vue({

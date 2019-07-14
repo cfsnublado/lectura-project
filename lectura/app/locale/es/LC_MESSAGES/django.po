@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-12 11:56-0700\n"
+"POT-Creation-Date: 2019-07-14 03:06-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -148,10 +148,8 @@ msgid "label_project_plural"
 msgstr "Acerca de ti"
 
 #: lectura/reading/models.py:95
-#, fuzzy
-#| msgid "label_home"
 msgid "label_content"
-msgstr "Inicio"
+msgstr "Contenido"
 
 #: lectura/reading/models.py:98
 msgid "label_audio_url"
@@ -314,9 +312,22 @@ msgstr "Salir"
 msgid "page_entry_create_title"
 msgstr "Crear entrada"
 
-#: lectura/app/templates/reading/auth/entry_create.html:25
+#: lectura/app/templates/reading/auth/entry_create.html:26
 msgid "label_create"
 msgstr "Crear"
+
+#: lectura/app/templates/reading/auth/entry_update.html:5
+msgid "page_entry_update_title"
+msgstr "Editar entrada"
+
+#: lectura/app/templates/reading/auth/entry_update.html:26
+#: lectura/app/templates/users/auth/profile_update.html:117
+msgid "label_update"
+msgstr "Actualizar"
+
+#: lectura/app/templates/reading/entry.html:5
+msgid "page_entry_title"
+msgstr "Ver entrada"
 
 #: lectura/app/templates/reading/reading_base.html:32
 msgid "label_new_entry"
@@ -398,10 +409,6 @@ msgstr "Correo"
 #: lectura/app/templates/users/auth/profile_update.html:100
 msgid "placeholder_profile_about"
 msgstr "Acerca de ti"
-
-#: lectura/app/templates/users/auth/profile_update.html:117
-msgid "label_update"
-msgstr "Actualizar"
 
 #: lectura/app/templates/users/forgot_password_reset.html:7
 msgid "page_change_password_title"

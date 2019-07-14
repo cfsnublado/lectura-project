@@ -196,7 +196,11 @@ General
 </div><!-- app-container -->
 
 <script>
-{% block python_to_javascript %}{% endblock python_to_javascript %}
+{% block python_to_javascript %}
+
+var appSessionUrl = "{% url 'app:app_session' %}";
+
+{% endblock python_to_javascript %}
 </script>
 
 {% block scripts %}

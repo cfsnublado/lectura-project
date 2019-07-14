@@ -38,3 +38,9 @@ class EntryCreateForm(EntryForm):
 
     class Meta(EntryForm.Meta):
         model = Entry
+
+
+class EntryUpdateForm(EntryForm):
+
+    class Meta(EntryForm.Meta):
+        model = Entry
