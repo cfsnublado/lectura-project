@@ -10056,6 +10056,13 @@ blockquote p {
   display: inline;
 }
 
+@media screen and (max-width: 768px) {
+  /* line 40, ../scss/cfs/_typography.scss */
+  blockquote {
+    font-size: 1.75rem;
+    line-height: 2.375rem;
+  }
+}
 /* line 2, ../scss/cfs/_layout.scss */
 .centerall {
   display: flex;
@@ -11441,12 +11448,13 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
   flex-direction: row;
   -webkit-align-items: center;
   align-items: center;
+  height: 3.125rem;
   padding-left: 1rem;
   border-bottom: 1px solid #eee;
   background-color: #f7f7f7;
 }
 
-/* line 85, ../scss/cfs/_sidebar.scss */
+/* line 86, ../scss/cfs/_sidebar.scss */
 .sidebar-navbar {
   display: -webkit-flex;
   display: flex;
@@ -11454,12 +11462,12 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
   flex-direction: row;
   -webkit-align-items: center;
   align-items: center;
-  min-height: 3.1875rem;
+  height: 3.1875rem;
   border-bottom: 1px solid #eee;
   background-color: #f7f7f7;
 }
 
-/* line 96, ../scss/cfs/_sidebar.scss */
+/* line 97, ../scss/cfs/_sidebar.scss */
 .sidebar-body {
   -webkit-flex: 1;
   flex: 1;
@@ -11470,7 +11478,7 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
   opacity: 1;
 }
 
-/* line 108, ../scss/cfs/_sidebar.scss */
+/* line 109, ../scss/cfs/_sidebar.scss */
 .sidebar-footer {
   display: -webkit-flex;
   display: flex;
@@ -11478,12 +11486,12 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
   align-items: center;
   font-size: 0.875rem;
   width: 15.625rem;
-  height: 3.75rem;
+  height: 3.125rem;
   padding-left: 1rem;
   border-top: 1px solid #dfe1e3;
 }
 
-/* line 121, ../scss/cfs/_sidebar.scss */
+/* line 122, ../scss/cfs/_sidebar.scss */
 .sidebar-divider {
   display: block;
   overflow: hidden;
@@ -11494,11 +11502,11 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
   background: #d8d9da;
 }
 
-/* line 135, ../scss/cfs/_sidebar.scss */
+/* line 136, ../scss/cfs/_sidebar.scss */
 body.sidebar-expanded .sidebar-background {
   display: block;
 }
-/* line 139, ../scss/cfs/_sidebar.scss */
+/* line 140, ../scss/cfs/_sidebar.scss */
 body.sidebar-expanded .sidebar {
   -moz-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
