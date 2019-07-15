@@ -12,10 +12,6 @@
 
 <div class="entry-view">
 
-<div class="entry-name">
-<h2>{{ entry.name }}</h2>
-</div>
-
 <div class="entry-audio">
 <audio-player
 audio-player-id="entry-audio"
@@ -26,6 +22,10 @@ audio-file={{ entry.audio_url }}
 :has-volume-btn="false"
 >
 </audio-player>
+</div>
+
+<div class="entry-name">
+<h2>{{ entry.name }}</h2>
 </div>
 
 <div class="entry-content">
