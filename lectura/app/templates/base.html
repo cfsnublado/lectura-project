@@ -104,13 +104,27 @@ aria-label="sidebar-trigger"
 <div class="menu">
 
 <p class="menu-label">
-General
+{% trans 'label_general' %}
 </p>
 
 <ul class="menu-list">
 <li>
 <a href="{% url 'app:home' %}">
 <i class="fas fa-fw fa-home menu-icon"></i> {% trans 'label_home' %}
+</a>
+</li>
+</ul>
+
+<span class="sidebar-divider"></span>
+
+<p class="menu-label">
+{% trans 'label_reading' %}
+</p>
+
+<ul class="menu-list">
+<li>
+<a href="{% url 'app:home' %}">
+<i class="fas fa-fw fa-project-diagram menu-icon"></i> {% trans 'label_projects' %}
 </a>
 </li>
 </ul>
@@ -167,6 +181,7 @@ var sidebarExpanded = false;
 <script src="{% static 'js/vue.js' %}"></script>
 <script src="{% static 'js/vue/core-components.js' %}"></script>
 <script src="{% static 'js/vue/app-components.js' %}"></script>
+<script src="{% static 'js/vue/reading-components.js' %}"></script>
 <script src="{% static 'js/vue/app.js' %}"></script>
 {% endblock scripts %}
 

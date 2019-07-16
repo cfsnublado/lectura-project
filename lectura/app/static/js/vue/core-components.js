@@ -1,3 +1,25 @@
+const AjaxProcessMixin = {
+  data() {
+    return {
+      processing: false
+    }
+  },
+  methods: {
+    process() {
+      this.processing = true
+      this.$emit('ajax-process')
+    },
+    complete() {
+      this.processing = false
+      this.$emit('ajax-complete')
+    },
+    success() {
+      this.processing = false
+      this.$emit('ajax-success')
+    }
+  }
+}
+
 const ClickOutsideMixin = {
   methods: {
     onCloseOutside() {
@@ -20,6 +42,27 @@ const ClickOutsideMixin = {
   },
   beforeDestroy() {
     this.removeClickOutsideHandler()
+  }
+}
+
+const PaginationMixin = {
+  data() {
+    return {
+      previousUrl: null,
+      nextUrl: null,
+      pageNum: null,
+      pageCount: null,
+      resultsCount: null
+    }
+  },
+  methods: {
+    setPagination(previousUrl, nextUrl, pageNum, resultsCount, pageCount) {
+      this.previousUrl = previousUrl
+      this.nextUrl = nextUrl
+      this.pageNum = pageNum
+      this.resultsCount = resultsCount
+      this.pageCount = pageCount
+    }
   }
 }
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-14 03:06-0700\n"
+"POT-Creation-Date: 2019-07-15 22:47-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -155,11 +155,9 @@ msgstr "Content"
 msgid "label_audio_url"
 msgstr "Audio URL"
 
-#: lectura/reading/models.py:106
-#, fuzzy
-#| msgid "label_home"
+#: lectura/reading/models.py:106 lectura/app/templates/base.html:121
 msgid "label_reading"
-msgstr "Home"
+msgstr "Reading"
 
 #: lectura/reading/models.py:107
 #, fuzzy
@@ -262,7 +260,8 @@ msgid "label_profile_about"
 msgstr "About you"
 
 #: lectura/users/models.py:97
-#: lectura/app/templates/includes/_user_menu_items.html:22
+#: lectura/app/templates/includes/_user_menu_items.html:21
+#: lectura/app/templates/includes/_user_nav.html:44
 msgid "label_profile"
 msgstr "Profile"
 
@@ -286,15 +285,19 @@ msgstr ""
 msgid "message_password_reset_success"
 msgstr ""
 
-#: lectura/app/templates/base.html:65 lectura/app/templates/base.html:108
-#: lectura/app/templates/security/login.html:69
-msgid "label_login"
-msgstr "Login"
+#: lectura/app/templates/base.html:107
+msgid "label_general"
+msgstr "General"
 
-#: lectura/app/templates/base.html:161
-#: lectura/app/templates/includes/_user_menu_items.html:10
+#: lectura/app/templates/base.html:113
+#: lectura/app/templates/includes/_user_menu_items.html:9
+#: lectura/app/templates/includes/_user_nav.html:32
 msgid "label_home"
 msgstr "Home"
+
+#: lectura/app/templates/base.html:127
+msgid "label_projects"
+msgstr "Projects"
 
 #: lectura/app/templates/home.html:6
 msgid "page_home_title"
@@ -304,9 +307,15 @@ msgstr "Home"
 msgid "msg_project_banner_desc"
 msgstr "Share readings and practice your pronunciation."
 
-#: lectura/app/templates/includes/_user_menu_items.html:34
+#: lectura/app/templates/includes/_user_menu_items.html:33
+#: lectura/app/templates/includes/_user_nav.html:56
 msgid "label_logout"
 msgstr "Logout"
+
+#: lectura/app/templates/includes/_user_nav.html:7
+#: lectura/app/templates/security/login.html:74
+msgid "label_login"
+msgstr "Login"
 
 #: lectura/app/templates/reading/auth/reading_create.html:5
 msgid "page_reading_create_title"
@@ -316,16 +325,20 @@ msgstr "Create reading"
 msgid "label_create"
 msgstr "Create"
 
-#: lectura/app/templates/reading/auth/reading_update.html:5
+#: lectura/app/templates/reading/auth/reading_update.html:4
 msgid "page_reading_update_title"
 msgstr "Update reading"
 
-#: lectura/app/templates/reading/auth/reading_update.html:26
+#: lectura/app/templates/reading/auth/reading_update.html:13
 #: lectura/app/templates/users/auth/profile_update.html:117
 msgid "label_update"
 msgstr "Update"
 
-#: lectura/app/templates/reading/reading.html:5
+#: lectura/app/templates/reading/projects.html:6
+msgid "page_projects_title"
+msgstr "Projects"
+
+#: lectura/app/templates/reading/reading.html:6
 msgid "page_reading_title"
 msgstr "View reading"
 
@@ -333,19 +346,19 @@ msgstr "View reading"
 msgid "label_new_reading"
 msgstr "New reading"
 
-#: lectura/app/templates/security/login.html:7
+#: lectura/app/templates/security/login.html:8
 msgid "page_login_title"
 msgstr "Login"
 
-#: lectura/app/templates/security/login.html:38
+#: lectura/app/templates/security/login.html:43
 msgid "placeholder_username"
 msgstr "Username"
 
-#: lectura/app/templates/security/login.html:55
+#: lectura/app/templates/security/login.html:60
 msgid "placeholder_password"
 msgstr "Password"
 
-#: lectura/app/templates/security/login.html:77
+#: lectura/app/templates/security/login.html:82
 #: lectura/app/templates/users/password_reset_request.html:24
 msgid "msg_forgot_password_q"
 msgstr "Forgot your password?"

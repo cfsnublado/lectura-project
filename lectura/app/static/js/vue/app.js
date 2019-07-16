@@ -3,6 +3,9 @@ Vue.component('navbar-dropdown', NavbarDropdown)
 Vue.component('audio-file-uploader', AudioFileUploader)
 Vue.component('audio-player', AudioPlayer)
 
+// Reading components
+Vue.component('projects', Projects)
+
 
 // Instantiate main app instance.
 const vm = new Vue({
