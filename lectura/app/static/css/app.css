@@ -11603,8 +11603,26 @@ body.sidebar-expanded .sidebar {
   font-size: 1.375rem;
 }
 
+/* line 28, ../scss/cfs/reading/_reading.scss */
+.entry-view-section {
+  padding-bottom: 6.25rem;
+}
+
+/* line 32, ../scss/cfs/reading/_reading.scss */
+.entry-view-footer {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3.75rem;
+  background-color: #666;
+  align-items: center;
+  justify-content: center;
+}
+
 @media screen and (max-width: 768px) {
-  /* line 31, ../scss/cfs/reading/_reading.scss */
+  /* line 50, ../scss/cfs/reading/_reading.scss */
   .entry-view .entry-name {
     font-size: 2.625rem;
   }
