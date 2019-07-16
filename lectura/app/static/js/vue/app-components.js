@@ -259,7 +259,7 @@ const AudioPlayer = {
     </a>
     </div>
 
-    <div v-if="hasVolumeButton" class="player-control">
+    <div v-if="hasVolumeBtn" class="player-control">
     <a @click.prevent="showVolume = !showVolume" title="Volume" href="#">
     <i class="fas fa-signal"></i>
     <input v-model.lazy.number="volume" v-show="showVolume" type="range" min="0" max="100"/>

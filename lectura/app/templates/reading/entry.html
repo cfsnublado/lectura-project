@@ -30,10 +30,11 @@
 {% endblock content %}
 
 {% block page_footer %}
+{% if entry.audio_url %}
 <footer class="entry-view-footer">
 <audio-player
 audio-player-id="entry-audio"
-audio-file={{ entry.audio_url }}
+audio-file="{{ entry.audio_url }}"
 :has-loop-btn="false"
 :has-download-btn="false"
 :has-mute-btn="false"
@@ -41,4 +42,5 @@ audio-file={{ entry.audio_url }}
 >
 </audio-player>
 </footer>
+{% endif %}
 {% endblock page_footer %}
