@@ -20,14 +20,22 @@ inline-template
 >
 <div>
 
-<div class="card">
+<div class="card project-card">
 <div class="card-content">
+
+<div class="project-name">
 <a
 href="#"
 @click.prevent="view"
 >
 [[ project.name ]]
 </a>
+</div>
+
+<div class="project-desc">
+[[ project.description ]]
+</div>
+
 </div>
 </div>
 

@@ -2,21 +2,56 @@ from django.utils.translation import ugettext_lazy as _
 
 from core.forms import BaseModelForm
 from .models import (
-    Reading
+    Project, Reading
 )
 
 
-class ReadingForm(BaseModelForm):
+class ProjectForm(BaseModelForm):
 
     class Meta:
         abstract = True
-        fields = ['name', 'description', 'audio_url', 'content']
+        fields = ['name', 'description']
         error_messages = {
             'name': {
                 'required': _('validation_field_required'),
                 'unique': _('validation_field_unique'),
             }
         }
+
+
+class ReadingForm(BaseModelForm):
+
+    class Meta:
+        abstract = True
+        fields = ['name', 'description', 'content', 'audio_url']
+        error_messages = {
+            'name': {
+                'required': _('validation_field_required'),
+                'unique': _('validation_field_unique'),
+            }
+        }
+
+
+class ProjectCreateForm(ProjectForm):
+
+    def __init__(self, *args, **kwargs):
+        self.owner = kwargs.pop('owner', None)
+
+        super(ProjectCreateForm, self).__init__(*args, **kwargs)
+
+        if not self.owner:
+            raise ValueError(_('validation_owner_required'))
+
+        self.instance.owner = self.owner
+
+    class Meta(ProjectForm.Meta):
+        model = Project
+
+
+class ProjectUpdateForm(ProjectForm):
+
+    class Meta(ProjectForm.Meta):
+        model = Project
 
 
 class ReadingCreateForm(ReadingForm):

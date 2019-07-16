@@ -129,6 +129,20 @@ aria-label="sidebar-trigger"
 </li>
 </ul>
 
+{% if user.is_authenticated and not request.session_obj %}
+
+  <span class="sidebar-divider"></span>
+
+  <ul class="menu-list">
+  <li>
+  <a href="">
+  <i class="fas fa-fw fa-plus menu-icon"></i> {% trans 'label_new_project' %}
+  </a>
+  </li>
+  </ul>
+
+{% endif %}
+
 </div>
 
 {% endblock sidebar_nav_items %}

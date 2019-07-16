@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-15 22:47-0700\n"
+"POT-Creation-Date: 2019-07-16 13:50-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -299,6 +299,10 @@ msgstr "Inicio"
 msgid "label_projects"
 msgstr "Proyectos"
 
+#: lectura/app/templates/base.html:139
+msgid "label_new_project"
+msgstr "Nuevo proyecto"
+
 #: lectura/app/templates/home.html:6
 msgid "page_home_title"
 msgstr "Inicio"
@@ -333,6 +337,18 @@ msgstr "Editar lectura"
 #: lectura/app/templates/users/auth/profile_update.html:117
 msgid "label_update"
 msgstr "Actualizar"
+
+#: lectura/app/templates/reading/includes/vue/_projects.html:11
+#, fuzzy
+#| msgid "msg_project_banner_desc"
+msgid "msg_no_projects"
+msgstr "Comparte lecturas y practica tu pronunciación."
+
+#: lectura/app/templates/reading/project.html:6
+#, fuzzy
+#| msgid "page_projects_title"
+msgid "page_project_title"
+msgstr "Proyectos"
 
 #: lectura/app/templates/reading/projects.html:6
 msgid "page_projects_title"
