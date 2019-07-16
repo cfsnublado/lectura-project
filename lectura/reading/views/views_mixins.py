@@ -3,7 +3,7 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404
 
 from core.views import CachedObjectMixin, ObjectSessionMixin
-from ..models import Entry, Project
+from ..models import Reading, Project
 
 
 class PermissionMixin(object):
@@ -77,68 +77,68 @@ class ProjectMixin(CachedObjectMixin):
         return context
 
 
-class EntryPermissionMixin(PermissionMixin):
+class ReadingPermissionMixin(PermissionMixin):
 
     def check_permission(self):
         has_permission = False
 
         if self.superuser_override:
-            if self.request.user.is_superuser or self.entry.creator_id == self.request.user.id:
+            if self.request.user.is_superuser or self.reading.creator_id == self.request.user.id:
                 has_permission = True
         else:
-            if self.entry.creator_id == self.request.user.id:
+            if self.reading.creator_id == self.request.user.id:
                 has_permission = True
 
         return has_permission
 
 
-class EntrySessionMixin(ObjectSessionMixin):
-    session_obj = 'entry'
+class ReadingSessionMixin(ObjectSessionMixin):
+    session_obj = 'reading'
     session_obj_attrs = ['id', 'name', 'slug']
 
 
-class EntryMixin(CachedObjectMixin):
-    entry_id = 'entry_pk'
-    entry_slug = 'entry_slug'
+class ReadingMixin(CachedObjectMixin):
+    reading_id = 'reading_pk'
+    reading_slug = 'reading_slug'
     project = None
-    entry = None
-    entry_admin = False
+    reading = None
+    reading_admin = False
 
     def dispatch(self, request, *args, **kwargs):
-        self.get_entry(request, *args, **kwargs)
+        self.get_reading(request, *args, **kwargs)
 
-        if request.user.is_superuser or request.user.id == self.entry.creator_id:
-            self.entry_admin = True
+        if request.user.is_superuser or request.user.id == self.reading.creator_id:
+            self.reading_admin = True
 
-        return super(EntryMixin, self).dispatch(request, *args, **kwargs)
+        return super(ReadingMixin, self).dispatch(request, *args, **kwargs)
 
-    def get_entry(self, request, *args, **kwargs):
-        if self.entry_id in kwargs:
-            self.entry = get_object_or_404(
-                Entry.objects.prefetch_related('creator', 'project'),
-                id=kwargs[self.entry_id]
+    def get_reading(self, request, *args, **kwargs):
+        if self.reading_id in kwargs:
+            self.reading = get_object_or_404(
+                Reading.objects.prefetch_related('creator', 'project'),
+                id=kwargs[self.reading_id]
             )
-        elif self.entry_slug in kwargs:
-            self.entry = get_object_or_404(
-                Entry.objects.prefetch_related('creator', 'project'),
-                slug=kwargs[self.entry_slug]
+        elif self.reading_slug in kwargs:
+            self.reading = get_object_or_404(
+                Reading.objects.prefetch_related('creator', 'project'),
+                slug=kwargs[self.reading_slug]
             )
         else:
             obj = self.get_object()
 
-            if hasattr(obj, 'entry_id'):
-                self.entry = obj.entry
-            elif isinstance(obj, Entry):
-                    self.entry = obj
+            if hasattr(obj, 'reading_id'):
+                self.reading = obj.reading
+            elif isinstance(obj, Reading):
+                    self.reading = obj
             else:
-                raise Http404('Entry not found.')
+                raise Http404('Reading not found.')
 
-        self.project = self.entry.project
+        self.project = self.reading.project
 
     def get_context_data(self, **kwargs):
-        context = super(EntryMixin, self).get_context_data(**kwargs)
+        context = super(ReadingMixin, self).get_context_data(**kwargs)
         context['project'] = self.project
-        context['entry'] = self.entry
-        context['entry_admin'] = self.entry_admin
+        context['reading'] = self.reading
+        context['reading_admin'] = self.reading_admin
 
         return context

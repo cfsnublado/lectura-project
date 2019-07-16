@@ -158,13 +158,13 @@ msgstr "URL del audio"
 #: lectura/reading/models.py:106
 #, fuzzy
 #| msgid "label_home"
-msgid "label_entry"
+msgid "label_reading"
 msgstr "Inicio"
 
 #: lectura/reading/models.py:107
 #, fuzzy
 #| msgid "label_send_email"
-msgid "label_entry_plural"
+msgid "label_reading_plural"
 msgstr "Enviar correo"
 
 #: lectura/security/forms.py:8 lectura/users/models.py:20
@@ -308,30 +308,30 @@ msgstr "Comparte lecturas y practica tu pronunciación."
 msgid "label_logout"
 msgstr "Salir"
 
-#: lectura/app/templates/reading/auth/entry_create.html:5
-msgid "page_entry_create_title"
-msgstr "Crear entrada"
+#: lectura/app/templates/reading/auth/reading_create.html:5
+msgid "page_reading_create_title"
+msgstr "Crear lectura"
 
-#: lectura/app/templates/reading/auth/entry_create.html:26
+#: lectura/app/templates/reading/auth/reading_create.html:26
 msgid "label_create"
 msgstr "Crear"
 
-#: lectura/app/templates/reading/auth/entry_update.html:5
-msgid "page_entry_update_title"
-msgstr "Editar entrada"
+#: lectura/app/templates/reading/auth/reading_update.html:5
+msgid "page_reading_update_title"
+msgstr "Editar lectura"
 
-#: lectura/app/templates/reading/auth/entry_update.html:26
+#: lectura/app/templates/reading/auth/reading_update.html:26
 #: lectura/app/templates/users/auth/profile_update.html:117
 msgid "label_update"
 msgstr "Actualizar"
 
-#: lectura/app/templates/reading/entry.html:5
-msgid "page_entry_title"
-msgstr "Ver entrada"
+#: lectura/app/templates/reading/reading.html:5
+msgid "page_reading_title"
+msgstr "Ver lectura"
 
 #: lectura/app/templates/reading/reading_base.html:32
-msgid "label_new_entry"
-msgstr "Nueva entrada"
+msgid "label_new_reading"
+msgstr "Nueva lectura"
 
 #: lectura/app/templates/security/login.html:7
 msgid "page_login_title"

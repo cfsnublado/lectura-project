@@ -2,14 +2,14 @@ from django.apps import apps
 from django.views.generic import TemplateView
 
 from .views_mixins import (
-    EntryMixin, EntrySessionMixin
+    ReadingMixin, ReadingSessionMixin
 )
 
 APP_NAME = apps.get_app_config('reading').name
 
 
-class EntryView(
-    EntryMixin, EntrySessionMixin,
+class ReadingView(
+    ReadingMixin, ReadingSessionMixin,
     TemplateView
 ):
-    template_name = '{0}/entry.html'.format(APP_NAME)
+    template_name = '{0}/reading.html'.format(APP_NAME)

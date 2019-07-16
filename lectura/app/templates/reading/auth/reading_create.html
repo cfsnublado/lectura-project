@@ -2,9 +2,9 @@
 {% load staticfiles %}
 {% load i18n %}
 
-{% block title %}{% trans "page_entry_create_title" %}{% endblock title %}
+{% block title %}{% trans "page_reading_create_title" %}{% endblock title %}
 
-{% block entry_create_link_active %}is-active{% endblock entry_create_link_active %}
+{% block reading_create_link_active %}is-active{% endblock reading_create_link_active %}
 
 {% block content %}
 
@@ -13,14 +13,14 @@
 
 <form 
 id="edit-form" 
-action="{% url 'reading:entry_create' project.id project.slug %}" 
+action="{% url 'reading:reading_create' project.id project.slug %}" 
 method="post" 
 novalidate
 >
 
 {% csrf_token %}
 
-{% include "reading/includes/forms/_entry_form.html" %}
+{% include "reading/includes/forms/_reading_form.html" %}
 
 <button id="submit-btn" class="button is-primary" type="submit" form="edit-form">
 {% trans "label_create" %}

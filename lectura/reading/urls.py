@@ -1,30 +1,30 @@
 from django.urls import include, path
 
-from .views.views_entry import EntryView
-from .views.views_entry_auth import (
-    EntryCreateView, EntryUpdateView
+from .views.views_reading import ReadingView
+from .views.views_reading_auth import (
+    ReadingCreateView, ReadingUpdateView
 )
 
 app_name = 'reading'
 
 auth_urls = [
     path(
-        'project/<int:project_pk>-<slug:project_slug>/entry/create/',
-        EntryCreateView.as_view(),
-        name='entry_create'
+        'project/<int:project_pk>-<slug:project_slug>/reading/create/',
+        ReadingCreateView.as_view(),
+        name='reading_create'
     ),
     path(
-        'entry/<int:entry_pk>-<slug:entry_slug>/update/',
-        EntryUpdateView.as_view(),
-        name='entry_update'
+        'reading/<int:reading_pk>-<slug:reading_slug>/update/',
+        ReadingUpdateView.as_view(),
+        name='reading_update'
     ),
 ]
 
 urlpatterns = [
     path(
-        'entry/<int:entry_pk>-<slug:entry_slug>/',
-        EntryView.as_view(),
-        name='entry'
+        'reading/<int:reading_pk>-<slug:reading_slug>/',
+        ReadingView.as_view(),
+        name='reading'
     ),
     path('auth/', include(auth_urls)),
 ]
