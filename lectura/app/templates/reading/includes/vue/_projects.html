@@ -6,7 +6,34 @@ inline-template
 >
 
 <div>
-<p>Hello</p>
+
+<div v-if="projects.length == 0">
+{% trans 'msg_no_projects' %}
+</div>
+
+<project
+v-for="(project, index) in projects"
+:key="project.id"
+:init-project="project"
+init-view-url="{{ project_url }}"
+inline-template
+>
+<div>
+
+<div class="card">
+<div class="card-content">
+<a
+href="#"
+@click.prevent="view"
+>
+[[ project.name ]]
+</a>
+</div>
+</div>
+
+</div>
+</project>
+
 </div>
 
 </projects>

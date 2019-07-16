@@ -1,6 +1,6 @@
 from django.urls import include, path
 
-from .views.views_project import ProjectsView
+from .views.views_project import ProjectView, ProjectsView
 from .views.views_reading import ReadingView
 from .views.views_reading_auth import (
     ReadingCreateView, ReadingUpdateView
@@ -26,6 +26,11 @@ urlpatterns = [
         'projects/',
         ProjectsView.as_view(),
         name='projects'
+    ),
+    path(
+        'project/<int:project_pk>-<slug:project_slug>/',
+        ProjectView.as_view(),
+        name='project'
     ),
     path(
         'reading/<int:reading_pk>-<slug:reading_slug>/',

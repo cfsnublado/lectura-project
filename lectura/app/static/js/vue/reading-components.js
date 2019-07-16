@@ -11,7 +11,7 @@ const Projects = {
   },
   data() {
     return {
-      projects: null
+      projects: []
     }
   },
   methods: {
@@ -56,5 +56,61 @@ const Projects = {
   },
   created() {
     this.getProjects()
+  }
+}
+
+const Project = {
+  mixins: [
+    VisibleMixin
+  ],
+  props: {
+    initProject: {
+      type: Object,
+      required: true
+    },
+    initViewUrl: {
+      type: String,
+      default: ''
+    },
+    initEditUrl: {
+      type: String,
+      default: ''
+    },
+    initDeleteUrl: {
+      type: String,
+      default: ''
+    }
+  },
+  data() {
+    return {
+      project: this.initProject,
+      viewUrl: this.initViewUrl,
+      editUrl: this.initEditUrl,
+      deleteUrl: this.initDeleteUrl
+    }
+  },
+  methods: {
+    view() {
+      if (this.viewUrl) {
+        window.location.replace(this.viewUrl)
+      }
+    },
+    edit() {},
+    remove() {
+      this.isVisible = false
+    }
+  },
+  created() {
+    if (this.initViewUrl) {
+      this.viewUrl = this.initViewUrl
+        .replace(0, this.project.id)
+        .replace('zzz', this.project.slug)
+      console.log(this.viewUrl)   
+    }
+
+    if (this.initDeleteUrl) {
+      this.deleteUrl = this.initDeleteUrl
+        .replace(0, this.project.id)
+    }
   }
 }

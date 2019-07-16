@@ -5,7 +5,21 @@ Vue.component('audio-player', AudioPlayer)
 
 // Reading components
 Vue.component('projects', Projects)
+Vue.component('project', Project)
 
+VueScrollTo.setDefaults({
+    container: "body",
+    duration: 500,
+    easing: "ease",
+    offset: 0,
+    force: true,
+    cancelable: true,
+    onStart: false,
+    onDone: false,
+    onCancel: false,
+    x: false,
+    y: true
+})
 
 // Instantiate main app instance.
 const vm = new Vue({

@@ -66,6 +66,21 @@ const PaginationMixin = {
   }
 }
 
+const VisibleMixin = {
+  props: {
+    initIsVisible: {
+      type: Boolean,
+      default: true
+    }
+  },
+  data() {
+    return {
+      isVisible: this.initIsVisible
+    }
+  }
+}
+
+
 const BaseMessage = {
   props: {
     messageType: {
