@@ -22,6 +22,19 @@
 
 {% endblock stylesheets %}
 
+{% block styles %}
+
+<style>
+.card .card-controls {
+  display: flex;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  justify-content: flex-end;
+}
+</style>
+{% endblock styles %}
+
 </head>
 
 <body>
@@ -175,6 +188,8 @@ aria-label="sidebar-trigger"
 
 {% block page_footer %}{% endblock page_footer %}
 
+{% block modal_content %}{% endblock modal_content %}
+
 </div><!-- app-container -->
 
 <script>
@@ -193,6 +208,7 @@ var sidebarExpanded = false;
 <script src="{% static 'js/axios.min.js' %}"></script>
 <script src="{% static 'js/ajax.js' %}"></script>
 <script src="{% static 'js/vue.js' %}"></script>
+<script src="{% static 'js/vue/plugins/modal.js' %}"></script>
 <script src="{% static 'js/vue/core-components.js' %}"></script>
 <script src="{% static 'js/vue/app-components.js' %}"></script>
 <script src="{% static 'js/vue/reading-components.js' %}"></script>

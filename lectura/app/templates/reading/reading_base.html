@@ -13,7 +13,7 @@
   </p>
 
   <p class="menu-header">
-  <a id="sidebar-nav-project-name">
+  <a id="sidebar-nav-project-name" href="{% url 'reading:project' project.id project.slug %}">
   <span id="menu-project-name"> {{ project.name }} </span>
   </a>
   </p>
@@ -36,6 +36,28 @@
     <span class="sidebar-divider"></span>
 
   {% endif %}
+  </ul>
+
+  </div>
+
+{% elif request.session.session_obj.reading %}
+
+  <div class="menu">
+
+  <p class="menu-label">
+  {% trans 'label_project' %}
+  </p>
+
+  <p class="menu-header">
+  <a id="sidebar-nav-project-name" href="{% url 'reading:project' project.id project.slug %}">
+  <span id="menu-project-name"> {{ project.name }} </span>
+  </a>
+  </p>
+
+  <ul class="menu-list">
+
+  <span class="sidebar-divider"></span>
+
   </ul>
 
   </div>

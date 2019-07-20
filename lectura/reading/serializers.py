@@ -67,7 +67,6 @@ class ReadingSerializer(BaseSerializer, HyperlinkedModelSerializer):
         view_name='api:reading-detail',
         lookup_field='pk'
     )
-    project_id = ReadOnlyField(source='project_id')
     project_url = HyperlinkedRelatedField(
         many=False,
         read_only=True,

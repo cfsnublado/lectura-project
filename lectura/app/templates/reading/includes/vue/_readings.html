@@ -1,0 +1,72 @@
+{% load i18n %}
+
+<readings
+readings-url="{{ readings_url }}"
+inline-template
+>
+
+<div 
+class="readings"
+v-cloak
+>
+
+<reading
+v-for="(reading, index) in readings"
+:key="reading.id"
+:init-reading="reading"
+init-view-url="{{ reading_url }}"
+init-delete-url="{{ reading_delete_url }}"
+inline-template
+>
+
+<transition name="fade-transition" v-on:after-enter="isVisible = true" v-on:after-leave="isVisible = false">
+
+<div 
+class="card reading-card" 
+v-show="isVisible" 
+v-cloak
+>
+
+<div class="card-controls">
+
+<ajax-delete
+delete-confirm-id="delete-reading"
+:delete-url="deleteUrl"
+@ajax-success="remove"
+inline-template
+>
+
+<a
+class="delete is-medium"
+@click.prevent="confirmDelete"
+>
+</a>
+</ajax-delete>
+
+</div>
+
+<div class="card-content">
+
+<div class="name">
+<a
+href="#"
+@click.prevent="view"
+>
+[[ reading.name ]]
+</a>
+</div>
+
+<div class="desc">
+[[ reading.description ]]
+</div>
+
+</div>
+</div>
+
+</transition>
+
+</reading>
+
+</div>
+
+</readings>

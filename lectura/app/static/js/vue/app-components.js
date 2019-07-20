@@ -1,3 +1,66 @@
+const AjaxDelete = {
+  mixins: [AjaxProcessMixin],
+  props: {
+    deleteConfirmId: {
+      type: String,
+      default: 'confirmation-modal'
+    },
+    deleteUrl: {
+      type: String,
+      default: '',
+    },
+    deleteRedirectUrl: {
+      type: String,
+      default: ''
+    },
+    initTimerDelay: {
+      type: Number,
+      default: 500
+    }
+  },
+  data() {
+    return {
+      timerId: null,
+      timerDelay: this.initTimerDelay,
+    }
+  },
+  methods: {
+    confirmDelete() {
+      this.$modal.showConfirmation(this.deleteConfirmId)
+      .then(yes => {
+        console.log(yes)
+        this.onDelete()
+      })
+      .catch(no => {
+        console.log(no)
+      })
+    },
+    onDelete(event) {
+      this.process()
+      clearTimeout(this.timerId)
+      this.timerId = setTimeout(()=>{
+        axios.delete(this.deleteUrl)
+        .then(response => {
+          if (this.deleteRedirectUrl) {
+            window.location.replace(this.deleteRedirectUrl)
+          }
+          this.success()
+        })
+        .catch(error => {
+          if (error.response) {
+            console.log(error.response)
+          } else if (error.request) {
+            console.log(error.request)
+          } else {
+            console.log(error.message)
+          }
+          console.log(error.config)
+        })
+        .finally(() => this.complete())
+      }, this.timerDelay)
+    }
+  }
+}
 
 const AlertMessage = {
   mixins: [BaseMessage],
@@ -280,4 +343,40 @@ const AudioPlayer = {
 
     </div><!-- audio-player -->
   `
+}
+
+const Modal = {
+  mixins: [BaseModal],
+  created() {
+    ModalPlugin.EventBus.$on(this.modalId, () => {
+      this.show()
+    })
+  },
+}
+
+const ConfirmationModal = {
+  mixins: [BaseModal],
+  data() {
+    return {
+      yes: null,
+      no: null
+    }
+  },
+  methods: {
+    confirm() {
+      this.yes('yes')
+      this.isOpen = false
+    },
+    close() {
+      this.no('no')
+      this.isOpen = false
+    }
+  },
+  created() {
+    ModalPlugin.EventBus.$on(this.modalId, (resolve, reject) => {
+      this.show()
+      this.yes = resolve
+      this.no = reject
+    })
+  }
 }

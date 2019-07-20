@@ -5,11 +5,10 @@ projects-url="{{ projects_url }}"
 inline-template
 >
 
-<div>
-
-<div v-if="projects.length == 0">
-{% trans 'msg_no_projects' %}
-</div>
+<div 
+class="projects"
+v-cloak
+>
 
 <project
 v-for="(project, index) in projects"
@@ -18,12 +17,12 @@ v-for="(project, index) in projects"
 init-view-url="{{ project_url }}"
 inline-template
 >
-<div>
+<transition name="fade-transition" v-on:after-enter="isVisible = true" v-on:after-leave="isVisible = false">
 
-<div class="card project-card">
+<div class="card project-card" v-show="isVisible">
 <div class="card-content">
 
-<div class="project-name">
+<div class="name">
 <a
 href="#"
 @click.prevent="view"
@@ -32,16 +31,16 @@ href="#"
 </a>
 </div>
 
-<div class="project-desc">
+<div class="desc">
 [[ project.description ]]
 </div>
 
 </div>
 </div>
 
-</div>
+</transition>
 </project>
 
 </div>
 
-</projects>
+</transition>

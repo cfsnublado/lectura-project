@@ -1,3 +1,28 @@
+const AccessMixin = {
+  props: {
+    initCanView: {
+      type: Boolean,
+      default: false
+    },
+    initCanEdit: {
+      type: Boolean,
+      default: false
+    },
+    initCanDelete: {
+      type: Boolean,
+      default: false
+    },
+  },
+  data() {
+    return {
+      canView: this.initCanView,
+      canEdit: this.initCanEdit,
+      canDelete: this.initCanDelete
+    }
+  },
+}
+
+
 const AjaxProcessMixin = {
   data() {
     return {
@@ -257,4 +282,28 @@ const BaseFileUploader = {
 
     </div>
   `
+}
+
+const BaseModal = {
+  props: {
+    initId: {
+      type: String,
+      default: 'modal'
+    }
+  },
+  data() {
+    return {
+      modalId: this.initId,
+      modalEnabled: true,
+      isOpen: false,
+    }
+  },
+  methods: {
+    show(params) {
+      this.isOpen = true
+    },
+    close() {
+      this.isOpen = false
+    },
+  }
 }

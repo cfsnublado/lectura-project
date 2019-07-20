@@ -1,0 +1,10 @@
+{% extends 'includes/_confirmation_modal.html' %}
+{% load i18n %}
+
+{% block ok_id %}reading-delete-ok{% endblock ok_id %}
+
+{% block cancel_id %}reading-delete-close{% endblock cancel_id %}
+
+{% block modal_header %} 
+{% trans 'msg_confirm_delete_reading' %} 
+{% endblock modal_header %}

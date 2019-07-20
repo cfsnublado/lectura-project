@@ -1,11 +1,18 @@
+Vue.component('ajax-delete', AjaxDelete)
 Vue.component('alert-message', AlertMessage)
 Vue.component('navbar-dropdown', NavbarDropdown)
+//Vue.component('modal', Modal)
+Vue.component('confirmation-modal', ConfirmationModal)
 Vue.component('audio-file-uploader', AudioFileUploader)
 Vue.component('audio-player', AudioPlayer)
 
 // Reading components
 Vue.component('projects', Projects)
 Vue.component('project', Project)
+Vue.component('readings', Readings)
+Vue.component('reading', Reading)
+
+Vue.use(ModalPlugin)
 
 VueScrollTo.setDefaults({
     container: "body",
@@ -41,6 +48,14 @@ const vm = new Vue({
     }
   },
   methods: {
+    showModal(modalId) {
+      this.$modal.show(modalId)
+
+      //  Close sidebar if modal opened from sidebar in small view.
+      if (this.smallWindow && this.showSidebar) {
+        this.toggleSidebar(false)
+      }
+    },
     toggleSidebar(manual) {
       // If manual is set to true or false, override toggle.
       if (manual === true || manual === false) {

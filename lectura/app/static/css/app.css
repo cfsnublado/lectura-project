@@ -11477,6 +11477,32 @@ body.sidebar-expanded .sidebar {
     border-bottom: 1px solid #efefef;
   }
 }
+/* line 2, ../scss/cfs/_modal.scss */
+.confirmation-modal .box {
+  display: flex;
+  flex-direction: column;
+}
+/* line 7, ../scss/cfs/_modal.scss */
+.confirmation-modal .modal-header {
+  font-size: 2.5rem;
+  text-align: center;
+}
+/* line 13, ../scss/cfs/_modal.scss */
+.confirmation-modal .modal-body {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  text-align: center;
+}
+/* line 20, ../scss/cfs/_modal.scss */
+.confirmation-modal .modal-footer {
+  text-align: center;
+}
+/* line 24, ../scss/cfs/_modal.scss */
+.confirmation-modal .modal-footer .confirmation-buttons .button {
+  margin-right: 0.3125rem;
+  margin-left: 0.3125rem;
+}
+
 /* line 1, ../scss/cfs/_form.scss */
 .errorlist {
   margin-top: 0.25rem;
@@ -11586,40 +11612,67 @@ body.sidebar-expanded .sidebar {
   opacity: 0.5;
 }
 
+/* line 1, ../scss/cfs/_vue.scss */
+[v-cloak] {
+  display: none;
+}
+
+/* line 5, ../scss/cfs/_vue.scss */
+.fade-transition-enter,
+.fade-transition-slow-enter,
+.fade-transition-leave-active,
+.fade-transition-slow-leave-active {
+  opacity: 0;
+}
+
+/* line 12, ../scss/cfs/_vue.scss */
+.fade-transition-enter-active,
+.fade-transition-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+/* line 17, ../scss/cfs/_vue.scss */
+.fade-transition-slow-enter-active,
+.fade-transition-slow-leave-active {
+  transition: opacity 1.0s ease;
+}
+
 /* line 9, ../scss/cfs/reading/_reading.scss */
-.project-card {
+.project-card,
+.reading-card {
   margin-bottom: 1.875rem;
   text-align: center;
 }
-/* line 14, ../scss/cfs/reading/_reading.scss */
-.project-card .project-name {
+/* line 15, ../scss/cfs/reading/_reading.scss */
+.project-card .name,
+.reading-card .name {
   font-size: 1.875rem;
   margin-bottom: 1.25rem;
 }
 
-/* line 27, ../scss/cfs/reading/_reading.scss */
+/* line 29, ../scss/cfs/reading/_reading.scss */
 .reading-view .reading-name {
   font-size: 3.125rem;
   margin-bottom: 40px;
   text-align: center;
 }
-/* line 35, ../scss/cfs/reading/_reading.scss */
+/* line 37, ../scss/cfs/reading/_reading.scss */
 .reading-view .reading-audio {
   margin-top: 10px;
   margin-bottom: 30px;
   text-align: center;
 }
-/* line 42, ../scss/cfs/reading/_reading.scss */
+/* line 44, ../scss/cfs/reading/_reading.scss */
 .reading-view .reading-content {
   font-size: 1.375rem;
 }
 
-/* line 47, ../scss/cfs/reading/_reading.scss */
+/* line 49, ../scss/cfs/reading/_reading.scss */
 .reading-view-section {
   padding-bottom: 6.25rem;
 }
 
-/* line 51, ../scss/cfs/reading/_reading.scss */
+/* line 53, ../scss/cfs/reading/_reading.scss */
 .reading-view-footer {
   display: flex;
   position: fixed;
@@ -11633,7 +11686,7 @@ body.sidebar-expanded .sidebar {
 }
 
 @media screen and (max-width: 768px) {
-  /* line 69, ../scss/cfs/reading/_reading.scss */
+  /* line 71, ../scss/cfs/reading/_reading.scss */
   .reading-view .reading-name {
     font-size: 2.625rem;
   }

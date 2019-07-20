@@ -3,10 +3,27 @@
 {% load core_extras %}
 {% load i18n %}
 
-{% block title %}{% trans "page_project_title" %}{% endblock title %}
+{% block title %}{{ project.name }}{% endblock title %}
 
 {% block content %}
 
-<p> Hello </p>
+<div id="readings-scroll-top"></div>
+
+{% url 'api:nested-reading-list' project.id as readings_url %}
+{% url 'reading:reading' 0 'zzz' as reading_url %}
+{% url 'api:reading-detail' 0 as reading_delete_url %}
+
+
+<div class="columns">
+<div class="column is-6 is-offset-3">
+{% include "reading/includes/vue/_readings.html" %}
+</div>
+</div>
 
 {% endblock content %}
+
+{% block modal_content %}
+
+{% include 'reading/includes/_reading_delete_modal.html' with modal_id='delete-reading' modal_name='confirmation-modal' %} 
+
+{% endblock modal_content %}
