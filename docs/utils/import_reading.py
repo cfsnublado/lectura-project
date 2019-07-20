@@ -3,8 +3,6 @@ import json
 import os
 import sys
 
-from bs4 import BeautifulSoup
-from markdownify import markdownify as md
 import markdown2
 import requests
 
@@ -31,7 +29,8 @@ def import_reading(token, filename):
         if mimetype == 'application/json':
             data = json.load(file)
         elif mimetype == 'text/markdown':
-            data = convert_markdown_to_dict(file.read())
+            markdown = file.read()
+            data = convert_markdown_to_dict(markdown)
         else:
             sys.exit('File must be json or markdown.')
 
@@ -40,8 +39,15 @@ def import_reading(token, filename):
     requests.post(import_url, headers=headers, json=data)
 
 
+def strip_markdown_metadata(s):
+    start = s.find('---')
+    end = len(s) - s[::-1].find('---')
+    return s[start:end]
+
+
 def convert_markdown_to_dict(md_text, display_html=False):
-    html = markdown2.markdown(md_text, extras=['metadata', 'markdown-in-html'])
+    markdown_metadata = strip_markdown_metadata(md_text)
+    html = markdown2.markdown(markdown_metadata, extras=['metadata', 'markdown-in-html'])
     reading_data = {}
     project_data = {}
 
@@ -61,15 +67,12 @@ def convert_markdown_to_dict(md_text, display_html=False):
     if 'reading_description' in html.metadata:
         reading_data['description'] = html.metadata['reading_description']
 
+    reading_data['content'] = md_text.replace(markdown_metadata, '')
+
     data_dict = {
         'project_data': project_data,
         'reading_data': reading_data
     }
-    soup = BeautifulSoup(html, 'html.parser')
-
-    if display_html:
-        print_color(92, '\n\nReading html')
-        print(soup.prettify())
 
     return data_dict
 
