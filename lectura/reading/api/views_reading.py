@@ -3,9 +3,12 @@ from rest_framework.mixins import (
     CreateModelMixin, DestroyModelMixin, ListModelMixin,
     RetrieveModelMixin, UpdateModelMixin
 )
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 from rest_framework.viewsets import (
     GenericViewSet
 )
+from rest_framework.views import APIView
 
 from core.api.views_api import APIDefaultsMixin
 from ..models import Project, Reading
@@ -15,6 +18,9 @@ from ..serializers import (
 from .pagination import SmallPagination
 from .permissions import (
     ProjectOwnerPermission, ReadingCreatorPermission, ReadPermission
+)
+from ..utils import (
+    export_reading
 )
 
 
@@ -73,3 +79,25 @@ class NestedReadingViewSet(
         self.get_project(project_pk=kwargs['project_pk'])
 
         return super(NestedReadingViewSet, self).list(request, *args, **kwargs)
+
+
+class ReadingExportView(APIDefaultsMixin, APIView):
+    permission_classes = [
+        IsAuthenticated, ReadingCreatorPermission
+    ]
+
+    def get(self, request, *args, **kwargs):
+        reading = self.get_object()
+        data = export_reading(request, reading)
+
+        return Response(data=data)
+
+    def get_object(self):
+        obj = get_object_or_404(
+            Reading.objects.select_related('project'),
+            id=self.kwargs['reading_pk']
+        )
+
+        self.check_object_permissions(self.request, obj)
+
+        return obj

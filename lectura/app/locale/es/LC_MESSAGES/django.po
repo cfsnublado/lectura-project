@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-19 17:34-0700\n"
+"POT-Creation-Date: 2019-07-19 19:59-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -164,6 +164,7 @@ msgid "label_audio_url"
 msgstr "URL del audio"
 
 #: lectura/reading/models.py:106 lectura/app/templates/base.html:134
+#: lectura/app/templates/reading/reading_base.html:78
 msgid "label_reading"
 msgstr "Lectura"
 
@@ -307,7 +308,7 @@ msgstr "Inicio"
 msgid "label_projects"
 msgstr "Proyectos"
 
-#: lectura/app/templates/base.html:152
+#: lectura/app/templates/base.html:155
 msgid "label_new_project"
 msgstr "Nuevo proyecto"
 
@@ -383,6 +384,10 @@ msgstr "Editar proyecto"
 #: lectura/app/templates/reading/reading_base.html:41
 msgid "label_new_reading"
 msgstr "Nueva lectura"
+
+#: lectura/app/templates/reading/reading_base.html:97
+msgid "label_edit_reading"
+msgstr "Editar lectura"
 
 #: lectura/app/templates/security/login.html:8
 msgid "page_login_title"

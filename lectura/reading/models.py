@@ -80,7 +80,7 @@ class Reading(
 
     project = models.ForeignKey(
         Project,
-        related_name='entries',
+        related_name='readings',
         on_delete=models.CASCADE
     )
     name = models.CharField(

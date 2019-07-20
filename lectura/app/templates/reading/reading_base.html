@@ -72,6 +72,40 @@
 
   </div>
 
+  <div class="menu">
+
+  <p class="menu-label">
+  {% trans 'label_reading' %}
+  </p>
+
+  <p class="menu-header">
+  <a id="sidebar-nav-reading-name" href="{% url 'reading:reading' reading.id reading.slug %}">
+  <span id="menu-reading-name"> {{ reading.name }} </span>
+  </a>
+  </p>
+
+  <ul class="menu-list">
+
+  {% if reading_admin %}
+
+    <li>
+    <a 
+    id="sidebar-nav-reading-edit" 
+    class="{% block reading_update_link_active %}{% endblock reading_update_link_active %}" 
+    href="{% url 'reading:reading_update' reading.id reading.slug %}"
+    >
+    <i class="menu-icon fas fa-edit fa-fw"></i> {% trans "label_edit_reading" %}
+    </a>
+    </li>
+
+  {% endif %}
+
+  <span class="sidebar-divider"></span>
+
+  </ul>
+
+  </div>
+
 {% endif %}
 
 {{ block.super }}

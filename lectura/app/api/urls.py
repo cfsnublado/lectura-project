@@ -8,7 +8,9 @@ from django.conf.urls import include
 
 from users.api.views_api import UserViewSet, ProfileViewSet
 from reading.api.views_project import ProjectViewSet
-from reading.api.views_reading import NestedReadingViewSet, ReadingViewSet
+from reading.api.views_reading import (
+    NestedReadingViewSet, ReadingViewSet, ReadingExportView
+)
 
 app_name = 'app'
 
@@ -27,6 +29,11 @@ reading_router.register('reading', NestedReadingViewSet, base_name='nested-readi
 
 urlpatterns = [
     path('api-token-auth/', views.obtain_auth_token, name='auth_token'),
+    path(
+        'reading/reading/<int:reading_pk>/export/',
+        ReadingExportView.as_view(),
+        name='reading_export'
+    ),
     path('', include(router.urls)),
     path('', include(reading_router.urls)),
 ]

@@ -107,7 +107,9 @@ class ReadingMixin(CachedObjectMixin):
     def dispatch(self, request, *args, **kwargs):
         self.get_reading(request, *args, **kwargs)
 
-        if request.user.is_superuser or request.user.id == self.reading.creator_id:
+        user_id = request.user.id
+
+        if request.user.is_superuser or user_id == self.reading.creator_id or user_id == self.project.owner_id:
             self.reading_admin = True
 
         return super(ReadingMixin, self).dispatch(request, *args, **kwargs)

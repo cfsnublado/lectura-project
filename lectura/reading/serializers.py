@@ -61,7 +61,8 @@ class ReadingListSerializer(ListSerializer):
 class ReadingSerializer(BaseSerializer, HyperlinkedModelSerializer):
     json_encoder = UUIDEncoder
     minimal_data_fields = [
-        'name', 'description', 'date_created'
+        'name', 'description', 'content',
+        'audio_url', 'date_created'
     ]
     url = HyperlinkedIdentityField(
         view_name='api:reading-detail',
@@ -98,7 +99,7 @@ class ReadingSerializer(BaseSerializer, HyperlinkedModelSerializer):
             'url', 'id', 'project_id', 'project', 'project_slug',
             'project_url', 'creator_id', 'creator_url',
             'name', 'description', 'content', 'slug',
-            'date_created', 'date_updated'
+            'audio_url', 'date_created', 'date_updated'
         )
         read_only_fields = (
             'url', 'id', 'project_id', 'project_slug', 'project_url', 'creator_id', 'creator_url',
