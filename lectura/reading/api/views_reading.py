@@ -1,3 +1,4 @@
+from rest_framework import status
 from rest_framework.generics import get_object_or_404
 from rest_framework.mixins import (
     CreateModelMixin, DestroyModelMixin, ListModelMixin,
@@ -20,7 +21,7 @@ from .permissions import (
     ProjectOwnerPermission, ReadingCreatorPermission, ReadPermission
 )
 from ..utils import (
-    export_reading
+    export_reading, import_reading
 )
 
 
@@ -79,6 +80,15 @@ class NestedReadingViewSet(
         self.get_project(project_pk=kwargs['project_pk'])
 
         return super(NestedReadingViewSet, self).list(request, *args, **kwargs)
+
+
+class ReadingImportView(APIDefaultsMixin, APIView):
+
+    def post(self, request, *args, **kwargs):
+        data = request.data
+        import_reading(data, request.user)
+
+        return Response(data={'success_msg': 'OK!'}, status=status.HTTP_201_CREATED)
 
 
 class ReadingExportView(APIDefaultsMixin, APIView):
