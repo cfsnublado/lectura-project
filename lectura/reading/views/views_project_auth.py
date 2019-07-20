@@ -55,7 +55,7 @@ class ProjectUpdateView(
 
     def get_success_url(self):
         return reverse(
-            'reading:project_update',
+            'reading:project',
             kwargs={
                 'project_pk': self.object.pk,
                 'project_slug': self.object.slug

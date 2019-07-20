@@ -2,6 +2,9 @@ from django.urls import include, path
 
 from .views.views_project import ProjectView, ProjectsView
 from .views.views_reading import ReadingView
+from .views.views_project_auth import (
+    ProjectCreateView, ProjectUpdateView
+)
 from .views.views_reading_auth import (
     ReadingCreateView, ReadingUpdateView
 )
@@ -9,6 +12,16 @@ from .views.views_reading_auth import (
 app_name = 'reading'
 
 auth_urls = [
+    path(
+        'project/create/',
+        ProjectCreateView.as_view(),
+        name='project_create'
+    ),
+    path(
+        'project/<int:project_pk>-<slug:project_slug>/update/',
+        ProjectUpdateView.as_view(),
+        name='project_update'
+    ),
     path(
         'project/<int:project_pk>-<slug:project_slug>/reading/create/',
         ReadingCreateView.as_view(),

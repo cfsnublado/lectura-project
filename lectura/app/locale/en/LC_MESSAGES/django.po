@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-19 15:59-0700\n"
+"POT-Creation-Date: 2019-07-19 17:34-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -145,7 +145,7 @@ msgstr "Description"
 
 #: lectura/reading/models.py:62
 #: lectura/app/templates/reading/reading_base.html:12
-#: lectura/app/templates/reading/reading_base.html:48
+#: lectura/app/templates/reading/reading_base.html:58
 msgid "label_project"
 msgstr "Project"
 
@@ -338,15 +338,23 @@ msgid "label_login"
 msgstr "Login"
 
 #: lectura/app/templates/reading/auth/project_create.html:5
-#, fuzzy
-#| msgid "page_projects_title"
 msgid "page_project_create_title"
-msgstr "Projects"
+msgstr "Create project"
 
 #: lectura/app/templates/reading/auth/project_create.html:26
 #: lectura/app/templates/reading/auth/reading_create.html:26
 msgid "label_create"
 msgstr "Create"
+
+#: lectura/app/templates/reading/auth/project_update.html:5
+msgid "page_project_update_title"
+msgstr "Edit project"
+
+#: lectura/app/templates/reading/auth/project_update.html:26
+#: lectura/app/templates/reading/auth/reading_update.html:13
+#: lectura/app/templates/users/auth/profile_update.html:117
+msgid "label_update"
+msgstr "Update"
 
 #: lectura/app/templates/reading/auth/reading_create.html:5
 msgid "page_reading_create_title"
@@ -356,32 +364,9 @@ msgstr "Create reading"
 msgid "page_reading_update_title"
 msgstr "Update reading"
 
-#: lectura/app/templates/reading/auth/reading_update.html:13
-#: lectura/app/templates/users/auth/profile_update.html:117
-msgid "label_update"
-msgstr "Update"
-
 #: lectura/app/templates/reading/includes/_reading_delete_modal.html:9
 msgid "msg_confirm_delete_reading"
 msgstr "Delete reading?"
-
-#: lectura/app/templates/reading/includes/_reading_delete_modal.html:13
-#, fuzzy
-#| msgid "page_reading_create_title"
-msgid "msg_reading_delete_text"
-msgstr "Create reading"
-
-#: lectura/app/templates/reading/includes/vue/_projects.html:11
-#, fuzzy
-#| msgid "msg_project_banner_desc"
-msgid "msg_no_projects"
-msgstr "Share readings and practice your pronunciation."
-
-#: lectura/app/templates/reading/includes/vue/_readings.html:11
-#, fuzzy
-#| msgid "msg_project_banner_desc"
-msgid "msg_no_readings"
-msgstr "Share readings and practice your pronunciation."
 
 #: lectura/app/templates/reading/projects.html:6
 msgid "page_projects_title"
@@ -391,7 +376,11 @@ msgstr "Projects"
 msgid "page_reading_title"
 msgstr "View reading"
 
-#: lectura/app/templates/reading/reading_base.html:32
+#: lectura/app/templates/reading/reading_base.html:31
+msgid "label_edit_project"
+msgstr "Edit project"
+
+#: lectura/app/templates/reading/reading_base.html:41
 msgid "label_new_reading"
 msgstr "New reading"
 
@@ -521,6 +510,21 @@ msgstr "Change user password"
 #: lectura/app/templates/users/profile_view.html:6
 msgid "page_view_profile_title"
 msgstr "View profile"
+
+#, fuzzy
+#~| msgid "page_reading_create_title"
+#~ msgid "msg_reading_delete_text"
+#~ msgstr "Create reading"
+
+#, fuzzy
+#~| msgid "msg_project_banner_desc"
+#~ msgid "msg_no_projects"
+#~ msgstr "Share readings and practice your pronunciation."
+
+#, fuzzy
+#~| msgid "msg_project_banner_desc"
+#~ msgid "msg_no_readings"
+#~ msgstr "Share readings and practice your pronunciation."
 
 #, fuzzy
 #~| msgid "page_projects_title"

@@ -148,7 +148,10 @@ aria-label="sidebar-trigger"
 
   <ul class="menu-list">
   <li>
-  <a href="">
+  <a 
+  class="{% block project_create_link_active %}{% endblock project_create_link_active %}"
+  href="{% url 'reading:project_create' %}"
+  >
   <i class="fas fa-fw fa-plus menu-icon"></i> {% trans 'label_new_project' %}
   </a>
   </li>
