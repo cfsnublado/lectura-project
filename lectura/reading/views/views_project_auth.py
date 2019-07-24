@@ -32,13 +32,7 @@ class ProjectCreateView(
         return kwargs
 
     def get_success_url(self):
-        return reverse(
-            'reading:project_update',
-            kwargs={
-                'project_pk': self.object.pk,
-                'project_slug': self.object.slug
-            }
-        )
+        return reverse('reading:projects')
 
 
 class ProjectUpdateView(

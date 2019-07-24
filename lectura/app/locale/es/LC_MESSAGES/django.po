@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-20 04:48-0700\n"
+"POT-Creation-Date: 2019-07-24 15:41-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -368,6 +368,10 @@ msgstr "Crear lectura"
 #: lectura/app/templates/reading/auth/reading_update.html:4
 msgid "page_reading_update_title"
 msgstr "Editar lectura"
+
+#: lectura/app/templates/reading/includes/_project_delete_modal.html:9
+msgid "msg_confirm_delete_project"
+msgstr "¿Eliminar proyecto?"
 
 #: lectura/app/templates/reading/includes/_reading_delete_modal.html:9
 msgid "msg_confirm_delete_reading"

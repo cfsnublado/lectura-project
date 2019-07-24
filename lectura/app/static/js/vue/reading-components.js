@@ -118,6 +118,7 @@ const Project = {
 
 const Readings = {
   mixins: [
+    AdminMixin,
     AjaxProcessMixin,
     PaginationMixin
   ],
@@ -179,6 +180,7 @@ const Readings = {
 
 const Reading = {
   mixins: [
+    AdminMixin,
     VisibleMixin
   ],
   props: {
@@ -223,7 +225,6 @@ const Reading = {
       this.viewUrl = this.initViewUrl
         .replace(0, this.reading.id)
         .replace('zzz', this.reading.slug)
-      console.log(this.viewUrl)   
     }
 
     if (this.initDeleteUrl) {

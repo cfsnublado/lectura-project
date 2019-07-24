@@ -2,6 +2,7 @@
 
 <readings
 readings-url="{{ readings_url }}"
+:init-is-admin="{{ user.is_admin|yesno:"true,false" }}"
 inline-template
 >
 
@@ -14,6 +15,7 @@ v-cloak
 v-for="(reading, index) in readings"
 :key="reading.id"
 :init-reading="reading"
+:init-is-admin="isAdmin"
 init-view-url="{{ reading_url }}"
 init-delete-url="{{ reading_delete_url }}"
 inline-template
