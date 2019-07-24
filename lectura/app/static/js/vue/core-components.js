@@ -1,23 +1,13 @@
-const AccessMixin = {
+const AdminMixin = {
   props: {
-    initCanView: {
+    initIsAdmin: {
       type: Boolean,
       default: false
-    },
-    initCanEdit: {
-      type: Boolean,
-      default: false
-    },
-    initCanDelete: {
-      type: Boolean,
-      default: false
-    },
+    }
   },
   data() {
     return {
-      canView: this.initCanView,
-      canEdit: this.initCanEdit,
-      canDelete: this.initCanDelete
+      isAdmin: this.initIsAdmin
     }
   },
 }

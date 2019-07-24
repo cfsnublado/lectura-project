@@ -30,6 +30,7 @@ v-cloak
 <div class="card-controls">
 
 <ajax-delete
+v-if="isAdmin"
 delete-confirm-id="delete-reading"
 :delete-url="deleteUrl"
 @ajax-success="remove"

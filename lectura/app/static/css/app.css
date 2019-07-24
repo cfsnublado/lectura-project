@@ -11327,7 +11327,7 @@ a.navbar-item.is-active:not(:focus):not(:hover),
 }
 /* line 60, ../scss/cfs/_sidebar.scss */
 .sidebar .menu-header {
-  font-size: 1.25rem;
+  font-size: 1rem;
   padding-left: 1rem;
 }
 
@@ -11645,7 +11645,7 @@ body.sidebar-expanded .sidebar {
 /* line 15, ../scss/cfs/reading/_reading.scss */
 .project-card .name,
 .reading-card .name {
-  font-size: 1.875rem;
+  font-size: 1.375rem;
   margin-bottom: 1.25rem;
 }
 /* line 24, ../scss/cfs/reading/_reading.scss */

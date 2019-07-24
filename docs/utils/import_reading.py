@@ -66,7 +66,7 @@ def markdown_to_dict(md_text, display_html=False):
     reading_data['name'] = html.metadata['reading_name']
 
     if 'reading_audio_url' in html.metadata:
-        reading_data['audio_url'] = html.metadata['source_type']
+        reading_data['audio_url'] = html.metadata['reading_audio_url']
 
     if 'reading_description' in html.metadata:
         reading_data['description'] = html.metadata['reading_description']

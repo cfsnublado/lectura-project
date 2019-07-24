@@ -1,5 +1,6 @@
 const Projects = {
   mixins: [
+    AdminMixin,
     AjaxProcessMixin,
     PaginationMixin
   ],
@@ -61,6 +62,7 @@ const Projects = {
 
 const Project = {
   mixins: [
+    AdminMixin,
     VisibleMixin
   ],
   props: {

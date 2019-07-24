@@ -2,6 +2,7 @@
 
 <projects
 projects-url="{{ projects_url }}"
+:init-is-admin="{{ user.is_admin|yesno:"true,false" }}"
 inline-template
 >
 
@@ -14,12 +15,35 @@ v-cloak
 v-for="(project, index) in projects"
 :key="project.id"
 :init-project="project"
+:init-is-admin="isAdmin"
 init-view-url="{{ project_url }}"
+init-delete-url="{{ project_delete_url }}"
+
 inline-template
 >
 <transition name="fade-transition" v-on:after-enter="isVisible = true" v-on:after-leave="isVisible = false">
 
 <div class="card project-card" v-show="isVisible">
+
+<div class="card-controls">
+
+<ajax-delete
+v-if="isAdmin"
+delete-confirm-id="delete-project"
+:delete-url="deleteUrl"
+@ajax-success="remove"
+inline-template
+>
+
+<a
+class="delete"
+@click.prevent="confirmDelete"
+>
+</a>
+</ajax-delete>
+
+</div>
+
 <div class="card-content">
 
 <div class="name">
