@@ -1,6 +1,7 @@
 ---
 reading_name: La labor de los hombres
 reading_description: Un fragmento del libro Medio rey, de Joe Abercrombie
+reading_audio_url: https://www.dropbox.com/s/27xvc1rlv2x2ebq/desembarcar.mp3?dl=1
 project_name: Medio rey
 
 ---

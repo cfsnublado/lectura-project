@@ -1,6 +1,7 @@
 ---
 reading_name: Medio rey: Sinopsis
 reading_description: Segundo libro de la trilogía El mar quebrado, de Joe Abercrombie
+reading_audio_url: https://www.dropbox.com/s/3di40f872jdfrb5/mediorey.mp3?dl=1
 project_name: Medio rey
 
 ---
