@@ -19,10 +19,13 @@ Options:
     --localhost: if provided, the localhost api is called. Otherwise, the production api is called.
 '''
 
+LOCALHOST = 'http://127.0.0.1:8000'
+PRODUCTION_HOST = 'http://cfslectura.herokuapp.com'
+TOKEN_PATH = 'api/api-token-auth/'
+IMPORT_PATH = 'api/reading/reading/import/'
+
 
 def import_reading(token, filename):
-    print_color(96, filename)
-
     with open(filename, 'r') as file:
         mimetype = get_mimetype(filename)
 
@@ -30,13 +33,14 @@ def import_reading(token, filename):
             data = json.load(file)
         elif mimetype == 'text/markdown':
             markdown = file.read()
-            data = convert_markdown_to_dict(markdown)
+            data = markdown_to_dict(markdown)
         else:
             sys.exit('File must be json or markdown.')
 
     headers = {'Authorization': 'token {0}'.format(token)}
 
     requests.post(import_url, headers=headers, json=data)
+    print_color(96, filename)
 
 
 def strip_markdown_metadata(s):
@@ -45,7 +49,7 @@ def strip_markdown_metadata(s):
     return s[start:end]
 
 
-def convert_markdown_to_dict(md_text, display_html=False):
+def markdown_to_dict(md_text, display_html=False):
     markdown_metadata = strip_markdown_metadata(md_text)
     html = markdown2.markdown(markdown_metadata, extras=['metadata', 'markdown-in-html'])
     reading_data = {}
@@ -82,17 +86,13 @@ if __name__ == '__main__':
     parser.add_argument('--localhost', help='request from localhost', action='store_true')
     parser.add_argument('source', help='reading file or directory')
     args = parser.parse_args()
-    localhost_base = 'http://127.0.0.1:8000'
-    host_base = 'http://cfslectura.herokuapp.com'
-    token_path = 'api/api-token-auth/'
-    import_path = 'api/reading/reading/import/'
 
     if args.localhost:
-        token_url = '{0}/{1}'.format(localhost_base, token_path)
-        import_url = '{0}/{1}'.format(localhost_base, import_path)
+        token_url = '{0}/{1}'.format(LOCALHOST, TOKEN_PATH)
+        import_url = '{0}/{1}'.format(LOCALHOST, IMPORT_PATH)
     else:
-        token_url = '{0}/{1}'.format(host_base, token_path)
-        import_url = '{0}/{1}'.format(host_base, import_path)
+        token_url = '{0}/{1}'.format(PRODUCTION_HOST, TOKEN_PATH)
+        import_url = '{0}/{1}'.format(PRODUCTION_HOST, IMPORT_PATH)
 
     token = get_user_auth_token(token_url)
 

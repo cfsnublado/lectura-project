@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-19 19:59-0700\n"
+"POT-Creation-Date: 2019-07-20 04:48-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -163,7 +163,7 @@ msgstr "Contenido"
 msgid "label_audio_url"
 msgstr "URL del audio"
 
-#: lectura/reading/models.py:106 lectura/app/templates/base.html:134
+#: lectura/reading/models.py:106
 #: lectura/app/templates/reading/reading_base.html:78
 msgid "label_reading"
 msgstr "Lectura"
@@ -298,17 +298,17 @@ msgstr ""
 msgid "label_general"
 msgstr "General"
 
-#: lectura/app/templates/base.html:126
+#: lectura/app/templates/base.html:129
 #: lectura/app/templates/includes/_user_menu_items.html:9
 #: lectura/app/templates/includes/_user_nav.html:32
 msgid "label_home"
 msgstr "Inicio"
 
-#: lectura/app/templates/base.html:140
+#: lectura/app/templates/base.html:137
 msgid "label_projects"
 msgstr "Proyectos"
 
-#: lectura/app/templates/base.html:155
+#: lectura/app/templates/base.html:150
 msgid "label_new_project"
 msgstr "Nuevo proyecto"
 
@@ -316,9 +316,13 @@ msgstr "Nuevo proyecto"
 msgid "page_home_title"
 msgstr "Inicio"
 
-#: lectura/app/templates/home.html:21
+#: lectura/app/templates/home.html:22
 msgid "msg_project_banner_desc"
 msgstr "Comparte lecturas y practica tu pronunciación."
+
+#: lectura/app/templates/home.html:37
+msgid "msg_lectura_at_a_glance"
+msgstr "Un vistazo a Lectura"
 
 #: lectura/app/templates/includes/_confirmation_modal.html:16
 msgid "label_no"

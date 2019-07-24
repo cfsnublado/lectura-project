@@ -11373,12 +11373,11 @@ a.navbar-item.is-active:not(:focus):not(:hover),
   flex: 1;
   overflow-x: hidden;
   overflow-y: auto;
-  margin-top: 1.25rem;
   margin-bottom: 1.25rem;
   opacity: 1;
 }
 
-/* line 109, ../scss/cfs/_sidebar.scss */
+/* line 108, ../scss/cfs/_sidebar.scss */
 .sidebar-footer {
   display: -webkit-flex;
   display: flex;
@@ -11391,7 +11390,7 @@ a.navbar-item.is-active:not(:focus):not(:hover),
   border-top: 1px solid #dfe1e3;
 }
 
-/* line 122, ../scss/cfs/_sidebar.scss */
+/* line 121, ../scss/cfs/_sidebar.scss */
 .sidebar-divider {
   display: block;
   overflow: hidden;
@@ -11402,11 +11401,11 @@ a.navbar-item.is-active:not(:focus):not(:hover),
   background: #d8d9da;
 }
 
-/* line 136, ../scss/cfs/_sidebar.scss */
+/* line 135, ../scss/cfs/_sidebar.scss */
 body.sidebar-expanded .sidebar-background {
   display: block;
 }
-/* line 140, ../scss/cfs/_sidebar.scss */
+/* line 139, ../scss/cfs/_sidebar.scss */
 body.sidebar-expanded .sidebar {
   -moz-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
@@ -11649,30 +11648,38 @@ body.sidebar-expanded .sidebar {
   font-size: 1.875rem;
   margin-bottom: 1.25rem;
 }
+/* line 24, ../scss/cfs/reading/_reading.scss */
+.project-card .card-content,
+.reading-card .card-content {
+  padding-top: 0.625rem;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+}
 
-/* line 29, ../scss/cfs/reading/_reading.scss */
+/* line 35, ../scss/cfs/reading/_reading.scss */
 .reading-view .reading-name {
   font-size: 3.125rem;
   margin-bottom: 40px;
   text-align: center;
 }
-/* line 37, ../scss/cfs/reading/_reading.scss */
+/* line 43, ../scss/cfs/reading/_reading.scss */
 .reading-view .reading-audio {
   margin-top: 10px;
   margin-bottom: 30px;
   text-align: center;
 }
-/* line 44, ../scss/cfs/reading/_reading.scss */
+/* line 50, ../scss/cfs/reading/_reading.scss */
 .reading-view .reading-content {
   font-size: 1.375rem;
 }
 
-/* line 49, ../scss/cfs/reading/_reading.scss */
+/* line 55, ../scss/cfs/reading/_reading.scss */
 .reading-view-section {
   padding-bottom: 6.25rem;
 }
 
-/* line 53, ../scss/cfs/reading/_reading.scss */
+/* line 59, ../scss/cfs/reading/_reading.scss */
 .reading-view-footer {
   display: flex;
   position: fixed;
@@ -11686,7 +11693,7 @@ body.sidebar-expanded .sidebar {
 }
 
 @media screen and (max-width: 768px) {
-  /* line 71, ../scss/cfs/reading/_reading.scss */
+  /* line 77, ../scss/cfs/reading/_reading.scss */
   .reading-view .reading-name {
     font-size: 2.625rem;
   }
