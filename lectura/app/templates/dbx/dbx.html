@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load core_extras %}
+{% load i18n %}
+
+{% block title %}Dropbox{% endblock title %}
+
+{% block content %}
+
+<div class="columns is-multiline">
+
+<div class="column is-6 is-offset-3">
+{% csrf_token %}
+
+<dbx
+shared-link-url="{% url 'api:dbx_shared_link' %}"
+inline-template
+>
+<div>
+
+<input class="input" ref="audio-url" name="audio-url">
+
+<dbx-audio-file-uploader
+init-upload-url={% url 'api:dbx_upload_audio' %}
+@upload-file="getSharedLink($event.path_lower)"
+>
+
+<template slot="label-select-file">
+{% trans 'label_select_audio_file' %}
+</template>
+
+<template slot="label-submit">
+{% trans 'label_submit_file' %}
+</template>
+
+</dbx-audio-file-uploader>
+
+<dbx-user-files
+files-url="{% url 'api:dbx_user_files' %}"
+@select-file="getSharedLink($event.path_lower)"
+>
+</dbx-user-files>
+
+</div>
+</dbx>
+
+</div>
+
+</div>
+{% endblock content %}

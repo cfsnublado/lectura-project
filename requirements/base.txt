@@ -12,6 +12,7 @@ gunicorn==19.9.0
 idna==2.8
 markdown2==2.3.8
 psycopg2-binary==2.8.3
+python-magic==0.4.15
 pytz==2019.1
 requests==2.22.0
 six==1.12.0

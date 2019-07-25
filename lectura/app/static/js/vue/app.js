@@ -12,6 +12,11 @@ Vue.component('project', Project)
 Vue.component('readings', Readings)
 Vue.component('reading', Reading)
 
+// Dropbox
+Vue.component('dbx', Dbx)
+Vue.component('dbx-user-files', DbxUserFiles)
+Vue.component('dbx-audio-file-uploader', DbxAudioFileUploader)
+
 Vue.use(ModalPlugin)
 
 VueScrollTo.setDefaults({
