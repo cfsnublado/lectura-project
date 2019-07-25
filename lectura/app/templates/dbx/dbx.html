@@ -8,7 +8,6 @@
 {% block content %}
 
 <div class="columns is-multiline">
-
 <div class="column is-6 is-offset-3">
 {% csrf_token %}
 
@@ -16,7 +15,8 @@
 shared-link-url="{% url 'api:dbx_shared_link' %}"
 inline-template
 >
-<div>
+
+<div class="dbx-container">
 
 <input class="input" ref="audio-url" name="audio-url">
 
@@ -41,10 +41,10 @@ files-url="{% url 'api:dbx_user_files' %}"
 >
 </dbx-user-files>
 
-</div>
+</div><!-- dbx-container -->
+
 </dbx>
 
 </div>
-
 </div>
 {% endblock content %}

@@ -14,6 +14,8 @@ const Dbx = {
     getSharedLink(dbxPath) {
       this.processing = true
 
+      console.log(dbxPath)
+      
       axios.post(
         this.sharedLinkUrl,
         {'dbx_path': dbxPath}
@@ -39,7 +41,6 @@ const Dbx = {
     }
   },
 }
-
 
 const DbxUserFiles = {
   props: {
