@@ -18,7 +18,13 @@ inline-template
 
 <div class="dbx-container">
 
+<div class="dbx-shared-link" style="margin-bottom: 30px;">
+
 <input class="input" ref="audio-url" name="audio-url">
+
+</div>
+
+<div class="dbx-file-uploader" style="margin-bottom: 30px;">
 
 <dbx-audio-file-uploader
 init-upload-url={% url 'api:dbx_upload_audio' %}
@@ -35,11 +41,17 @@ init-upload-url={% url 'api:dbx_upload_audio' %}
 
 </dbx-audio-file-uploader>
 
+</div>
+
+<div class="dbx-user-files">
+
 <dbx-user-files
 files-url="{% url 'api:dbx_user_files' %}"
 @select-file="getSharedLink($event.path_lower)"
 >
 </dbx-user-files>
+
+</div>
 
 </div><!-- dbx-container -->
 
