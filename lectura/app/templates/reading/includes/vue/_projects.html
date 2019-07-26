@@ -46,14 +46,16 @@ class="delete"
 
 <div class="card-content">
 
-<div class="name">
 <a
 href="#"
 @click.prevent="view"
 >
-[[ project.name ]]
+<span
+class="name"
+v-html="markdownToHtml(project.name)"
+>
+</span>
 </a>
-</div>
 
 <div 
 class="desc"

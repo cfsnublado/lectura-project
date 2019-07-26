@@ -55,7 +55,11 @@ class="delete"
 href="#"
 @click.prevent="view"
 >
-[[ reading.name ]]
+<span
+class="name"
+v-html="markdownToHtml(reading.name)"
+>
+</span>
 </a>
 </div>
 

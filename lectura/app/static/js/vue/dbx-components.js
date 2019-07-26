@@ -1,46 +1,3 @@
-const Dbx = {
-  props: {
-    sharedLinkUrl: {
-      type: String,
-      default: ''
-    }
-  },
-  data() {
-    return {
-      processing: false
-    }
-  },
-  methods: {
-    getSharedLink(dbxPath) {
-      this.processing = true
-
-      console.log(dbxPath)
-      
-      axios.post(
-        this.sharedLinkUrl,
-        {'dbx_path': dbxPath}
-      )
-      .then(response => {
-        if (response.data['shared_link']) {
-          this.$refs['audio-url'].value = response.data['shared_link'].replace('dl=0', 'dl=1')
-        }
-      })
-      .catch(error => {
-        if (error.response) {
-          console.log(error.response)
-        } else if (error.request) {
-          console.log(error.request)
-        } else {
-          console.log(error)
-        }
-        console.log(error.config)
-      })
-      .finally(() => {
-        this.processing = false
-      })
-    }
-  },
-}
 
 const DbxUserFiles = {
   props: {
@@ -178,4 +135,57 @@ const DbxAudioFileUploader = {
 
     </div>
   `
+}
+
+const Dbx = {
+  components: {
+    'dbx-user-files': DbxUserFiles,
+    'dbx-audio-file-uploader': DbxAudioFileUploader,
+  },
+  props: {
+    sharedLinkUrl: {
+      type: String,
+      default: ''
+    }
+  },
+  data() {
+    return {
+      processing: false
+    }
+  },
+  methods: {
+    getSharedLink(dbxPath) {
+      this.processing = true
+
+      console.log(dbxPath)
+      
+      axios.post(
+        this.sharedLinkUrl,
+        {'dbx_path': dbxPath}
+      )
+      .then(response => {
+        if (response.data['shared_link']) {
+          this.$refs['audio-url'].value = response.data['shared_link'].replace('dl=0', 'dl=1')
+        }
+      })
+      .catch(error => {
+        if (error.response) {
+          console.log(error.response)
+        } else if (error.request) {
+          console.log(error.request)
+        } else {
+          console.log(error)
+        }
+        console.log(error.config)
+      })
+      .finally(() => {
+        this.processing = false
+      })
+    },
+    onUploadFile(dbxPath) {
+      this.getSharedLink(dbxPath)
+      this.$refs['dbx-user-files'].getFiles()
+      console.log("SHITTT")
+    }
+  },
 }

@@ -35,10 +35,10 @@ class ReadingCreateView(
 
     def get_success_url(self):
         return reverse(
-            'reading:project',
+            'reading:reading',
             kwargs={
-                'project_pk': self.project.pk,
-                'project_slug': self.project.slug
+                'reading_pk': self.object.pk,
+                'reading_slug': self.object.slug
             }
         )
 
@@ -57,7 +57,7 @@ class ReadingUpdateView(
 
     def get_success_url(self):
         return reverse(
-            'reading:reading_update',
+            'reading:reading',
             kwargs={
                 'reading_pk': self.object.pk,
                 'reading_slug': self.object.slug
