@@ -63,7 +63,8 @@ const Projects = {
 const Project = {
   mixins: [
     AdminMixin,
-    VisibleMixin
+    VisibleMixin,
+    MarkdownMixin
   ],
   props: {
     initProject: {
@@ -181,7 +182,8 @@ const Readings = {
 const Reading = {
   mixins: [
     AdminMixin,
-    VisibleMixin
+    VisibleMixin,
+    MarkdownMixin
   ],
   props: {
     initReading: {

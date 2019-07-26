@@ -11706,4 +11706,10 @@ body.sidebar-expanded .sidebar {
   .reading-view .reading-name {
     font-size: 2.625rem;
   }
+
+  /* line 94, ../scss/cfs/reading/_reading.scss */
+  .project-card .name,
+  .reading-card .name {
+    font-size: 1.125rem;
+  }
 }

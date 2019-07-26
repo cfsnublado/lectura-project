@@ -55,8 +55,10 @@ href="#"
 </a>
 </div>
 
-<div class="desc">
-[[ project.description ]]
+<div 
+class="desc"
+v-html="markdownToHtml(project.description)"
+>
 </div>
 
 </div>

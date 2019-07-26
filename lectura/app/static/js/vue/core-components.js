@@ -81,6 +81,19 @@ const PaginationMixin = {
   }
 }
 
+const MarkdownMixin = {
+  data() {
+    return {
+      converter: new showdown.Converter()
+    }
+  },
+  methods: {
+    markdownToHtml(markdown) {
+      return this.converter.makeHtml(markdown)
+    }
+  }
+}
+
 const VisibleMixin = {
   props: {
     initIsVisible: {
