@@ -11421,20 +11421,22 @@ body.sidebar-expanded .sidebar {
 }
 /* line 10, ../scss/cfs/_parallax.scss */
 .parallax-block .parallax-body {
+  padding-right: 1.125rem;
+  padding-left: 1.125rem;
   text-align: center;
 }
-/* line 14, ../scss/cfs/_parallax.scss */
+/* line 17, ../scss/cfs/_parallax.scss */
 .parallax-block.intro {
   color: #fff;
   background-image: url("../images/jumbo_bg_3.png");
 }
-/* line 18, ../scss/cfs/_parallax.scss */
+/* line 21, ../scss/cfs/_parallax.scss */
 .parallax-block.intro h1 {
   margin-bottom: 0.9375rem;
 }
 
 @media screen and (max-width: 768px) {
-  /* line 25, ../scss/cfs/_parallax.scss */
+  /* line 28, ../scss/cfs/_parallax.scss */
   .parallax-block {
     padding: 9.375rem 0 25rem 0;
   }
