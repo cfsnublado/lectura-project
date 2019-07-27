@@ -11,8 +11,8 @@ def import_reading(data, creator):
     # validate_reading_json_schema(data)
 
     creator_id = creator.id
-    reading_data = data['reading_data']
-    project_data = data['project_data']
+    reading_data = data['reading']
+    project_data = data['project']
 
     Reading.objects.filter(
         creator_id=creator_id,
@@ -40,22 +40,41 @@ def import_reading(data, creator):
     )
 
 
-def export_reading(request=None, reading=None):
+def export_reading(reading, request=None):
     '''
     Generates a serialized backup of a reading.
     '''
-    if reading:
-        project_serializer = ProjectSerializer(
-            reading.project,
-            context={'request': request}
-        )
+    project_serializer = ProjectSerializer(
+        reading.project,
+        context={'request': request}
+    )
+    reading_serializer = ReadingSerializer(
+        reading,
+        context={'request': request}
+    )
+    reading_dict = {
+        'project': project_serializer.get_minimal_data(),
+        'reading': reading_serializer.get_minimal_data()
+    }
+
+    return reading_dict
+
+
+def export_project(project, request=None):
+    project_serializer = ProjectSerializer(
+        project,
+        context={'request': request}
+    )
+    project_dict = {
+        'project': project_serializer.get_minimal_data(),
+        'readings': []
+    }
+
+    for reading in project.readings.all():
         reading_serializer = ReadingSerializer(
             reading,
             context={'request': request}
         )
-        reading_dict = {
-            'project_data': project_serializer.get_minimal_data(),
-            'reading_data': reading_serializer.get_minimal_data()
-        }
+        project_dict['readings'].append(reading_serializer.get_minimal_data())
 
-        return reading_dict
+    return project_dict

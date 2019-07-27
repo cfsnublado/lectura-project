@@ -7,11 +7,11 @@ from django.contrib.auth import authenticate
 from django.core.management.base import BaseCommand, CommandError
 
 from reading.models import Project
-from reading.utils import export_reading
+from reading.utils import export_project
 
 
 class Command(BaseCommand):
-    help = 'Backs up a project\'s readings as json files.'
+    help = 'Backs up a project and its readings in a single json file.'
 
     def login_user(self):
         username = input('Username: ')
@@ -41,13 +41,9 @@ class Command(BaseCommand):
         for project in projects:
             project_dir = base_dir / project.slug
             project_dir.mkdir(parents=True, exist_ok=True)
+            project_filename = project_dir / '{0}.json'.format(project.slug)
+            project_dict = export_project(project)
 
-            readings = project.readings.all()
-
-            for reading in readings:
-                reading_dict = export_reading(reading=reading)
-                filename = project_dir / '{0}.json'.format(reading.slug)
-
-                with filename.open('w+') as f:
-                    f.write(json.dumps(reading_dict, indent=2))
-                    self.stdout.write(self.style.SUCCESS(filename))
+            with project_filename.open('w+') as f:
+                f.write(json.dumps(project_dict, indent=2))
+                self.stdout.write(self.style.SUCCESS(project_filename))
