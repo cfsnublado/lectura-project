@@ -1,9 +1,13 @@
+from rest_framework import status
 from rest_framework.generics import get_object_or_404
+from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
 from core.api.views_api import APIDefaultsMixin
 from ..models import Project
 from ..serializers import ProjectSerializer
+from ..utils import import_project
 from .pagination import SmallPagination
 from .permissions import ReadPermission, ProjectOwnerPermission
 
@@ -24,3 +28,12 @@ class ProjectViewSet(APIDefaultsMixin, ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+
+class ProjectImportView(APIDefaultsMixin, APIView):
+
+    def post(self, request, *args, **kwargs):
+        data = request.data
+        import_project(data, request.user)
+
+        return Response(data={'success_msg': 'OK!'}, status=status.HTTP_201_CREATED)

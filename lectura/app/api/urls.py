@@ -10,7 +10,7 @@ from dbx.api.views_api import (
     DbxSharedLinkView, DbxUploadAudioView, DbxUserFilesView
 )
 from users.api.views_api import UserViewSet, ProfileViewSet
-from reading.api.views_project import ProjectViewSet
+from reading.api.views_project import ProjectViewSet, ProjectImportView
 from reading.api.views_reading import (
     NestedReadingViewSet, ReadingViewSet, ReadingExportView,
     ReadingImportView
@@ -33,6 +33,7 @@ reading_router.register('reading', NestedReadingViewSet, base_name='nested-readi
 
 urlpatterns = [
     path('api-token-auth/', views.obtain_auth_token, name='auth_token'),
+    path('reading/project/import/', ProjectImportView.as_view(), name='project_import'),
     path('reading/reading/import/', ReadingImportView.as_view(), name='reading_import'),
     path(
         'reading/reading/<int:reading_pk>/export/',

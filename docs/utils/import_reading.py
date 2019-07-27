@@ -74,15 +74,15 @@ def markdown_to_dict(md_text, display_html=False):
     reading_data['content'] = md_text.replace(markdown_metadata, '')
 
     data_dict = {
-        'project_data': project_data,
-        'reading_data': reading_data
+        'project': project_data,
+        'reading': reading_data
     }
 
     return data_dict
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Import reading json data.')
+    parser = argparse.ArgumentParser(description='Import reading json or markdown data.')
     parser.add_argument('--localhost', help='request from localhost', action='store_true')
     parser.add_argument('source', help='reading file or directory')
     args = parser.parse_args()
