@@ -11504,6 +11504,12 @@ body.sidebar-expanded .sidebar {
   margin-left: 0.3125rem;
 }
 
+@media screen and (max-width: 768px) {
+  /* line 34, ../scss/cfs/_modal.scss */
+  .confirmation-modal .modal-header {
+    font-size: 1.75rem;
+  }
+}
 /* line 1, ../scss/cfs/_form.scss */
 .errorlist {
   margin-top: 0.25rem;
