@@ -268,9 +268,19 @@ const AudioPlayer = {
     this.audio.addEventListener('loadeddata', this.load)
   },
   template: `
-    <div class="audio-player">
+    <div 
+    class="audio-player"
+    v-bind:class="[{ 'is-loading': !loaded }]"
+    >
 
-    <div class="audio-player-controls">
+    <div v-if="!loaded" class="loading-icon">
+    <i class="fas fa-spinner fa-pulse"></i>
+    </div>
+
+    <div
+    class="audio-player-controls"
+    v-else
+    >
 
     <div class="player-control">
     <a @click.prevent="stop" title="Stop" href="#">
