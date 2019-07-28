@@ -11510,6 +11510,146 @@ body.sidebar-expanded .sidebar {
     font-size: 1.75rem;
   }
 }
+/* line 2, ../scss/cfs/_notification.scss */
+.notification.msg-notification {
+  position: absolute;
+  z-index: 1000;
+  width: 100%;
+}
+
+/* line 15, ../scss/cfs/_alert.scss */
+.alert {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -moz-border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  border-radius: 0.25rem;
+  width: 100%;
+  margin-right: 0.625rem;
+  margin-bottom: 1rem;
+  padding: 0.9375rem;
+  border: 1px solid transparent;
+}
+/* line 28, ../scss/cfs/_alert.scss */
+.alert.abs-alert {
+  position: absolute;
+  z-index: 1000;
+  width: 100%;
+}
+/* line 35, ../scss/cfs/_alert.scss */
+.alert > p,
+.alert > ul {
+  margin-bottom: 0;
+}
+/* line 40, ../scss/cfs/_alert.scss */
+.alert > p + p {
+  margin-top: 5px;
+}
+/* line 44, ../scss/cfs/_alert.scss */
+.alert .alert-content {
+  -webkit-order: 1;
+  order: 1;
+}
+/* line 48, ../scss/cfs/_alert.scss */
+.alert .close {
+  -webkit-order: 2;
+  order: 2;
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1;
+  padding-left: 0.625rem;
+  opacity: 0.2;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+}
+/* line 61, ../scss/cfs/_alert.scss */
+.alert .close:hover, .alert .close:focus {
+  cursor: pointer;
+  text-decoration: none;
+  opacity: 0.5;
+  color: #000;
+}
+
+/* line 72, ../scss/cfs/_alert.scss */
+.alert.small {
+  font-size: 0.875rem;
+  padding: 0.625rem;
+}
+
+/* line 78, ../scss/cfs/_alert.scss */
+.alert-heading {
+  color: inherit;
+}
+
+/* line 82, ../scss/cfs/_alert.scss */
+.alert-link {
+  font-weight: bold;
+}
+
+/* line 86, ../scss/cfs/_alert.scss */
+.alert-danger {
+  color: #a94442;
+  border-color: #ebcccc;
+  background-color: #f2dede;
+}
+/* line 6, ../scss/cfs/_alert.scss */
+.alert-danger hr {
+  border-top-color: #e4b9b9;
+}
+/* line 10, ../scss/cfs/_alert.scss */
+.alert-danger .alert-link {
+  color: #843534;
+}
+
+/* line 90, ../scss/cfs/_alert.scss */
+.alert-info {
+  color: #31708f;
+  border-color: #bcdff1;
+  background-color: #d9edf7;
+}
+/* line 6, ../scss/cfs/_alert.scss */
+.alert-info hr {
+  border-top-color: #a6d5ec;
+}
+/* line 10, ../scss/cfs/_alert.scss */
+.alert-info .alert-link {
+  color: #245269;
+}
+
+/* line 94, ../scss/cfs/_alert.scss */
+.alert-success {
+  color: #3c763d;
+  border-color: #d0e9c6;
+  background-color: #dff0d8;
+}
+/* line 6, ../scss/cfs/_alert.scss */
+.alert-success hr {
+  border-top-color: #c1e2b3;
+}
+/* line 10, ../scss/cfs/_alert.scss */
+.alert-success .alert-link {
+  color: #2b542c;
+}
+
+/* line 98, ../scss/cfs/_alert.scss */
+.alert-warning {
+  color: #8a6d3b;
+  border-color: #faf2cc;
+  background-color: #fcf8e3;
+}
+/* line 6, ../scss/cfs/_alert.scss */
+.alert-warning hr {
+  border-top-color: #f7ecb5;
+}
+/* line 10, ../scss/cfs/_alert.scss */
+.alert-warning .alert-link {
+  color: #66512c;
+}
+
 /* line 1, ../scss/cfs/_form.scss */
 .errorlist {
   margin-top: 0.25rem;

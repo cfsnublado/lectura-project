@@ -67,20 +67,25 @@ const AlertMessage = {
   template: `
     <transition name="fade-transition-slow" v-on:after-enter="isOpen = true" v-on:after-leave="isOpen = false">
 
-    <div v-show="isOpen" :class="['alert-' + messageType, 'notification']">
+    <div v-show="isOpen" :class="[messageType, 'alert abs-alert']">
 
-    <button 
-    class="delete" 
+    <div class="alert-content">
+    {{ messageText }}
+    </div>
+
+    <a href=""
+    type="button" 
+    class="close"
     @click.prevent="close"
     >
-    </button>
-
-    {{ messageText }}
+    <span aria-hidden="true">&times;</span>
+    </a>
 
     </div>
 
     </transition>
   `
+
 }
 
 const NavbarDropdown = {
