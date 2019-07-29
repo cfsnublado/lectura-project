@@ -11,6 +11,9 @@ class ReadWritePermission(BasePermission):
 
 
 class ReadPermission(BasePermission):
+    '''
+    Retrieve and list access for non-authenticated user
+    '''
 
     def has_permission(self, request, view):
         if view.action not in ['retrieve', 'list']:

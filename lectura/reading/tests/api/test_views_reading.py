@@ -413,7 +413,7 @@ class NestedReadingViewSetTest(TestCommon):
     def test_view_list(self):
         self.login_test_user(self.user.username)
 
-        # Source 1
+        # Reading 1
         data_1 = self.get_reading_serializer_data(self.reading_1)
         data_2 = self.get_reading_serializer_data(self.reading_2)
         expected_results = json.dumps({
@@ -433,7 +433,7 @@ class NestedReadingViewSetTest(TestCommon):
 
         self.assertCountEqual(json.loads(expected_results), json.loads(response.content))
 
-        # Source 2
+        # Reading 2
         data_3 = self.get_reading_serializer_data(self.reading_3)
         data_4 = self.get_reading_serializer_data(self.reading_4)
         expected_results = json.dumps({
@@ -485,7 +485,7 @@ class NestedReadingViewSetTest(TestCommon):
 
         self.assertEqual(response.status_code, drf_status.HTTP_403_FORBIDDEN)
 
-        # Source creator
+        # Reading creator
         self.client.logout()
         self.login_test_user(self.user.username)
 
@@ -598,7 +598,7 @@ class ReadingImportViewTest(TestCommon):
             APIView
         )
         for class_name in classes:
-            self.assertTrue(issubclass(ReadingExportView, class_name))
+            self.assertTrue(issubclass(ReadingImportView, class_name))
 
     def test_correct_view_used(self):
         found = resolve(reverse('api:reading_import'))
@@ -607,7 +607,7 @@ class ReadingImportViewTest(TestCommon):
             ReadingImportView.as_view().__name__
         )
 
-    def test_view_imports_vocab_source_json(self):
+    def test_view_imports_reading_json(self):
         self.login_test_user(self.user.username)
         self.assertFalse(
             Reading.objects.filter(
