@@ -6,13 +6,13 @@ from core.models import (
     SlugifyModel, TimestampModel
 )
 from ..managers import (
-    ReadingManager
+    ProjectManager, ReadingManager
 )
 from ..models import (
-    CreatorModel, Project, ProjectContentModel, Reading
+    Project, ProjectContentModel, Reading
 )
 from ..serializers import (
-    ReadingSerializer
+    ProjectSerializer, ReadingSerializer
 )
 
 User = get_user_model()
@@ -29,17 +29,49 @@ class TestCommon(TestCase):
             email='cfs7@cfs.com',
             password=self.pwd
         )
+        self.project = Project.objects.create(
+            owner=self.user,
+            name='Some book',
+            description='A good book'
+        )
+
+
+class ProjectTest(TestCommon):
+
+    def setUp(self):
+        super(ProjectTest, self).setUp()
+
+    def test_inheritance(self):
+        classes = (
+            SerializeModel, SlugifyModel,
+            TimestampModel
+        )
+        for class_name in classes:
+            self.assertTrue(
+                issubclass(Project, class_name)
+            )
+
+    def test_manager_type(self):
+        self.assertIsInstance(Project.objects, ProjectManager)
+
+    def test_string_representation(self):
+        self.assertEqual(str(self.project), self.project.name)
+
+    def test_update_slug_on_save(self):
+        self.project.name = 'El nombre del viento'
+        self.project.full_clean()
+        self.project.save()
+        self.assertEqual('el-nombre-del-viento', self.project.slug)
+
+    def test_get_serializer(self):
+        serializer = self.project.get_serializer()
+        self.assertEqual(serializer, ProjectSerializer)
 
 
 class ReadingTest(TestCommon):
 
     def setUp(self):
         super(ReadingTest, self).setUp()
-        self.project = Project.objects.create(
-            owner=self.user,
-            name='Some book',
-            description='A good book'
-        )
         self.reading = Reading.objects.create(
             creator=self.user,
             project=self.project,
@@ -51,7 +83,7 @@ class ReadingTest(TestCommon):
     def test_inheritance(self):
         classes = (
             ProjectContentModel, SerializeModel, SlugifyModel,
-            TimestampModel, CreatorModel
+            TimestampModel
         )
         for class_name in classes:
             self.assertTrue(

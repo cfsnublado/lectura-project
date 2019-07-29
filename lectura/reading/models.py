@@ -8,20 +8,8 @@ from core.models import (
 )
 from .managers import ReadingManager, ProjectManager
 
+
 # Abstract models
-
-
-class CreatorModel(models.Model):
-    creator = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        related_name='%(app_label)s_%(class)s',
-        on_delete=models.CASCADE
-    )
-
-    class Meta:
-        abstract = True
-
-
 class ProjectContentModel(models.Model):
 
     class Meta:
@@ -72,12 +60,17 @@ class Project(
 
 class Reading(
     TimestampModel, SlugifyModel, SerializeModel,
-    CreatorModel, ProjectContentModel
+    ProjectContentModel
 ):
     unique_slug = False
     slug_value_field_name = 'name'
     slug_max_iterations = 500
 
+    creator = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        related_name='%(app_label)s_%(class)s',
+        on_delete=models.CASCADE
+    )
     project = models.ForeignKey(
         Project,
         related_name='readings',
