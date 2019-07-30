@@ -4297,7 +4297,7 @@ a.tag:hover {
   vertical-align: top;
 }
 
-/* line 74, ../scss/bulma/form/_shared.scss */
+/* line 72, ../scss/bulma/form/_shared.scss */
 .input, .textarea, .select select {
   background-color: white;
   border-color: #ced4da;
@@ -4321,16 +4321,16 @@ a.tag:hover {
 .input:-ms-input-placeholder, .textarea:-ms-input-placeholder, .select select:-ms-input-placeholder {
   color: rgba(54, 54, 54, 0.3);
 }
-/* line 48, ../scss/bulma/form/_shared.scss */
+/* line 46, ../scss/bulma/form/_shared.scss */
 .input:hover, .textarea:hover, .select select:hover, .is-hovered.input, .is-hovered.textarea, .select select.is-hovered {
   border-color: #afb5ba;
 }
-/* line 53, ../scss/bulma/form/_shared.scss */
+/* line 51, ../scss/bulma/form/_shared.scss */
 .input:focus, .textarea:focus, .select select:focus, .is-focused.input, .is-focused.textarea, .select select.is-focused, .input:active, .textarea:active, .select select:active, .is-active.input, .is-active.textarea, .select select.is-active {
   border-color: #afb5ba;
   box-shadow: 0 0 0 0.2rem rgba(122, 122, 122, 0.25);
 }
-/* line 61, ../scss/bulma/form/_shared.scss */
+/* line 59, ../scss/bulma/form/_shared.scss */
 [disabled].input, [disabled].textarea, .select select[disabled], fieldset[disabled] .input, fieldset[disabled] .textarea, fieldset[disabled] .select select, .select fieldset[disabled] select {
   background-color: whitesmoke;
   border-color: whitesmoke;
