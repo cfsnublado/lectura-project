@@ -9,7 +9,7 @@
 {% block content %}
 
 <div class="columns">
-<div class="column is-10">
+<div class="column is-10 is-offset-1">
 
 <form 
 id="create-form" 
@@ -22,7 +22,7 @@ novalidate
 
 {% include "reading/includes/forms/_reading_form.html" %}
 
-<button id="submit-btn" class="button is-primary" type="submit" form="create-form">
+<button id="submit-btn" class="button is-info" type="submit" form="create-form">
 {% trans "label_create" %}
 </button>
 

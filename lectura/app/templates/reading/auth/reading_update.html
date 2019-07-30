@@ -1,18 +1,32 @@
 {% extends "reading/reading_base.html" %}
 {% load staticfiles %}
 {% load i18n %}
+
 {% block title %}{% trans "page_reading_update_title" %}{% endblock title %}
+
 {% block reading_update_link_active %}is-active{% endblock reading_update_link_active %}
+
 {% block content %}
+
 <div class="columns">
-  <div class="column is-10">
-    <form id="edit-form" action="{% url 'reading:reading_update' reading.id reading.slug %}" method="post" novalidate>
-      {% csrf_token %}
-      {% include "reading/includes/forms/_reading_form.html" %}
-      <button id="submit-btn" class="button is-primary" type="submit" form="edit-form">
-        {% trans "label_update" %}
-      </button>
-    </form>
-  </div>
+<div class="column is-10 is-offset-1">
+
+<form 
+id="edit-form" 
+action="{% url 'reading:reading_update' reading.id reading.slug %}" 
+method="post" 
+novalidate
+>
+
+{% csrf_token %}
+{% include "reading/includes/forms/_reading_form.html" %}
+
+<button id="submit-btn" class="button is-info" type="submit" form="edit-form">
+{% trans "label_update" %}
+</button>
+
+</form>
+
+</div>
 </div>
 {% endblock content %}

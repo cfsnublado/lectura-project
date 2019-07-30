@@ -4297,12 +4297,13 @@ a.tag:hover {
   vertical-align: top;
 }
 
-/* line 67, ../scss/bulma/form/_shared.scss */
+/* line 74, ../scss/bulma/form/_shared.scss */
 .input, .textarea, .select select {
   background-color: white;
-  border-color: #dbdbdb;
+  border-color: #ced4da;
   border-radius: 4px;
   color: #363636;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 /* line 96, ../scss/bulma/utilities/_mixins.scss */
 .input::-moz-placeholder, .textarea::-moz-placeholder, .select select::-moz-placeholder {
@@ -4320,16 +4321,16 @@ a.tag:hover {
 .input:-ms-input-placeholder, .textarea:-ms-input-placeholder, .select select:-ms-input-placeholder {
   color: rgba(54, 54, 54, 0.3);
 }
-/* line 41, ../scss/bulma/form/_shared.scss */
+/* line 48, ../scss/bulma/form/_shared.scss */
 .input:hover, .textarea:hover, .select select:hover, .is-hovered.input, .is-hovered.textarea, .select select.is-hovered {
-  border-color: #b5b5b5;
+  border-color: #afb5ba;
 }
-/* line 46, ../scss/bulma/form/_shared.scss */
+/* line 53, ../scss/bulma/form/_shared.scss */
 .input:focus, .textarea:focus, .select select:focus, .is-focused.input, .is-focused.textarea, .select select.is-focused, .input:active, .textarea:active, .select select:active, .is-active.input, .is-active.textarea, .select select.is-active {
-  border-color: #7a7a7a;
-  box-shadow: 0 0 0 0.125em rgba(122, 122, 122, 0.25);
+  border-color: #afb5ba;
+  box-shadow: 0 0 0 0.2rem rgba(122, 122, 122, 0.25);
 }
-/* line 54, ../scss/bulma/form/_shared.scss */
+/* line 61, ../scss/bulma/form/_shared.scss */
 [disabled].input, [disabled].textarea, .select select[disabled], fieldset[disabled] .input, fieldset[disabled] .textarea, fieldset[disabled] .select select, .select fieldset[disabled] select {
   background-color: whitesmoke;
   border-color: whitesmoke;
@@ -4355,7 +4356,7 @@ a.tag:hover {
 
 /* line 1, ../scss/bulma/form/_input-textarea.scss */
 .input, .textarea {
-  box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
+  box-shadow: inset 0 1px 1px rgba(10, 10, 10, 0.075);
   max-width: 100%;
   width: 100%;
 }
@@ -4369,7 +4370,7 @@ a.tag:hover {
 }
 /* line 19, ../scss/bulma/form/_input-textarea.scss */
 .is-white.input:focus, .is-white.textarea:focus, .is-white.is-focused.input, .is-white.is-focused.textarea, .is-white.input:active, .is-white.textarea:active, .is-white.is-active.input, .is-white.is-active.textarea {
-  box-shadow: 0 0 0 0.125em rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
 }
 /* line 16, ../scss/bulma/form/_input-textarea.scss */
 .is-black.input, .is-black.textarea {
@@ -4377,7 +4378,7 @@ a.tag:hover {
 }
 /* line 19, ../scss/bulma/form/_input-textarea.scss */
 .is-black.input:focus, .is-black.textarea:focus, .is-black.is-focused.input, .is-black.is-focused.textarea, .is-black.input:active, .is-black.textarea:active, .is-black.is-active.input, .is-black.is-active.textarea {
-  box-shadow: 0 0 0 0.125em rgba(10, 10, 10, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(10, 10, 10, 0.25);
 }
 /* line 16, ../scss/bulma/form/_input-textarea.scss */
 .is-light.input, .is-light.textarea {
@@ -4385,7 +4386,7 @@ a.tag:hover {
 }
 /* line 19, ../scss/bulma/form/_input-textarea.scss */
 .is-light.input:focus, .is-light.textarea:focus, .is-light.is-focused.input, .is-light.is-focused.textarea, .is-light.input:active, .is-light.textarea:active, .is-light.is-active.input, .is-light.is-active.textarea {
-  box-shadow: 0 0 0 0.125em rgba(245, 245, 245, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(245, 245, 245, 0.25);
 }
 /* line 16, ../scss/bulma/form/_input-textarea.scss */
 .is-dark.input, .is-dark.textarea {
@@ -4393,7 +4394,7 @@ a.tag:hover {
 }
 /* line 19, ../scss/bulma/form/_input-textarea.scss */
 .is-dark.input:focus, .is-dark.textarea:focus, .is-dark.is-focused.input, .is-dark.is-focused.textarea, .is-dark.input:active, .is-dark.textarea:active, .is-dark.is-active.input, .is-dark.is-active.textarea {
-  box-shadow: 0 0 0 0.125em rgba(54, 54, 54, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(54, 54, 54, 0.25);
 }
 /* line 16, ../scss/bulma/form/_input-textarea.scss */
 .is-primary.input, .is-primary.textarea {
@@ -4401,7 +4402,7 @@ a.tag:hover {
 }
 /* line 19, ../scss/bulma/form/_input-textarea.scss */
 .is-primary.input:focus, .is-primary.textarea:focus, .is-primary.is-focused.input, .is-primary.is-focused.textarea, .is-primary.input:active, .is-primary.textarea:active, .is-primary.is-active.input, .is-primary.is-active.textarea {
-  box-shadow: 0 0 0 0.125em rgba(0, 209, 178, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(0, 209, 178, 0.25);
 }
 /* line 16, ../scss/bulma/form/_input-textarea.scss */
 .is-link.input, .is-link.textarea {
@@ -4409,7 +4410,7 @@ a.tag:hover {
 }
 /* line 19, ../scss/bulma/form/_input-textarea.scss */
 .is-link.input:focus, .is-link.textarea:focus, .is-link.is-focused.input, .is-link.is-focused.textarea, .is-link.input:active, .is-link.textarea:active, .is-link.is-active.input, .is-link.is-active.textarea {
-  box-shadow: 0 0 0 0.125em rgba(50, 115, 220, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(50, 115, 220, 0.25);
 }
 /* line 16, ../scss/bulma/form/_input-textarea.scss */
 .is-info.input, .is-info.textarea {
@@ -4417,7 +4418,7 @@ a.tag:hover {
 }
 /* line 19, ../scss/bulma/form/_input-textarea.scss */
 .is-info.input:focus, .is-info.textarea:focus, .is-info.is-focused.input, .is-info.is-focused.textarea, .is-info.input:active, .is-info.textarea:active, .is-info.is-active.input, .is-info.is-active.textarea {
-  box-shadow: 0 0 0 0.125em rgba(32, 156, 238, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(32, 156, 238, 0.25);
 }
 /* line 16, ../scss/bulma/form/_input-textarea.scss */
 .is-success.input, .is-success.textarea {
@@ -4425,7 +4426,7 @@ a.tag:hover {
 }
 /* line 19, ../scss/bulma/form/_input-textarea.scss */
 .is-success.input:focus, .is-success.textarea:focus, .is-success.is-focused.input, .is-success.is-focused.textarea, .is-success.input:active, .is-success.textarea:active, .is-success.is-active.input, .is-success.is-active.textarea {
-  box-shadow: 0 0 0 0.125em rgba(35, 209, 96, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(35, 209, 96, 0.25);
 }
 /* line 16, ../scss/bulma/form/_input-textarea.scss */
 .is-warning.input, .is-warning.textarea {
@@ -4433,7 +4434,7 @@ a.tag:hover {
 }
 /* line 19, ../scss/bulma/form/_input-textarea.scss */
 .is-warning.input:focus, .is-warning.textarea:focus, .is-warning.is-focused.input, .is-warning.is-focused.textarea, .is-warning.input:active, .is-warning.textarea:active, .is-warning.is-active.input, .is-warning.is-active.textarea {
-  box-shadow: 0 0 0 0.125em rgba(255, 221, 87, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(255, 221, 87, 0.25);
 }
 /* line 16, ../scss/bulma/form/_input-textarea.scss */
 .is-danger.input, .is-danger.textarea {
@@ -4441,7 +4442,7 @@ a.tag:hover {
 }
 /* line 19, ../scss/bulma/form/_input-textarea.scss */
 .is-danger.input:focus, .is-danger.textarea:focus, .is-danger.is-focused.input, .is-danger.is-focused.textarea, .is-danger.input:active, .is-danger.textarea:active, .is-danger.is-active.input, .is-danger.is-active.textarea {
-  box-shadow: 0 0 0 0.125em rgba(255, 56, 96, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(255, 56, 96, 0.25);
 }
 /* line 29, ../scss/bulma/form/_input-textarea.scss */
 .is-small.input, .is-small.textarea {
@@ -4599,7 +4600,7 @@ a.tag:hover {
 }
 /* line 84, ../scss/bulma/form/_select.scss */
 .select.is-white select:focus, .select.is-white select.is-focused, .select.is-white select:active, .select.is-white select.is-active {
-  box-shadow: 0 0 0 0.125em rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
 }
 /* line 72, ../scss/bulma/form/_select.scss */
 .select.is-black:not(:hover)::after {
@@ -4615,7 +4616,7 @@ a.tag:hover {
 }
 /* line 84, ../scss/bulma/form/_select.scss */
 .select.is-black select:focus, .select.is-black select.is-focused, .select.is-black select:active, .select.is-black select.is-active {
-  box-shadow: 0 0 0 0.125em rgba(10, 10, 10, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(10, 10, 10, 0.25);
 }
 /* line 72, ../scss/bulma/form/_select.scss */
 .select.is-light:not(:hover)::after {
@@ -4631,7 +4632,7 @@ a.tag:hover {
 }
 /* line 84, ../scss/bulma/form/_select.scss */
 .select.is-light select:focus, .select.is-light select.is-focused, .select.is-light select:active, .select.is-light select.is-active {
-  box-shadow: 0 0 0 0.125em rgba(245, 245, 245, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(245, 245, 245, 0.25);
 }
 /* line 72, ../scss/bulma/form/_select.scss */
 .select.is-dark:not(:hover)::after {
@@ -4647,7 +4648,7 @@ a.tag:hover {
 }
 /* line 84, ../scss/bulma/form/_select.scss */
 .select.is-dark select:focus, .select.is-dark select.is-focused, .select.is-dark select:active, .select.is-dark select.is-active {
-  box-shadow: 0 0 0 0.125em rgba(54, 54, 54, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(54, 54, 54, 0.25);
 }
 /* line 72, ../scss/bulma/form/_select.scss */
 .select.is-primary:not(:hover)::after {
@@ -4663,7 +4664,7 @@ a.tag:hover {
 }
 /* line 84, ../scss/bulma/form/_select.scss */
 .select.is-primary select:focus, .select.is-primary select.is-focused, .select.is-primary select:active, .select.is-primary select.is-active {
-  box-shadow: 0 0 0 0.125em rgba(0, 209, 178, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(0, 209, 178, 0.25);
 }
 /* line 72, ../scss/bulma/form/_select.scss */
 .select.is-link:not(:hover)::after {
@@ -4679,7 +4680,7 @@ a.tag:hover {
 }
 /* line 84, ../scss/bulma/form/_select.scss */
 .select.is-link select:focus, .select.is-link select.is-focused, .select.is-link select:active, .select.is-link select.is-active {
-  box-shadow: 0 0 0 0.125em rgba(50, 115, 220, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(50, 115, 220, 0.25);
 }
 /* line 72, ../scss/bulma/form/_select.scss */
 .select.is-info:not(:hover)::after {
@@ -4695,7 +4696,7 @@ a.tag:hover {
 }
 /* line 84, ../scss/bulma/form/_select.scss */
 .select.is-info select:focus, .select.is-info select.is-focused, .select.is-info select:active, .select.is-info select.is-active {
-  box-shadow: 0 0 0 0.125em rgba(32, 156, 238, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(32, 156, 238, 0.25);
 }
 /* line 72, ../scss/bulma/form/_select.scss */
 .select.is-success:not(:hover)::after {
@@ -4711,7 +4712,7 @@ a.tag:hover {
 }
 /* line 84, ../scss/bulma/form/_select.scss */
 .select.is-success select:focus, .select.is-success select.is-focused, .select.is-success select:active, .select.is-success select.is-active {
-  box-shadow: 0 0 0 0.125em rgba(35, 209, 96, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(35, 209, 96, 0.25);
 }
 /* line 72, ../scss/bulma/form/_select.scss */
 .select.is-warning:not(:hover)::after {
@@ -4727,7 +4728,7 @@ a.tag:hover {
 }
 /* line 84, ../scss/bulma/form/_select.scss */
 .select.is-warning select:focus, .select.is-warning select.is-focused, .select.is-warning select:active, .select.is-warning select.is-active {
-  box-shadow: 0 0 0 0.125em rgba(255, 221, 87, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(255, 221, 87, 0.25);
 }
 /* line 72, ../scss/bulma/form/_select.scss */
 .select.is-danger:not(:hover)::after {
@@ -4743,7 +4744,7 @@ a.tag:hover {
 }
 /* line 84, ../scss/bulma/form/_select.scss */
 .select.is-danger select:focus, .select.is-danger select.is-focused, .select.is-danger select:active, .select.is-danger select.is-active {
-  box-shadow: 0 0 0 0.125em rgba(255, 56, 96, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(255, 56, 96, 0.25);
 }
 /* line 95, ../scss/bulma/form/_select.scss */
 .select.is-small {
