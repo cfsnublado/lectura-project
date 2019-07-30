@@ -10078,8 +10078,8 @@ blockquote p {
 .navbar {
   position: relative;
   z-index: 30;
-  min-height: 3.125rem;
-  max-height: 3.125rem;
+  min-height: 3.75rem;
+  max-height: 3.75rem;
   background-color: #f9f9f9;
 }
 /* line 61, ../scss/cfs/_navbar.scss */
@@ -10750,7 +10750,7 @@ blockquote p {
 .navbar > .container {
   display: flex;
   width: 100%;
-  min-height: 3.125rem;
+  min-height: 3.75rem;
   align-items: stretch;
 }
 /* line 154, ../scss/cfs/_navbar.scss */
@@ -10780,19 +10780,19 @@ blockquote p {
 /* line 178, ../scss/cfs/_navbar.scss */
 html.has-navbar-fixed-top,
 body.has-navbar-fixed-top {
-  padding-top: 3.125rem;
+  padding-top: 3.75rem;
 }
 /* line 182, ../scss/cfs/_navbar.scss */
 html.has-navbar-fixed-bottom,
 body.has-navbar-fixed-bottom {
-  padding-bottom: 3.125rem;
+  padding-bottom: 3.75rem;
 }
 
 /* line 187, ../scss/cfs/_navbar.scss */
 .navbar-brand,
 .navbar-tabs {
   display: flex;
-  min-height: 3.125rem;
+  min-height: 3.75rem;
   align-items: stretch;
   flex-shrink: 0;
 }
@@ -10814,9 +10814,9 @@ body.has-navbar-fixed-bottom {
 .navbar-burger {
   cursor: pointer;
   display: block;
-  height: 3.125rem;
+  height: 3.75rem;
   position: relative;
-  width: 3.125rem;
+  width: 3.75rem;
   margin-left: auto;
   color: #4a4a4a;
 }
@@ -10866,9 +10866,9 @@ body.has-navbar-fixed-bottom {
 .sidebar-trigger {
   cursor: pointer;
   display: block;
-  height: 3.125rem;
+  height: 3.75rem;
   position: relative;
-  width: 3.125rem;
+  width: 3.75rem;
   color: #4a4a4a;
 }
 /* line 41, ../scss/bulma/utilities/_mixins.scss */
@@ -10962,7 +10962,7 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
 }
 /* line 276, ../scss/cfs/_navbar.scss */
 .navbar-item img {
-  max-height: 2.5rem;
+  max-height: 3.125rem;
 }
 /* line 280, ../scss/cfs/_navbar.scss */
 .navbar-item.has-dropdown {
@@ -10975,7 +10975,7 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
 }
 /* line 289, ../scss/cfs/_navbar.scss */
 .navbar-item.is-tab {
-  min-height: 3.125rem;
+  min-height: 3.75rem;
   padding-bottom: calc(0.5rem - 1px);
   border-bottom: 1px solid transparent;
 }
@@ -11043,7 +11043,7 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
 
 /* line 365, ../scss/cfs/_navbar.scss */
 .navbar {
-  min-height: 3.125rem;
+  min-height: 3.75rem;
 }
 /* line 368, ../scss/cfs/_navbar.scss */
 .navbar.is-spaced {
@@ -11235,22 +11235,22 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
 /* line 588, ../scss/cfs/_navbar.scss */
 html.has-navbar-fixed-top-desktop,
 body.has-navbar-fixed-top-desktop {
-  padding-top: 3.125rem;
+  padding-top: 3.75rem;
 }
 /* line 592, ../scss/cfs/_navbar.scss */
 html.has-navbar-fixed-bottom-desktop,
 body.has-navbar-fixed-bottom-desktop {
-  padding-bottom: 3.125rem;
+  padding-bottom: 3.75rem;
 }
 /* line 596, ../scss/cfs/_navbar.scss */
 html.has-spaced-navbar-fixed-top,
 body.has-spaced-navbar-fixed-top {
-  padding-top: 5.125rem;
+  padding-top: 5.75rem;
 }
 /* line 600, ../scss/cfs/_navbar.scss */
 html.has-spaced-navbar-fixed-bottom,
 body.has-spaced-navbar-fixed-bottom {
-  padding-bottom: 5.125rem;
+  padding-bottom: 5.75rem;
 }
 
 /* line 608, ../scss/cfs/_navbar.scss */
@@ -11271,7 +11271,7 @@ a.navbar-item.is-active:not(:focus):not(:hover),
 
 /* line 630, ../scss/cfs/_navbar.scss */
 .hero.is-fullheight-with-navbar {
-  min-height: calc(100vh - 3.125rem);
+  min-height: calc(100vh - 3.75rem);
 }
 
 /* line 1, ../scss/cfs/_sidebar.scss */
@@ -11371,7 +11371,7 @@ a.navbar-item.is-active:not(:focus):not(:hover),
   flex-direction: row;
   -webkit-align-items: center;
   align-items: center;
-  height: 3.1875rem;
+  height: 3.8125rem;
   border-bottom: 1px solid #eee;
   background-color: #f7f7f7;
 }
