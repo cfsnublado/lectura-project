@@ -12,4 +12,4 @@ Yarvi, el hijo menor del rey, nació con una malformación en una mano que ha ll
 
 Él es el nuevo rey.
 
-Pero tras una terrible traición a manos de sus seres queridos, Yarvi se encontrará solo en un mundo regido por la fuerza física y los corazones fríos. Incapaz de llevar armadura o de levantar un hacha, deberá afilar y agudizar su mente. Cuando se juntan a su alrededor una extraña hermandad de almas perdidas, descubrirá que esos compañeros inesperados tal vez puedan ayudarle a convertirse en el hombre que quiere ser.
+Pero tras una terrible traición a manos de sus seres queridos, Yarvi se encontrará solo en un mundo regido por la fuerza física y los corazones fríos. Incapaz de llevar armadura o de levantar un hacha, deberá afilar y agudizar su mente. Cuando se junta a su alrededor una extraña hermandad de almas perdidas, descubrirá que esos compañeros inesperados tal vez puedan ayudarle a convertirse en el hombre que quiere ser.

@@ -14,6 +14,12 @@ const AdminMixin = {
 
 
 const AjaxProcessMixin = {
+  props: {
+    parentProcessing: {
+        type: Boolean,
+        default: false
+    }
+  },
   data() {
     return {
       processing: false

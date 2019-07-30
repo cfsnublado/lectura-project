@@ -2,6 +2,34 @@
 {% load staticfiles %}
 {% load i18n %}
 
+{% block content_top %}
+
+{% block breadcrumbs %}
+
+{% if request.session.session_obj %}
+
+  <div class="columns">
+  <div class="column is-10 is-offset-1">
+
+  <nav class="breadcrumb">
+  <ul>
+  {% block breadcrumb_content %}
+
+  {% include 'reading/includes/_reading_breadcrumbs.html' %}
+
+  {% endblock breadcrumb_content %}
+  </ul>
+  </nav>
+
+  </div>
+  </div>
+
+{% endif %}
+
+{% endblock breadcrumbs %}
+
+{% endblock content_top %}
+
 {% block sidebar_nav_items %}
 
 {% if request.session.session_obj.project %}

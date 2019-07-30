@@ -1,5 +1,6 @@
 
 const DbxUserFiles = {
+  mixins: [AjaxProcessMixin],
   props: {
     filesUrl: {
       type: String,
@@ -9,13 +10,12 @@ const DbxUserFiles = {
   data() {
     return {
       files: '',
-      processing: false
     }
   },
   methods: {
     getFiles() {
       this.files = []
-      this.processing = true
+      this.process()
       
       axios.get(this.filesUrl)
       .then(response => {
@@ -32,7 +32,7 @@ const DbxUserFiles = {
         console.log(error.config)
       })
       .finally(() => {
-        this.processing = false
+        this.complete()
       })
     },
     selectFile(file) {
@@ -71,7 +71,9 @@ const DbxUserFiles = {
 }
 
 const DbxAudioFileUploader = {
-  mixins: [AudioFileUploader],
+  mixins: [
+    AudioFileUploader
+  ],
   data() {
     return {
       fileMetadata: ''
@@ -138,6 +140,7 @@ const DbxAudioFileUploader = {
 }
 
 const Dbx = {
+  mixins: [AjaxProcessMixin],
   components: {
     'dbx-user-files': DbxUserFiles,
     'dbx-audio-file-uploader': DbxAudioFileUploader,

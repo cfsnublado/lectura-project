@@ -1,0 +1,51 @@
+{% load i18n %}
+
+{% with url_name=request.resolver_match.url_name %}
+
+  {% if request.session.session_obj.project %}
+
+    <li>
+    <a href="{% url 'reading:projects' %}">{% trans 'label_projects' %}</a>
+    </li>
+
+    {% if url_name == 'project' %}
+   
+      <li class="is-active">
+      <a href="#">{{ project.name }}</a>
+      </li>
+  
+    {% else %}
+
+      <li>
+      <a href="{% url 'reading:project' project.id project.slug %}">{{ project.name }}</a>
+      </li>
+
+    {% endif %}
+
+  {% elif request.session.session_obj.reading %}
+
+    <li>
+    <a href="{% url 'reading:projects' %}">{% trans 'label_projects' %}</a>
+    </li>
+
+    <li>
+    <a href="{% url 'reading:project' project.id project.slug %}">{{ project.name }}</a>
+    </li>
+
+    {% if url_name == 'reading' %}
+   
+      <li class="is-active">
+      <a href="#">{{ reading.name }}</a>
+      </li>
+  
+    {% else %}
+
+      <li>
+      <a href="{% url 'reading:reading' reading.id reading.slug %}">{{ reading.name }}</a>
+      </li>
+
+    {% endif %}
+
+  {% endif %}
+
+{% endwith %}
