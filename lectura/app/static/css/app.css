@@ -11329,28 +11329,30 @@ a.navbar-item.is-active:not(:focus):not(:hover),
   align-items: center;
   font-size: 1rem;
   padding-left: 1rem;
+  color: #6a6a6a;
 }
-/* line 44, ../scss/cfs/_sidebar.scss */
+/* line 46, ../scss/cfs/_sidebar.scss */
 .sidebar .menu-list li a .menu-icon {
-  font-size: 1.125rem;
-  padding-right: 1.875rem;
+  font-size: 1rem;
+  padding-right: 2.25rem;
 }
-/* line 50, ../scss/cfs/_sidebar.scss */
+/* line 52, ../scss/cfs/_sidebar.scss */
 .sidebar .menu-list li a.is-active {
   color: #fff;
   background: #88beec;
 }
-/* line 56, ../scss/cfs/_sidebar.scss */
+/* line 58, ../scss/cfs/_sidebar.scss */
 .sidebar .menu-label {
   padding-left: 1rem;
 }
-/* line 60, ../scss/cfs/_sidebar.scss */
+/* line 62, ../scss/cfs/_sidebar.scss */
 .sidebar .menu-header {
   font-size: 1rem;
+  font-weight: bold;
   padding-left: 1rem;
 }
 
-/* line 67, ../scss/cfs/_sidebar.scss */
+/* line 70, ../scss/cfs/_sidebar.scss */
 .sidebar-container {
   display: -webkit-flex;
   display: flex;
@@ -11359,7 +11361,7 @@ a.navbar-item.is-active:not(:focus):not(:hover),
   height: 100%;
 }
 
-/* line 74, ../scss/cfs/_sidebar.scss */
+/* line 77, ../scss/cfs/_sidebar.scss */
 .sidebar-header {
   display: -webkit-flex;
   display: flex;
@@ -11373,7 +11375,7 @@ a.navbar-item.is-active:not(:focus):not(:hover),
   background-color: #f7f7f7;
 }
 
-/* line 86, ../scss/cfs/_sidebar.scss */
+/* line 89, ../scss/cfs/_sidebar.scss */
 .sidebar-navbar {
   display: -webkit-flex;
   display: flex;
@@ -11386,7 +11388,7 @@ a.navbar-item.is-active:not(:focus):not(:hover),
   background-color: #f7f7f7;
 }
 
-/* line 97, ../scss/cfs/_sidebar.scss */
+/* line 100, ../scss/cfs/_sidebar.scss */
 .sidebar-body {
   -webkit-flex: 1;
   flex: 1;
@@ -11396,7 +11398,7 @@ a.navbar-item.is-active:not(:focus):not(:hover),
   opacity: 1;
 }
 
-/* line 108, ../scss/cfs/_sidebar.scss */
+/* line 111, ../scss/cfs/_sidebar.scss */
 .sidebar-footer {
   display: -webkit-flex;
   display: flex;
@@ -11409,7 +11411,7 @@ a.navbar-item.is-active:not(:focus):not(:hover),
   border-top: 1px solid #dfe1e3;
 }
 
-/* line 121, ../scss/cfs/_sidebar.scss */
+/* line 124, ../scss/cfs/_sidebar.scss */
 .sidebar-divider {
   display: block;
   overflow: hidden;
@@ -11420,11 +11422,11 @@ a.navbar-item.is-active:not(:focus):not(:hover),
   background: #d8d9da;
 }
 
-/* line 135, ../scss/cfs/_sidebar.scss */
+/* line 138, ../scss/cfs/_sidebar.scss */
 body.sidebar-expanded .sidebar-background {
   display: block;
 }
-/* line 139, ../scss/cfs/_sidebar.scss */
+/* line 142, ../scss/cfs/_sidebar.scss */
 body.sidebar-expanded .sidebar {
   -moz-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
