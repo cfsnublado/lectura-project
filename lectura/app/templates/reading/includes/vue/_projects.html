@@ -35,11 +35,15 @@ delete-confirm-id="delete-project"
 inline-template
 >
 
+<span class="control">
 <a
-class="delete"
+href="#"
 @click.prevent="confirmDelete"
 >
+<i class="fas fa-times-circle fa-fw"></i>
 </a>
+</span>
+
 </ajax-delete>
 
 </div>

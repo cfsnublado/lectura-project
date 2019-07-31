@@ -11506,7 +11506,7 @@ body.sidebar-expanded .sidebar {
 }
 /* line 7, ../scss/cfs/_modal.scss */
 .confirmation-modal .modal-header {
-  font-size: 2.5rem;
+  font-size: 2.125rem;
   text-align: center;
 }
 /* line 13, ../scss/cfs/_modal.scss */
@@ -11822,7 +11822,13 @@ body.sidebar-expanded .sidebar {
   font-size: 1.375rem;
   margin-bottom: 1.25rem;
 }
-/* line 26, ../scss/cfs/reading/_reading.scss */
+/* line 22, ../scss/cfs/reading/_reading.scss */
+.project-card .name p,
+.reading-card .name p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+/* line 31, ../scss/cfs/reading/_reading.scss */
 .project-card .card-content,
 .reading-card .card-content {
   padding-top: 0.625rem;
@@ -11830,7 +11836,7 @@ body.sidebar-expanded .sidebar {
   padding-bottom: 1rem;
   padding-left: 1rem;
 }
-/* line 33, ../scss/cfs/reading/_reading.scss */
+/* line 38, ../scss/cfs/reading/_reading.scss */
 .project-card .card-controls,
 .reading-card .card-controls {
   display: flex;
@@ -11839,29 +11845,45 @@ body.sidebar-expanded .sidebar {
   padding-left: 0.625rem;
   justify-content: flex-end;
 }
-
 /* line 47, ../scss/cfs/reading/_reading.scss */
+.project-card .card-controls .control,
+.reading-card .card-controls .control {
+  padding-left: 0.25rem;
+}
+/* line 50, ../scss/cfs/reading/_reading.scss */
+.project-card .card-controls .control a,
+.reading-card .card-controls .control a {
+  font-size: 1.125rem;
+  color: rgba(10, 10, 10, 0.2);
+}
+/* line 55, ../scss/cfs/reading/_reading.scss */
+.project-card .card-controls .control a:hover,
+.reading-card .card-controls .control a:hover {
+  color: rgba(10, 10, 10, 0.3);
+}
+
+/* line 66, ../scss/cfs/reading/_reading.scss */
 .reading-view .reading-name {
   font-size: 3.125rem;
   margin-bottom: 40px;
 }
-/* line 53, ../scss/cfs/reading/_reading.scss */
+/* line 72, ../scss/cfs/reading/_reading.scss */
 .reading-view .reading-audio {
   margin-top: 10px;
   margin-bottom: 30px;
   text-align: center;
 }
-/* line 60, ../scss/cfs/reading/_reading.scss */
+/* line 79, ../scss/cfs/reading/_reading.scss */
 .reading-view .reading-content {
   font-size: 1.375rem;
 }
 
-/* line 65, ../scss/cfs/reading/_reading.scss */
+/* line 84, ../scss/cfs/reading/_reading.scss */
 .reading-view-section {
   padding-bottom: 6.25rem;
 }
 
-/* line 69, ../scss/cfs/reading/_reading.scss */
+/* line 88, ../scss/cfs/reading/_reading.scss */
 .reading-view-footer {
   display: flex;
   position: fixed;
@@ -11875,12 +11897,12 @@ body.sidebar-expanded .sidebar {
 }
 
 @media screen and (max-width: 768px) {
-  /* line 87, ../scss/cfs/reading/_reading.scss */
+  /* line 106, ../scss/cfs/reading/_reading.scss */
   .reading-view .reading-name {
     font-size: 2rem;
   }
 
-  /* line 94, ../scss/cfs/reading/_reading.scss */
+  /* line 113, ../scss/cfs/reading/_reading.scss */
   .project-card .name,
   .reading-card .name {
     font-size: 1.125rem;
