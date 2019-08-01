@@ -411,7 +411,7 @@ msgstr "No hay lecturas en este proyecto."
 
 #: lectura/app/templates/reading/includes/vue/_readings.html:19
 msgid "label_create_reading"
-msgstr "Crear un lectura"
+msgstr "Crear una lectura"
 
 #: lectura/app/templates/reading/projects.html:6
 msgid "page_projects_title"
