@@ -1,4 +1,64 @@
+const Project = {
+  mixins: [
+    AdminMixin,
+    VisibleMixin,
+    MarkdownMixin
+  ],
+  props: {
+    initProject: {
+      type: Object,
+      required: true
+    },
+    initViewUrl: {
+      type: String,
+      default: ''
+    },
+    initEditUrl: {
+      type: String,
+      default: ''
+    },
+    initDeleteUrl: {
+      type: String,
+      default: ''
+    }
+  },
+  data() {
+    return {
+      project: this.initProject,
+      viewUrl: this.initViewUrl,
+      editUrl: this.initEditUrl,
+      deleteUrl: this.initDeleteUrl
+    }
+  },
+  methods: {
+    view() {
+      if (this.viewUrl) {
+        window.location.replace(this.viewUrl)
+      }
+    },
+    edit() {},
+    remove() {
+      this.$emit('delete-project', this.project.id)
+    }
+  },
+  created() {
+    if (this.initViewUrl) {
+      this.viewUrl = this.initViewUrl
+        .replace(0, this.project.id)
+        .replace('zzz', this.project.slug)   
+    }
+
+    if (this.initDeleteUrl) {
+      this.deleteUrl = this.initDeleteUrl
+        .replace(0, this.project.id)
+    }
+  }
+}
+
 const Projects = {
+  components: {
+    'project': Project
+  },
   mixins: [
     AdminMixin,
     AjaxProcessMixin,
@@ -12,7 +72,7 @@ const Projects = {
   },
   data() {
     return {
-      projects: []
+      projects: null
     }
   },
   methods: {
@@ -54,128 +114,12 @@ const Projects = {
         this.complete()
       })
     },
+    onDeleteProject(index) {
+      this.$delete(this.projects, index)
+    }
   },
   created() {
     this.getProjects()
-  }
-}
-
-const Project = {
-  mixins: [
-    AdminMixin,
-    VisibleMixin,
-    MarkdownMixin
-  ],
-  props: {
-    initProject: {
-      type: Object,
-      required: true
-    },
-    initViewUrl: {
-      type: String,
-      default: ''
-    },
-    initEditUrl: {
-      type: String,
-      default: ''
-    },
-    initDeleteUrl: {
-      type: String,
-      default: ''
-    }
-  },
-  data() {
-    return {
-      project: this.initProject,
-      viewUrl: this.initViewUrl,
-      editUrl: this.initEditUrl,
-      deleteUrl: this.initDeleteUrl
-    }
-  },
-  methods: {
-    view() {
-      if (this.viewUrl) {
-        window.location.replace(this.viewUrl)
-      }
-    },
-    edit() {},
-    remove() {
-      this.isVisible = false
-    }
-  },
-  created() {
-    if (this.initViewUrl) {
-      this.viewUrl = this.initViewUrl
-        .replace(0, this.project.id)
-        .replace('zzz', this.project.slug)   
-    }
-
-    if (this.initDeleteUrl) {
-      this.deleteUrl = this.initDeleteUrl
-        .replace(0, this.project.id)
-    }
-  }
-}
-
-const Readings = {
-  mixins: [
-    AdminMixin,
-    AjaxProcessMixin,
-    PaginationMixin
-  ],
-  props: {
-    readingsUrl: {
-      type: String,
-      default: ''
-    }
-  },
-  data() {
-    return {
-      readings: []
-    }
-  },
-  methods: {
-    getReadings(page=1) {
-      this.process()
-
-      params = {
-        page: page
-      }
-
-      axios.get(this.readingsUrl, {
-        params: params
-      })
-      .then(response => {
-        this.readings = response.data.results
-        this.setPagination(
-          response.data.previous,
-          response.data.next,
-          response.data.page_num,
-          response.data.count,
-          response.data.num_pages
-        )
-        VueScrollTo.scrollTo({
-          el: '#readings-scroll-top',
-        })
-        this.success()
-      })
-      .catch(error => {
-        if (error.response) {
-          console.log(error.response)
-        } else if (error.request) {
-          console.log(error.request)
-        } else {
-          console.log(error.message)
-        }
-        console.log(error.config)
-      })
-      .finally(() => {
-        this.complete()
-      })
-    },
-  },
-  created() {
-    this.getReadings()
   }
 }
 
@@ -219,7 +163,7 @@ const Reading = {
     },
     edit() {},
     remove() {
-      this.isVisible = false
+      this.$emit('delete-reading', this.reading.id)
     }
   },
   created() {
@@ -235,3 +179,73 @@ const Reading = {
     }
   }
 }
+
+const Readings = {
+  components: {
+    'reading': Reading
+  },
+  mixins: [
+    AdminMixin,
+    AjaxProcessMixin,
+    PaginationMixin
+  ],
+  props: {
+    readingsUrl: {
+      type: String,
+      default: ''
+    }
+  },
+  data() {
+    return {
+      readings: null
+    }
+  },
+  methods: {
+    getReadings(page=1) {
+      this.process()
+
+      params = {
+        page: page
+      }
+
+      axios.get(this.readingsUrl, {
+        params: params
+      })
+      .then(response => {
+        this.readings = response.data.results
+        console.log(this.readings)
+        this.setPagination(
+          response.data.previous,
+          response.data.next,
+          response.data.page_num,
+          response.data.count,
+          response.data.num_pages
+        )
+        VueScrollTo.scrollTo({
+          el: '#readings-scroll-top',
+        })
+        this.success()
+      })
+      .catch(error => {
+        if (error.response) {
+          console.log(error.response)
+        } else if (error.request) {
+          console.log(error.request)
+        } else {
+          console.log(error.message)
+        }
+        console.log(error.config)
+      })
+      .finally(() => {
+        this.complete()
+      })
+    },
+    onDeleteReading(index) {
+      this.$delete(this.readings, index)
+    }
+  },
+  created() {
+    this.getReadings()
+  }
+}
+

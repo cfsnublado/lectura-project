@@ -6,10 +6,20 @@ readings-url="{{ readings_url }}"
 inline-template
 >
 
-<div 
+<div
 class="readings"
 v-cloak
 >
+
+<div v-if="readings && readings.length == 0">
+
+<p>{% trans 'msg_no_readings_in_project' %}</p>
+
+<a class="button is-info" href="{% url 'reading:reading_create' project.id project.slug %}">
+{% trans 'label_create_reading' %}
+</a>
+
+</div>
 
 <reading
 v-for="(reading, index) in readings"
@@ -18,10 +28,11 @@ v-for="(reading, index) in readings"
 :init-is-admin="isAdmin"
 init-view-url="{{ reading_url }}"
 init-delete-url="{{ reading_delete_url }}"
+@delete-reading="onDeleteReading(index)"
 inline-template
 >
 
-<transition name="fade-transition" v-on:after-enter="isVisible = true" v-on:after-leave="isVisible = false">
+<transition name="fade-transition" v-on:after-enter="isVisible = true" v-on:after-leave="remove">
 
 <div 
 class="card reading-card" 
@@ -35,7 +46,7 @@ v-cloak
 v-if="isAdmin"
 delete-confirm-id="delete-reading"
 :delete-url="deleteUrl"
-@ajax-success="remove"
+@ajax-success="isVisible = false"
 inline-template
 >
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-24 15:41-0700\n"
+"POT-Creation-Date: 2019-07-31 22:22-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: config/settings/base.py:93
+#: config/settings/base.py:95
 msgid "English"
 msgstr ""
 
-#: config/settings/base.py:94
+#: config/settings/base.py:96
 msgid "Spanish"
 msgstr ""
 
@@ -86,6 +86,12 @@ msgstr "Éxito"
 msgid "message_error"
 msgstr "Error"
 
+#: lectura/dbx/apps.py:7 lectura/reading/views/apps.py:7
+#, fuzzy
+#| msgid "label_profile"
+msgid "label_dbx_config"
+msgstr "Perfil"
+
 #: lectura/reading/apps.py:7
 #, fuzzy
 #| msgid "label_profile"
@@ -135,40 +141,40 @@ msgstr "Este campo es requerido"
 msgid "validation_creator_required"
 msgstr "Este campo es requerido"
 
-#: lectura/reading/models.py:50 lectura/reading/models.py:87
+#: lectura/reading/models.py:38 lectura/reading/models.py:80
 msgid "label_name"
 msgstr "Nombre"
 
-#: lectura/reading/models.py:54 lectura/reading/models.py:91
+#: lectura/reading/models.py:42 lectura/reading/models.py:84
 msgid "label_description"
 msgstr "Descripción"
 
-#: lectura/reading/models.py:62
-#: lectura/app/templates/reading/reading_base.html:12
-#: lectura/app/templates/reading/reading_base.html:58
+#: lectura/reading/models.py:50
+#: lectura/app/templates/reading/reading_base.html:40
+#: lectura/app/templates/reading/reading_base.html:86
 msgid "label_project"
 msgstr "Proyecto"
 
-#: lectura/reading/models.py:63
+#: lectura/reading/models.py:51
 #, fuzzy
 #| msgid "label_profile_about"
 msgid "label_project_plural"
 msgstr "Acerca de ti"
 
-#: lectura/reading/models.py:95
+#: lectura/reading/models.py:88
 msgid "label_content"
 msgstr "Contenido"
 
-#: lectura/reading/models.py:98
+#: lectura/reading/models.py:91
 msgid "label_audio_url"
 msgstr "URL del audio"
 
-#: lectura/reading/models.py:106
-#: lectura/app/templates/reading/reading_base.html:78
+#: lectura/reading/models.py:99
+#: lectura/app/templates/reading/reading_base.html:106
 msgid "label_reading"
 msgstr "Lectura"
 
-#: lectura/reading/models.py:107
+#: lectura/reading/models.py:100
 #, fuzzy
 #| msgid "label_send_email"
 msgid "label_reading_plural"
@@ -270,7 +276,7 @@ msgstr "Acerca de ti"
 
 #: lectura/users/models.py:97
 #: lectura/app/templates/includes/_user_menu_items.html:21
-#: lectura/app/templates/includes/_user_nav.html:44
+#: lectura/app/templates/includes/_user_nav.html:45
 msgid "label_profile"
 msgstr "Perfil"
 
@@ -294,33 +300,47 @@ msgstr ""
 msgid "message_password_reset_success"
 msgstr ""
 
-#: lectura/app/templates/base.html:120
+#: lectura/app/templates/base.html:123
 msgid "label_general"
 msgstr "General"
 
-#: lectura/app/templates/base.html:129
+#: lectura/app/templates/base.html:132
 #: lectura/app/templates/includes/_user_menu_items.html:9
-#: lectura/app/templates/includes/_user_nav.html:32
+#: lectura/app/templates/includes/_user_nav.html:33
 msgid "label_home"
 msgstr "Inicio"
 
-#: lectura/app/templates/base.html:137
+#: lectura/app/templates/base.html:140
+#: lectura/app/templates/reading/includes/_reading_breadcrumbs.html:8
+#: lectura/app/templates/reading/includes/_reading_breadcrumbs.html:28
 msgid "label_projects"
 msgstr "Proyectos"
 
-#: lectura/app/templates/base.html:150
+#: lectura/app/templates/base.html:153
 msgid "label_new_project"
 msgstr "Nuevo proyecto"
+
+#: lectura/app/templates/dbx/dbx.html:37
+#, fuzzy
+#| msgid "label_audio_url"
+msgid "label_select_audio_file"
+msgstr "URL del audio"
+
+#: lectura/app/templates/dbx/dbx.html:41
+#, fuzzy
+#| msgid "label_profile"
+msgid "label_submit_file"
+msgstr "Perfil"
 
 #: lectura/app/templates/home.html:6
 msgid "page_home_title"
 msgstr "Inicio"
 
-#: lectura/app/templates/home.html:22
+#: lectura/app/templates/home.html:23
 msgid "msg_project_banner_desc"
 msgstr "Comparte lecturas y practica tu pronunciación."
 
-#: lectura/app/templates/home.html:37
+#: lectura/app/templates/home.html:38
 msgid "msg_lectura_at_a_glance"
 msgstr "Un vistazo a Lectura"
 
@@ -333,12 +353,12 @@ msgid "label_yes"
 msgstr "Sí"
 
 #: lectura/app/templates/includes/_user_menu_items.html:33
-#: lectura/app/templates/includes/_user_nav.html:56
+#: lectura/app/templates/includes/_user_nav.html:57
 msgid "label_logout"
 msgstr "Salir"
 
-#: lectura/app/templates/includes/_user_nav.html:7
-#: lectura/app/templates/security/login.html:74
+#: lectura/app/templates/includes/_user_nav.html:8
+#: lectura/app/templates/security/login.html:72
 msgid "label_login"
 msgstr "Iniciar sesión"
 
@@ -356,7 +376,7 @@ msgid "page_project_update_title"
 msgstr "Editar proyecto"
 
 #: lectura/app/templates/reading/auth/project_update.html:26
-#: lectura/app/templates/reading/auth/reading_update.html:13
+#: lectura/app/templates/reading/auth/reading_update.html:25
 #: lectura/app/templates/users/auth/profile_update.html:117
 msgid "label_update"
 msgstr "Actualizar"
@@ -365,7 +385,7 @@ msgstr "Actualizar"
 msgid "page_reading_create_title"
 msgstr "Crear lectura"
 
-#: lectura/app/templates/reading/auth/reading_update.html:4
+#: lectura/app/templates/reading/auth/reading_update.html:5
 msgid "page_reading_update_title"
 msgstr "Editar lectura"
 
@@ -377,23 +397,35 @@ msgstr "¿Eliminar proyecto?"
 msgid "msg_confirm_delete_reading"
 msgstr "¿Eliminar lectura?"
 
+#: lectura/app/templates/reading/includes/vue/_projects.html:16
+msgid "msg_no_projects"
+msgstr "No hay proyectos."
+
+#: lectura/app/templates/reading/includes/vue/_projects.html:19
+msgid "label_create_project"
+msgstr "Crear un proyecto"
+
+#: lectura/app/templates/reading/includes/vue/_readings.html:16
+msgid "msg_no_readings_in_project"
+msgstr "No hay lecturas en este proyecto."
+
+#: lectura/app/templates/reading/includes/vue/_readings.html:19
+msgid "label_create_reading"
+msgstr "Crear un lectura"
+
 #: lectura/app/templates/reading/projects.html:6
 msgid "page_projects_title"
 msgstr "Proyectos"
 
-#: lectura/app/templates/reading/reading.html:6
-msgid "page_reading_title"
-msgstr "Ver lectura"
-
-#: lectura/app/templates/reading/reading_base.html:31
+#: lectura/app/templates/reading/reading_base.html:59
 msgid "label_edit_project"
 msgstr "Editar proyecto"
 
-#: lectura/app/templates/reading/reading_base.html:41
+#: lectura/app/templates/reading/reading_base.html:69
 msgid "label_new_reading"
 msgstr "Nueva lectura"
 
-#: lectura/app/templates/reading/reading_base.html:97
+#: lectura/app/templates/reading/reading_base.html:125
 msgid "label_edit_reading"
 msgstr "Editar lectura"
 
@@ -401,15 +433,15 @@ msgstr "Editar lectura"
 msgid "page_login_title"
 msgstr "Iniciar sesión"
 
-#: lectura/app/templates/security/login.html:43
+#: lectura/app/templates/security/login.html:41
 msgid "placeholder_username"
 msgstr "Nombre de usuario"
 
-#: lectura/app/templates/security/login.html:60
+#: lectura/app/templates/security/login.html:58
 msgid "placeholder_password"
 msgstr "Contraseña"
 
-#: lectura/app/templates/security/login.html:82
+#: lectura/app/templates/security/login.html:80
 #: lectura/app/templates/users/password_reset_request.html:24
 msgid "msg_forgot_password_q"
 msgstr "¿Olvidaste tu constraseña?"
@@ -524,15 +556,8 @@ msgstr "Cambiar contraseña de usuario"
 msgid "page_view_profile_title"
 msgstr "Ver perfil"
 
-#, fuzzy
-#~| msgid "msg_project_banner_desc"
-#~ msgid "msg_no_projects"
-#~ msgstr "Comparte lecturas y practica tu pronunciación."
-
-#, fuzzy
-#~| msgid "msg_project_banner_desc"
-#~ msgid "msg_no_readings"
-#~ msgstr "Comparte lecturas y practica tu pronunciación."
+#~ msgid "page_reading_title"
+#~ msgstr "Ver lectura"
 
 #, fuzzy
 #~| msgid "page_projects_title"

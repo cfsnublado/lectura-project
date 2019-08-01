@@ -36,6 +36,7 @@ const AjaxDelete = {
       })
     },
     onDelete(event) {
+      this.success()
       this.process()
       clearTimeout(this.timerId)
       this.timerId = setTimeout(()=>{

@@ -11,6 +11,16 @@ class="projects"
 v-cloak
 >
 
+<div v-if="projects && projects.length == 0">
+
+<p>{% trans 'msg_no_projects' %}</p>
+
+<a class="button is-info" href="{% url 'reading:project_create' %}">
+{% trans 'label_create_project' %}
+</a>
+
+</div>
+
 <project
 v-for="(project, index) in projects"
 :key="project.id"
@@ -18,10 +28,10 @@ v-for="(project, index) in projects"
 :init-is-admin="isAdmin"
 init-view-url="{{ project_url }}"
 init-delete-url="{{ project_delete_url }}"
-
+@delete-project="onDeleteProject(index)"
 inline-template
 >
-<transition name="fade-transition" v-on:after-enter="isVisible = true" v-on:after-leave="isVisible = false">
+<transition name="fade-transition" v-on:after-enter="isVisible = true" v-on:after-leave="remove">
 
 <div class="card project-card" v-show="isVisible">
 
@@ -31,7 +41,7 @@ inline-template
 v-if="isAdmin"
 delete-confirm-id="delete-project"
 :delete-url="deleteUrl"
-@ajax-success="remove"
+@ajax-success="isVisible = false"
 inline-template
 >
 
