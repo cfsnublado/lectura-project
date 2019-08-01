@@ -10,7 +10,7 @@ from core.serializers import (
     BaseSerializer, UUIDEncoder
 )
 from .models import (
-    Reading, Project
+    Post, Project
 )
 
 User = get_user_model()
@@ -54,18 +54,18 @@ class ProjectSerializer(BaseSerializer, HyperlinkedModelSerializer):
         return Project.objects.create(**validated_data)
 
 
-class ReadingListSerializer(ListSerializer):
+class PostListSerializer(ListSerializer):
     pass
 
 
-class ReadingSerializer(BaseSerializer, HyperlinkedModelSerializer):
+class PostSerializer(BaseSerializer, HyperlinkedModelSerializer):
     json_encoder = UUIDEncoder
     minimal_data_fields = [
         'name', 'description', 'content',
         'audio_url', 'date_created'
     ]
     url = HyperlinkedIdentityField(
-        view_name='api:reading-detail',
+        view_name='api:post-detail',
         lookup_field='pk'
     )
     project_url = HyperlinkedRelatedField(
@@ -93,8 +93,8 @@ class ReadingSerializer(BaseSerializer, HyperlinkedModelSerializer):
     )
 
     class Meta:
-        list_serializer = ReadingListSerializer
-        model = Reading
+        list_serializer = PostListSerializer
+        model = Post
         fields = (
             'url', 'id', 'project_id', 'project', 'project_slug',
             'project_url', 'creator_id', 'creator_url',
@@ -107,4 +107,4 @@ class ReadingSerializer(BaseSerializer, HyperlinkedModelSerializer):
         )
 
     def create(self, validated_data):
-        return Reading.objects.create(**validated_data)
+        return Post.objects.create(**validated_data)

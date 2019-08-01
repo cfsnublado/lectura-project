@@ -1,7 +1,7 @@
 ---
-reading_name: The Secret Language of Neurons
-reading_description: A fragment from _The Disordered Mind_, by Eric R. Kandel
-reading_audio_url: https://www.dropbox.com/s/6ddqxsn0zps0koz/neurons.mp3?dl=1
+post_name: The Secret Language of Neurons
+post_description: A fragment from _The Disordered Mind_, by Eric R. Kandel
+post_audio_url: https://www.dropbox.com/s/6ddqxsn0zps0koz/neurons.mp3?dl=1
 project_name: The Disordered Mind: What Unusual Brains Tell Us About Ourselves
 
 ---

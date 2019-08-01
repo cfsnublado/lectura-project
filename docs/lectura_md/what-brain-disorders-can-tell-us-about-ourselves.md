@@ -1,7 +1,7 @@
 ---
-reading_name: What Brain Disorders Can Tell Us About Ourselves
-reading_description: A fragment from _The Disordered Mind_, by Eric R. Kandel
-reading_audio_url: https://www.dropbox.com/s/kd7lxl6sgvy9iw9/challenge.mp3?dl=1
+post_name: What Brain Disorders Can Tell Us About Ourselves
+post_description: A fragment from _The Disordered Mind_, by Eric R. Kandel
+post_audio_url: https://www.dropbox.com/s/kd7lxl6sgvy9iw9/challenge.mp3?dl=1
 project_name: The Disordered Mind: What Unusual Brains Tell Us About Ourselves
 
 ---

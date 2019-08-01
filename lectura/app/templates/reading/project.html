@@ -7,16 +7,16 @@
 
 {% block content %}
 
-<div id="readings-scroll-top"></div>
+<div id="posts-scroll-top"></div>
 
-{% url 'api:nested-reading-list' project.id as readings_url %}
-{% url 'reading:reading' 0 'zzz' as reading_url %}
-{% url 'api:reading-detail' 0 as reading_delete_url %}
+{% url 'api:nested-post-list' project.id as posts_url %}
+{% url 'reading:post' 0 'zzz' as post_url %}
+{% url 'api:post-detail' 0 as post_delete_url %}
 
 
 <div class="columns">
 <div class="column is-10 is-offset-1">
-{% include "reading/includes/vue/_readings.html" %}
+{% include "reading/includes/vue/_posts.html" %}
 </div>
 </div>
 
@@ -24,6 +24,6 @@
 
 {% block modal_content %}
 
-{% include 'reading/includes/_reading_delete_modal.html' with modal_id='delete-reading' modal_name='confirmation-modal' %} 
+{% include 'reading/includes/_post_delete_modal.html' with modal_id='delete-post' modal_name='confirmation-modal' %} 
 
 {% endblock modal_content %}

@@ -18,4 +18,3 @@ class ProjectView(
     TemplateView
 ):
     template_name = '{0}/project.html'.format(APP_NAME)
-

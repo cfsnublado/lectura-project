@@ -3,7 +3,7 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404
 
 from core.views import CachedObjectMixin, ObjectSessionMixin
-from ..models import Reading, Project
+from ..models import Post, Project
 
 
 class PermissionMixin(object):
@@ -77,70 +77,70 @@ class ProjectMixin(CachedObjectMixin):
         return context
 
 
-class ReadingPermissionMixin(PermissionMixin):
+class PostPermissionMixin(PermissionMixin):
 
     def check_permission(self):
         has_permission = False
 
         if self.superuser_override:
-            if self.request.user.is_superuser or self.reading.creator_id == self.request.user.id:
+            if self.request.user.is_superuser or self.post.creator_id == self.request.user.id:
                 has_permission = True
         else:
-            if self.reading.creator_id == self.request.user.id:
+            if self.post.creator_id == self.request.user.id:
                 has_permission = True
 
         return has_permission
 
 
-class ReadingSessionMixin(ObjectSessionMixin):
-    session_obj = 'reading'
+class PostSessionMixin(ObjectSessionMixin):
+    session_obj = 'post'
     session_obj_attrs = ['id', 'name', 'slug']
 
 
-class ReadingMixin(CachedObjectMixin):
-    reading_id = 'reading_pk'
-    reading_slug = 'reading_slug'
+class PostMixin(CachedObjectMixin):
+    post_id = 'post_pk'
+    post_slug = 'post_slug'
     project = None
-    reading = None
-    reading_admin = False
+    post = None
+    post_admin = False
 
     def dispatch(self, request, *args, **kwargs):
-        self.get_reading(request, *args, **kwargs)
+        self.get_post(request, *args, **kwargs)
 
         user_id = request.user.id
 
-        if request.user.is_superuser or user_id == self.reading.creator_id or user_id == self.project.owner_id:
-            self.reading_admin = True
+        if request.user.is_superuser or user_id == self.post.creator_id or user_id == self.project.owner_id:
+            self.post_admin = True
 
-        return super(ReadingMixin, self).dispatch(request, *args, **kwargs)
+        return super(PostMixin, self).dispatch(request, *args, **kwargs)
 
-    def get_reading(self, request, *args, **kwargs):
-        if self.reading_id in kwargs:
-            self.reading = get_object_or_404(
-                Reading.objects.prefetch_related('creator', 'project'),
-                id=kwargs[self.reading_id]
+    def get_post(self, request, *args, **kwargs):
+        if self.post_id in kwargs:
+            self.post = get_object_or_404(
+                Post.objects.prefetch_related('creator', 'project'),
+                id=kwargs[self.post_id]
             )
-        elif self.reading_slug in kwargs:
-            self.reading = get_object_or_404(
-                Reading.objects.prefetch_related('creator', 'project'),
-                slug=kwargs[self.reading_slug]
+        elif self.post_slug in kwargs:
+            self.post = get_object_or_404(
+                Post.objects.prefetch_related('creator', 'project'),
+                slug=kwargs[self.post_slug]
             )
         else:
             obj = self.get_object()
 
-            if hasattr(obj, 'reading_id'):
-                self.reading = obj.reading
-            elif isinstance(obj, Reading):
-                    self.reading = obj
+            if hasattr(obj, 'post_id'):
+                self.post = obj.post
+            elif isinstance(obj, Post):
+                    self.post = obj
             else:
-                raise Http404('Reading not found.')
+                raise Http404('Post not found.')
 
-        self.project = self.reading.project
+        self.project = self.post.project
 
     def get_context_data(self, **kwargs):
-        context = super(ReadingMixin, self).get_context_data(**kwargs)
+        context = super(PostMixin, self).get_context_data(**kwargs)
         context['project'] = self.project
-        context['reading'] = self.reading
-        context['reading_admin'] = self.reading_admin
+        context['post'] = self.post
+        context['post_admin'] = self.post_admin
 
         return context

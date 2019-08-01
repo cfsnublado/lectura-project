@@ -5,5 +5,5 @@ class ProjectManager(models.Manager):
     pass
 
 
-class ReadingManager(models.Manager):
+class PostManager(models.Manager):
     pass

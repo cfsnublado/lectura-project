@@ -7,11 +7,11 @@ from django.contrib.auth import authenticate
 from django.core.management.base import BaseCommand, CommandError
 
 from reading.models import Project
-from reading.utils import export_reading
+from reading.utils import export_post
 
 
 class Command(BaseCommand):
-    help = 'Backs up readings in separate json files.'
+    help = 'Backs up posts in separate json files.'
 
     def login_user(self):
         username = input('Username: ')
@@ -33,7 +33,7 @@ class Command(BaseCommand):
         if options['output_path']:
             base_dir = Path(options['output_path'][0])
         else:
-            base_dir = Path('{0}/docs/lectura_json/readings'.format(settings.BASE_DIR))
+            base_dir = Path('{0}/docs/lectura_json/posts'.format(settings.BASE_DIR))
         base_dir.mkdir(parents=True, exist_ok=True)
 
         projects = Project.objects.filter(owner=user)
@@ -42,12 +42,12 @@ class Command(BaseCommand):
             project_dir = base_dir / project.slug
             project_dir.mkdir(parents=True, exist_ok=True)
 
-            readings = project.readings.all()
+            posts = project.posts.all()
 
-            for reading in readings:
-                reading_dict = export_reading(reading)
-                filename = project_dir / '{0}.json'.format(reading.slug)
+            for post in posts:
+                post_dict = export_post(post)
+                filename = project_dir / '{0}.json'.format(post.slug)
 
                 with filename.open('w+') as f:
-                    f.write(json.dumps(reading_dict, indent=2))
+                    f.write(json.dumps(post_dict, indent=2))
                     self.stdout.write(self.style.SUCCESS(filename))

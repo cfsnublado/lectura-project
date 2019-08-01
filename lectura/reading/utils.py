@@ -1,28 +1,28 @@
-from .models import Project, Reading
+from .models import Project, Post
 from .serializers import (
-    ProjectSerializer, ReadingSerializer
+    ProjectSerializer, PostSerializer
 )
 
 
-def import_reading(data, user):
+def import_post(data, user):
     '''
-    data: Serialized json data from reading backup.
+    data: Serialized json data from post backup.
     '''
-    # validate_reading_json_schema(data)
+    # validate_post_json_schema(data)
 
     user_id = user.id
     project_data = data['project']
-    reading_data = data['reading']
+    post_data = data['post']
 
-    Reading.objects.filter(
+    Post.objects.filter(
         creator_id=user_id,
-        name=reading_data['name']
+        name=post_data['name']
     ).delete()
 
-    reading_serializer = ReadingSerializer(
-        data=reading_data
+    post_serializer = PostSerializer(
+        data=post_data
     )
-    reading_serializer.is_valid(raise_exception=True)
+    post_serializer.is_valid(raise_exception=True)
 
     try:
         project = Project.objects.get(
@@ -37,7 +37,7 @@ def import_reading(data, user):
             owner_id=user_id
         )
 
-    reading_serializer.save(
+    post_serializer.save(
         creator_id=user_id,
         project_id=project.id
     )
@@ -51,7 +51,7 @@ def import_project(data, user):
 
     user_id = user.id
     project_data = data['project']
-    reading_data = data['readings']
+    post_data = data['posts']
 
     Project.objects.filter(
         owner_id=user_id,
@@ -66,35 +66,35 @@ def import_project(data, user):
         owner_id=user_id
     )
 
-    for reading in reading_data:
-        reading_serializer = ReadingSerializer(
-            data=reading
+    for post in post_data:
+        post_serializer = PostSerializer(
+            data=post
         )
-        reading_serializer.is_valid(raise_exception=True)
-        reading_serializer.save(
+        post_serializer.is_valid(raise_exception=True)
+        post_serializer.save(
             creator_id=user_id,
             project_id=project.id
         )
 
 
-def export_reading(reading, request=None):
+def export_post(post, request=None):
     '''
-    Generates a serialized backup of a reading.
+    Generates a serialized backup of a post.
     '''
     project_serializer = ProjectSerializer(
-        reading.project,
+        post.project,
         context={'request': request}
     )
-    reading_serializer = ReadingSerializer(
-        reading,
+    post_serializer = PostSerializer(
+        post,
         context={'request': request}
     )
-    reading_dict = {
+    post_dict = {
         'project': project_serializer.get_minimal_data(),
-        'reading': reading_serializer.get_minimal_data()
+        'post': post_serializer.get_minimal_data()
     }
 
-    return reading_dict
+    return post_dict
 
 
 def export_project(project, request=None):
@@ -104,14 +104,14 @@ def export_project(project, request=None):
     )
     project_dict = {
         'project': project_serializer.get_minimal_data(),
-        'readings': []
+        'posts': []
     }
 
-    for reading in project.readings.all():
-        reading_serializer = ReadingSerializer(
-            reading,
+    for post in project.posts.all():
+        post_serializer = PostSerializer(
+            post,
             context={'request': request}
         )
-        project_dict['readings'].append(reading_serializer.get_minimal_data())
+        project_dict['posts'].append(post_serializer.get_minimal_data())
 
     return project_dict

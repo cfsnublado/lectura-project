@@ -123,14 +123,14 @@ const Projects = {
   }
 }
 
-const Reading = {
+const Post = {
   mixins: [
     AdminMixin,
     VisibleMixin,
     MarkdownMixin
   ],
   props: {
-    initReading: {
+    initPost: {
       type: Object,
       required: true
     },
@@ -149,7 +149,7 @@ const Reading = {
   },
   data() {
     return {
-      reading: this.initReading,
+      post: this.initPost,
       viewUrl: this.initViewUrl,
       editUrl: this.initEditUrl,
       deleteUrl: this.initDeleteUrl
@@ -163,26 +163,26 @@ const Reading = {
     },
     edit() {},
     remove() {
-      this.$emit('delete-reading', this.reading.id)
+      this.$emit('delete-post', this.post.id)
     }
   },
   created() {
     if (this.initViewUrl) {
       this.viewUrl = this.initViewUrl
-        .replace(0, this.reading.id)
-        .replace('zzz', this.reading.slug)
+        .replace(0, this.post.id)
+        .replace('zzz', this.post.slug)
     }
 
     if (this.initDeleteUrl) {
       this.deleteUrl = this.initDeleteUrl
-        .replace(0, this.reading.id)
+        .replace(0, this.post.id)
     }
   }
 }
 
-const Readings = {
+const Posts = {
   components: {
-    'reading': Reading
+    'post': Post
   },
   mixins: [
     AdminMixin,
@@ -190,30 +190,30 @@ const Readings = {
     PaginationMixin
   ],
   props: {
-    readingsUrl: {
+    postsUrl: {
       type: String,
       default: ''
     }
   },
   data() {
     return {
-      readings: null
+      posts: null
     }
   },
   methods: {
-    getReadings(page=1) {
+    getPosts(page=1) {
       this.process()
 
       params = {
         page: page
       }
 
-      axios.get(this.readingsUrl, {
+      axios.get(this.postsUrl, {
         params: params
       })
       .then(response => {
-        this.readings = response.data.results
-        console.log(this.readings)
+        this.posts = response.data.results
+        console.log(this.posts)
         this.setPagination(
           response.data.previous,
           response.data.next,
@@ -222,7 +222,7 @@ const Readings = {
           response.data.num_pages
         )
         VueScrollTo.scrollTo({
-          el: '#readings-scroll-top',
+          el: '#posts-scroll-top',
         })
         this.success()
       })
@@ -240,12 +240,12 @@ const Readings = {
         this.complete()
       })
     },
-    onDeleteReading(index) {
-      this.$delete(this.readings, index)
+    onDeletePost(index) {
+      this.$delete(this.posts, index)
     }
   },
   created() {
-    this.getReadings()
+    this.getPosts()
   }
 }
 

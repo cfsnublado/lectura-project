@@ -1,0 +1,48 @@
+{% extends "reading/reading_base.html" %}
+{% load staticfiles %}
+{% load core_extras %}
+{% load i18n %}
+
+{% block title %}{{ post.name }}{% endblock title %}
+
+{% block main_section_classes %}post-view-section{% endblock main_section_classes %}
+
+{% block content %}
+
+<div class="columns">
+<div class="column is-10 is-offset-1">
+
+<div class="post-view">
+
+<div class="post-name">
+<h2>{{ post.name }}</h2>
+</div>
+
+<div class="post-content">
+{{ post.content|to_html|safe }}
+</div>
+
+</div><!-- post-view -->
+
+</div>
+</div>
+
+{% endblock content %}
+
+{% block page_footer %}
+
+{% if post.audio_url %}
+  <footer class="post-view-footer">
+  <audio-player
+  audio-player-id="post-audio"
+  audio-file="{{ post.audio_url }}"
+  :has-loop-btn="false"
+  :has-download-btn="false"
+  :has-mute-btn="false"
+  :has-volume-btn="false"
+  >
+</audio-player>
+</footer>
+{% endif %}
+
+{% endblock page_footer %}

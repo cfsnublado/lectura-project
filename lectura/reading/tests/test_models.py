@@ -6,13 +6,13 @@ from core.models import (
     SlugifyModel, TimestampModel
 )
 from ..managers import (
-    ProjectManager, ReadingManager
+    ProjectManager, PostManager
 )
 from ..models import (
-    Project, ProjectContentModel, Reading
+    Project, ProjectContentModel, Post
 )
 from ..serializers import (
-    ProjectSerializer, ReadingSerializer
+    ProjectSerializer, PostSerializer
 )
 
 User = get_user_model()
@@ -68,16 +68,16 @@ class ProjectTest(TestCommon):
         self.assertEqual(serializer, ProjectSerializer)
 
 
-class ReadingTest(TestCommon):
+class PostTest(TestCommon):
 
     def setUp(self):
-        super(ReadingTest, self).setUp()
-        self.reading = Reading.objects.create(
+        super(PostTest, self).setUp()
+        self.post = Post.objects.create(
             creator=self.user,
             project=self.project,
-            name='Some reading',
+            name='Some post',
             content='Hello',
-            description='A good reading',
+            description='A good post',
         )
 
     def test_inheritance(self):
@@ -87,25 +87,25 @@ class ReadingTest(TestCommon):
         )
         for class_name in classes:
             self.assertTrue(
-                issubclass(Reading, class_name)
+                issubclass(Post, class_name)
             )
 
     def test_manager_type(self):
-        self.assertIsInstance(Reading.objects, ReadingManager)
+        self.assertIsInstance(Post.objects, PostManager)
 
     def test_string_representation(self):
-        self.assertEqual(str(self.reading), self.reading.name)
+        self.assertEqual(str(self.post), self.post.name)
 
     def test_update_slug_on_save(self):
-        self.reading.name = 'El nombre del viento'
-        self.reading.full_clean()
-        self.reading.save()
-        self.assertEqual('el-nombre-del-viento', self.reading.slug)
+        self.post.name = 'El nombre del viento'
+        self.post.full_clean()
+        self.post.save()
+        self.assertEqual('el-nombre-del-viento', self.post.slug)
 
     def test_get_project(self):
-        project = self.reading.get_project()
+        project = self.post.get_project()
         self.assertEqual(project, self.project)
 
     def test_get_serializer(self):
-        serializer = self.reading.get_serializer()
-        self.assertEqual(serializer, ReadingSerializer)
+        serializer = self.post.get_serializer()
+        self.assertEqual(serializer, PostSerializer)

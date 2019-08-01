@@ -7,10 +7,10 @@ from django.urls import reverse
 from django.test import TestCase
 
 from ..models import (
-    Project, Reading
+    Project, Post
 )
 from ..serializers import (
-    ProjectSerializer, ReadingSerializer
+    ProjectSerializer, PostSerializer
 )
 
 User = get_user_model()
@@ -112,20 +112,20 @@ class ProjectSerializerTest(TestCommon):
         self.assertTrue(self.serializer.errors['name'])
 
 
-class ReadingSerializerTest(TestCommon):
+class PostSerializerTest(TestCommon):
 
     def setUp(self):
-        super(ReadingSerializerTest, self).setUp()
-        self.reading = Reading.objects.create(
+        super(PostSerializerTest, self).setUp()
+        self.post = Post.objects.create(
             creator=self.user,
             project=self.project,
-            name='Test Reading',
+            name='Test Post',
             content='Hello',
-            description='A test reading'
+            description='A test post'
         )
-        self.request = self.client.get(reverse('api:reading-list')).wsgi_request
-        self.serializer = ReadingSerializer(
-            self.reading,
+        self.request = self.client.get(reverse('api:post-list')).wsgi_request
+        self.serializer = PostSerializer(
+            self.post,
             context={'request': self.request}
         )
 
@@ -138,22 +138,22 @@ class ReadingSerializerTest(TestCommon):
 
     def test_get_minimal_data(self):
         expected_data = {
-            'name': self.reading.name,
-            'description': self.reading.description,
-            'content': self.reading.content,
-            'audio_url': self.reading.audio_url,
-            'date_created': self.reading.date_created.isoformat()
+            'name': self.post.name,
+            'description': self.post.description,
+            'content': self.post.content,
+            'audio_url': self.post.audio_url,
+            'date_created': self.post.date_created.isoformat()
         }
         self.assertEqual(expected_data, self.serializer.get_minimal_data())
 
     def test_serialized_data(self):
         expected_data = {
             'url': drf_reverse(
-                'api:reading-detail',
-                kwargs={'pk': self.reading.id},
+                'api:post-detail',
+                kwargs={'pk': self.post.id},
                 request=self.request
             ),
-            'id': self.reading.id,
+            'id': self.post.id,
             'project_id': self.project.id,
             'project_url': drf_reverse(
                 'api:project-detail',
@@ -168,13 +168,13 @@ class ReadingSerializerTest(TestCommon):
                 kwargs={'username': self.user.username},
                 request=self.request
             ),
-            'name': self.reading.name,
-            'description': self.reading.description,
-            'slug': self.reading.slug,
-            'content': self.reading.content,
-            'audio_url': self.reading.audio_url,
-            'date_created': self.reading.date_created.isoformat(),
-            'date_updated': self.reading.date_updated.isoformat(),
+            'name': self.post.name,
+            'description': self.post.description,
+            'slug': self.post.slug,
+            'content': self.post.content,
+            'audio_url': self.post.audio_url,
+            'date_created': self.post.date_created.isoformat(),
+            'date_updated': self.post.date_updated.isoformat(),
         }
         data = self.serializer.data
         self.assertEqual(expected_data, data)
@@ -182,11 +182,11 @@ class ReadingSerializerTest(TestCommon):
     def test_json_data(self):
         expected_json_data = json.dumps({
             'url': drf_reverse(
-                'api:reading-detail',
-                kwargs={'pk': self.reading.pk},
+                'api:post-detail',
+                kwargs={'pk': self.post.pk},
                 request=self.request
             ),
-            'id': self.reading.id,
+            'id': self.post.id,
             'project_id': self.project.id,
             'project_url': drf_reverse(
                 'api:project-detail',
@@ -201,20 +201,20 @@ class ReadingSerializerTest(TestCommon):
                 kwargs={'username': self.user.username},
                 request=self.request
             ),
-            'name': self.reading.name,
-            'description': self.reading.description,
-            'slug': self.reading.slug,
-            'content': self.reading.content,
-            'audio_url': self.reading.audio_url,
-            'date_created': self.reading.date_created.isoformat(),
-            'date_updated': self.reading.date_updated.isoformat(),
+            'name': self.post.name,
+            'description': self.post.description,
+            'slug': self.post.slug,
+            'content': self.post.content,
+            'audio_url': self.post.audio_url,
+            'date_created': self.post.date_created.isoformat(),
+            'date_updated': self.post.date_updated.isoformat(),
         })
         json_data = self.serializer.json_data()
         self.assertEqual(json.loads(expected_json_data), json.loads(json_data))
 
     def test_validation_no_name(self):
         data = {'name': ''}
-        self.serializer = ReadingSerializer(self.reading, data=data, partial=True)
+        self.serializer = PostSerializer(self.post, data=data, partial=True)
         self.assertFalse(self.serializer.is_valid())
         self.assertEqual(len(self.serializer.errors), 1)
         self.assertTrue(self.serializer.errors['name'])

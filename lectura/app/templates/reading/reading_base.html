@@ -62,11 +62,11 @@
 
     <li>
     <a 
-    id="sidebar-nav-reading-create" 
-    class="{% block reading_create_link_active %}{% endblock reading_create_link_active %}" 
-    href="{% url 'reading:reading_create' project.id project.slug %}"
+    id="sidebar-nav-post-create" 
+    class="{% block post_create_link_active %}{% endblock post_create_link_active %}" 
+    href="{% url 'reading:post_create' project.id project.slug %}"
     >
-    <i class="menu-icon fas fa-plus fa-fw"></i> {% trans "label_new_reading" %}
+    <i class="menu-icon fas fa-plus fa-fw"></i> {% trans "label_new_post" %}
     </a>
     </li>
 
@@ -78,7 +78,7 @@
 
   </div>
 
-{% elif request.session.session_obj.reading %}
+{% elif request.session.session_obj.post %}
 
   <div class="menu">
 
@@ -103,26 +103,26 @@
   <div class="menu">
 
   <p class="menu-label">
-  {% trans 'label_reading' %}
+  {% trans 'label_post' %}
   </p>
 
   <p class="menu-header">
-  <a id="sidebar-nav-reading-name" href="{% url 'reading:reading' reading.id reading.slug %}">
-  <span id="menu-reading-name"> {{ reading.name }} </span>
+  <a id="sidebar-nav-post-name" href="{% url 'reading:post' post.id post.slug %}">
+  <span id="menu-post-name"> {{ post.name }} </span>
   </a>
   </p>
 
   <ul class="menu-list">
 
-  {% if reading_admin %}
+  {% if post_admin %}
 
     <li>
     <a 
-    id="sidebar-nav-reading-edit" 
-    class="{% block reading_update_link_active %}{% endblock reading_update_link_active %}" 
-    href="{% url 'reading:reading_update' reading.id reading.slug %}"
+    id="sidebar-nav-post-edit" 
+    class="{% block post_update_link_active %}{% endblock post_update_link_active %}" 
+    href="{% url 'reading:post_update' post.id post.slug %}"
     >
-    <i class="menu-icon fas fa-edit fa-fw"></i> {% trans "label_edit_reading" %}
+    <i class="menu-icon fas fa-edit fa-fw"></i> {% trans "label_edit_post" %}
     </a>
     </li>
 

@@ -11,9 +11,9 @@ from dbx.api.views_api import (
 )
 from users.api.views_api import UserViewSet, ProfileViewSet
 from reading.api.views_project import ProjectViewSet, ProjectImportView
-from reading.api.views_reading import (
-    NestedReadingViewSet, ReadingViewSet, ReadingExportView,
-    ReadingImportView
+from reading.api.views_post import (
+    NestedPostViewSet, PostViewSet, PostExportView,
+    PostImportView
 )
 
 app_name = 'app'
@@ -24,26 +24,26 @@ router = DefaultRouter()
 router.register('user', UserViewSet, base_name='user')
 router.register('profile', ProfileViewSet, base_name='profile')
 
-# reading
+# post
 router.register('project', ProjectViewSet, base_name='project')
-router.register('reading', ReadingViewSet, base_name='reading')
+router.register('post', PostViewSet, base_name='post')
 
-reading_router = NestedSimpleRouter(router, 'project', lookup='project')
-reading_router.register('reading', NestedReadingViewSet, base_name='nested-reading')
+post_router = NestedSimpleRouter(router, 'project', lookup='project')
+post_router.register('post', NestedPostViewSet, base_name='nested-post')
 
 urlpatterns = [
     path('api-token-auth/', views.obtain_auth_token, name='auth_token'),
     path('reading/project/import/', ProjectImportView.as_view(), name='project_import'),
-    path('reading/reading/import/', ReadingImportView.as_view(), name='reading_import'),
+    path('reading/post/import/', PostImportView.as_view(), name='post_import'),
     path(
-        'reading/reading/<int:reading_pk>/export/',
-        ReadingExportView.as_view(),
-        name='reading_export'
+        'reading/post/<int:post_pk>/export/',
+        PostExportView.as_view(),
+        name='post_export'
     ),
     path('dbx-shared-link/', DbxSharedLinkView.as_view(), name='dbx_shared_link'),
     path('dbx-user-files/', DbxUserFilesView.as_view(), name='dbx_user_files'),
     path('dbx-upload-audio/', DbxUploadAudioView.as_view(), name='dbx_upload_audio'),
 
     path('', include(router.urls)),
-    path('', include(reading_router.urls)),
+    path('', include(post_router.urls)),
 ]

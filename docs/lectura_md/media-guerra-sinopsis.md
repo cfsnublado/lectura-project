@@ -1,6 +1,6 @@
 ---
-reading_name: Media guerra: Sinopsis
-reading_description: Tercer libro de la trilogía El mar quebrado, de Joe Abercrombie
+post_name: Media guerra: Sinopsis
+post_description: Tercer libro de la trilogía El mar quebrado, de Joe Abercrombie
 project_name: Media guerra
 
 ---

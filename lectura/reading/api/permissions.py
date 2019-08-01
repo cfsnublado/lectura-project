@@ -52,7 +52,7 @@ class CreatorPermission(BasePermission):
             return user.id == obj.creator_id
 
 
-class ReadingCreatorPermission(CreatorPermission):
+class PostCreatorPermission(CreatorPermission):
     pass
 
 

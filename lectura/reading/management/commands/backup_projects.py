@@ -11,7 +11,7 @@ from reading.utils import export_project
 
 
 class Command(BaseCommand):
-    help = 'Backs up a project and its readings in a single json file.'
+    help = 'Backs up a project and its posts in a single json file.'
 
     def login_user(self):
         username = input('Username: ')

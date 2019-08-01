@@ -6,7 +6,7 @@ from core.models import (
     SerializeModel,
     SlugifyModel, TimestampModel
 )
-from .managers import ReadingManager, ProjectManager
+from .managers import PostManager, ProjectManager
 
 
 # Abstract models
@@ -58,7 +58,7 @@ class Project(
         return ProjectSerializer
 
 
-class Reading(
+class Post(
     TimestampModel, SlugifyModel, SerializeModel,
     ProjectContentModel
 ):
@@ -73,7 +73,7 @@ class Reading(
     )
     project = models.ForeignKey(
         Project,
-        related_name='readings',
+        related_name='posts',
         on_delete=models.CASCADE
     )
     name = models.CharField(
@@ -92,19 +92,19 @@ class Reading(
         blank=True
     )
 
-    objects = ReadingManager()
+    objects = PostManager()
 
     class Meta:
         unique_together = ('project', 'name')
-        verbose_name = _('label_reading')
-        verbose_name_plural = _('label_reading_plural')
+        verbose_name = _('label_post')
+        verbose_name_plural = _('label_post_plural')
 
     def __str__(self):
         return self.name
 
     def get_serializer(self):
-        from .serializers import ReadingSerializer
-        return ReadingSerializer
+        from .serializers import PostSerializer
+        return PostSerializer
 
     def get_project(self):
         return self.project

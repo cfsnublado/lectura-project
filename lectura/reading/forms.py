@@ -2,7 +2,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from core.forms import BaseModelForm
 from .models import (
-    Project, Reading
+    Project, Post
 )
 
 
@@ -19,7 +19,7 @@ class ProjectForm(BaseModelForm):
         }
 
 
-class ReadingForm(BaseModelForm):
+class PostForm(BaseModelForm):
 
     class Meta:
         abstract = True
@@ -54,13 +54,13 @@ class ProjectUpdateForm(ProjectForm):
         model = Project
 
 
-class ReadingCreateForm(ReadingForm):
+class PostCreateForm(PostForm):
 
     def __init__(self, *args, **kwargs):
         self.project = kwargs.pop('project', None)
         self.creator = kwargs.pop('creator', None)
 
-        super(ReadingCreateForm, self).__init__(*args, **kwargs)
+        super(PostCreateForm, self).__init__(*args, **kwargs)
 
         if not self.project:
             raise ValueError(_('validation_project_required'))
@@ -71,11 +71,11 @@ class ReadingCreateForm(ReadingForm):
         self.instance.project = self.project
         self.instance.creator = self.creator
 
-    class Meta(ReadingForm.Meta):
-        model = Reading
+    class Meta(PostForm.Meta):
+        model = Post
 
 
-class ReadingUpdateForm(ReadingForm):
+class PostUpdateForm(PostForm):
 
-    class Meta(ReadingForm.Meta):
-        model = Reading
+    class Meta(PostForm.Meta):
+        model = Post

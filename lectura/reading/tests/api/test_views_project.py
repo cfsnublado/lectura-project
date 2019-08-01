@@ -1,11 +1,6 @@
 import json
 
 from rest_framework import status as drf_status
-from rest_framework.mixins import (
-    CreateModelMixin, DestroyModelMixin, ListModelMixin,
-    RetrieveModelMixin, UpdateModelMixin
-)
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 

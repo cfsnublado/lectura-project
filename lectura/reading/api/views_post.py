@@ -12,28 +12,28 @@ from rest_framework.viewsets import (
 from rest_framework.views import APIView
 
 from core.api.views_api import APIDefaultsMixin
-from ..models import Project, Reading
+from ..models import Project, Post
 from ..serializers import (
-    ReadingSerializer
+    PostSerializer
 )
 from .pagination import SmallPagination
 from .permissions import (
-    ProjectOwnerPermission, ReadingCreatorPermission, ReadPermission
+    ProjectOwnerPermission, PostCreatorPermission, ReadPermission
 )
 from ..utils import (
-    export_reading, import_reading
+    export_post, import_post
 )
 
 
-class ReadingViewSet(
+class PostViewSet(
     APIDefaultsMixin, RetrieveModelMixin, UpdateModelMixin,
     DestroyModelMixin, ListModelMixin, GenericViewSet
 ):
     lookup_field = 'pk'
     lookup_url_kwarg = 'pk'
-    serializer_class = ReadingSerializer
-    queryset = Reading.objects.select_related('project')
-    permission_classes = [ReadPermission, ReadingCreatorPermission]
+    serializer_class = PostSerializer
+    queryset = Post.objects.select_related('project')
+    permission_classes = [ReadPermission, PostCreatorPermission]
     pagination_class = SmallPagination
 
     def get_object(self):
@@ -43,14 +43,14 @@ class ReadingViewSet(
         return obj
 
 
-class NestedReadingViewSet(
+class NestedPostViewSet(
     APIDefaultsMixin, CreateModelMixin,
     ListModelMixin, GenericViewSet
 ):
     lookup_field = 'pk'
     lookup_url_kwarg = 'pk'
-    queryset = Reading.objects.select_related('project')
-    serializer_class = ReadingSerializer
+    queryset = Post.objects.select_related('project')
+    serializer_class = PostSerializer
     project = None
     permission_classes = [ReadPermission, ProjectOwnerPermission]
     pagination_class = SmallPagination
@@ -68,7 +68,7 @@ class NestedReadingViewSet(
         self.get_project(project_pk=kwargs['project_pk'])
         self.check_object_permissions(request, self.project)
 
-        return super(NestedReadingViewSet, self).create(request, *args, **kwargs)
+        return super(NestedPostViewSet, self).create(request, *args, **kwargs)
 
     def perform_create(self, serializer):
         serializer.save(
@@ -79,33 +79,33 @@ class NestedReadingViewSet(
     def list(self, request, *args, **kwargs):
         self.get_project(project_pk=kwargs['project_pk'])
 
-        return super(NestedReadingViewSet, self).list(request, *args, **kwargs)
+        return super(NestedPostViewSet, self).list(request, *args, **kwargs)
 
 
-class ReadingImportView(APIDefaultsMixin, APIView):
+class PostImportView(APIDefaultsMixin, APIView):
 
     def post(self, request, *args, **kwargs):
         data = request.data
-        import_reading(data, request.user)
+        import_post(data, request.user)
 
         return Response(data={'success_msg': 'OK!'}, status=status.HTTP_201_CREATED)
 
 
-class ReadingExportView(APIDefaultsMixin, APIView):
+class PostExportView(APIDefaultsMixin, APIView):
     permission_classes = [
-        IsAuthenticated, ReadingCreatorPermission
+        IsAuthenticated, PostCreatorPermission
     ]
 
     def get(self, request, *args, **kwargs):
-        reading = self.get_object()
-        data = export_reading(request, reading)
+        post = self.get_object()
+        data = export_post(request, post)
 
         return Response(data=data)
 
     def get_object(self):
         obj = get_object_or_404(
-            Reading.objects.select_related('project'),
-            id=self.kwargs['reading_pk']
+            Post.objects.select_related('project'),
+            id=self.kwargs['post_pk']
         )
 
         self.check_object_permissions(self.request, obj)

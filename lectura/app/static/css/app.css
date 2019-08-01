@@ -11812,25 +11812,25 @@ body.sidebar-expanded .sidebar {
 
 /* line 11, ../scss/cfs/reading/_reading.scss */
 .project-card,
-.reading-card {
+.post-card {
   margin-bottom: 1.875rem;
   text-align: center;
 }
 /* line 17, ../scss/cfs/reading/_reading.scss */
 .project-card .name,
-.reading-card .name {
+.post-card .name {
   font-size: 1.375rem;
   margin-bottom: 1.25rem;
 }
 /* line 22, ../scss/cfs/reading/_reading.scss */
 .project-card .name p,
-.reading-card .name p {
+.post-card .name p {
   margin-top: 0;
   margin-bottom: 0;
 }
 /* line 31, ../scss/cfs/reading/_reading.scss */
 .project-card .card-content,
-.reading-card .card-content {
+.post-card .card-content {
   padding-top: 0.625rem;
   padding-right: 1rem;
   padding-bottom: 1rem;
@@ -11838,7 +11838,7 @@ body.sidebar-expanded .sidebar {
 }
 /* line 38, ../scss/cfs/reading/_reading.scss */
 .project-card .card-controls,
-.reading-card .card-controls {
+.post-card .card-controls {
   display: flex;
   padding-top: 0.625rem;
   padding-right: 0.625rem;
@@ -11847,44 +11847,44 @@ body.sidebar-expanded .sidebar {
 }
 /* line 47, ../scss/cfs/reading/_reading.scss */
 .project-card .card-controls .control,
-.reading-card .card-controls .control {
+.post-card .card-controls .control {
   padding-left: 0.25rem;
 }
 /* line 50, ../scss/cfs/reading/_reading.scss */
 .project-card .card-controls .control a,
-.reading-card .card-controls .control a {
+.post-card .card-controls .control a {
   font-size: 1.125rem;
   color: rgba(10, 10, 10, 0.2);
 }
 /* line 55, ../scss/cfs/reading/_reading.scss */
 .project-card .card-controls .control a:hover,
-.reading-card .card-controls .control a:hover {
+.post-card .card-controls .control a:hover {
   color: rgba(10, 10, 10, 0.3);
 }
 
 /* line 66, ../scss/cfs/reading/_reading.scss */
-.reading-view .reading-name {
+.post-view .post-name {
   font-size: 3.125rem;
   margin-bottom: 40px;
 }
 /* line 72, ../scss/cfs/reading/_reading.scss */
-.reading-view .reading-audio {
+.post-view .post-audio {
   margin-top: 10px;
   margin-bottom: 30px;
   text-align: center;
 }
 /* line 79, ../scss/cfs/reading/_reading.scss */
-.reading-view .reading-content {
+.post-view .post-content {
   font-size: 1.375rem;
 }
 
 /* line 84, ../scss/cfs/reading/_reading.scss */
-.reading-view-section {
+.post-view-section {
   padding-bottom: 6.25rem;
 }
 
 /* line 88, ../scss/cfs/reading/_reading.scss */
-.reading-view-footer {
+.post-view-footer {
   display: flex;
   position: fixed;
   bottom: 0;
@@ -11898,13 +11898,13 @@ body.sidebar-expanded .sidebar {
 
 @media screen and (max-width: 768px) {
   /* line 106, ../scss/cfs/reading/_reading.scss */
-  .reading-view .reading-name {
+  .post-view .post-name {
     font-size: 2rem;
   }
 
   /* line 113, ../scss/cfs/reading/_reading.scss */
   .project-card .name,
-  .reading-card .name {
+  .post-card .name {
     font-size: 1.125rem;
   }
 }

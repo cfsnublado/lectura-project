@@ -22,7 +22,7 @@
 
     {% endif %}
 
-  {% elif request.session.session_obj.reading %}
+  {% elif request.session.session_obj.post %}
 
     <li>
     <a href="{% url 'reading:projects' %}">{% trans 'label_projects' %}</a>
@@ -32,16 +32,16 @@
     <a href="{% url 'reading:project' project.id project.slug %}">{{ project.name }}</a>
     </li>
 
-    {% if url_name == 'reading' %}
+    {% if url_name == 'post' %}
    
       <li class="is-active">
-      <a href="#">{{ reading.name }}</a>
+      <a href="#">{{ post.name }}</a>
       </li>
   
     {% else %}
 
       <li>
-      <a href="{% url 'reading:reading' reading.id reading.slug %}">{{ reading.name }}</a>
+      <a href="{% url 'reading:post' post.id post.slug %}">{{ post.name }}</a>
       </li>
 
     {% endif %}

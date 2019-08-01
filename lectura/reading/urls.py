@@ -1,12 +1,12 @@
 from django.urls import include, path
 
 from .views.views_project import ProjectView, ProjectsView
-from .views.views_reading import ReadingView
+from .views.views_post import PostView
 from .views.views_project_auth import (
     ProjectCreateView, ProjectUpdateView
 )
-from .views.views_reading_auth import (
-    ReadingCreateView, ReadingUpdateView
+from .views.views_post_auth import (
+    PostCreateView, PostUpdateView
 )
 
 app_name = 'reading'
@@ -23,14 +23,14 @@ auth_urls = [
         name='project_update'
     ),
     path(
-        'project/<int:project_pk>-<slug:project_slug>/reading/create/',
-        ReadingCreateView.as_view(),
-        name='reading_create'
+        'project/<int:project_pk>-<slug:project_slug>/post/create/',
+        PostCreateView.as_view(),
+        name='post_create'
     ),
     path(
-        'reading/<int:reading_pk>-<slug:reading_slug>/update/',
-        ReadingUpdateView.as_view(),
-        name='reading_update'
+        'post/<int:post_pk>-<slug:post_slug>/update/',
+        PostUpdateView.as_view(),
+        name='post_update'
     ),
 ]
 
@@ -46,9 +46,9 @@ urlpatterns = [
         name='project'
     ),
     path(
-        'reading/<int:reading_pk>-<slug:reading_slug>/',
-        ReadingView.as_view(),
-        name='reading'
+        'post/<int:post_pk>-<slug:post_slug>/',
+        PostView.as_view(),
+        name='post'
     ),
     path('auth/', include(auth_urls)),
 ]

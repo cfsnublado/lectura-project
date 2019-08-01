@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-31 22:22-0700\n"
+"POT-Creation-Date: 2019-08-01 07:54-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -86,7 +86,7 @@ msgstr "Success"
 msgid "message_error"
 msgstr "Error"
 
-#: lectura/dbx/apps.py:7 lectura/reading/views/apps.py:7
+#: lectura/dbx/apps.py:7
 #, fuzzy
 #| msgid "label_profile"
 msgid "label_dbx_config"
@@ -171,14 +171,12 @@ msgstr "Audio URL"
 
 #: lectura/reading/models.py:99
 #: lectura/app/templates/reading/reading_base.html:106
-msgid "label_reading"
-msgstr "Reading"
+msgid "label_post"
+msgstr "Post"
 
 #: lectura/reading/models.py:100
-#, fuzzy
-#| msgid "label_send_email"
-msgid "label_reading_plural"
-msgstr "Send email"
+msgid "label_post_plural"
+msgstr "Posts"
 
 #: lectura/security/forms.py:8 lectura/users/models.py:20
 msgid "label_username"
@@ -362,40 +360,48 @@ msgstr "Logout"
 msgid "label_login"
 msgstr "Login"
 
+#: lectura/app/templates/reading/auth/post_create.html:5
+msgid "page_post_create_title"
+msgstr "Create post"
+
+#: lectura/app/templates/reading/auth/post_create.html:26
+#: lectura/app/templates/reading/auth/project_create.html:26
+msgid "label_create"
+msgstr "Create"
+
+#: lectura/app/templates/reading/auth/post_update.html:5
+msgid "page_post_update_title"
+msgstr "Edit post"
+
+#: lectura/app/templates/reading/auth/post_update.html:25
+#: lectura/app/templates/reading/auth/project_update.html:26
+#: lectura/app/templates/users/auth/profile_update.html:117
+msgid "label_update"
+msgstr "Update"
+
 #: lectura/app/templates/reading/auth/project_create.html:5
 msgid "page_project_create_title"
 msgstr "Create project"
-
-#: lectura/app/templates/reading/auth/project_create.html:26
-#: lectura/app/templates/reading/auth/reading_create.html:26
-msgid "label_create"
-msgstr "Create"
 
 #: lectura/app/templates/reading/auth/project_update.html:5
 msgid "page_project_update_title"
 msgstr "Edit project"
 
-#: lectura/app/templates/reading/auth/project_update.html:26
-#: lectura/app/templates/reading/auth/reading_update.html:25
-#: lectura/app/templates/users/auth/profile_update.html:117
-msgid "label_update"
-msgstr "Update"
-
-#: lectura/app/templates/reading/auth/reading_create.html:5
-msgid "page_reading_create_title"
-msgstr "Create reading"
-
-#: lectura/app/templates/reading/auth/reading_update.html:5
-msgid "page_reading_update_title"
-msgstr "Update reading"
+#: lectura/app/templates/reading/includes/_post_delete_modal.html:9
+msgid "msg_confirm_delete_post"
+msgstr "Delete post?"
 
 #: lectura/app/templates/reading/includes/_project_delete_modal.html:9
 msgid "msg_confirm_delete_project"
 msgstr "Delete project?"
 
-#: lectura/app/templates/reading/includes/_reading_delete_modal.html:9
-msgid "msg_confirm_delete_reading"
-msgstr "Delete reading?"
+#: lectura/app/templates/reading/includes/vue/_posts.html:16
+msgid "msg_no_posts_in_project"
+msgstr "There are no posts in this project."
+
+#: lectura/app/templates/reading/includes/vue/_posts.html:19
+msgid "label_create_post"
+msgstr "Create a post"
 
 #: lectura/app/templates/reading/includes/vue/_projects.html:16
 msgid "msg_no_projects"
@@ -404,14 +410,6 @@ msgstr "There are no projects."
 #: lectura/app/templates/reading/includes/vue/_projects.html:19
 msgid "label_create_project"
 msgstr "Create a project"
-
-#: lectura/app/templates/reading/includes/vue/_readings.html:16
-msgid "msg_no_readings_in_project"
-msgstr "There are no readings in this project."
-
-#: lectura/app/templates/reading/includes/vue/_readings.html:19
-msgid "label_create_reading"
-msgstr "Create a reading"
 
 #: lectura/app/templates/reading/projects.html:6
 msgid "page_projects_title"
@@ -422,12 +420,12 @@ msgid "label_edit_project"
 msgstr "Edit project"
 
 #: lectura/app/templates/reading/reading_base.html:69
-msgid "label_new_reading"
-msgstr "New reading"
+msgid "label_new_post"
+msgstr "New post"
 
 #: lectura/app/templates/reading/reading_base.html:125
-msgid "label_edit_reading"
-msgstr "Edit reading"
+msgid "label_edit_post"
+msgstr "Edit post"
 
 #: lectura/app/templates/security/login.html:8
 msgid "page_login_title"
@@ -555,6 +553,32 @@ msgstr "Change user password"
 #: lectura/app/templates/users/profile_view.html:6
 msgid "page_view_profile_title"
 msgstr "View profile"
+
+#~ msgid "page_reading_create_title"
+#~ msgstr "Create reading"
+
+#~ msgid "page_reading_update_title"
+#~ msgstr "Update reading"
+
+#~ msgid "label_reading"
+#~ msgstr "Reading"
+
+#, fuzzy
+#~| msgid "label_send_email"
+#~ msgid "label_reading_plural"
+#~ msgstr "Send email"
+
+#~ msgid "msg_confirm_delete_reading"
+#~ msgstr "Delete reading?"
+
+#~ msgid "label_create_reading"
+#~ msgstr "Create a reading"
+
+#~ msgid "label_new_reading"
+#~ msgstr "New reading"
+
+#~ msgid "label_edit_reading"
+#~ msgstr "Edit reading"
 
 #~ msgid "page_reading_title"
 #~ msgstr "View reading"

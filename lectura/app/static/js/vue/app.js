@@ -9,8 +9,8 @@ Vue.component('audio-player', AudioPlayer)
 // Reading components
 Vue.component('projects', Projects)
 Vue.component('project', Project)
-Vue.component('readings', Readings)
-Vue.component('reading', Reading)
+Vue.component('posts', Posts)
+Vue.component('post', Post)
 
 // Dropbox
 Vue.component('dbx', Dbx)

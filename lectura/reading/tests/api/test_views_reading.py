@@ -15,33 +15,33 @@ from django.urls import resolve, reverse
 from core.api.views_api import APIDefaultsMixin
 from reading.api.pagination import SmallPagination
 from reading.api.permissions import (
-    ProjectOwnerPermission, ReadingCreatorPermission, ReadPermission
+    ProjectOwnerPermission, PostCreatorPermission, ReadPermission
 )
-from reading.api.views_reading import (
-    NestedReadingViewSet, ReadingViewSet, ReadingExportView,
-    ReadingImportView
+from reading.api.views_post import (
+    NestedPostViewSet, PostViewSet, PostExportView,
+    PostImportView
 )
-from reading.models import Project, Reading
-from reading.serializers import ReadingSerializer
-from reading.utils import export_reading
+from reading.models import Project, Post
+from reading.serializers import PostSerializer
+from reading.utils import export_post
 from .base_test import TestCommon
 
 User = get_user_model()
 
 
-class ReadingViewSetTest(TestCommon):
+class PostViewSetTest(TestCommon):
 
     def setUp(self):
-        super(ReadingViewSetTest, self).setUp()
+        super(PostViewSetTest, self).setUp()
 
         self.project = Project.objects.create(
             owner=self.user,
             name='test project'
         )
-        self.reading = Reading.objects.create(
+        self.post = Post.objects.create(
             creator=self.user,
             project=self.project,
-            name='test reading',
+            name='test post',
             content='test content',
             description='desc',
         )
@@ -53,28 +53,28 @@ class ReadingViewSetTest(TestCommon):
             password=self.pwd
         )
 
-    def get_reading_serializer_data(self, reading):
-        serializer = ReadingSerializer(
-            reading,
+    def get_post_serializer_data(self, post):
+        serializer = PostSerializer(
+            post,
             context={'request': self.get_dummy_request()}
         )
         return json.loads(serializer.json_data())
 
     def test_view_setup(self):
-        view = ReadingViewSet()
+        view = PostViewSet()
 
         self.assertEqual('pk', view.lookup_field)
         self.assertEqual('pk', view.lookup_url_kwarg)
-        self.assertEqual(ReadingSerializer, view.serializer_class)
+        self.assertEqual(PostSerializer, view.serializer_class)
         self.assertEqual(SmallPagination, view.pagination_class)
 
-        qs = Reading.objects.select_related('project')
+        qs = Post.objects.select_related('project')
         self.assertCountEqual(
             qs, view.queryset
         )
         self.assertEqual(str(qs.query), str(view.queryset.query))
 
-        permission_classes = [ReadPermission, ReadingCreatorPermission]
+        permission_classes = [ReadPermission, PostCreatorPermission]
 
         self.assertEqual(permission_classes, view.permission_classes)
 
@@ -88,16 +88,16 @@ class ReadingViewSetTest(TestCommon):
             GenericViewSet
         )
         for class_name in classes:
-            self.assertTrue(issubclass(ReadingViewSet, class_name))
+            self.assertTrue(issubclass(PostViewSet, class_name))
 
     def test_view_detail(self):
         response = self.client.get(
             reverse(
-                'api:reading-detail',
-                kwargs={'pk': self.reading.id}
+                'api:post-detail',
+                kwargs={'pk': self.post.id}
             ),
         )
-        data = self.get_reading_serializer_data(self.reading)
+        data = self.get_post_serializer_data(self.post)
 
         self.assertEqual(
             data,
@@ -105,14 +105,14 @@ class ReadingViewSetTest(TestCommon):
         )
 
     def test_view_list(self):
-        reading_2 = Reading.objects.create(
+        post_2 = Post.objects.create(
             creator=self.user,
             project=self.project,
-            name='test reading 2',
+            name='test post 2',
             content='test content 2'
         )
-        data_1 = self.get_reading_serializer_data(self.reading)
-        data_2 = self.get_reading_serializer_data(reading_2)
+        data_1 = self.get_post_serializer_data(self.post)
+        data_2 = self.get_post_serializer_data(post_2)
         expected_results = json.dumps({
             "next": None,
             "previous": None,
@@ -122,7 +122,7 @@ class ReadingViewSetTest(TestCommon):
             "results": [data_1, data_2]
         })
         response = self.client.get(
-            reverse('api:reading-list')
+            reverse('api:post-list')
         )
 
         self.assertCountEqual(json.loads(expected_results), json.loads(response.content))
@@ -130,39 +130,39 @@ class ReadingViewSetTest(TestCommon):
     def test_view_update(self):
         self.login_test_user(self.user.username)
 
-        reading_data = {'name': 'updated reading name'}
+        post_data = {'name': 'updated post name'}
 
         self.assertNotEqual(
-            self.reading.name,
-            reading_data['name']
+            self.post.name,
+            post_data['name']
         )
 
         response = self.client.patch(
             reverse(
-                'api:reading-detail',
-                kwargs={'pk': self.reading.id}
+                'api:post-detail',
+                kwargs={'pk': self.post.id}
             ),
-            data=json.dumps(reading_data),
+            data=json.dumps(post_data),
             content_type='application/json'
         )
-        self.reading.refresh_from_db()
+        self.post.refresh_from_db()
 
         self.assertEqual(response.status_code, drf_status.HTTP_200_OK)
         self.assertEqual(
-            self.reading.name,
-            reading_data['name']
+            self.post.name,
+            post_data['name']
         )
 
     def test_view_delete(self):
         self.login_test_user(self.user.username)
 
-        id = self.reading.id
+        id = self.post.id
 
-        self.assertTrue(Reading.objects.filter(id=id).exists())
+        self.assertTrue(Post.objects.filter(id=id).exists())
         self.client.delete(
-            reverse('api:reading-detail', kwargs={'pk': self.reading.id})
+            reverse('api:post-detail', kwargs={'pk': self.post.id})
         )
-        self.assertFalse(Reading.objects.filter(id=id).exists())
+        self.assertFalse(Post.objects.filter(id=id).exists())
 
     # View permissions
     def test_permissions_detail(self):
@@ -171,8 +171,8 @@ class ReadingViewSetTest(TestCommon):
 
         response = self.client.get(
             reverse(
-                'api:reading-detail',
-                kwargs={'pk': self.reading.id}
+                'api:post-detail',
+                kwargs={'pk': self.post.id}
             ),
         )
 
@@ -184,24 +184,24 @@ class ReadingViewSetTest(TestCommon):
 
         response = self.client.get(
             reverse(
-                'api:reading-list'
+                'api:post-list'
             ),
         )
 
         self.assertEqual(response.status_code, drf_status.HTTP_200_OK)
 
     def test_permissions_update(self):
-        reading_data = {'name': 'updated reading name'}
+        post_data = {'name': 'updated post name'}
 
         # Not authenticated
         self.client.logout()
 
         response = self.client.patch(
             reverse(
-                'api:reading-detail',
-                kwargs={'pk': self.reading.id}
+                'api:post-detail',
+                kwargs={'pk': self.post.id}
             ),
-            data=json.dumps(reading_data),
+            data=json.dumps(post_data),
             content_type='application/json'
         )
 
@@ -212,10 +212,10 @@ class ReadingViewSetTest(TestCommon):
 
         response = self.client.patch(
             reverse(
-                'api:reading-detail',
-                kwargs={'pk': self.reading.id}
+                'api:post-detail',
+                kwargs={'pk': self.post.id}
             ),
-            data=json.dumps(reading_data),
+            data=json.dumps(post_data),
             content_type='application/json'
         )
 
@@ -227,10 +227,10 @@ class ReadingViewSetTest(TestCommon):
 
         response = self.client.patch(
             reverse(
-                'api:reading-detail',
-                kwargs={'pk': self.reading.id}
+                'api:post-detail',
+                kwargs={'pk': self.post.id}
             ),
-            data=json.dumps(reading_data),
+            data=json.dumps(post_data),
             content_type='application/json'
         )
 
@@ -242,10 +242,10 @@ class ReadingViewSetTest(TestCommon):
 
         response = self.client.patch(
             reverse(
-                'api:reading-detail',
-                kwargs={'pk': self.reading.id}
+                'api:post-detail',
+                kwargs={'pk': self.post.id}
             ),
-            data=json.dumps(reading_data),
+            data=json.dumps(post_data),
             content_type='application/json'
         )
 
@@ -256,7 +256,7 @@ class ReadingViewSetTest(TestCommon):
         self.client.logout()
 
         response = self.client.delete(
-            reverse('api:reading-detail', kwargs={'pk': self.reading.id})
+            reverse('api:post-detail', kwargs={'pk': self.post.id})
         )
 
         self.assertEqual(response.status_code, drf_status.HTTP_403_FORBIDDEN)
@@ -265,7 +265,7 @@ class ReadingViewSetTest(TestCommon):
         self.login_test_user(self.user_2.username)
 
         response = self.client.delete(
-            reverse('api:reading-detail', kwargs={'pk': self.reading.id})
+            reverse('api:post-detail', kwargs={'pk': self.post.id})
         )
 
         self.assertEqual(response.status_code, drf_status.HTTP_403_FORBIDDEN)
@@ -275,16 +275,16 @@ class ReadingViewSetTest(TestCommon):
         self.login_test_user(self.user.username)
 
         response = self.client.delete(
-            reverse('api:reading-detail', kwargs={'pk': self.reading.id})
+            reverse('api:post-detail', kwargs={'pk': self.post.id})
         )
 
         self.assertEqual(response.status_code, drf_status.HTTP_204_NO_CONTENT)
 
         # Superuser not creator
-        self.reading = Reading.objects.create(
+        self.post = Post.objects.create(
             creator=self.user,
             project=self.project,
-            name='test reading',
+            name='test post',
             content='hello'
         )
 
@@ -292,16 +292,16 @@ class ReadingViewSetTest(TestCommon):
         self.login_test_user(self.superuser.username)
 
         response = self.client.delete(
-            reverse('api:reading-detail', kwargs={'pk': self.reading.id})
+            reverse('api:post-detail', kwargs={'pk': self.post.id})
         )
 
         self.assertEqual(response.status_code, drf_status.HTTP_204_NO_CONTENT)
 
 
-class NestedReadingViewSetTest(TestCommon):
+class NestedPostViewSetTest(TestCommon):
 
     def setUp(self):
-        super(NestedReadingViewSetTest, self).setUp()
+        super(NestedPostViewSetTest, self).setUp()
 
         self.project = Project.objects.create(
             owner=self.user,
@@ -311,29 +311,29 @@ class NestedReadingViewSetTest(TestCommon):
             owner=self.user,
             name='test project 2'
         )
-        self.reading_1 = Reading.objects.create(
+        self.post_1 = Post.objects.create(
             creator=self.user,
             project=self.project,
-            name='test reading 1',
-            content='test reading 1'
+            name='test post 1',
+            content='test post 1'
         )
-        self.reading_2 = Reading.objects.create(
+        self.post_2 = Post.objects.create(
             creator=self.user,
             project=self.project,
-            name='test reading 2',
-            content='test reading 2'
+            name='test post 2',
+            content='test post 2'
         )
-        self.reading_3 = Reading.objects.create(
+        self.post_3 = Post.objects.create(
             creator=self.user,
             project=self.project_2,
-            name='test reading 3',
-            content='test reading 3'
+            name='test post 3',
+            content='test post 3'
         )
-        self.reading_4 = Reading.objects.create(
+        self.post_4 = Post.objects.create(
             creator=self.user,
             project=self.project_2,
-            name='test reading 4',
-            content='test reading 4'
+            name='test post 4',
+            content='test post 4'
         )
         self.user_2 = User.objects.create_user(
             username='abc',
@@ -343,21 +343,21 @@ class NestedReadingViewSetTest(TestCommon):
             password=self.pwd
         )
 
-    def get_reading_serializer_data(self, reading):
-        serializer = ReadingSerializer(
-            reading,
+    def get_post_serializer_data(self, post):
+        serializer = PostSerializer(
+            post,
             context={'request': self.get_dummy_request()}
         )
         return json.loads(serializer.json_data())
 
     def test_view_setup(self):
-        view = NestedReadingViewSet()
+        view = NestedPostViewSet()
         self.assertEqual('pk', view.lookup_field)
         self.assertEqual('pk', view.lookup_url_kwarg)
-        self.assertEqual(ReadingSerializer, view.serializer_class)
+        self.assertEqual(PostSerializer, view.serializer_class)
         self.assertEqual(SmallPagination, view.pagination_class)
 
-        qs = Reading.objects.select_related('project')
+        qs = Post.objects.select_related('project')
         self.assertCountEqual(
             qs,
             view.queryset
@@ -377,45 +377,45 @@ class NestedReadingViewSetTest(TestCommon):
         )
         for class_name in classes:
             self.assertTrue(
-                issubclass(NestedReadingViewSet, class_name)
+                issubclass(NestedPostViewSet, class_name)
             )
 
     def test_view_create(self):
         self.login_test_user(self.user.username)
 
-        reading_data = {
+        post_data = {
             'name': 'test name',
             'content': 'test content'
         }
         self.assertFalse(
-            Reading.objects.filter(
+            Post.objects.filter(
                 project=self.project,
-                name=reading_data['name'],
-                content=reading_data['content']
+                name=post_data['name'],
+                content=post_data['content']
             ).exists()
         )
         self.client.post(
             reverse(
-                'api:nested-reading-list',
+                'api:nested-post-list',
                 kwargs={'project_pk': self.project.id}
             ),
-            data=reading_data
+            data=post_data
         )
         self.assertTrue(
-            Reading.objects.filter(
+            Post.objects.filter(
                 creator=self.user,
                 project=self.project,
-                name=reading_data['name'],
-                content=reading_data['content']
+                name=post_data['name'],
+                content=post_data['content']
             ).exists()
         )
 
     def test_view_list(self):
         self.login_test_user(self.user.username)
 
-        # Reading 1
-        data_1 = self.get_reading_serializer_data(self.reading_1)
-        data_2 = self.get_reading_serializer_data(self.reading_2)
+        # Post 1
+        data_1 = self.get_post_serializer_data(self.post_1)
+        data_2 = self.get_post_serializer_data(self.post_2)
         expected_results = json.dumps({
             "next": None,
             "previous": None,
@@ -426,16 +426,16 @@ class NestedReadingViewSetTest(TestCommon):
         })
         response = self.client.get(
             reverse(
-                'api:nested-reading-list',
+                'api:nested-post-list',
                 kwargs={'project_pk': self.project.id}
             )
         )
 
         self.assertCountEqual(json.loads(expected_results), json.loads(response.content))
 
-        # Reading 2
-        data_3 = self.get_reading_serializer_data(self.reading_3)
-        data_4 = self.get_reading_serializer_data(self.reading_4)
+        # Post 2
+        data_3 = self.get_post_serializer_data(self.post_3)
+        data_4 = self.get_post_serializer_data(self.post_4)
         expected_results = json.dumps({
             "next": None,
             "previous": None,
@@ -446,7 +446,7 @@ class NestedReadingViewSetTest(TestCommon):
         })
         response = self.client.get(
             reverse(
-                'api:nested-reading-list',
+                'api:nested-post-list',
                 kwargs={'project_pk': self.project_2.id}
             )
         )
@@ -455,7 +455,7 @@ class NestedReadingViewSetTest(TestCommon):
     # Permissions
 
     def test_permissions_create(self):
-        reading_data = {
+        post_data = {
             'name': 'test name',
             'content': 'test content'
         }
@@ -463,10 +463,10 @@ class NestedReadingViewSetTest(TestCommon):
         # Not authenticated
         response = self.client.post(
             reverse(
-                'api:nested-reading-list',
+                'api:nested-post-list',
                 kwargs={'project_pk': self.project.id}
             ),
-            data=reading_data
+            data=post_data
         )
 
         self.assertEqual(response.status_code, drf_status.HTTP_403_FORBIDDEN)
@@ -477,30 +477,30 @@ class NestedReadingViewSetTest(TestCommon):
 
         response = self.client.post(
             reverse(
-                'api:nested-reading-list',
+                'api:nested-post-list',
                 kwargs={'project_pk': self.project.id}
             ),
-            data=reading_data
+            data=post_data
         )
 
         self.assertEqual(response.status_code, drf_status.HTTP_403_FORBIDDEN)
 
-        # Reading creator
+        # Post creator
         self.client.logout()
         self.login_test_user(self.user.username)
 
         response = self.client.post(
             reverse(
-                'api:nested-reading-list',
+                'api:nested-post-list',
                 kwargs={'project_pk': self.project.id}
             ),
-            data=reading_data
+            data=post_data
         )
 
         self.assertEqual(response.status_code, drf_status.HTTP_201_CREATED)
 
         # Superuser not project owner
-        reading_data = {
+        post_data = {
             'name': 'another name',
             'content': 'more test content'
         }
@@ -510,10 +510,10 @@ class NestedReadingViewSetTest(TestCommon):
 
         response = self.client.post(
             reverse(
-                'api:nested-reading-list',
+                'api:nested-post-list',
                 kwargs={'project_pk': self.project.id}
             ),
-            data=reading_data
+            data=post_data
         )
 
         self.assertEqual(response.status_code, drf_status.HTTP_201_CREATED)
@@ -522,7 +522,7 @@ class NestedReadingViewSetTest(TestCommon):
         # Not authenticated
         response = self.client.get(
             reverse(
-                'api:nested-reading-list',
+                'api:nested-post-list',
                 kwargs={'project_pk': self.project.id}
             )
         )
@@ -530,16 +530,16 @@ class NestedReadingViewSetTest(TestCommon):
         self.assertEqual(response.status_code, drf_status.HTTP_200_OK)
 
 
-class ReadingExportViewTest(TestCommon):
+class PostExportViewTest(TestCommon):
 
     def setUp(self):
-        super(ReadingExportViewTest, self).setUp()
+        super(PostExportViewTest, self).setUp()
 
         self.project = Project.objects.create(
             owner=self.user,
             name='test project'
         )
-        self.reading = Reading.objects.create(
+        self.post = Post.objects.create(
             creator=self.user,
             project=self.project,
             name='test name',
@@ -552,45 +552,45 @@ class ReadingExportViewTest(TestCommon):
             APIView
         )
         for class_name in classes:
-            self.assertTrue(issubclass(ReadingExportView, class_name))
+            self.assertTrue(issubclass(PostExportView, class_name))
 
     def test_correct_view_used(self):
         found = resolve(
             reverse(
-                'api:reading_export',
-                kwargs={'reading_pk': self.reading.id}
+                'api:post_export',
+                kwargs={'post_pk': self.post.id}
             )
         )
         self.assertEqual(
             found.func.__name__,
-            ReadingExportView.as_view().__name__
+            PostExportView.as_view().__name__
         )
 
     def test_view_setup(self):
-        view = ReadingExportView()
-        permission_classes = [IsAuthenticated, ReadingCreatorPermission]
+        view = PostExportView()
+        permission_classes = [IsAuthenticated, PostCreatorPermission]
 
         self.assertEqual(permission_classes, view.permission_classes)
 
 
-class ReadingImportViewTest(TestCommon):
+class PostImportViewTest(TestCommon):
 
     def setUp(self):
-        super(ReadingImportViewTest, self).setUp()
+        super(PostImportViewTest, self).setUp()
 
         self.project = Project.objects.create(
             owner=self.user,
             name='test project'
         )
-        reading = Reading.objects.create(
+        post = Post.objects.create(
             creator=self.user,
             project=self.project,
             name='test name',
             content='test content'
         )
         request = self.request_factory.get('/fake-path')
-        self.reading_data = export_reading(reading, request)
-        reading.delete()
+        self.post_data = export_post(post, request)
+        post.delete()
 
     def test_inheritance(self):
         classes = (
@@ -598,35 +598,35 @@ class ReadingImportViewTest(TestCommon):
             APIView
         )
         for class_name in classes:
-            self.assertTrue(issubclass(ReadingImportView, class_name))
+            self.assertTrue(issubclass(PostImportView, class_name))
 
     def test_correct_view_used(self):
-        found = resolve(reverse('api:reading_import'))
+        found = resolve(reverse('api:post_import'))
         self.assertEqual(
             found.func.__name__,
-            ReadingImportView.as_view().__name__
+            PostImportView.as_view().__name__
         )
 
-    def test_view_imports_reading_json(self):
+    def test_view_imports_post_json(self):
         self.login_test_user(self.user.username)
         self.assertFalse(
-            Reading.objects.filter(
+            Post.objects.filter(
                 creator_id=self.user.id,
-                project__name=self.reading_data['project']['name'],
-                name=self.reading_data['reading']['name'],
-                content=self.reading_data['reading']['content']
+                project__name=self.post_data['project']['name'],
+                name=self.post_data['post']['name'],
+                content=self.post_data['post']['content']
             ).exists()
         )
         self.client.post(
-            reverse('api:reading_import'),
-            json.dumps(self.reading_data),
+            reverse('api:post_import'),
+            json.dumps(self.post_data),
             content_type='application/json'
         )
         self.assertTrue(
-            Reading.objects.filter(
+            Post.objects.filter(
                 creator_id=self.user.id,
-                project__name=self.reading_data['project']['name'],
-                name=self.reading_data['reading']['name'],
-                content=self.reading_data['reading']['content']
+                project__name=self.post_data['project']['name'],
+                name=self.post_data['post']['name'],
+                content=self.post_data['post']['content']
             ).exists()
         )
