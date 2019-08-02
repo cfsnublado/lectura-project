@@ -10065,7 +10065,7 @@ blockquote p {
     line-height: 2.375rem;
   }
 }
-/* line 2, ../scss/cfs/_layout.scss */
+/* line 1, ../scss/cfs/_layout.scss */
 .centerall {
   display: flex;
   height: 100vh;
@@ -10073,6 +10073,23 @@ blockquote p {
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
+}
+
+/* line 12, ../scss/cfs/_layout.scss */
+.page-footer {
+  display: flex;
+  width: 100%;
+  height: 3.125rem;
+  align-items: center;
+  justify-content: center;
+}
+/* line 21, ../scss/cfs/_layout.scss */
+.page-footer.is-fixed {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: auto;
 }
 
 /* line 1, ../scss/cfs/_breadcrumb.scss */
@@ -11454,7 +11471,7 @@ body.sidebar-adaptable .main-content {
 }
 /* line 170, ../scss/cfs/_sidebar.scss */
 body.sidebar-adaptable .sidebar {
-  top: 3.1875rem;
+  top: 3.125rem;
 }
 /* line 174, ../scss/cfs/_sidebar.scss */
 body.sidebar-adaptable .sidebar-navbar {
@@ -11465,35 +11482,43 @@ body.sidebar-adaptable.sidebar-expanded .sidebar-background {
   display: none;
 }
 /* line 184, ../scss/cfs/_sidebar.scss */
-body.sidebar-adaptable.sidebar-expanded .main-content {
-  margin-left: 15.6875rem;
+body.sidebar-adaptable.sidebar-expanded .main-content,
+body.sidebar-adaptable.sidebar-expanded .page-footer {
+  margin-left: 15.625rem;
+}
+/* line 189, ../scss/cfs/_sidebar.scss */
+body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
+  margin-left: 0;
+  left: 15.625rem;
 }
 
 @media screen and (max-width: 768px) {
-  /* line 194, ../scss/cfs/_sidebar.scss */
+  /* line 201, ../scss/cfs/_sidebar.scss */
   body.sidebar-expanded .sidebar-background,
   body.sidebar-adaptable.sidebar-expanded .sidebar-background {
     display: block;
   }
-  /* line 198, ../scss/cfs/_sidebar.scss */
+  /* line 205, ../scss/cfs/_sidebar.scss */
   body.sidebar-expanded .main-content,
-  body.sidebar-adaptable.sidebar-expanded .main-content {
+  body.sidebar-expanded .page-footer,
+  body.sidebar-adaptable.sidebar-expanded .main-content,
+  body.sidebar-adaptable.sidebar-expanded .page-footer {
     margin-left: 0;
   }
 
-  /* line 204, ../scss/cfs/_sidebar.scss */
+  /* line 212, ../scss/cfs/_sidebar.scss */
   body.sidebar-adaptable .navbar {
     position: relative;
   }
-  /* line 208, ../scss/cfs/_sidebar.scss */
+  /* line 216, ../scss/cfs/_sidebar.scss */
   body.sidebar-adaptable .main-content {
     margint-top: 0;
   }
-  /* line 212, ../scss/cfs/_sidebar.scss */
+  /* line 220, ../scss/cfs/_sidebar.scss */
   body.sidebar-adaptable .sidebar {
     top: 0;
   }
-  /* line 216, ../scss/cfs/_sidebar.scss */
+  /* line 224, ../scss/cfs/_sidebar.scss */
   body.sidebar-adaptable .sidebar-navbar {
     display: -webkit-flex;
     display: flex;
@@ -11951,24 +11976,16 @@ body.sidebar-adaptable.sidebar-expanded .main-content {
 
 /* line 88, ../scss/cfs/reading/_reading.scss */
 .post-view-footer {
-  display: flex;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3.75rem;
   background-color: #666;
-  align-items: center;
-  justify-content: center;
 }
 
 @media screen and (max-width: 768px) {
-  /* line 106, ../scss/cfs/reading/_reading.scss */
+  /* line 94, ../scss/cfs/reading/_reading.scss */
   .post-view .post-name {
     font-size: 2rem;
   }
 
-  /* line 113, ../scss/cfs/reading/_reading.scss */
+  /* line 101, ../scss/cfs/reading/_reading.scss */
   .project-card .name,
   .post-card .name {
     font-size: 1.125rem;
