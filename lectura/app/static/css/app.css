@@ -6355,7 +6355,7 @@ a.list-item {
   justify-content: center;
   overflow: hidden;
   position: fixed;
-  z-index: 40;
+  z-index: 1500;
 }
 /* line 43, ../scss/bulma/components/_modal.scss */
 .modal.is-active {
@@ -11310,7 +11310,7 @@ a.navbar-item.is-active:not(:focus):not(:hover),
 .sidebar-background {
   display: none;
   position: fixed;
-  z-index: 1000;
+  z-index: 1430;
   top: 0;
   right: 0;
   bottom: 0;
@@ -11328,7 +11328,7 @@ a.navbar-item.is-active:not(:focus):not(:hover),
   -webkit-transform: translate3d(-15.625rem, 0, 0);
   transform: translate3d(-15.625rem, 0, 0);
   position: fixed;
-  z-index: 1500;
+  z-index: 1450;
   top: 0;
   bottom: 0;
   width: 15.625rem;

@@ -198,16 +198,14 @@ href="{% url 'reading:projects' %}"
 <script>
 {% block python_to_javascript %}
 
+var initSidebarSessionEnabled = false; 
+var sidebarExpanded = false;
 var appSessionUrl = "{% url 'app:app_session' %}";
 
 {% endblock python_to_javascript %}
 </script>
 
 {% block scripts %}
-<script>
-var sidebarExpanded = false;
-</script>
-
 <script src="{% static 'js/showdown.min.js' %}"></script>
 <script src="{% static 'js/axios.min.js' %}"></script>
 <script src="{% static 'js/ajax.js' %}"></script>

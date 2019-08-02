@@ -4,7 +4,7 @@
 
 {% block body_classes %}
 
-sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-nav-expanded,' }}
+sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
 
 {% endblock body_classes %}
 
@@ -148,6 +148,8 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-nav-expanded,'
 
 {% block python_to_javascript %}
 
+var initSidebarSessionEnabled = true;
+var sidebarExpanded = {{ sidebar_expanded|yesno:"true,false" }};
 var appSessionUrl = "{% url 'app:app_session' %}";
 
 {% endblock python_to_javascript %}

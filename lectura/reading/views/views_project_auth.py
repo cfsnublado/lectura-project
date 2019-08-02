@@ -51,7 +51,7 @@ class ProjectUpdateView(
     template_name = '{0}/auth/project_update.html'.format(APP_NAME)
 
     def get_object(self, **kwargs):
-        return self.project
+        return self.project_obj
 
     def get_success_url(self):
         return reverse(

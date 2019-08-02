@@ -40,6 +40,7 @@ const vm = new Vue({
   data: {
     appSessionUrl: appSessionUrl,
     showSidebar: sidebarExpanded,
+    sidebarSessionEnabled: initSidebarSessionEnabled,
     sidebarOpenClass: 'sidebar-expanded',
     showNavbarMenu: false,
     navbarMenuOpenClass: 'is-active',
@@ -74,6 +75,10 @@ const vm = new Vue({
       } else {
         document.body.classList.remove(this.sidebarOpenClass)
       }
+
+      if (this.sidebarSessionEnabled) {
+        this.setSidebarSession()
+      }
     },
     toggleNavbarMenu(manual) {
       // If manual is set to true or false, override toggle.
@@ -89,6 +94,20 @@ const vm = new Vue({
         this.$refs.navbarMenu.classList.remove(this.navbarMenuOpenClass)
       }
     },
+    setSidebarSession(disableLock = false) {
+      var locked = disableLock ? false : this.showSidebar
+      axios.post(this.appSessionUrl, {
+        session_data: {
+          "sidebar_locked": locked
+        }
+      })
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    },
     windowResize() {
       // Fire event after window resize completes.
       clearTimeout(this.windowResizeTimer)
@@ -96,7 +115,15 @@ const vm = new Vue({
         this.windowWidth = document.documentElement.clientWidth
         if (this.smallWindow) {
           console.log('small')
+          if (this.sidebarSessionEnabled) {
+            this.setSidebarSession(true)
+            this.sidebarSessionEnabled = false
+          }
         } else {
+          this.sidebarSessionEnabled = initSidebarSessionEnabled
+          if (this.sidebarSessionEnabled) {
+            this.setSidebarSession()
+          }
         }
       }, 250);
     }
