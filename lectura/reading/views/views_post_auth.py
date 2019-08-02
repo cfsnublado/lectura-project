@@ -29,7 +29,7 @@ class PostCreateView(
 
     def get_form_kwargs(self):
         kwargs = super(PostCreateView, self).get_form_kwargs()
-        kwargs['project'] = self.project
+        kwargs['project'] = self.project_obj
         kwargs['creator'] = self.request.user
         return kwargs
 
@@ -53,7 +53,7 @@ class PostUpdateView(
     template_name = '{0}/auth/post_update.html'.format(APP_NAME)
 
     def get_object(self, **kwargs):
-        return self.post
+        return self.post_obj
 
     def get_success_url(self):
         return reverse(

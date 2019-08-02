@@ -6,6 +6,13 @@
 
 {% block post_create_link_active %}is-active{% endblock post_create_link_active %}
 
+{% block breadcrumb_content %}
+{{ block.super }}
+<li class="is-active">
+<a href="#">{% trans 'label_create_post' %}</a>
+</li>
+{% endblock breadcrumb_content %}
+
 {% block content %}
 
 <div class="columns">

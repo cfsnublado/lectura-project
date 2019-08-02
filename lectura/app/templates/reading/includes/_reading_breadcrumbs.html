@@ -2,7 +2,7 @@
 
 {% with url_name=request.resolver_match.url_name %}
 
-  {% if request.session.session_obj.project %}
+  {% if request.session.session_obj.project_obj %}
 
     <li>
     <a href="{% url 'reading:projects' %}">{% trans 'label_projects' %}</a>
@@ -22,7 +22,7 @@
 
     {% endif %}
 
-  {% elif request.session.session_obj.post %}
+  {% elif request.session.session_obj.post_obj %}
 
     <li>
     <a href="{% url 'reading:projects' %}">{% trans 'label_projects' %}</a>

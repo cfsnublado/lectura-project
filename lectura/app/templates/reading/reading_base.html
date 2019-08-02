@@ -32,7 +32,7 @@
 
 {% block sidebar_nav_items %}
 
-{% if request.session.session_obj.project %}
+{% if request.session.session_obj.project_obj %}
 
   <div class="menu">
 
@@ -78,7 +78,7 @@
 
   </div>
 
-{% elif request.session.session_obj.post %}
+{% elif request.session.session_obj.post_obj %}
 
   <div class="menu">
 
