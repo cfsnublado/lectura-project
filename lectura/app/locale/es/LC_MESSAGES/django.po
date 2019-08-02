@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-01 22:43-0700\n"
+"POT-Creation-Date: 2019-08-01 23:10-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -364,7 +364,12 @@ msgstr "Iniciar sesión"
 msgid "page_post_create_title"
 msgstr "Crear entrada"
 
-#: lectura/app/templates/reading/auth/post_create.html:26
+#: lectura/app/templates/reading/auth/post_create.html:12
+#: lectura/app/templates/reading/includes/vue/_posts.html:19
+msgid "label_create_post"
+msgstr "Crear una entrada"
+
+#: lectura/app/templates/reading/auth/post_create.html:33
 #: lectura/app/templates/reading/auth/project_create.html:26
 msgid "label_create"
 msgstr "Crear"
@@ -374,11 +379,12 @@ msgid "page_post_update_title"
 msgstr "Editar entrada"
 
 #: lectura/app/templates/reading/auth/post_update.html:12
+#: lectura/app/templates/reading/auth/project_update.html:12
 msgid "label_edit"
 msgstr "Editar"
 
 #: lectura/app/templates/reading/auth/post_update.html:32
-#: lectura/app/templates/reading/auth/project_update.html:26
+#: lectura/app/templates/reading/auth/project_update.html:33
 #: lectura/app/templates/users/auth/profile_update.html:117
 msgid "label_update"
 msgstr "Actualizar"
@@ -391,6 +397,10 @@ msgstr "Crear proyecto"
 msgid "page_project_update_title"
 msgstr "Editar proyecto"
 
+#: lectura/app/templates/reading/auth/project_update.html:48
+msgid "label_delete"
+msgstr "Eliminar"
+
 #: lectura/app/templates/reading/includes/_post_delete_modal.html:9
 msgid "msg_confirm_delete_post"
 msgstr "¿Eliminar entrada?"
@@ -402,10 +412,6 @@ msgstr "¿Eliminar proyecto?"
 #: lectura/app/templates/reading/includes/vue/_posts.html:16
 msgid "msg_no_posts_in_project"
 msgstr "No hay entradas en este proyecto."
-
-#: lectura/app/templates/reading/includes/vue/_posts.html:19
-msgid "label_create_post"
-msgstr "Crear una entrada"
 
 #: lectura/app/templates/reading/includes/vue/_projects.html:16
 msgid "msg_no_projects"

@@ -10084,32 +10084,32 @@ blockquote p {
   content: ">";
 }
 
-/* line 52, ../scss/cfs/_navbar.scss */
+/* line 9, ../scss/cfs/_navbar.scss */
 .navbar {
   position: relative;
   z-index: 30;
-  min-height: 3.75rem;
-  max-height: 3.75rem;
+  min-height: 3.125rem;
+  max-height: 3.125rem;
   background-color: #f9f9f9;
 }
-/* line 61, ../scss/cfs/_navbar.scss */
+/* line 18, ../scss/cfs/_navbar.scss */
 .navbar.is-bordered {
   border-bottom: 1px solid #eee;
 }
-/* line 70, ../scss/cfs/_navbar.scss */
+/* line 27, ../scss/cfs/_navbar.scss */
 .navbar.is-white {
   color: #0a0a0a;
   background-color: white;
 }
 @media screen and (min-width: 769px) {
-  /* line 74, ../scss/cfs/_navbar.scss */
+  /* line 31, ../scss/cfs/_navbar.scss */
   .navbar.is-white .navbar-start > .navbar-item,
   .navbar.is-white .navbar-start .navbar-link,
   .navbar.is-white .navbar-end > .navbar-item,
   .navbar.is-white .navbar-end .navbar-link {
     color: #0a0a0a;
   }
-  /* line 81, ../scss/cfs/_navbar.scss */
+  /* line 38, ../scss/cfs/_navbar.scss */
   .navbar.is-white .navbar-start > a.navbar-item:focus, .navbar.is-white .navbar-start > a.navbar-item:hover, .navbar.is-white .navbar-start > a.navbar-item.is-active,
   .navbar.is-white .navbar-start .navbar-link:focus,
   .navbar.is-white .navbar-start .navbar-link:hover,
@@ -10123,30 +10123,30 @@ blockquote p {
     color: #0a0a0a;
     background-color: #f2f2f2;
   }
-  /* line 90, ../scss/cfs/_navbar.scss */
+  /* line 47, ../scss/cfs/_navbar.scss */
   .navbar.is-white .navbar-start .navbar-link::after,
   .navbar.is-white .navbar-end .navbar-link::after {
     border-color: #0a0a0a;
   }
-  /* line 96, ../scss/cfs/_navbar.scss */
+  /* line 53, ../scss/cfs/_navbar.scss */
   .navbar.is-white .navbar-item.has-dropdown:focus .navbar-link,
   .navbar.is-white .navbar-item.has-dropdown:hover .navbar-link,
   .navbar.is-white .navbar-item.has-dropdown.is-active .navbar-link {
     color: #0a0a0a;
     background-color: #f2f2f2;
   }
-  /* line 105, ../scss/cfs/_navbar.scss */
+  /* line 62, ../scss/cfs/_navbar.scss */
   .navbar.is-white .navbar-dropdown a.navbar-item.is-active {
     color: #0a0a0a;
     background-color: white;
   }
 }
-/* line 117, ../scss/cfs/_navbar.scss */
+/* line 74, ../scss/cfs/_navbar.scss */
 .navbar.is-white .navbar-brand > .navbar-item,
 .navbar.is-white .navbar-brand .navbar-link {
   color: #0a0a0a;
 }
-/* line 124, ../scss/cfs/_navbar.scss */
+/* line 81, ../scss/cfs/_navbar.scss */
 .navbar.is-white .navbar-brand > a.navbar-item:focus, .navbar.is-white .navbar-brand > a.navbar-item:hover, .navbar.is-white .navbar-brand > a.navbar-item.is-active,
 .navbar.is-white .navbar-brand .navbar-link:focus,
 .navbar.is-white .navbar-brand .navbar-link:hover,
@@ -10154,28 +10154,28 @@ blockquote p {
   color: #0a0a0a;
   background-color: #f2f2f2;
 }
-/* line 133, ../scss/cfs/_navbar.scss */
+/* line 90, ../scss/cfs/_navbar.scss */
 .navbar.is-white .navbar-brand .navbar-link::after {
   border-color: #0a0a0a;
 }
-/* line 139, ../scss/cfs/_navbar.scss */
+/* line 96, ../scss/cfs/_navbar.scss */
 .navbar.is-white .navbar-burger {
   color: #0a0a0a;
 }
-/* line 70, ../scss/cfs/_navbar.scss */
+/* line 27, ../scss/cfs/_navbar.scss */
 .navbar.is-black {
   color: white;
   background-color: #0a0a0a;
 }
 @media screen and (min-width: 769px) {
-  /* line 74, ../scss/cfs/_navbar.scss */
+  /* line 31, ../scss/cfs/_navbar.scss */
   .navbar.is-black .navbar-start > .navbar-item,
   .navbar.is-black .navbar-start .navbar-link,
   .navbar.is-black .navbar-end > .navbar-item,
   .navbar.is-black .navbar-end .navbar-link {
     color: white;
   }
-  /* line 81, ../scss/cfs/_navbar.scss */
+  /* line 38, ../scss/cfs/_navbar.scss */
   .navbar.is-black .navbar-start > a.navbar-item:focus, .navbar.is-black .navbar-start > a.navbar-item:hover, .navbar.is-black .navbar-start > a.navbar-item.is-active,
   .navbar.is-black .navbar-start .navbar-link:focus,
   .navbar.is-black .navbar-start .navbar-link:hover,
@@ -10189,30 +10189,30 @@ blockquote p {
     color: white;
     background-color: black;
   }
-  /* line 90, ../scss/cfs/_navbar.scss */
+  /* line 47, ../scss/cfs/_navbar.scss */
   .navbar.is-black .navbar-start .navbar-link::after,
   .navbar.is-black .navbar-end .navbar-link::after {
     border-color: white;
   }
-  /* line 96, ../scss/cfs/_navbar.scss */
+  /* line 53, ../scss/cfs/_navbar.scss */
   .navbar.is-black .navbar-item.has-dropdown:focus .navbar-link,
   .navbar.is-black .navbar-item.has-dropdown:hover .navbar-link,
   .navbar.is-black .navbar-item.has-dropdown.is-active .navbar-link {
     color: white;
     background-color: black;
   }
-  /* line 105, ../scss/cfs/_navbar.scss */
+  /* line 62, ../scss/cfs/_navbar.scss */
   .navbar.is-black .navbar-dropdown a.navbar-item.is-active {
     color: white;
     background-color: #0a0a0a;
   }
 }
-/* line 117, ../scss/cfs/_navbar.scss */
+/* line 74, ../scss/cfs/_navbar.scss */
 .navbar.is-black .navbar-brand > .navbar-item,
 .navbar.is-black .navbar-brand .navbar-link {
   color: white;
 }
-/* line 124, ../scss/cfs/_navbar.scss */
+/* line 81, ../scss/cfs/_navbar.scss */
 .navbar.is-black .navbar-brand > a.navbar-item:focus, .navbar.is-black .navbar-brand > a.navbar-item:hover, .navbar.is-black .navbar-brand > a.navbar-item.is-active,
 .navbar.is-black .navbar-brand .navbar-link:focus,
 .navbar.is-black .navbar-brand .navbar-link:hover,
@@ -10220,28 +10220,28 @@ blockquote p {
   color: white;
   background-color: black;
 }
-/* line 133, ../scss/cfs/_navbar.scss */
+/* line 90, ../scss/cfs/_navbar.scss */
 .navbar.is-black .navbar-brand .navbar-link::after {
   border-color: white;
 }
-/* line 139, ../scss/cfs/_navbar.scss */
+/* line 96, ../scss/cfs/_navbar.scss */
 .navbar.is-black .navbar-burger {
   color: white;
 }
-/* line 70, ../scss/cfs/_navbar.scss */
+/* line 27, ../scss/cfs/_navbar.scss */
 .navbar.is-light {
   color: #363636;
   background-color: whitesmoke;
 }
 @media screen and (min-width: 769px) {
-  /* line 74, ../scss/cfs/_navbar.scss */
+  /* line 31, ../scss/cfs/_navbar.scss */
   .navbar.is-light .navbar-start > .navbar-item,
   .navbar.is-light .navbar-start .navbar-link,
   .navbar.is-light .navbar-end > .navbar-item,
   .navbar.is-light .navbar-end .navbar-link {
     color: #363636;
   }
-  /* line 81, ../scss/cfs/_navbar.scss */
+  /* line 38, ../scss/cfs/_navbar.scss */
   .navbar.is-light .navbar-start > a.navbar-item:focus, .navbar.is-light .navbar-start > a.navbar-item:hover, .navbar.is-light .navbar-start > a.navbar-item.is-active,
   .navbar.is-light .navbar-start .navbar-link:focus,
   .navbar.is-light .navbar-start .navbar-link:hover,
@@ -10255,30 +10255,30 @@ blockquote p {
     color: #363636;
     background-color: #e8e8e8;
   }
-  /* line 90, ../scss/cfs/_navbar.scss */
+  /* line 47, ../scss/cfs/_navbar.scss */
   .navbar.is-light .navbar-start .navbar-link::after,
   .navbar.is-light .navbar-end .navbar-link::after {
     border-color: #363636;
   }
-  /* line 96, ../scss/cfs/_navbar.scss */
+  /* line 53, ../scss/cfs/_navbar.scss */
   .navbar.is-light .navbar-item.has-dropdown:focus .navbar-link,
   .navbar.is-light .navbar-item.has-dropdown:hover .navbar-link,
   .navbar.is-light .navbar-item.has-dropdown.is-active .navbar-link {
     color: #363636;
     background-color: #e8e8e8;
   }
-  /* line 105, ../scss/cfs/_navbar.scss */
+  /* line 62, ../scss/cfs/_navbar.scss */
   .navbar.is-light .navbar-dropdown a.navbar-item.is-active {
     color: #363636;
     background-color: whitesmoke;
   }
 }
-/* line 117, ../scss/cfs/_navbar.scss */
+/* line 74, ../scss/cfs/_navbar.scss */
 .navbar.is-light .navbar-brand > .navbar-item,
 .navbar.is-light .navbar-brand .navbar-link {
   color: #363636;
 }
-/* line 124, ../scss/cfs/_navbar.scss */
+/* line 81, ../scss/cfs/_navbar.scss */
 .navbar.is-light .navbar-brand > a.navbar-item:focus, .navbar.is-light .navbar-brand > a.navbar-item:hover, .navbar.is-light .navbar-brand > a.navbar-item.is-active,
 .navbar.is-light .navbar-brand .navbar-link:focus,
 .navbar.is-light .navbar-brand .navbar-link:hover,
@@ -10286,28 +10286,28 @@ blockquote p {
   color: #363636;
   background-color: #e8e8e8;
 }
-/* line 133, ../scss/cfs/_navbar.scss */
+/* line 90, ../scss/cfs/_navbar.scss */
 .navbar.is-light .navbar-brand .navbar-link::after {
   border-color: #363636;
 }
-/* line 139, ../scss/cfs/_navbar.scss */
+/* line 96, ../scss/cfs/_navbar.scss */
 .navbar.is-light .navbar-burger {
   color: #363636;
 }
-/* line 70, ../scss/cfs/_navbar.scss */
+/* line 27, ../scss/cfs/_navbar.scss */
 .navbar.is-dark {
   color: whitesmoke;
   background-color: #363636;
 }
 @media screen and (min-width: 769px) {
-  /* line 74, ../scss/cfs/_navbar.scss */
+  /* line 31, ../scss/cfs/_navbar.scss */
   .navbar.is-dark .navbar-start > .navbar-item,
   .navbar.is-dark .navbar-start .navbar-link,
   .navbar.is-dark .navbar-end > .navbar-item,
   .navbar.is-dark .navbar-end .navbar-link {
     color: whitesmoke;
   }
-  /* line 81, ../scss/cfs/_navbar.scss */
+  /* line 38, ../scss/cfs/_navbar.scss */
   .navbar.is-dark .navbar-start > a.navbar-item:focus, .navbar.is-dark .navbar-start > a.navbar-item:hover, .navbar.is-dark .navbar-start > a.navbar-item.is-active,
   .navbar.is-dark .navbar-start .navbar-link:focus,
   .navbar.is-dark .navbar-start .navbar-link:hover,
@@ -10321,30 +10321,30 @@ blockquote p {
     color: whitesmoke;
     background-color: #292929;
   }
-  /* line 90, ../scss/cfs/_navbar.scss */
+  /* line 47, ../scss/cfs/_navbar.scss */
   .navbar.is-dark .navbar-start .navbar-link::after,
   .navbar.is-dark .navbar-end .navbar-link::after {
     border-color: whitesmoke;
   }
-  /* line 96, ../scss/cfs/_navbar.scss */
+  /* line 53, ../scss/cfs/_navbar.scss */
   .navbar.is-dark .navbar-item.has-dropdown:focus .navbar-link,
   .navbar.is-dark .navbar-item.has-dropdown:hover .navbar-link,
   .navbar.is-dark .navbar-item.has-dropdown.is-active .navbar-link {
     color: whitesmoke;
     background-color: #292929;
   }
-  /* line 105, ../scss/cfs/_navbar.scss */
+  /* line 62, ../scss/cfs/_navbar.scss */
   .navbar.is-dark .navbar-dropdown a.navbar-item.is-active {
     color: whitesmoke;
     background-color: #363636;
   }
 }
-/* line 117, ../scss/cfs/_navbar.scss */
+/* line 74, ../scss/cfs/_navbar.scss */
 .navbar.is-dark .navbar-brand > .navbar-item,
 .navbar.is-dark .navbar-brand .navbar-link {
   color: whitesmoke;
 }
-/* line 124, ../scss/cfs/_navbar.scss */
+/* line 81, ../scss/cfs/_navbar.scss */
 .navbar.is-dark .navbar-brand > a.navbar-item:focus, .navbar.is-dark .navbar-brand > a.navbar-item:hover, .navbar.is-dark .navbar-brand > a.navbar-item.is-active,
 .navbar.is-dark .navbar-brand .navbar-link:focus,
 .navbar.is-dark .navbar-brand .navbar-link:hover,
@@ -10352,28 +10352,28 @@ blockquote p {
   color: whitesmoke;
   background-color: #292929;
 }
-/* line 133, ../scss/cfs/_navbar.scss */
+/* line 90, ../scss/cfs/_navbar.scss */
 .navbar.is-dark .navbar-brand .navbar-link::after {
   border-color: whitesmoke;
 }
-/* line 139, ../scss/cfs/_navbar.scss */
+/* line 96, ../scss/cfs/_navbar.scss */
 .navbar.is-dark .navbar-burger {
   color: whitesmoke;
 }
-/* line 70, ../scss/cfs/_navbar.scss */
+/* line 27, ../scss/cfs/_navbar.scss */
 .navbar.is-primary {
   color: #fff;
   background-color: #00d1b2;
 }
 @media screen and (min-width: 769px) {
-  /* line 74, ../scss/cfs/_navbar.scss */
+  /* line 31, ../scss/cfs/_navbar.scss */
   .navbar.is-primary .navbar-start > .navbar-item,
   .navbar.is-primary .navbar-start .navbar-link,
   .navbar.is-primary .navbar-end > .navbar-item,
   .navbar.is-primary .navbar-end .navbar-link {
     color: #fff;
   }
-  /* line 81, ../scss/cfs/_navbar.scss */
+  /* line 38, ../scss/cfs/_navbar.scss */
   .navbar.is-primary .navbar-start > a.navbar-item:focus, .navbar.is-primary .navbar-start > a.navbar-item:hover, .navbar.is-primary .navbar-start > a.navbar-item.is-active,
   .navbar.is-primary .navbar-start .navbar-link:focus,
   .navbar.is-primary .navbar-start .navbar-link:hover,
@@ -10387,30 +10387,30 @@ blockquote p {
     color: #fff;
     background-color: #00b89c;
   }
-  /* line 90, ../scss/cfs/_navbar.scss */
+  /* line 47, ../scss/cfs/_navbar.scss */
   .navbar.is-primary .navbar-start .navbar-link::after,
   .navbar.is-primary .navbar-end .navbar-link::after {
     border-color: #fff;
   }
-  /* line 96, ../scss/cfs/_navbar.scss */
+  /* line 53, ../scss/cfs/_navbar.scss */
   .navbar.is-primary .navbar-item.has-dropdown:focus .navbar-link,
   .navbar.is-primary .navbar-item.has-dropdown:hover .navbar-link,
   .navbar.is-primary .navbar-item.has-dropdown.is-active .navbar-link {
     color: #fff;
     background-color: #00b89c;
   }
-  /* line 105, ../scss/cfs/_navbar.scss */
+  /* line 62, ../scss/cfs/_navbar.scss */
   .navbar.is-primary .navbar-dropdown a.navbar-item.is-active {
     color: #fff;
     background-color: #00d1b2;
   }
 }
-/* line 117, ../scss/cfs/_navbar.scss */
+/* line 74, ../scss/cfs/_navbar.scss */
 .navbar.is-primary .navbar-brand > .navbar-item,
 .navbar.is-primary .navbar-brand .navbar-link {
   color: #fff;
 }
-/* line 124, ../scss/cfs/_navbar.scss */
+/* line 81, ../scss/cfs/_navbar.scss */
 .navbar.is-primary .navbar-brand > a.navbar-item:focus, .navbar.is-primary .navbar-brand > a.navbar-item:hover, .navbar.is-primary .navbar-brand > a.navbar-item.is-active,
 .navbar.is-primary .navbar-brand .navbar-link:focus,
 .navbar.is-primary .navbar-brand .navbar-link:hover,
@@ -10418,28 +10418,28 @@ blockquote p {
   color: #fff;
   background-color: #00b89c;
 }
-/* line 133, ../scss/cfs/_navbar.scss */
+/* line 90, ../scss/cfs/_navbar.scss */
 .navbar.is-primary .navbar-brand .navbar-link::after {
   border-color: #fff;
 }
-/* line 139, ../scss/cfs/_navbar.scss */
+/* line 96, ../scss/cfs/_navbar.scss */
 .navbar.is-primary .navbar-burger {
   color: #fff;
 }
-/* line 70, ../scss/cfs/_navbar.scss */
+/* line 27, ../scss/cfs/_navbar.scss */
 .navbar.is-link {
   color: #fff;
   background-color: #3273dc;
 }
 @media screen and (min-width: 769px) {
-  /* line 74, ../scss/cfs/_navbar.scss */
+  /* line 31, ../scss/cfs/_navbar.scss */
   .navbar.is-link .navbar-start > .navbar-item,
   .navbar.is-link .navbar-start .navbar-link,
   .navbar.is-link .navbar-end > .navbar-item,
   .navbar.is-link .navbar-end .navbar-link {
     color: #fff;
   }
-  /* line 81, ../scss/cfs/_navbar.scss */
+  /* line 38, ../scss/cfs/_navbar.scss */
   .navbar.is-link .navbar-start > a.navbar-item:focus, .navbar.is-link .navbar-start > a.navbar-item:hover, .navbar.is-link .navbar-start > a.navbar-item.is-active,
   .navbar.is-link .navbar-start .navbar-link:focus,
   .navbar.is-link .navbar-start .navbar-link:hover,
@@ -10453,30 +10453,30 @@ blockquote p {
     color: #fff;
     background-color: #2366d1;
   }
-  /* line 90, ../scss/cfs/_navbar.scss */
+  /* line 47, ../scss/cfs/_navbar.scss */
   .navbar.is-link .navbar-start .navbar-link::after,
   .navbar.is-link .navbar-end .navbar-link::after {
     border-color: #fff;
   }
-  /* line 96, ../scss/cfs/_navbar.scss */
+  /* line 53, ../scss/cfs/_navbar.scss */
   .navbar.is-link .navbar-item.has-dropdown:focus .navbar-link,
   .navbar.is-link .navbar-item.has-dropdown:hover .navbar-link,
   .navbar.is-link .navbar-item.has-dropdown.is-active .navbar-link {
     color: #fff;
     background-color: #2366d1;
   }
-  /* line 105, ../scss/cfs/_navbar.scss */
+  /* line 62, ../scss/cfs/_navbar.scss */
   .navbar.is-link .navbar-dropdown a.navbar-item.is-active {
     color: #fff;
     background-color: #3273dc;
   }
 }
-/* line 117, ../scss/cfs/_navbar.scss */
+/* line 74, ../scss/cfs/_navbar.scss */
 .navbar.is-link .navbar-brand > .navbar-item,
 .navbar.is-link .navbar-brand .navbar-link {
   color: #fff;
 }
-/* line 124, ../scss/cfs/_navbar.scss */
+/* line 81, ../scss/cfs/_navbar.scss */
 .navbar.is-link .navbar-brand > a.navbar-item:focus, .navbar.is-link .navbar-brand > a.navbar-item:hover, .navbar.is-link .navbar-brand > a.navbar-item.is-active,
 .navbar.is-link .navbar-brand .navbar-link:focus,
 .navbar.is-link .navbar-brand .navbar-link:hover,
@@ -10484,28 +10484,28 @@ blockquote p {
   color: #fff;
   background-color: #2366d1;
 }
-/* line 133, ../scss/cfs/_navbar.scss */
+/* line 90, ../scss/cfs/_navbar.scss */
 .navbar.is-link .navbar-brand .navbar-link::after {
   border-color: #fff;
 }
-/* line 139, ../scss/cfs/_navbar.scss */
+/* line 96, ../scss/cfs/_navbar.scss */
 .navbar.is-link .navbar-burger {
   color: #fff;
 }
-/* line 70, ../scss/cfs/_navbar.scss */
+/* line 27, ../scss/cfs/_navbar.scss */
 .navbar.is-info {
   color: #fff;
   background-color: #209cee;
 }
 @media screen and (min-width: 769px) {
-  /* line 74, ../scss/cfs/_navbar.scss */
+  /* line 31, ../scss/cfs/_navbar.scss */
   .navbar.is-info .navbar-start > .navbar-item,
   .navbar.is-info .navbar-start .navbar-link,
   .navbar.is-info .navbar-end > .navbar-item,
   .navbar.is-info .navbar-end .navbar-link {
     color: #fff;
   }
-  /* line 81, ../scss/cfs/_navbar.scss */
+  /* line 38, ../scss/cfs/_navbar.scss */
   .navbar.is-info .navbar-start > a.navbar-item:focus, .navbar.is-info .navbar-start > a.navbar-item:hover, .navbar.is-info .navbar-start > a.navbar-item.is-active,
   .navbar.is-info .navbar-start .navbar-link:focus,
   .navbar.is-info .navbar-start .navbar-link:hover,
@@ -10519,30 +10519,30 @@ blockquote p {
     color: #fff;
     background-color: #118fe4;
   }
-  /* line 90, ../scss/cfs/_navbar.scss */
+  /* line 47, ../scss/cfs/_navbar.scss */
   .navbar.is-info .navbar-start .navbar-link::after,
   .navbar.is-info .navbar-end .navbar-link::after {
     border-color: #fff;
   }
-  /* line 96, ../scss/cfs/_navbar.scss */
+  /* line 53, ../scss/cfs/_navbar.scss */
   .navbar.is-info .navbar-item.has-dropdown:focus .navbar-link,
   .navbar.is-info .navbar-item.has-dropdown:hover .navbar-link,
   .navbar.is-info .navbar-item.has-dropdown.is-active .navbar-link {
     color: #fff;
     background-color: #118fe4;
   }
-  /* line 105, ../scss/cfs/_navbar.scss */
+  /* line 62, ../scss/cfs/_navbar.scss */
   .navbar.is-info .navbar-dropdown a.navbar-item.is-active {
     color: #fff;
     background-color: #209cee;
   }
 }
-/* line 117, ../scss/cfs/_navbar.scss */
+/* line 74, ../scss/cfs/_navbar.scss */
 .navbar.is-info .navbar-brand > .navbar-item,
 .navbar.is-info .navbar-brand .navbar-link {
   color: #fff;
 }
-/* line 124, ../scss/cfs/_navbar.scss */
+/* line 81, ../scss/cfs/_navbar.scss */
 .navbar.is-info .navbar-brand > a.navbar-item:focus, .navbar.is-info .navbar-brand > a.navbar-item:hover, .navbar.is-info .navbar-brand > a.navbar-item.is-active,
 .navbar.is-info .navbar-brand .navbar-link:focus,
 .navbar.is-info .navbar-brand .navbar-link:hover,
@@ -10550,28 +10550,28 @@ blockquote p {
   color: #fff;
   background-color: #118fe4;
 }
-/* line 133, ../scss/cfs/_navbar.scss */
+/* line 90, ../scss/cfs/_navbar.scss */
 .navbar.is-info .navbar-brand .navbar-link::after {
   border-color: #fff;
 }
-/* line 139, ../scss/cfs/_navbar.scss */
+/* line 96, ../scss/cfs/_navbar.scss */
 .navbar.is-info .navbar-burger {
   color: #fff;
 }
-/* line 70, ../scss/cfs/_navbar.scss */
+/* line 27, ../scss/cfs/_navbar.scss */
 .navbar.is-success {
   color: #fff;
   background-color: #23d160;
 }
 @media screen and (min-width: 769px) {
-  /* line 74, ../scss/cfs/_navbar.scss */
+  /* line 31, ../scss/cfs/_navbar.scss */
   .navbar.is-success .navbar-start > .navbar-item,
   .navbar.is-success .navbar-start .navbar-link,
   .navbar.is-success .navbar-end > .navbar-item,
   .navbar.is-success .navbar-end .navbar-link {
     color: #fff;
   }
-  /* line 81, ../scss/cfs/_navbar.scss */
+  /* line 38, ../scss/cfs/_navbar.scss */
   .navbar.is-success .navbar-start > a.navbar-item:focus, .navbar.is-success .navbar-start > a.navbar-item:hover, .navbar.is-success .navbar-start > a.navbar-item.is-active,
   .navbar.is-success .navbar-start .navbar-link:focus,
   .navbar.is-success .navbar-start .navbar-link:hover,
@@ -10585,30 +10585,30 @@ blockquote p {
     color: #fff;
     background-color: #20bc56;
   }
-  /* line 90, ../scss/cfs/_navbar.scss */
+  /* line 47, ../scss/cfs/_navbar.scss */
   .navbar.is-success .navbar-start .navbar-link::after,
   .navbar.is-success .navbar-end .navbar-link::after {
     border-color: #fff;
   }
-  /* line 96, ../scss/cfs/_navbar.scss */
+  /* line 53, ../scss/cfs/_navbar.scss */
   .navbar.is-success .navbar-item.has-dropdown:focus .navbar-link,
   .navbar.is-success .navbar-item.has-dropdown:hover .navbar-link,
   .navbar.is-success .navbar-item.has-dropdown.is-active .navbar-link {
     color: #fff;
     background-color: #20bc56;
   }
-  /* line 105, ../scss/cfs/_navbar.scss */
+  /* line 62, ../scss/cfs/_navbar.scss */
   .navbar.is-success .navbar-dropdown a.navbar-item.is-active {
     color: #fff;
     background-color: #23d160;
   }
 }
-/* line 117, ../scss/cfs/_navbar.scss */
+/* line 74, ../scss/cfs/_navbar.scss */
 .navbar.is-success .navbar-brand > .navbar-item,
 .navbar.is-success .navbar-brand .navbar-link {
   color: #fff;
 }
-/* line 124, ../scss/cfs/_navbar.scss */
+/* line 81, ../scss/cfs/_navbar.scss */
 .navbar.is-success .navbar-brand > a.navbar-item:focus, .navbar.is-success .navbar-brand > a.navbar-item:hover, .navbar.is-success .navbar-brand > a.navbar-item.is-active,
 .navbar.is-success .navbar-brand .navbar-link:focus,
 .navbar.is-success .navbar-brand .navbar-link:hover,
@@ -10616,28 +10616,28 @@ blockquote p {
   color: #fff;
   background-color: #20bc56;
 }
-/* line 133, ../scss/cfs/_navbar.scss */
+/* line 90, ../scss/cfs/_navbar.scss */
 .navbar.is-success .navbar-brand .navbar-link::after {
   border-color: #fff;
 }
-/* line 139, ../scss/cfs/_navbar.scss */
+/* line 96, ../scss/cfs/_navbar.scss */
 .navbar.is-success .navbar-burger {
   color: #fff;
 }
-/* line 70, ../scss/cfs/_navbar.scss */
+/* line 27, ../scss/cfs/_navbar.scss */
 .navbar.is-warning {
   color: rgba(0, 0, 0, 0.7);
   background-color: #ffdd57;
 }
 @media screen and (min-width: 769px) {
-  /* line 74, ../scss/cfs/_navbar.scss */
+  /* line 31, ../scss/cfs/_navbar.scss */
   .navbar.is-warning .navbar-start > .navbar-item,
   .navbar.is-warning .navbar-start .navbar-link,
   .navbar.is-warning .navbar-end > .navbar-item,
   .navbar.is-warning .navbar-end .navbar-link {
     color: rgba(0, 0, 0, 0.7);
   }
-  /* line 81, ../scss/cfs/_navbar.scss */
+  /* line 38, ../scss/cfs/_navbar.scss */
   .navbar.is-warning .navbar-start > a.navbar-item:focus, .navbar.is-warning .navbar-start > a.navbar-item:hover, .navbar.is-warning .navbar-start > a.navbar-item.is-active,
   .navbar.is-warning .navbar-start .navbar-link:focus,
   .navbar.is-warning .navbar-start .navbar-link:hover,
@@ -10651,30 +10651,30 @@ blockquote p {
     color: rgba(0, 0, 0, 0.7);
     background-color: #ffd83d;
   }
-  /* line 90, ../scss/cfs/_navbar.scss */
+  /* line 47, ../scss/cfs/_navbar.scss */
   .navbar.is-warning .navbar-start .navbar-link::after,
   .navbar.is-warning .navbar-end .navbar-link::after {
     border-color: rgba(0, 0, 0, 0.7);
   }
-  /* line 96, ../scss/cfs/_navbar.scss */
+  /* line 53, ../scss/cfs/_navbar.scss */
   .navbar.is-warning .navbar-item.has-dropdown:focus .navbar-link,
   .navbar.is-warning .navbar-item.has-dropdown:hover .navbar-link,
   .navbar.is-warning .navbar-item.has-dropdown.is-active .navbar-link {
     color: rgba(0, 0, 0, 0.7);
     background-color: #ffd83d;
   }
-  /* line 105, ../scss/cfs/_navbar.scss */
+  /* line 62, ../scss/cfs/_navbar.scss */
   .navbar.is-warning .navbar-dropdown a.navbar-item.is-active {
     color: rgba(0, 0, 0, 0.7);
     background-color: #ffdd57;
   }
 }
-/* line 117, ../scss/cfs/_navbar.scss */
+/* line 74, ../scss/cfs/_navbar.scss */
 .navbar.is-warning .navbar-brand > .navbar-item,
 .navbar.is-warning .navbar-brand .navbar-link {
   color: rgba(0, 0, 0, 0.7);
 }
-/* line 124, ../scss/cfs/_navbar.scss */
+/* line 81, ../scss/cfs/_navbar.scss */
 .navbar.is-warning .navbar-brand > a.navbar-item:focus, .navbar.is-warning .navbar-brand > a.navbar-item:hover, .navbar.is-warning .navbar-brand > a.navbar-item.is-active,
 .navbar.is-warning .navbar-brand .navbar-link:focus,
 .navbar.is-warning .navbar-brand .navbar-link:hover,
@@ -10682,28 +10682,28 @@ blockquote p {
   color: rgba(0, 0, 0, 0.7);
   background-color: #ffd83d;
 }
-/* line 133, ../scss/cfs/_navbar.scss */
+/* line 90, ../scss/cfs/_navbar.scss */
 .navbar.is-warning .navbar-brand .navbar-link::after {
   border-color: rgba(0, 0, 0, 0.7);
 }
-/* line 139, ../scss/cfs/_navbar.scss */
+/* line 96, ../scss/cfs/_navbar.scss */
 .navbar.is-warning .navbar-burger {
   color: rgba(0, 0, 0, 0.7);
 }
-/* line 70, ../scss/cfs/_navbar.scss */
+/* line 27, ../scss/cfs/_navbar.scss */
 .navbar.is-danger {
   color: #fff;
   background-color: #ff3860;
 }
 @media screen and (min-width: 769px) {
-  /* line 74, ../scss/cfs/_navbar.scss */
+  /* line 31, ../scss/cfs/_navbar.scss */
   .navbar.is-danger .navbar-start > .navbar-item,
   .navbar.is-danger .navbar-start .navbar-link,
   .navbar.is-danger .navbar-end > .navbar-item,
   .navbar.is-danger .navbar-end .navbar-link {
     color: #fff;
   }
-  /* line 81, ../scss/cfs/_navbar.scss */
+  /* line 38, ../scss/cfs/_navbar.scss */
   .navbar.is-danger .navbar-start > a.navbar-item:focus, .navbar.is-danger .navbar-start > a.navbar-item:hover, .navbar.is-danger .navbar-start > a.navbar-item.is-active,
   .navbar.is-danger .navbar-start .navbar-link:focus,
   .navbar.is-danger .navbar-start .navbar-link:hover,
@@ -10717,30 +10717,30 @@ blockquote p {
     color: #fff;
     background-color: #ff1f4b;
   }
-  /* line 90, ../scss/cfs/_navbar.scss */
+  /* line 47, ../scss/cfs/_navbar.scss */
   .navbar.is-danger .navbar-start .navbar-link::after,
   .navbar.is-danger .navbar-end .navbar-link::after {
     border-color: #fff;
   }
-  /* line 96, ../scss/cfs/_navbar.scss */
+  /* line 53, ../scss/cfs/_navbar.scss */
   .navbar.is-danger .navbar-item.has-dropdown:focus .navbar-link,
   .navbar.is-danger .navbar-item.has-dropdown:hover .navbar-link,
   .navbar.is-danger .navbar-item.has-dropdown.is-active .navbar-link {
     color: #fff;
     background-color: #ff1f4b;
   }
-  /* line 105, ../scss/cfs/_navbar.scss */
+  /* line 62, ../scss/cfs/_navbar.scss */
   .navbar.is-danger .navbar-dropdown a.navbar-item.is-active {
     color: #fff;
     background-color: #ff3860;
   }
 }
-/* line 117, ../scss/cfs/_navbar.scss */
+/* line 74, ../scss/cfs/_navbar.scss */
 .navbar.is-danger .navbar-brand > .navbar-item,
 .navbar.is-danger .navbar-brand .navbar-link {
   color: #fff;
 }
-/* line 124, ../scss/cfs/_navbar.scss */
+/* line 81, ../scss/cfs/_navbar.scss */
 .navbar.is-danger .navbar-brand > a.navbar-item:focus, .navbar.is-danger .navbar-brand > a.navbar-item:hover, .navbar.is-danger .navbar-brand > a.navbar-item.is-active,
 .navbar.is-danger .navbar-brand .navbar-link:focus,
 .navbar.is-danger .navbar-brand .navbar-link:hover,
@@ -10748,71 +10748,71 @@ blockquote p {
   color: #fff;
   background-color: #ff1f4b;
 }
-/* line 133, ../scss/cfs/_navbar.scss */
+/* line 90, ../scss/cfs/_navbar.scss */
 .navbar.is-danger .navbar-brand .navbar-link::after {
   border-color: #fff;
 }
-/* line 139, ../scss/cfs/_navbar.scss */
+/* line 96, ../scss/cfs/_navbar.scss */
 .navbar.is-danger .navbar-burger {
   color: #fff;
 }
-/* line 145, ../scss/cfs/_navbar.scss */
+/* line 102, ../scss/cfs/_navbar.scss */
 .navbar > .container {
   display: flex;
   width: 100%;
-  min-height: 3.75rem;
+  min-height: 3.125rem;
   align-items: stretch;
 }
-/* line 154, ../scss/cfs/_navbar.scss */
+/* line 111, ../scss/cfs/_navbar.scss */
 .navbar.has-shadow {
   box-shadow: 0 2px 0 0 whitesmoke;
 }
-/* line 158, ../scss/cfs/_navbar.scss */
+/* line 115, ../scss/cfs/_navbar.scss */
 .navbar.is-fixed-bottom, .navbar.is-fixed-top {
   position: fixed;
   z-index: 30;
   right: 0;
   left: 0;
 }
-/* line 163, ../scss/cfs/_navbar.scss */
+/* line 120, ../scss/cfs/_navbar.scss */
 .navbar.is-fixed-bottom {
   bottom: 0;
 }
-/* line 166, ../scss/cfs/_navbar.scss */
+/* line 123, ../scss/cfs/_navbar.scss */
 .navbar.is-fixed-bottom.has-shadow {
   box-shadow: 0 -2px 0 0 whitesmoke;
 }
-/* line 171, ../scss/cfs/_navbar.scss */
+/* line 128, ../scss/cfs/_navbar.scss */
 .navbar.is-fixed-top {
   top: 0;
 }
 
-/* line 178, ../scss/cfs/_navbar.scss */
+/* line 135, ../scss/cfs/_navbar.scss */
 html.has-navbar-fixed-top,
 body.has-navbar-fixed-top {
-  padding-top: 3.75rem;
+  padding-top: 3.125rem;
 }
-/* line 182, ../scss/cfs/_navbar.scss */
+/* line 139, ../scss/cfs/_navbar.scss */
 html.has-navbar-fixed-bottom,
 body.has-navbar-fixed-bottom {
-  padding-bottom: 3.75rem;
+  padding-bottom: 3.125rem;
 }
 
-/* line 187, ../scss/cfs/_navbar.scss */
+/* line 144, ../scss/cfs/_navbar.scss */
 .navbar-brand,
 .navbar-tabs {
   display: flex;
-  min-height: 3.75rem;
+  min-height: 3.125rem;
   align-items: stretch;
   flex-shrink: 0;
 }
 
-/* line 199, ../scss/cfs/_navbar.scss */
+/* line 156, ../scss/cfs/_navbar.scss */
 .navbar-brand a.navbar-item:focus, .navbar-brand a.navbar-item:hover {
   background-color: transparent;
 }
 
-/* line 206, ../scss/cfs/_navbar.scss */
+/* line 163, ../scss/cfs/_navbar.scss */
 .navbar-tabs {
   -webkit-overflow-scrolling: touch;
   overflow-x: auto;
@@ -10820,13 +10820,13 @@ body.has-navbar-fixed-bottom {
   max-width: 100vw;
 }
 
-/* line 215, ../scss/cfs/_navbar.scss */
+/* line 172, ../scss/cfs/_navbar.scss */
 .navbar-burger {
   cursor: pointer;
   display: block;
-  height: 3.75rem;
+  height: 3.125rem;
   position: relative;
-  width: 3.75rem;
+  width: 3.125rem;
   margin-left: auto;
   color: #4a4a4a;
 }
@@ -10872,13 +10872,13 @@ body.has-navbar-fixed-bottom {
   transform: translateY(-5px) rotate(-45deg);
 }
 
-/* line 223, ../scss/cfs/_navbar.scss */
+/* line 180, ../scss/cfs/_navbar.scss */
 .sidebar-trigger {
   cursor: pointer;
   display: block;
-  height: 3.75rem;
+  height: 3.125rem;
   position: relative;
-  width: 3.75rem;
+  width: 3.125rem;
   color: #4a4a4a;
 }
 /* line 41, ../scss/bulma/utilities/_mixins.scss */
@@ -10923,12 +10923,12 @@ body.has-navbar-fixed-bottom {
   transform: translateY(-5px) rotate(-45deg);
 }
 
-/* line 229, ../scss/cfs/_navbar.scss */
+/* line 186, ../scss/cfs/_navbar.scss */
 .navbar-menu {
   display: none;
 }
 
-/* line 233, ../scss/cfs/_navbar.scss */
+/* line 190, ../scss/cfs/_navbar.scss */
 .navbar-item,
 .navbar-link {
   display: block;
@@ -10937,24 +10937,24 @@ body.has-navbar-fixed-bottom {
   padding: 0.5rem 0.75rem;
   color: #4a4a4a;
 }
-/* line 245, ../scss/cfs/_navbar.scss */
+/* line 202, ../scss/cfs/_navbar.scss */
 .navbar-item.navbar-logo,
 .navbar-link.navbar-logo {
   padding-left: 0;
 }
-/* line 250, ../scss/cfs/_navbar.scss */
+/* line 207, ../scss/cfs/_navbar.scss */
 .navbar-item .icon:only-child,
 .navbar-link .icon:only-child {
   margin-right: -0.25rem;
   margin-left: -0.25rem;
 }
 
-/* line 257, ../scss/cfs/_navbar.scss */
+/* line 214, ../scss/cfs/_navbar.scss */
 a.navbar-item,
 .navbar-link {
   cursor: pointer;
 }
-/* line 261, ../scss/cfs/_navbar.scss */
+/* line 218, ../scss/cfs/_navbar.scss */
 a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-item.is-active,
 .navbar-link:focus,
 .navbar-link:focus-within,
@@ -10964,37 +10964,37 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
   background-color: #fafafa;
 }
 
-/* line 270, ../scss/cfs/_navbar.scss */
+/* line 227, ../scss/cfs/_navbar.scss */
 .navbar-item {
   display: block;
   flex-grow: 0;
   flex-shrink: 0;
 }
-/* line 276, ../scss/cfs/_navbar.scss */
+/* line 233, ../scss/cfs/_navbar.scss */
 .navbar-item img {
-  max-height: 3.125rem;
+  max-height: 2.5rem;
 }
-/* line 280, ../scss/cfs/_navbar.scss */
+/* line 237, ../scss/cfs/_navbar.scss */
 .navbar-item.has-dropdown {
   padding: 0;
 }
-/* line 284, ../scss/cfs/_navbar.scss */
+/* line 241, ../scss/cfs/_navbar.scss */
 .navbar-item.is-expanded {
   flex-grow: 1;
   flex-shrink: 1;
 }
-/* line 289, ../scss/cfs/_navbar.scss */
+/* line 246, ../scss/cfs/_navbar.scss */
 .navbar-item.is-tab {
-  min-height: 3.75rem;
+  min-height: 3.125rem;
   padding-bottom: calc(0.5rem - 1px);
   border-bottom: 1px solid transparent;
 }
-/* line 295, ../scss/cfs/_navbar.scss */
+/* line 252, ../scss/cfs/_navbar.scss */
 .navbar-item.is-tab:focus, .navbar-item.is-tab:hover {
   border-bottom-color: #3273dc;
   background-color: transparent;
 }
-/* line 301, ../scss/cfs/_navbar.scss */
+/* line 258, ../scss/cfs/_navbar.scss */
 .navbar-item.is-tab.is-active {
   padding-bottom: calc(0.5rem - 3px);
   color: #3273dc;
@@ -11004,36 +11004,36 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
   background-color: transparent;
 }
 
-/* line 313, ../scss/cfs/_navbar.scss */
+/* line 270, ../scss/cfs/_navbar.scss */
 .navbar-content {
   flex-grow: 1;
   flex-shrink: 1;
 }
 
-/* line 318, ../scss/cfs/_navbar.scss */
+/* line 275, ../scss/cfs/_navbar.scss */
 .navbar-link:not(.is-arrowless) {
   padding-right: 2.5em;
 }
-/* line 321, ../scss/cfs/_navbar.scss */
+/* line 278, ../scss/cfs/_navbar.scss */
 .navbar-link:not(.is-arrowless)::after {
   right: 1.125em;
   margin-top: -0.375em;
   border-color: #3273dc;
 }
 
-/* line 332, ../scss/cfs/_navbar.scss */
+/* line 289, ../scss/cfs/_navbar.scss */
 .navbar-dropdown {
   font-size: 0.875rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
-/* line 338, ../scss/cfs/_navbar.scss */
+/* line 295, ../scss/cfs/_navbar.scss */
 .navbar-dropdown .navbar-item {
   padding-right: 1.5rem;
   padding-left: 1.5rem;
 }
 
-/* line 344, ../scss/cfs/_navbar.scss */
+/* line 301, ../scss/cfs/_navbar.scss */
 .navbar-divider {
   display: none;
   height: 2px;
@@ -11042,7 +11042,7 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
   background-color: whitesmoke;
 }
 
-/* line 356, ../scss/cfs/_navbar.scss */
+/* line 313, ../scss/cfs/_navbar.scss */
 .navbar,
 .navbar-menu,
 .navbar-start,
@@ -11051,71 +11051,71 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
   align-items: stretch;
 }
 
-/* line 365, ../scss/cfs/_navbar.scss */
+/* line 322, ../scss/cfs/_navbar.scss */
 .navbar {
-  min-height: 3.75rem;
+  min-height: 3.125rem;
 }
-/* line 368, ../scss/cfs/_navbar.scss */
+/* line 325, ../scss/cfs/_navbar.scss */
 .navbar.is-spaced {
   padding: 1rem 2rem;
 }
-/* line 371, ../scss/cfs/_navbar.scss */
+/* line 328, ../scss/cfs/_navbar.scss */
 .navbar.is-spaced .navbar-start,
 .navbar.is-spaced .navbar-end {
   align-items: center;
 }
-/* line 376, ../scss/cfs/_navbar.scss */
+/* line 333, ../scss/cfs/_navbar.scss */
 .navbar.is-spaced a.navbar-item,
 .navbar.is-spaced .navbar-link {
   border-radius: 4px;
 }
-/* line 385, ../scss/cfs/_navbar.scss */
+/* line 342, ../scss/cfs/_navbar.scss */
 .navbar.is-transparent a.navbar-item:focus, .navbar.is-transparent a.navbar-item:hover, .navbar.is-transparent a.navbar-item.is-active,
 .navbar.is-transparent .navbar-link:focus,
 .navbar.is-transparent .navbar-link:hover,
 .navbar.is-transparent .navbar-link.is-active {
   background-color: transparent !important;
 }
-/* line 397, ../scss/cfs/_navbar.scss */
+/* line 354, ../scss/cfs/_navbar.scss */
 .navbar.is-transparent .navbar-item.has-dropdown.is-active .navbar-link, .navbar.is-transparent .navbar-item.has-dropdown.is-hoverable:focus .navbar-link, .navbar.is-transparent .navbar-item.has-dropdown.is-hoverable:focus-within .navbar-link, .navbar.is-transparent .navbar-item.has-dropdown.is-hoverable:hover .navbar-link {
   background-color: transparent !important;
 }
-/* line 405, ../scss/cfs/_navbar.scss */
+/* line 362, ../scss/cfs/_navbar.scss */
 .navbar.is-transparent .navbar-dropdown a.navbar-item:focus, .navbar.is-transparent .navbar-dropdown a.navbar-item:hover {
   color: #0a0a0a;
   background-color: whitesmoke;
 }
-/* line 411, ../scss/cfs/_navbar.scss */
+/* line 368, ../scss/cfs/_navbar.scss */
 .navbar.is-transparent .navbar-dropdown a.navbar-item.is-active {
   color: #3273dc;
   background-color: whitesmoke;
 }
 
-/* line 420, ../scss/cfs/_navbar.scss */
+/* line 377, ../scss/cfs/_navbar.scss */
 .navbar-burger {
   display: none;
 }
 
-/* line 424, ../scss/cfs/_navbar.scss */
+/* line 381, ../scss/cfs/_navbar.scss */
 .navbar-item,
 .navbar-link {
   display: flex;
   align-items: center;
 }
 
-/* line 431, ../scss/cfs/_navbar.scss */
+/* line 388, ../scss/cfs/_navbar.scss */
 .navbar-item {
   display: flex;
 }
-/* line 434, ../scss/cfs/_navbar.scss */
+/* line 391, ../scss/cfs/_navbar.scss */
 .navbar-item.has-dropdown {
   align-items: stretch;
 }
-/* line 439, ../scss/cfs/_navbar.scss */
+/* line 396, ../scss/cfs/_navbar.scss */
 .navbar-item.has-dropdown-up .navbar-link::after {
   transform: rotate(135deg) translate(0.25em, -0.25em);
 }
-/* line 443, ../scss/cfs/_navbar.scss */
+/* line 400, ../scss/cfs/_navbar.scss */
 .navbar-item.has-dropdown-up .navbar-dropdown {
   top: auto;
   bottom: 100%;
@@ -11124,36 +11124,36 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
   border-radius: 6px 6px 0 0;
   box-shadow: 0 -8px 8px rgba(10, 10, 10, 0.1);
 }
-/* line 458, ../scss/cfs/_navbar.scss */
+/* line 415, ../scss/cfs/_navbar.scss */
 .navbar-item.is-active .navbar-dropdown, .navbar-item.is-hoverable:focus .navbar-dropdown, .navbar-item.is-hoverable:focus-within .navbar-dropdown, .navbar-item.is-hoverable:hover .navbar-dropdown {
   display: block;
 }
-/* line 461, ../scss/cfs/_navbar.scss */
+/* line 418, ../scss/cfs/_navbar.scss */
 .navbar.is-spaced .navbar-item.is-active .navbar-dropdown, .navbar-item.is-active .navbar-dropdown.is-boxed, .navbar.is-spaced .navbar-item.is-hoverable:focus .navbar-dropdown, .navbar-item.is-hoverable:focus .navbar-dropdown.is-boxed, .navbar.is-spaced .navbar-item.is-hoverable:focus-within .navbar-dropdown, .navbar-item.is-hoverable:focus-within .navbar-dropdown.is-boxed, .navbar.is-spaced .navbar-item.is-hoverable:hover .navbar-dropdown, .navbar-item.is-hoverable:hover .navbar-dropdown.is-boxed {
   transform: translateY(0);
   pointer-events: auto;
   opacity: 1;
 }
 
-/* line 472, ../scss/cfs/_navbar.scss */
+/* line 429, ../scss/cfs/_navbar.scss */
 .navbar-menu {
   flex-grow: 1;
   flex-shrink: 0;
 }
 
-/* line 477, ../scss/cfs/_navbar.scss */
+/* line 434, ../scss/cfs/_navbar.scss */
 .navbar-start {
   margin-right: auto;
   justify-content: flex-start;
 }
 
-/* line 483, ../scss/cfs/_navbar.scss */
+/* line 440, ../scss/cfs/_navbar.scss */
 .navbar-end {
   margin-left: auto;
   justify-content: flex-end;
 }
 
-/* line 489, ../scss/cfs/_navbar.scss */
+/* line 446, ../scss/cfs/_navbar.scss */
 .navbar-dropdown {
   display: none;
   font-size: 0.875rem;
@@ -11168,26 +11168,26 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
   background-color: white;
   box-shadow: 0 8px 8px rgba(10, 10, 10, 0.1);
 }
-/* line 507, ../scss/cfs/_navbar.scss */
+/* line 464, ../scss/cfs/_navbar.scss */
 .navbar-dropdown .navbar-item {
   padding: 0.375rem 1rem;
   white-space: nowrap;
 }
-/* line 513, ../scss/cfs/_navbar.scss */
+/* line 470, ../scss/cfs/_navbar.scss */
 .navbar-dropdown a.navbar-item {
   padding-right: 3rem;
 }
-/* line 516, ../scss/cfs/_navbar.scss */
+/* line 473, ../scss/cfs/_navbar.scss */
 .navbar-dropdown a.navbar-item:focus, .navbar-dropdown a.navbar-item:hover {
   color: #0a0a0a;
   background-color: whitesmoke;
 }
-/* line 522, ../scss/cfs/_navbar.scss */
+/* line 479, ../scss/cfs/_navbar.scss */
 .navbar-dropdown a.navbar-item.is-active {
   color: #3273dc;
   background-color: whitesmoke;
 }
-/* line 528, ../scss/cfs/_navbar.scss */
+/* line 485, ../scss/cfs/_navbar.scss */
 .navbar.is-spaced .navbar-dropdown, .navbar-dropdown.is-boxed {
   display: block;
   top: calc(100% + (-4px));
@@ -11200,88 +11200,88 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
   border-radius: 6px;
   box-shadow: 0 8px 8px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
 }
-/* line 545, ../scss/cfs/_navbar.scss */
+/* line 502, ../scss/cfs/_navbar.scss */
 .navbar-dropdown.is-right {
   right: 0;
   left: auto;
 }
 
-/* line 551, ../scss/cfs/_navbar.scss */
+/* line 508, ../scss/cfs/_navbar.scss */
 .navbar-divider {
   display: block;
 }
 
-/* line 557, ../scss/cfs/_navbar.scss */
+/* line 514, ../scss/cfs/_navbar.scss */
 .navbar > .container .navbar-brand,
 .container > .navbar .navbar-brand {
   margin-left: -0.75rem;
 }
-/* line 561, ../scss/cfs/_navbar.scss */
+/* line 518, ../scss/cfs/_navbar.scss */
 .navbar > .container .navbar-menu,
 .container > .navbar .navbar-menu {
   margin-right: -0.75rem;
 }
 
-/* line 568, ../scss/cfs/_navbar.scss */
+/* line 525, ../scss/cfs/_navbar.scss */
 .navbar.is-fixed-bottom-desktop, .navbar.is-fixed-top-desktop {
   position: fixed;
   z-index: 30;
   right: 0;
   left: 0;
 }
-/* line 573, ../scss/cfs/_navbar.scss */
+/* line 530, ../scss/cfs/_navbar.scss */
 .navbar.is-fixed-bottom-desktop {
   bottom: 0;
 }
-/* line 576, ../scss/cfs/_navbar.scss */
+/* line 533, ../scss/cfs/_navbar.scss */
 .navbar.is-fixed-bottom-desktop.has-shadow {
   box-shadow: 0 -2px 3px rgba(10, 10, 10, 0.1);
 }
-/* line 581, ../scss/cfs/_navbar.scss */
+/* line 538, ../scss/cfs/_navbar.scss */
 .navbar.is-fixed-top-desktop {
   top: 0;
 }
 
-/* line 588, ../scss/cfs/_navbar.scss */
+/* line 545, ../scss/cfs/_navbar.scss */
 html.has-navbar-fixed-top-desktop,
 body.has-navbar-fixed-top-desktop {
-  padding-top: 3.75rem;
+  padding-top: 3.125rem;
 }
-/* line 592, ../scss/cfs/_navbar.scss */
+/* line 549, ../scss/cfs/_navbar.scss */
 html.has-navbar-fixed-bottom-desktop,
 body.has-navbar-fixed-bottom-desktop {
-  padding-bottom: 3.75rem;
+  padding-bottom: 3.125rem;
 }
-/* line 596, ../scss/cfs/_navbar.scss */
+/* line 553, ../scss/cfs/_navbar.scss */
 html.has-spaced-navbar-fixed-top,
 body.has-spaced-navbar-fixed-top {
-  padding-top: 5.75rem;
+  padding-top: 5.125rem;
 }
-/* line 600, ../scss/cfs/_navbar.scss */
+/* line 557, ../scss/cfs/_navbar.scss */
 html.has-spaced-navbar-fixed-bottom,
 body.has-spaced-navbar-fixed-bottom {
-  padding-bottom: 5.75rem;
+  padding-bottom: 5.125rem;
 }
 
-/* line 608, ../scss/cfs/_navbar.scss */
+/* line 565, ../scss/cfs/_navbar.scss */
 a.navbar-item.is-active,
 .navbar-link.is-active {
   color: #0a0a0a;
 }
-/* line 612, ../scss/cfs/_navbar.scss */
+/* line 569, ../scss/cfs/_navbar.scss */
 a.navbar-item.is-active:not(:focus):not(:hover),
 .navbar-link.is-active:not(:focus):not(:hover) {
   background-color: transparent;
 }
 
-/* line 621, ../scss/cfs/_navbar.scss */
+/* line 578, ../scss/cfs/_navbar.scss */
 .navbar-item.has-dropdown:focus .navbar-link, .navbar-item.has-dropdown:hover .navbar-link, .navbar-item.has-dropdown.is-active .navbar-link {
   background-color: #fafafa;
 }
 
-/* line 630, ../scss/cfs/_navbar.scss */
+/* line 587, ../scss/cfs/_navbar.scss */
 .hero.is-fullheight-with-navbar {
-  min-height: calc(100vh - 3.75rem);
+  min-height: calc(100vh - 3.125rem);
 }
 
 /* line 1, ../scss/cfs/_sidebar.scss */
@@ -11347,12 +11347,22 @@ a.navbar-item.is-active:not(:focus):not(:hover),
 }
 /* line 62, ../scss/cfs/_sidebar.scss */
 .sidebar .menu-header {
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: bold;
+  padding-right: 0.625rem;
   padding-left: 1rem;
+  color: #444;
+}
+/* line 71, ../scss/cfs/_sidebar.scss */
+.sidebar .menu-header a {
+  color: #444;
+}
+/* line 74, ../scss/cfs/_sidebar.scss */
+.sidebar .menu-header a:hover {
+  color: #88beec;
 }
 
-/* line 70, ../scss/cfs/_sidebar.scss */
+/* line 81, ../scss/cfs/_sidebar.scss */
 .sidebar-container {
   display: -webkit-flex;
   display: flex;
@@ -11361,7 +11371,7 @@ a.navbar-item.is-active:not(:focus):not(:hover),
   height: 100%;
 }
 
-/* line 77, ../scss/cfs/_sidebar.scss */
+/* line 88, ../scss/cfs/_sidebar.scss */
 .sidebar-header {
   display: -webkit-flex;
   display: flex;
@@ -11375,7 +11385,7 @@ a.navbar-item.is-active:not(:focus):not(:hover),
   background-color: #f7f7f7;
 }
 
-/* line 89, ../scss/cfs/_sidebar.scss */
+/* line 100, ../scss/cfs/_sidebar.scss */
 .sidebar-navbar {
   display: -webkit-flex;
   display: flex;
@@ -11383,12 +11393,12 @@ a.navbar-item.is-active:not(:focus):not(:hover),
   flex-direction: row;
   -webkit-align-items: center;
   align-items: center;
-  height: 3.8125rem;
+  height: 3.1875rem;
   border-bottom: 1px solid #eee;
   background-color: #f7f7f7;
 }
 
-/* line 100, ../scss/cfs/_sidebar.scss */
+/* line 111, ../scss/cfs/_sidebar.scss */
 .sidebar-body {
   -webkit-flex: 1;
   flex: 1;
@@ -11398,7 +11408,7 @@ a.navbar-item.is-active:not(:focus):not(:hover),
   opacity: 1;
 }
 
-/* line 111, ../scss/cfs/_sidebar.scss */
+/* line 122, ../scss/cfs/_sidebar.scss */
 .sidebar-footer {
   display: -webkit-flex;
   display: flex;
@@ -11411,7 +11421,7 @@ a.navbar-item.is-active:not(:focus):not(:hover),
   border-top: 1px solid #dfe1e3;
 }
 
-/* line 124, ../scss/cfs/_sidebar.scss */
+/* line 135, ../scss/cfs/_sidebar.scss */
 .sidebar-divider {
   display: block;
   overflow: hidden;
@@ -11422,17 +11432,73 @@ a.navbar-item.is-active:not(:focus):not(:hover),
   background: #d8d9da;
 }
 
-/* line 138, ../scss/cfs/_sidebar.scss */
+/* line 149, ../scss/cfs/_sidebar.scss */
 body.sidebar-expanded .sidebar-background {
   display: block;
 }
-/* line 142, ../scss/cfs/_sidebar.scss */
+/* line 153, ../scss/cfs/_sidebar.scss */
 body.sidebar-expanded .sidebar {
   -moz-transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
+/* line 159, ../scss/cfs/_sidebar.scss */
+body.sidebar-adaptable .navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+/* line 166, ../scss/cfs/_sidebar.scss */
+body.sidebar-adaptable .main-content {
+  margin-top: 3.1875rem;
+}
+/* line 170, ../scss/cfs/_sidebar.scss */
+body.sidebar-adaptable .sidebar {
+  top: 3.1875rem;
+}
+/* line 174, ../scss/cfs/_sidebar.scss */
+body.sidebar-adaptable .sidebar-navbar {
+  display: none;
+}
+/* line 180, ../scss/cfs/_sidebar.scss */
+body.sidebar-adaptable.sidebar-expanded .sidebar-background {
+  display: none;
+}
+/* line 184, ../scss/cfs/_sidebar.scss */
+body.sidebar-adaptable.sidebar-expanded .main-content {
+  margin-left: 15.6875rem;
+}
 
+@media screen and (max-width: 768px) {
+  /* line 194, ../scss/cfs/_sidebar.scss */
+  body.sidebar-expanded .sidebar-background,
+  body.sidebar-adaptable.sidebar-expanded .sidebar-background {
+    display: block;
+  }
+  /* line 198, ../scss/cfs/_sidebar.scss */
+  body.sidebar-expanded .main-content,
+  body.sidebar-adaptable.sidebar-expanded .main-content {
+    margin-left: 0;
+  }
+
+  /* line 204, ../scss/cfs/_sidebar.scss */
+  body.sidebar-adaptable .navbar {
+    position: relative;
+  }
+  /* line 208, ../scss/cfs/_sidebar.scss */
+  body.sidebar-adaptable .main-content {
+    margint-top: 0;
+  }
+  /* line 212, ../scss/cfs/_sidebar.scss */
+  body.sidebar-adaptable .sidebar {
+    top: 0;
+  }
+  /* line 216, ../scss/cfs/_sidebar.scss */
+  body.sidebar-adaptable .sidebar-navbar {
+    display: -webkit-flex;
+    display: flex;
+  }
+}
 /* line 3, ../scss/cfs/_parallax.scss */
 .parallax-block {
   margin-bottom: 1.875rem;

@@ -2,6 +2,12 @@
 {% load staticfiles %}
 {% load i18n %}
 
+{% block body_classes %}
+
+sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-nav-expanded,' }}
+
+{% endblock body_classes %}
+
 {% block content_top %}
 
 {% block breadcrumbs %}
