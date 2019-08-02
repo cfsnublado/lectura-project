@@ -32,7 +32,7 @@
 {% block page_footer %}
 
 {% if post.audio_url %}
-  <footer class="page-footer post-view-footer is-fixed">
+  <footer class="page-footer post-view-footer is-fixed is-bordered">
   <audio-player
   audio-player-id="post-audio"
   audio-file="{{ post.audio_url }}"
