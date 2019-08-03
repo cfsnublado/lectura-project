@@ -10106,6 +10106,12 @@ blockquote p {
   content: ">";
 }
 
+@media screen and (max-width: 768px) {
+  /* line 12, ../scss/cfs/_breadcrumb.scss */
+  .breadcrumb {
+    display: none;
+  }
+}
 /* line 9, ../scss/cfs/_navbar.scss */
 .navbar {
   position: relative;
