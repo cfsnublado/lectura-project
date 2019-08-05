@@ -15,11 +15,7 @@
 {% url 'reading:project' 0 'zzz' as project_url %}
 {% url 'api:project-detail' 0 as project_delete_url %}
 
-<div class="columns">
-<div class="column is-6 is-offset-3">
 {% include "reading/includes/vue/_projects.html" %}
-</div>
-</div>
 
 {% endblock content %}
 

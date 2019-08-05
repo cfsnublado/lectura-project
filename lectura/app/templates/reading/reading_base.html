@@ -14,10 +14,8 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
 
 {% if request.session.session_obj %}
 
-  <div class="columns">
-  <div class="column is-10 is-offset-1">
-
   <nav class="breadcrumb">
+
   <ul>
   {% block breadcrumb_content %}
 
@@ -25,10 +23,8 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
 
   {% endblock breadcrumb_content %}
   </ul>
-  </nav>
 
-  </div>
-  </div>
+  </nav>
 
 {% endif %}
 

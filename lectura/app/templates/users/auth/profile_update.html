@@ -13,8 +13,6 @@
 {% block content %}
 
 {% if gravatar_img %}
-  <div class="columns">
-  <div class="column is-10 is-offset-1">
 
   {% profile_image user 100 "circle" %}
 
@@ -24,12 +22,7 @@
   </a>
   </div>
 
-  </div>
-  </div>
 {% endif %}
-
-<div class="columns">
-<div class="column is-10 is-offset-1">
 
 <form id="profile-update-form" method="post" action="{% url 'users:profile_update' user_profile.username %}" novalidate>
 
@@ -116,8 +109,5 @@ style="margin-top: 20px;"
 >
 {% trans "label_update" %}
 </button>
-
-</div>
-</div>
 
 {% endblock content %}

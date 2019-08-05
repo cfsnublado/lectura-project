@@ -34,7 +34,6 @@
   color: #666;
 }
 
-
 </style>
 {% endblock styles %}
 
@@ -182,11 +181,15 @@ href="{% url 'reading:projects' %}"
 {% block presentation %}{% endblock presentation %}
 
 <section class="section {% block main_section_classes %}main-content{% endblock main_section_classes %}">
+<div class="columns">
+<div class="column is-10 is-offset-1">
 
 {% block content_top %}{% endblock content_top %}
 
 {% block content %}{% endblock content %}
 
+</div>
+</div>
 </section>
 
 {% block page_footer %}{% endblock page_footer %}

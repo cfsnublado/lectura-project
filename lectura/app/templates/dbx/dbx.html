@@ -51,8 +51,48 @@ init-upload-url={% url 'api:dbx_upload_audio' %}
 ref="dbx-user-files"
 files-url="{% url 'api:dbx_user_files' %}"
 :parent-processing="processing"
-@select-file="getSharedLink($event.path_lower)"
+@select-file="getSharedLink($event)"
+inline-template
 >
+
+<div>
+
+<button
+class="button is-primary"
+v-bind:class="[{ 'is-loading': processing }]"
+@click.prevent="getFiles"
+>
+Get User dbx files
+</button>
+
+<div class="menu">
+
+<ul class="menu-list">
+
+<dbx-file
+v-for="(file, index) in files"
+:key="file.id"
+:init-file="file"
+@select-file="selectFile($event.path_lower)"
+inline-template
+>
+<li> 
+<a 
+href="#"
+@click.prevent="selectFile(file)"
+>
+[[ file.name ]]
+</a>
+</li>
+</dbx-file>
+
+</ul>
+
+</div>
+
+</div>
+
+
 </dbx-user-files>
 
 </div>

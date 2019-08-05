@@ -15,9 +15,6 @@
 
 {% block content %}
 
-<div class="columns">
-<div class="column is-10 is-offset-1">
-
 <form 
 id="create-form" 
 action="{% url 'reading:post_create' project.id project.slug %}" 
@@ -34,8 +31,5 @@ novalidate
 </button>
 
 </form>
-
-</div>
-</div>
 
 {% endblock content %}

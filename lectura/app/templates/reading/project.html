@@ -13,12 +13,7 @@
 {% url 'reading:post' 0 'zzz' as post_url %}
 {% url 'api:post-detail' 0 as post_delete_url %}
 
-
-<div class="columns">
-<div class="column is-10 is-offset-1">
 {% include "reading/includes/vue/_posts.html" %}
-</div>
-</div>
 
 {% endblock content %}
 

@@ -1,5 +1,26 @@
+const DbxFile = {
+  props: {
+    initFile: {
+      type: Object,
+      required: true
+    }
+  },
+  data() {
+    return {
+      file: this.initFile
+    }
+  },
+  methods: {
+    selectFile(file) {
+      this.$emit('select-file', file)
+    }
+  }
+}
 
 const DbxUserFiles = {
+  components: {
+    'dbx-file': DbxFile
+  },
   mixins: [AjaxProcessMixin],
   props: {
     filesUrl: {
@@ -20,6 +41,7 @@ const DbxUserFiles = {
       axios.get(this.filesUrl)
       .then(response => {
         this.files = response.data.files
+        console.log(this.files)
       })
       .catch(error => {
         if (error.response) {
@@ -35,39 +57,10 @@ const DbxUserFiles = {
         this.complete()
       })
     },
-    selectFile(file) {
-      this.$emit('select-file', file)
-    }
+    selectFile(path) {
+      this.$emit('select-file', path)
+    },
   },
-  template: `
-    <div>
-
-    <button
-    class="button is-primary"
-    v-bind:class="[{ 'is-loading': processing }]"
-    @click.prevent="getFiles"
-    >
-    Get User dbx files
-    </button>
-
-    <div class="menu">
-
-    <ul class="menu-list">
-
-    <li v-for="(file, index) in files">
-    <a
-    @click.prevent="selectFile(file)"
-    > 
-    {{ file.name }} 
-    </a>
-    </li>
-
-    </ul>
-
-    </div>
-
-    </div>
-  `
 }
 
 const DbxAudioFileUploader = {

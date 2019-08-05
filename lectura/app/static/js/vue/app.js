@@ -14,6 +14,7 @@ Vue.component('post', Post)
 
 // Dropbox
 Vue.component('dbx', Dbx)
+Vue.component('dbx-file', DbxFile)
 Vue.component('dbx-user-files', DbxUserFiles)
 Vue.component('dbx-audio-file-uploader', DbxAudioFileUploader)
 
