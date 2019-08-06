@@ -1,5 +1,3 @@
-import json
-
 import magic
 from dropbox.exceptions import ApiError
 from rest_framework import status
@@ -57,6 +55,32 @@ class DbxUserFilesView(
             raise APIException('User directory not found.')
 
         return Response(data={'files': files}, status=status.HTTP_200_OK)
+
+
+class DbxDeleteFileView(APIDefaultsMixin, APIView):
+    permission_classes = [IsAdminUser]
+
+    def delete(self, request, *args, **kwargs):
+        dbx_token = settings.DBX['ACCESS_TOKEN']
+        dbx = get_dbx_object(dbx_token)
+        data = request.data
+
+        if 'dbx_path' not in data:
+            raise ParseError('dbx_path required in post data')
+
+        try:
+            metadata = dbx.files_delete(data['dbx_path'])
+            file_metadata = {
+                'id': metadata.id,
+                'name': metadata.name,
+                'path_lower': metadata.path_lower,
+                'path_display': metadata.path_display,
+                'media_info': metadata.media_info
+            }
+
+            return Response(data={'file_metadata': file_metadata}, status=status.HTTP_204_NO_CONTENT)
+        except ApiError:
+            raise APIException('Delete dbx error')
 
 
 class DbxUploadView(

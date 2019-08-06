@@ -7,12 +7,15 @@
 
 {% block content %}
 
+{% url 'api:dbx_delete_file' as dbx_file_delete_url %}
+
 <div class="columns is-multiline">
 <div class="column is-6 is-offset-3">
 {% csrf_token %}
 
 <dbx
 shared-link-url="{% url 'api:dbx_shared_link' %}"
+:init-is-admin="{{ user.is_admin|yesno:"true,false" }}"
 inline-template
 >
 
@@ -51,6 +54,7 @@ init-upload-url={% url 'api:dbx_upload_audio' %}
 ref="dbx-user-files"
 files-url="{% url 'api:dbx_user_files' %}"
 :parent-processing="processing"
+:init-is-admin="isAdmin"
 @select-file="getSharedLink($event)"
 inline-template
 >
@@ -65,30 +69,50 @@ v-bind:class="[{ 'is-loading': processing }]"
 Get User dbx files
 </button>
 
-<div class="menu">
-
-<ul class="menu-list">
+<ul>
 
 <dbx-file
 v-for="(file, index) in files"
 :key="file.id"
 :init-file="file"
+:init-is-admin="isAdmin"
+init-delete-url="{{ dbx_file_delete_url }}"
 @select-file="selectFile($event.path_lower)"
 inline-template
 >
-<li> 
+
+<li v-show="isVisible"> 
+
+<ajax-delete
+v-if="isAdmin"
+delete-confirm-id="delete-dbx-file"
+:delete-url="deleteUrl"
+:init-data="{'dbx_path': file.path_lower}"
+@ajax-success="isVisible = false"
+inline-template
+>
+
+<a 
+class="delete" 
+href="#"
+@click.prevent="confirmDelete"
+>
+</a>
+
+</ajax-delete>
+
 <a 
 href="#"
 @click.prevent="selectFile(file)"
 >
 [[ file.name ]]
 </a>
+
 </li>
+
 </dbx-file>
 
 </ul>
-
-</div>
 
 </div>
 
@@ -104,3 +128,9 @@ href="#"
 </div>
 </div>
 {% endblock content %}
+
+{% block modal_content %}
+
+{% include 'dbx/includes/_dbx_file_delete_modal.html' with modal_id='delete-dbx-file' modal_name='confirmation-modal' %} 
+
+{% endblock modal_content %}

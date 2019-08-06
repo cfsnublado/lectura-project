@@ -7,7 +7,8 @@ from django.urls import path
 from django.conf.urls import include
 
 from dbx.api.views_api import (
-    DbxSharedLinkView, DbxUploadAudioView, DbxUserFilesView
+    DbxDeleteFileView, DbxSharedLinkView,
+    DbxUploadAudioView, DbxUserFilesView
 )
 from users.api.views_api import UserViewSet, ProfileViewSet
 from reading.api.views_project import ProjectViewSet, ProjectImportView
@@ -42,6 +43,7 @@ urlpatterns = [
     ),
     path('dbx-shared-link/', DbxSharedLinkView.as_view(), name='dbx_shared_link'),
     path('dbx-user-files/', DbxUserFilesView.as_view(), name='dbx_user_files'),
+    path('dbx-delete-file/', DbxDeleteFileView.as_view(), name='dbx_delete_file'),
     path('dbx-upload-audio/', DbxUploadAudioView.as_view(), name='dbx_upload_audio'),
 
     path('', include(router.urls)),

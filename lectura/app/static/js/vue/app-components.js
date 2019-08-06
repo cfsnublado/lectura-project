@@ -16,12 +16,17 @@ const AjaxDelete = {
     initTimerDelay: {
       type: Number,
       default: 500
+    },
+    initData: {
+      type: Object,
+      default: () => {}
     }
   },
   data() {
     return {
       timerId: null,
       timerDelay: this.initTimerDelay,
+      data: this.initData
     }
   },
   methods: {
@@ -40,7 +45,7 @@ const AjaxDelete = {
       this.process()
       clearTimeout(this.timerId)
       this.timerId = setTimeout(()=>{
-        axios.delete(this.deleteUrl)
+        axios.delete(this.deleteUrl, {data:this.data})
         .then(response => {
           if (this.deleteRedirectUrl) {
             window.location.replace(this.deleteRedirectUrl)

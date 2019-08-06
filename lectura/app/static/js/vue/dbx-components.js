@@ -1,27 +1,39 @@
 const DbxFile = {
+  mixins: [
+    AdminMixin,
+    VisibleMixin,
+  ],
   props: {
     initFile: {
       type: Object,
       required: true
+    },
+    initDeleteUrl: {
+      type: String,
+      default: ''
     }
   },
   data() {
     return {
-      file: this.initFile
+      file: this.initFile,
+      deleteUrl: this.initDeleteUrl
     }
   },
   methods: {
     selectFile(file) {
       this.$emit('select-file', file)
     }
-  }
+  },
 }
 
 const DbxUserFiles = {
   components: {
     'dbx-file': DbxFile
   },
-  mixins: [AjaxProcessMixin],
+  mixins: [
+    AdminMixin,
+    AjaxProcessMixin
+  ],
   props: {
     filesUrl: {
       type: String,
@@ -133,7 +145,10 @@ const DbxAudioFileUploader = {
 }
 
 const Dbx = {
-  mixins: [AjaxProcessMixin],
+  mixins: [
+    AdminMixin,
+    AjaxProcessMixin
+  ],
   components: {
     'dbx-user-files': DbxUserFiles,
     'dbx-audio-file-uploader': DbxAudioFileUploader,
