@@ -203,8 +203,8 @@ const BaseFileUploader = {
   methods: {
     handleFileUpload() {
       this.file = this.$refs.file.files[0]
-      // Set the input text.
-      this.$refs.filename.innerHTML = this.file.name
+      this.$refs['filename'].innerHTML = this.file.name
+      this.$emit('change-file')
     },
     submitFile() {
       if (this.validateFile()) {

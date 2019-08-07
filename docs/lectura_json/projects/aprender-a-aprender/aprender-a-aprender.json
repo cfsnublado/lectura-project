@@ -1,0 +1,16 @@
+{
+  "project": {
+    "name": "Aprender a aprender",
+    "description": "Un libro sobre nuevos m\u00e9todos de aprendizaje.\r\n\r\nBenedict Carey",
+    "date_created": "2019-08-06T15:38:31.885173"
+  },
+  "posts": [
+    {
+      "name": "Aprender a aprender: Sinopsis",
+      "description": "",
+      "content": "**\u00bfA\u00fan crees que para aprender es necesario \"hincar los codos\"? Descubre las claves que te ayudar\u00e1n a aprender m\u00e1s con menos esfuerzo.**\r\n\r\nA partir de los \u00faltimos descubrimientos en materia de psicolog\u00eda cognitiva y ciencias del aprendizaje, Benedict Carey, uno de los periodistas cient\u00edficos m\u00e1s prestigiosos del mundo, desaf\u00eda las teor\u00edas tradicionales acerca de la memoria y la adquisici\u00f3n de conocimientos para desvelarnos todo lo que necesitamos saber a fin de asimilar y retener mejor la informaci\u00f3n.\r\n\r\nLa clave no est\u00e1 en las horas invertidas, sino en estudiar de forma m\u00e1s inteligente. As\u00ed que rel\u00e1jate y disfruta de una gu\u00eda pr\u00e1ctica, amena y did\u00e1ctica, que no solo cambiar\u00e1 tu forma de enfocar el estudio, sino todas las facetas de tu vida.",
+      "audio_url": "https://www.dropbox.com/s/v5vedpj94oh23vz/aprender-sinopsis.mp3?dl=1",
+      "date_created": "2019-08-06T15:38:31.926555"
+    }
+  ]
+}

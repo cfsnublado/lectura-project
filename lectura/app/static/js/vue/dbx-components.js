@@ -20,8 +20,11 @@ const DbxFile = {
     }
   },
   methods: {
-    selectFile(file) {
-      this.$emit('select-file', file)
+    selectDbxFile(file) {
+      this.$emit('select-dbx-file', file)
+    },
+    remove() {
+      this.$emit('delete-dbx-file', this.file.id)
     }
   },
 }
@@ -42,7 +45,7 @@ const DbxUserFiles = {
   },
   data() {
     return {
-      files: '',
+      files: null,
     }
   },
   methods: {
@@ -69,9 +72,13 @@ const DbxUserFiles = {
         this.complete()
       })
     },
-    selectFile(path) {
-      this.$emit('select-file', path)
+    selectDbxFile(path) {
+      this.$emit('select-dbx-file', path)
     },
+    onDeleteDbxFile(index) {
+      this.$delete(this.files, index)
+      this.$emit('delete-dbx-file')
+    }
   },
 }
 
@@ -86,8 +93,9 @@ const DbxAudioFileUploader = {
   },
   methods: {
     success(response) {
+      this.$refs['filename'].innerHTML = ''
       this.fileMetadata = response.data['file_metadata']
-      this.$emit('upload-file', this.fileMetadata)
+      this.$emit('upload-dbx-file', this.fileMetadata)
     }
   },
   template: `
@@ -120,8 +128,7 @@ const DbxAudioFileUploader = {
 
     </span>
 
-    <span class="file-name" ref="filename">
-    </span>
+    <span class="file-name" ref="filename"></span>
 
     </label>
 
@@ -193,10 +200,15 @@ const Dbx = {
         this.processing = false
       })
     },
-    onUploadFile(dbxPath) {
+    onChangeDbxFile() {
+      this.$refs['audio-url'].value = ''
+    },
+    onUploadDbxFile(dbxPath) {
       this.getSharedLink(dbxPath)
       this.$refs['dbx-user-files'].getFiles()
-      console.log("SHITTT")
+    },
+    onDeleteDbxFile(index) {
+      this.$refs['audio-url'].value = ''
     }
   },
 }

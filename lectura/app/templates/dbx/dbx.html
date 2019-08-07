@@ -33,7 +33,8 @@ inline-template
 ref="dbx-audio-file-uploader"
 init-upload-url={% url 'api:dbx_upload_audio' %}
 :parent-processing="processing"
-@upload-file="onUploadFile($event.path_lower)"
+@change-file="onChangeDbxFile"
+@upload-dbx-file="onUploadDbxFile($event.path_lower)"
 >
 
 <template slot="label-select-file">
@@ -55,7 +56,8 @@ ref="dbx-user-files"
 files-url="{% url 'api:dbx_user_files' %}"
 :parent-processing="processing"
 :init-is-admin="isAdmin"
-@select-file="getSharedLink($event)"
+@select-dbx-file="getSharedLink($event)"
+@delete-dbx-file="onDeleteDbxFile"
 inline-template
 >
 
@@ -69,7 +71,10 @@ v-bind:class="[{ 'is-loading': processing }]"
 Get User dbx files
 </button>
 
-<ul>
+<ul
+class="files"
+v-cloak
+>
 
 <dbx-file
 v-for="(file, index) in files"
@@ -77,9 +82,12 @@ v-for="(file, index) in files"
 :init-file="file"
 :init-is-admin="isAdmin"
 init-delete-url="{{ dbx_file_delete_url }}"
-@select-file="selectFile($event.path_lower)"
+@select-dbx-file="selectDbxFile($event.path_lower)"
+@delete-dbx-file="onDeleteDbxFile(index)"
 inline-template
 >
+
+<transition name="fade-transition" v-on:after-enter="isVisible = true" v-on:after-leave="remove">
 
 <li v-show="isVisible"> 
 
@@ -103,19 +111,20 @@ href="#"
 
 <a 
 href="#"
-@click.prevent="selectFile(file)"
+@click.prevent="selectDbxFile(file)"
 >
 [[ file.name ]]
 </a>
 
 </li>
 
+</transition>
+
 </dbx-file>
 
 </ul>
 
 </div>
-
 
 </dbx-user-files>
 
