@@ -23,7 +23,10 @@ inline-template
 
 <div class="dbx-shared-link" style="margin-bottom: 30px;">
 
-<input class="input" ref="audio-url" name="audio-url">
+<label class="label" for="audio-url">
+{% trans 'label_dbx_audio_shared_link' %}
+</label>
+<input id="audio-url" class="input" ref="audio-url" name="audio-url" v-model="sharedLink" readonly>
 
 </div>
 

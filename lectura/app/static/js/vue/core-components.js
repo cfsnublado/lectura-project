@@ -197,13 +197,12 @@ const BaseFileUploader = {
   data() {
     return {
       uploadUrl: this.initUploadUrl,
-      file: '',
+      file: null,
     }
   },
   methods: {
     handleFileUpload() {
       this.file = this.$refs.file.files[0]
-      this.$refs['filename'].innerHTML = this.file.name
       this.$emit('change-file')
     },
     submitFile() {

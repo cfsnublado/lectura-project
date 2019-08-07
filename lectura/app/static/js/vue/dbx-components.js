@@ -93,9 +93,12 @@ const DbxAudioFileUploader = {
   },
   methods: {
     success(response) {
-      this.$refs['filename'].innerHTML = ''
+      this.clear()
       this.fileMetadata = response.data['file_metadata']
       this.$emit('upload-dbx-file', this.fileMetadata)
+    },
+    clear() {
+      this.file = null
     }
   },
   template: `
@@ -128,7 +131,7 @@ const DbxAudioFileUploader = {
 
     </span>
 
-    <span class="file-name" ref="filename"></span>
+    <span class="file-name"><span v-if="file" ref="filename">{{ file.name }}</span></span>
 
     </label>
 
@@ -168,7 +171,8 @@ const Dbx = {
   },
   data() {
     return {
-      processing: false
+      processing: false,
+      sharedLink: ''
     }
   },
   methods: {
@@ -183,7 +187,7 @@ const Dbx = {
       )
       .then(response => {
         if (response.data['shared_link']) {
-          this.$refs['audio-url'].value = response.data['shared_link'].replace('dl=0', 'dl=1')
+          this.sharedLink = response.data['shared_link'].replace('dl=0', 'dl=1')
         }
       })
       .catch(error => {
@@ -201,14 +205,15 @@ const Dbx = {
       })
     },
     onChangeDbxFile() {
-      this.$refs['audio-url'].value = ''
+      this.sharedLink = ''
     },
     onUploadDbxFile(dbxPath) {
       this.getSharedLink(dbxPath)
       this.$refs['dbx-user-files'].getFiles()
     },
     onDeleteDbxFile(index) {
-      this.$refs['audio-url'].value = ''
+      this.sharedLink = ''
+      this.$refs['dbx-audio-file-uploader'].clear()
     }
   },
 }

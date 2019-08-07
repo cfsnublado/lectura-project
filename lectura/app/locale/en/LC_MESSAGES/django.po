@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-06 20:19-0700\n"
+"POT-Creation-Date: 2019-08-06 21:15-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -318,11 +318,15 @@ msgstr "Projects"
 msgid "label_new_project"
 msgstr "New project"
 
-#: lectura/app/templates/dbx/dbx.html:40
+#: lectura/app/templates/dbx/dbx.html:27
+msgid "label_dbx_audio_shared_link"
+msgstr "Audio URL"
+
+#: lectura/app/templates/dbx/dbx.html:44
 msgid "label_select_audio_file"
 msgstr "Select audio file"
 
-#: lectura/app/templates/dbx/dbx.html:44
+#: lectura/app/templates/dbx/dbx.html:48
 msgid "label_submit_file"
 msgstr "Upload file"
 
