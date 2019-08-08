@@ -80,6 +80,20 @@ const DbxUserFiles = {
       this.$emit('delete-dbx-file')
     }
   },
+  computed: {
+    sortedFiles: function() {
+      // If files array isn't null and has elements, sort it by filename.
+      if (this.files && this.files.length > 0) {
+        return this.files.sort(function(a, b) {
+          var textA = a.name.toUpperCase()
+          var textB = b.name.toUpperCase()
+          return (textA < textB) ? -1 : (textA > textB) ? 1 : 0
+        })
+      } else {
+        return this.files
+      }
+    }
+  },
 }
 
 const DbxAudioFileUploader = {
@@ -99,6 +113,9 @@ const DbxAudioFileUploader = {
     },
     clear() {
       this.file = null
+    },
+    sortFilesByName() {
+
     }
   },
   template: `

@@ -80,7 +80,7 @@ v-cloak
 >
 
 <dbx-file
-v-for="(file, index) in files"
+v-for="(file, index) in sortedFiles"
 :key="file.id"
 :init-file="file"
 :init-is-admin="isAdmin"
