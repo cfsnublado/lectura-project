@@ -195,7 +195,8 @@ const AudioPlayer = {
       loop: false,
       showVolume: false,
       previousVolume: 35,
-      volume: 100
+      volume: 100,
+      hasError: false
     }
   },
   computed: {
@@ -263,8 +264,12 @@ const AudioPlayer = {
       this.playing = false
       this.audio.currentTime = 0
     },
-    update(e) {
+    update() {
       this.currentSeconds = parseInt(this.audio.currentTime)
+    },
+    error() {
+      this.hasError = true
+      console.error('Error loading ' + this.audioFile)
     }
   },
   created() {
@@ -272,14 +277,18 @@ const AudioPlayer = {
   },
   mounted() {
     this.audio = this.$el.querySelector('#' + this.audioPlayerId)
+    this.audio.addEventListener('error', this.error)
     this.audio.addEventListener('play', () => { this.playing = true })
     this.audio.addEventListener('pause', () => { this.playing = false });
-    this.audio.addEventListener('ended', () => { this.stop() })
+    this.audio.addEventListener('ended', this.stop)
     this.audio.addEventListener('timeupdate', this.update)
     this.audio.addEventListener('loadeddata', this.load)
   },
   template: `
+    <div>
+
     <div 
+    v-if="!hasError"
     class="audio-player"
     v-bind:class="[{ 'is-loading': !loaded }]"
     >

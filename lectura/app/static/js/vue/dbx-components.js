@@ -228,7 +228,7 @@ const Dbx = {
       this.getSharedLink(dbxPath)
       this.$refs['dbx-user-files'].getFiles()
     },
-    onDeleteDbxFile(index) {
+    onDeleteDbxFile() {
       this.sharedLink = ''
       this.$refs['dbx-audio-file-uploader'].clear()
     }
