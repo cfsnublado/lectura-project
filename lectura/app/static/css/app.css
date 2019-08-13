@@ -10075,7 +10075,12 @@ blockquote p {
   align-items: center;
 }
 
-/* line 12, ../scss/cfs/_layout.scss */
+/* line 11, ../scss/cfs/_layout.scss */
+.main-content {
+  padding-top: 2.5rem;
+}
+
+/* line 15, ../scss/cfs/_layout.scss */
 .page-footer {
   display: flex;
   width: 100%;
@@ -10084,7 +10089,7 @@ blockquote p {
   align-items: center;
   justify-content: center;
 }
-/* line 23, ../scss/cfs/_layout.scss */
+/* line 26, ../scss/cfs/_layout.scss */
 .page-footer.is-fixed {
   position: fixed;
   right: 0;
@@ -10092,7 +10097,7 @@ blockquote p {
   left: 0;
   width: auto;
 }
-/* line 32, ../scss/cfs/_layout.scss */
+/* line 35, ../scss/cfs/_layout.scss */
 .page-footer.is-bordered {
   border-top: 1px solid #eee;
 }
@@ -11478,7 +11483,7 @@ body.sidebar-adaptable .navbar {
 }
 /* line 166, ../scss/cfs/_sidebar.scss */
 body.sidebar-adaptable .main-content {
-  margin-top: 3.125rem;
+  padding-top: 5.625rem;
 }
 /* line 170, ../scss/cfs/_sidebar.scss */
 body.sidebar-adaptable .sidebar {
@@ -11523,7 +11528,7 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
   }
   /* line 216, ../scss/cfs/_sidebar.scss */
   body.sidebar-adaptable .main-content {
-    margin-top: 0;
+    padding-top: 2.5rem;
   }
   /* line 220, ../scss/cfs/_sidebar.scss */
   body.sidebar-adaptable .sidebar {

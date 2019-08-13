@@ -10,6 +10,9 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
 
 {% block content_top %}
 
+{% block page_header %}
+{% endblock page_header %}
+
 {% block breadcrumbs %}
 
 {% if request.session.session_obj %}

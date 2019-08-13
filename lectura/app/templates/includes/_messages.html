@@ -4,7 +4,7 @@
     <alert-message 
     {% if message.tags %} message-type="{{ message.tags }}" {% endif %} 
     message-text="{{ message }}"
-    :init-auto-close="true"
+    :init-auto-close="false"
     >
     </alert-message>
   {% endfor %}
