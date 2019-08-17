@@ -22,21 +22,3 @@
 </div><!-- post-view -->
 
 {% endblock content %}
-
-{% block page_footer %}
-
-{% if post.audio_url %}
-  <footer class="page-footer post-view-footer is-fixed is-bordered">
-  <audio-player
-  audio-player-id="post-audio"
-  audio-file="{{ post.audio_url }}"
-  :has-loop-btn="false"
-  :has-download-btn="false"
-  :has-mute-btn="false"
-  :has-volume-btn="false"
-  >
-</audio-player>
-</footer>
-{% endif %}
-
-{% endblock page_footer %}

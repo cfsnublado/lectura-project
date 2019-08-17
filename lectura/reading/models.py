@@ -45,17 +45,17 @@ class Project(
 
     objects = ProjectManager()
 
-    class Meta:
-        unique_together = ('owner', 'name')
-        verbose_name = _('label_project')
-        verbose_name_plural = _('label_project_plural')
-
-    def __str__(self):
-        return self.name
-
     def get_serializer(self):
         from .serializers import ProjectSerializer
         return ProjectSerializer
+
+    class Meta:
+        verbose_name = _('label_project')
+        verbose_name_plural = _('label_project_plural')
+        unique_together = ('owner', 'name')
+
+    def __str__(self):
+        return self.name
 
 
 class Post(
@@ -87,20 +87,8 @@ class Post(
     content = models.TextField(
         verbose_name=_('label_content'),
     )
-    audio_url = models.URLField(
-        verbose_name=_('label_audio_url'),
-        blank=True
-    )
 
     objects = PostManager()
-
-    class Meta:
-        unique_together = ('project', 'name')
-        verbose_name = _('label_post')
-        verbose_name_plural = _('label_post_plural')
-
-    def __str__(self):
-        return self.name
 
     def get_serializer(self):
         from .serializers import PostSerializer
@@ -108,3 +96,38 @@ class Post(
 
     def get_project(self):
         return self.project
+
+    class Meta:
+        verbose_name = _('label_post')
+        verbose_name_plural = _('label_post_plural')
+        unique_together = ('project', 'name')
+
+    def __str__(self):
+        return self.name
+
+
+class Audio(
+    TimestampModel, SlugifyModel,
+    SerializeModel
+):
+    unique_slug = False
+    slug_value_field_name = 'name'
+    slug_max_iterations = 500
+
+    creator = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        related_name='%(app_label)s_%(class)s',
+        on_delete=models.CASCADE
+    )
+    post = models.ForeignKey(
+        Post,
+        related_name='audios',
+        on_delete=models.CASCADE
+    )
+    name = models.CharField(
+        verbose_name=_('label_name'),
+        max_length=255,
+    )
+    url = models.URLField(
+        verbose_name=_('label_url')
+    )

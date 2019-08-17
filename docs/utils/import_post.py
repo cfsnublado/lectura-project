@@ -65,9 +65,6 @@ def markdown_to_dict(md_text, display_html=False):
 
     post_data['name'] = html.metadata['post_name']
 
-    if 'post_audio_url' in html.metadata:
-        post_data['audio_url'] = html.metadata['post_audio_url']
-
     if 'post_description' in html.metadata:
         post_data['description'] = html.metadata['post_description']
 

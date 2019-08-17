@@ -132,7 +132,7 @@ class PostSerializerTest(TestCommon):
     def test_minimal_data_fields(self):
         expected_minimal_data = [
             'name', 'description', 'content',
-            'audio_url', 'date_created'
+            'date_created'
         ]
         self.assertCountEqual(expected_minimal_data, self.serializer.minimal_data_fields)
 
@@ -141,7 +141,6 @@ class PostSerializerTest(TestCommon):
             'name': self.post.name,
             'description': self.post.description,
             'content': self.post.content,
-            'audio_url': self.post.audio_url,
             'date_created': self.post.date_created.isoformat()
         }
         self.assertEqual(expected_data, self.serializer.get_minimal_data())
@@ -172,7 +171,6 @@ class PostSerializerTest(TestCommon):
             'description': self.post.description,
             'slug': self.post.slug,
             'content': self.post.content,
-            'audio_url': self.post.audio_url,
             'date_created': self.post.date_created.isoformat(),
             'date_updated': self.post.date_updated.isoformat(),
         }
@@ -205,7 +203,6 @@ class PostSerializerTest(TestCommon):
             'description': self.post.description,
             'slug': self.post.slug,
             'content': self.post.content,
-            'audio_url': self.post.audio_url,
             'date_created': self.post.date_created.isoformat(),
             'date_updated': self.post.date_updated.isoformat(),
         })

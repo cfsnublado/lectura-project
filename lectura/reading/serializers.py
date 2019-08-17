@@ -62,7 +62,7 @@ class PostSerializer(BaseSerializer, HyperlinkedModelSerializer):
     json_encoder = UUIDEncoder
     minimal_data_fields = [
         'name', 'description', 'content',
-        'audio_url', 'date_created'
+        'date_created'
     ]
     url = HyperlinkedIdentityField(
         view_name='api:post-detail',
@@ -99,7 +99,7 @@ class PostSerializer(BaseSerializer, HyperlinkedModelSerializer):
             'url', 'id', 'project_id', 'project', 'project_slug',
             'project_url', 'creator_id', 'creator_url',
             'name', 'description', 'content', 'slug',
-            'audio_url', 'date_created', 'date_updated'
+            'date_created', 'date_updated'
         )
         read_only_fields = (
             'url', 'id', 'project_id', 'project_slug', 'project_url', 'creator_id', 'creator_url',
