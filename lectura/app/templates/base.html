@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load staticfiles %}
+{% load core_extras %}
 {% load i18n %}
 
 <html lang="en">
@@ -160,7 +161,19 @@ dropdown-classes="is-up"
 >
 
 <template slot="dropdown-label">
-{% trans 'label_language' %}
+{% trans 'label_language' %}: {{ LANGUAGE_CODE|upper }}
+</template>
+
+<template slot="dropdown-content">
+{% get_language_info_list for LANGUAGES as languages %}
+
+{% for language in languages %}
+
+  <a id="sidebar-{{ language.code }}" class="dropdown-item" href="{% change_language language.code %}">
+  {{ language.name_translated }}
+  </a>
+
+{% endfor %}
 </template>
 
 </dropdown>
