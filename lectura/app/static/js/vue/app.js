@@ -1,7 +1,7 @@
 Vue.component('ajax-delete', AjaxDelete)
 Vue.component('alert-message', AlertMessage)
+Vue.component('dropdown', Dropdown)
 Vue.component('navbar-dropdown', NavbarDropdown)
-//Vue.component('modal', Modal)
 Vue.component('confirmation-modal', ConfirmationModal)
 Vue.component('audio-file-uploader', AudioFileUploader)
 Vue.component('audio-player', AudioPlayer)

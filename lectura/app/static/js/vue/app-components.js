@@ -94,13 +94,50 @@ const AlertMessage = {
 
 }
 
-const NavbarDropdown = {
+const Dropdown = {
   mixins: [BaseDropdown],
   template: `
     <div 
     v-bind:id="id" 
+    class="dropdown" 
+    v-bind:class="[{ 'is-active': isOpen }, dropdownClasses]"
+    >
+
+    <div class="dropdown-trigger">
+    <a 
+    class="button" 
+    href="#" 
+    @click.prevent="toggle"
+    >
+    <slot name="dropdown-label">
+    Dropdown
+    </slot>
+    </a>
+    </div>
+
+    <div class="dropdown-menu">
+    <div class="dropdown-content">
+
+    <slot name="dropdown-content">
+    <div class="dropdown-item">
+    Dropdown content
+    </div>
+    </slot>
+
+    </div>
+    </div>
+
+    </div>
+  `  
+}
+
+const NavbarDropdown = {
+  mixins: [Dropdown],
+  template: `
+    <div 
+    v-bind:id="id" 
     class="navbar-item has-dropdown" 
-    v-bind:class="[{ 'is-active': isOpen }, { 'has-dropup': dropup }, dropdownClasses]"
+    v-bind:class="[{ 'is-active': isOpen }, dropdownClasses]"
     >
 
     <a class="navbar-link" @click.prevent="toggle">

@@ -24,16 +24,6 @@
 
 {% block styles %}
 <style>
-.audio-player.is-loading {
-  border: none;
-  box-shadow: none;
-}
-
-.audio-player .loading-icon {
-  font-size: 30px;
-  color: #666;
-}
-
 </style>
 {% endblock styles %}
 
@@ -164,7 +154,18 @@ href="{% url 'reading:projects' %}"
 
 <div class="sidebar-footer">
 
-</div>
+<dropdown
+id="sidebar-language-selector"
+dropdown-classes="is-up"
+>
+
+<template slot="dropdown-label">
+{% trans 'label_language' %}
+</template>
+
+</dropdown>
+
+</div><!-- end sidebar-footer -->
 
 </div>
 </div><!-- end sidebar -->

@@ -159,11 +159,13 @@ const BaseMessage = {
 const BaseDropdown = {
   mixins: [ClickOutsideMixin],
   props: {
-    id: String,
-    dropdownClasses: String,
-    dropup: {
-      type: Boolean,
-      default: false
+    id: {
+      type: String,
+      required: true
+    },
+    dropdownClasses: {
+      type: String,
+      default: ''
     }
   },
   data() {
