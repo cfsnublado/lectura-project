@@ -22,7 +22,7 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
   <ul>
   {% block breadcrumb_content %}
 
-  {% include 'reading/includes/_reading_breadcrumbs.html' %}
+  {% include "reading/includes/_reading_breadcrumbs.html" %}
 
   {% endblock breadcrumb_content %}
   </ul>
@@ -42,7 +42,7 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
   <div class="menu">
 
   <p class="menu-label">
-  {% trans 'label_project' %}
+  {% trans "label_project" %}
   </p>
 
   <p class="menu-header">
@@ -88,7 +88,7 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
   <div class="menu">
 
   <p class="menu-label">
-  {% trans 'label_project' %}
+  {% trans "label_project" %}
   </p>
 
   <p class="menu-header">
@@ -108,7 +108,7 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
   <div class="menu">
 
   <p class="menu-label">
-  {% trans 'label_post' %}
+  {% trans "label_post" %}
   </p>
 
   <p class="menu-header">
@@ -128,6 +128,16 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
     href="{% url 'reading:post_update' post.id post.slug %}"
     >
     <i class="menu-icon fas fa-edit fa-fw"></i> {% trans "label_edit_post" %}
+    </a>
+    </li>
+
+    <li>
+    <a 
+    id="sidebar-nav-post-edit" 
+    class="{% block audio_create_link_active %}{% endblock audio_create_link_active %}" 
+    href="{% url 'reading:audio_create' post.id post.slug %}"
+    >
+    <i class="menu-icon fas fa-plus fa-fw"></i> {% trans "label_add_audio" %}
     </a>
     </li>
 

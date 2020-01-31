@@ -9,8 +9,8 @@ from core.views import (
 )
 from django.urls import reverse
 
-from ..forms import PostCreateForm, PostUpdateForm
-from ..models import Post
+from ..forms import AudioCreateForm, PostCreateForm, PostUpdateForm
+from ..models import Audio, Post
 from .views_mixins import (
     PostMixin, PostPermissionMixin, PostSessionMixin,
     ProjectMixin, ProjectSessionMixin
@@ -31,6 +31,7 @@ class PostCreateView(
         kwargs = super(PostCreateView, self).get_form_kwargs()
         kwargs['project'] = self.project_obj
         kwargs['creator'] = self.request.user
+
         return kwargs
 
     def get_success_url(self):
@@ -61,5 +62,31 @@ class PostUpdateView(
             kwargs={
                 'post_pk': self.object.pk,
                 'post_slug': self.object.slug
+            }
+        )
+
+
+class AudioCreateView(
+    LoginRequiredMixin, PostMixin,
+    PostSessionMixin, PostPermissionMixin,
+    MessageMixin, CreateView
+):
+    model = Audio
+    form_class = AudioCreateForm
+    template_name = '{0}/auth/audio_create.html'.format(APP_NAME)
+
+    def get_form_kwargs(self):
+        kwargs = super(AudioCreateView, self).get_form_kwargs()
+        kwargs['post'] = self.post_obj
+        kwargs['creator'] = self.request.user
+
+        return kwargs
+
+    def get_success_url(self):
+        return reverse(
+            'reading:post',
+            kwargs={
+                'post_pk': self.post_obj.pk,
+                'post_slug': self.post_obj.slug
             }
         )

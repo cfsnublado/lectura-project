@@ -67,7 +67,7 @@ const Projects = {
   props: {
     projectsUrl: {
       type: String,
-      default: ''
+      required: true
     }
   },
   data() {
