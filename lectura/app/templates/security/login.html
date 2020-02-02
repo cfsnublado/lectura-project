@@ -1,8 +1,8 @@
 {% extends "base.html" %}
-{% load staticfiles %}
+{% load static %}
 {% load core_extras %}
-{% load i18n %}
 {% load widget_tweaks %}
+{% load i18n %}
 
 {% block title %}
 {% trans "page_login_title" %}
@@ -11,10 +11,10 @@
 {% block navbar %}{% endblock navbar %}
 {% block sidebar %}{% endblock sidebar %}
 
-{% block content %}
+{% block content_container %}
 <div class="centerall">
 
-<div class="columns is-multiline is-centered">
+<div class="columns is-multiline is-centered is-desktop">
 
 <div class="column is-12 has-text-centered">
 
@@ -80,8 +80,20 @@ novalidate>
 <a href="{% url 'users:user_password_reset_request' %}">{% trans "msg_forgot_password_q" %}</a>
 </div>
 
+<div style="margin-top: 20px;">
+<a
+class="button"
+href="{% url 'social:begin' 'google-oauth2' %}"
+>
+<span class="icon"><i class="fab fa-google"></i></span>
+<span>{% trans "msg_login_google" %}</span>
+</a>
+</div>
+
 </div>
 </div>
 
 </div>
-{% endblock content %}
+{% endblock content_container %}
+
+{% block page_footer %}{% endblock page_footer %}

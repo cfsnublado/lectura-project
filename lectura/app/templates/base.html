@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load staticfiles %}
+{% load static %}
 {% load core_extras %}
 {% load i18n %}
 
@@ -25,6 +25,16 @@
 
 {% block styles %}
 <style>
+
+.navbar-dropdown {
+  margin-right: 5px;
+}
+
+.user-nav-avatar {
+  min-width: 40px;
+  min-height: 40px;
+}
+
 </style>
 {% endblock styles %}
 
@@ -39,8 +49,8 @@
 
 <div class="navbar-brand">
 
-<a 
-role="button" 
+<a
+id="navbar-sidebar-trigger"
 class="sidebar-trigger" 
 aria-label="navbar-sidebar-trigger" 
 @click.prevent="toggleSidebar"
@@ -51,7 +61,7 @@ aria-label="navbar-sidebar-trigger"
 </a>
 
 <a class="navbar-item navbar-logo" href="{% url 'app:home' %}">
-<img src="{% static 'images/cfs-logo.png' %}" alt="cfs-logo">
+<img src="{% static 'images/cfs-logo-sm.png' %}" alt="cfs-logo">
 </a>
 
 </div>
@@ -64,9 +74,9 @@ ref="navbarMenu"
 
 <div class="navbar-end">
 
-{% include 'includes/_user_nav.html' %}
+{% include "includes/_user_nav.html" %}
 
-</div><!-- navbar-end -->
+</div><!-- navbar -->
 
 </div><!-- navbar-menu -->
 
@@ -87,7 +97,7 @@ ref="sidebar"
 <div class="sidebar-navbar">
 
 <a 
-role="button" 
+id="sidebar-trigger"
 class="sidebar-trigger" 
 aria-label="sidebar-trigger" 
 @click.prevent="toggleSidebar"
@@ -98,7 +108,7 @@ aria-label="sidebar-trigger"
 </a>
 
 <a class="navbar-item navbar-logo" href="{% url 'app:home' %}">
-<img src="{% static 'images/cfs-logo.png' %}" alt="cfs-logo">
+<img src="{% static 'images/cfs-logo-sm.png' %}" alt="cfs-logo">
 </a>
 
 </div>
@@ -109,19 +119,35 @@ aria-label="sidebar-trigger"
 
 <div class="menu">
 
+{% if user.is_authenticated %}
+
+  <p class="menu-label">
+  {% trans "label_your_menu" %}
+  </p>
+
+  <ul class="menu-list">
+
+  <li class="sidebar-divider"></li>
+
+  </ul>
+
+{% endif %}
+
 <p class="menu-label">
-{% trans 'label_general' %}
+{% trans "label_general" %}
 </p>
 
 <ul class="menu-list">
+
 <li>
 <a 
 class="{% block home_link_active %}{% endblock home_link_active %}"
 href="{% url 'app:home' %}"
 >
-<i class="fas fa-fw fa-home menu-icon"></i> {% trans 'label_home' %}
+<i class="fas fa-fw fa-home menu-icon"></i> {% trans "label_home" %}
 </a>
 </li>
+
 <li>
 <a 
 class="{% block projects_link_active %}{% endblock projects_link_active %}"
@@ -130,22 +156,8 @@ href="{% url 'reading:projects' %}"
 <i class="fas fa-fw fa-project-diagram menu-icon"></i> {% trans 'label_projects' %}
 </a>
 </li>
+
 </ul>
-
-{% if user.is_authenticated and not request.session_obj %}
-
-  <ul class="menu-list">
-  <li>
-  <a 
-  class="{% block project_create_link_active %}{% endblock project_create_link_active %}"
-  href="{% url 'reading:project_create' %}"
-  >
-  <i class="fas fa-fw fa-plus menu-icon"></i> {% trans 'label_new_project' %}
-  </a>
-  </li>
-  </ul>
-
-{% endif %}
 
 </div>
 
@@ -161,7 +173,7 @@ dropdown-classes="is-up"
 >
 
 <template slot="dropdown-label">
-{% trans 'label_language' %}: {{ LANGUAGE_CODE|upper }}
+{% trans "label_language" %}: {{ LANGUAGE_CODE|upper }}
 </template>
 
 <template slot="dropdown-content">
@@ -192,7 +204,9 @@ dropdown-classes="is-up"
 
 {% endblock top_messages %}
 
-{% block presentation %}{% endblock presentation %}
+{% block full_width_sections %}{% endblock full_width_sections %}
+
+{% block content_container %}
 
 <section class="section {% block main_section_classes %}main-content{% endblock main_section_classes %}">
 <div class="columns">
@@ -206,15 +220,25 @@ dropdown-classes="is-up"
 </div>
 </section>
 
-{% block page_footer %}{% endblock page_footer %}
+{% endblock content_container %}
+
+{% block page_footer %}
+<footer class="page-footer is-absolute">
+
+{% now "Y" %} | {{ project_name }}
+
+</footer>
+{% endblock page_footer %}
 
 {% block modal_content %}{% endblock modal_content %}
 
 </div><!-- app-container -->
 
 <script>
+{# Block reserved for JavaScript variables whose values come from backend Python content #}
 {% block python_to_javascript %}
 
+// If enabled, maintain sidebar's state between requests.
 var initSidebarSessionEnabled = false; 
 var sidebarExpanded = false;
 var appSessionUrl = "{% url 'app:app_session' %}";

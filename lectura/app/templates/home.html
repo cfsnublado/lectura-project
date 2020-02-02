@@ -9,7 +9,7 @@
 
 {% block home_link_active %}is-active{% endblock home_link_active %}
 
-{% block presentation %}
+{% block full_width_sections %}
 <section id="intro" class="parallax-block intro">
 
 <div class="columns">
@@ -29,39 +29,44 @@
 </div>
 
 </section>
-{% endblock presentation %}
 
-{% block content %}
+<div class="page-sections">
 
-<div class="icon-blocks">
+<section class="section page-section icon-blocks">
 
-<h2 class="icon-blocks-header">{% trans 'msg_lectura_at_a_glance' %}</h2>
+<div class="columns">
+<div class="column is-10 is-offset-1">
+
+<h2 class="page-section-header">{% trans 'msg_lectura_at_a_glance' %}</h2>
 
 <div class="columns is-multiline">
 
 <div class="column is-6 icon-block">
 
 <header class="icon-block-header">
-<i class="fas fa-language icon-block-icon"></i>
-<h3>A Feature</h3>
+
+<i class="fas fa-book-open icon-block-icon"></i>
+
+<h3>{% trans "msg_block_1" %}</h3>
+
 </header>
 
 <p>
-A description of the feature.
+{% trans "msg_block_1_desc" %}
 </p>
 
 </div>
 
 <div class="column is-6 icon-block">
 
-<i class="fab fa-python icon-block-icon"></i>
+<i class="fas fa-book-open icon-block-icon"></i>
 
 <header class="icon-block-header">
-<h3>Another Feature</h3>
+<h3>{% trans "msg_block_2" %}</h3>
 </header>
 
 <p>
-A description of the feature.
+{% trans "msg_block_2_desc" %}
 </p>
 
 </div>
@@ -69,5 +74,12 @@ A description of the feature.
 </div>
 
 </div>
+</div>
+
+</section>
+</div>
+{% endblock full_width_sections %}
+
+{% block content %}
 {% endblock content %}
 

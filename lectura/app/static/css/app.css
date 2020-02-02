@@ -10016,6 +10016,33 @@ label.panel-block:hover {
   padding: 3rem 1.5rem 6rem;
 }
 
+/* line 3, ../../prototype/scss/cfs/_app.scss */
+#app-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* line 9, ../../prototype/scss/cfs/_app.scss */
+.theme-cloudy {
+  background: #f9f9f9;
+}
+
+/* line 13, ../../prototype/scss/cfs/_app.scss */
+.small-caps-header {
+  font-size: 0.875rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #aaa;
+}
+
+/* line 22, ../../prototype/scss/cfs/_app.scss */
+.page-header {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #777;
+}
+
 @font-face {
   font-family: "oxygen";
   font-weight: normal;
@@ -10099,6 +10126,14 @@ blockquote p {
   width: auto;
 }
 /* line 37, ../../prototype/scss/cfs/_layout.scss */
+.page-footer.is-absolute {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: auto;
+}
+/* line 46, ../../prototype/scss/cfs/_layout.scss */
 .page-footer.is-bordered {
   border-top: 1px solid #dfe1e3;
 }
@@ -11567,6 +11602,34 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
   /* line 26, ../../prototype/scss/cfs/_parallax.scss */
   .parallax-block {
     padding: 9.375rem 0 25rem 0;
+  }
+}
+/* line 3, ../../prototype/scss/cfs/_page_section.scss */
+.page-section-header {
+  font-size: 3rem;
+  text-align: center;
+}
+
+/* line 9, ../../prototype/scss/cfs/_page_section.scss */
+.page-section:not(:last-of-type) {
+  border-bottom: 1px solid #eaeaea;
+}
+
+/* line 16, ../../prototype/scss/cfs/_page_section.scss */
+.random-word-section .random-word {
+  font-size: 3rem;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  /* line 24, ../../prototype/scss/cfs/_page_section.scss */
+  .page-section-header {
+    font-size: 2rem;
+  }
+
+  /* line 29, ../../prototype/scss/cfs/_page_section.scss */
+  .random-word-section .random-word {
+    font-size: 1.625rem;
   }
 }
 /* line 9, ../../prototype/scss/cfs/_blocks.scss */

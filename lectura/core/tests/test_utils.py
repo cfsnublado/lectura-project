@@ -1,7 +1,11 @@
+from django.conf import settings
+from django.core.files.base import File
 from django.test import TestCase
 
+from coretest.models import TestColorModel
 from ..utils import (
-    FuzzyInt, markdown_to_html
+    get_group_by_dict, FuzzyInt, generate_random_username,
+    markdown_to_html, save_text_to_file
 )
 
 
@@ -17,6 +21,23 @@ class TestFuzzyInt(TestCase):
 
 
 class TestUtilities(TestCase):
+
+    def test_generate_random_username(self):
+        username = generate_random_username()
+        # Default is a string of 16 characters with - as a delimiter
+        # between every group of 4 characters.
+        self.assertEqual(len(username), 19)
+        self.assertEqual(username.count('-'), 3)
+        username = generate_random_username(length=8)
+        self.assertEqual(len(username), 9)
+        self.assertEqual(username.count('-'), 1)
+        # Generate a random username with no delimiter
+        username = generate_random_username(length=8, split=0)
+        self.assertEqual(len(username), 8)
+        self.assertEqual(username.count('-'), 0)
+        username = generate_random_username(split=0)
+        self.assertEqual(len(username), 16)
+        self.assertEqual(username.count('-'), 0)
 
     def test_markdown_to_html(self):
         # Blank text
@@ -99,3 +120,59 @@ class TestUtilities(TestCase):
         self.assertEqual('<p><img src="../foo.png" alt="alt text" title="img text" /></p>\n', html)
         html = markdown_to_html('![alt text][logo]\n[logo]:../foo.png "img text"')
         self.assertEqual('<p><img src="../foo.png" alt="alt text" title="img text" /></p>\n', html)
+
+    def test_save_text_to_file(self):
+        path = settings.TMP_DIR
+        filename = 'testing.txt'
+        content = 'testing testing'
+        full_path = path / filename
+        if full_path.exists():
+            full_path.unlink()
+        self.assertFalse(full_path.exists())
+        save_text_to_file(path=path, filename=filename, content=content)
+        self.assertTrue(full_path.exists())
+        f = open(full_path, 'r')
+        file = File(f)
+        self.assertEqual(file.read(), content)
+        file.close()
+
+    def test_save_text_to_file_no_path(self):
+        path = settings.MEDIA_ROOT
+        filename = 'testing.txt'
+        content = 'testing testing'
+        full_path = path / filename
+        if full_path.exists():
+            full_path.unlink()
+        self.assertFalse(full_path.exists())
+        save_text_to_file(filename=filename, content=content)
+        self.assertTrue(full_path.exists())
+        f = open(full_path, 'r')
+        file = File(f)
+        self.assertEqual(file.read(), content)
+        file.close()
+
+    def test_get_group_by_dict(self):
+        blue = TestColorModel.objects.create(name='blue', color=TestColorModel.BLUE)
+        green = TestColorModel.objects.create(name='green', color=TestColorModel.GREEN)
+        red = TestColorModel.objects.create(name='red', color=TestColorModel.RED)
+        red_2 = TestColorModel.objects.create(name='red', color=TestColorModel.RED)
+
+        # GRoup by color choice
+        results = get_group_by_dict(TestColorModel.objects.all(), 'color')
+        expected_results = {
+            TestColorModel.GREEN: [green],
+            TestColorModel.RED: [red, red_2],
+            TestColorModel.BLUE: [blue]
+        }
+
+        self.assertEqual(results, expected_results)
+
+        # Group by name
+        results = get_group_by_dict(TestColorModel.objects.all(), 'name')
+        expected_results = {
+            'green': [green],
+            'red': [red, red_2],
+            'blue': [blue]
+        }
+
+        self.assertEqual(results, expected_results)

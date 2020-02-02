@@ -1,32 +1,57 @@
+from collections import defaultdict
+from random import choice
+from string import ascii_lowercase, digits
+import logging
+import mimetypes
+import os
+import re
+import shutil
 import markdown2
 
 from django.conf import settings
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMultiAlternatives
+from django.core.files.base import File
 from django.core.serializers.json import DjangoJSONEncoder
 from django.template import loader
 from django.urls import reverse
-from django.utils import six
 from django.utils.encoding import force_bytes, force_text
-from django.utils.functional import keep_lazy, Promise
+from django.utils.functional import Promise, keep_lazy
 from django.utils.http import urlsafe_base64_encode
 
-
-def markdown_to_html(text, strip_outer_tags=False, extras=['fenced-code-blocks']):
-    if not text:
-        return ''
-    html = markdown2.markdown(text, extras=extras)
-    if strip_outer_tags:
-        html = strip_outer_html_tags(html)
-    return html
+logger = logging.getLogger('django')
 
 
-def strip_outer_html_tags(s):
-    ''' strips outer html tags '''
+def get_group_by_dict(list_queryset, group_by_attr):
+    '''
+    Returns a dictionary of lists of objects,  indexed by a grouped attribute value.
+    Note: I don't like looping through the whole queryset to produce the dict.
 
-    start = s.find('>') + 1
-    end = len(s) - s[::-1].find('<') - 1
-    return s[start:end]
+    list_queryset: queryset of objects
+    group_by_attr: attritbute of object to be grouped by
+
+    Example: Model Foo with attribute 'color'
+
+    get_group_by_dict(Foo.objects.all(), 'color')
+
+    {
+        blue: [object1, object2, object3],
+        red: [object4, object5]
+    }
+    '''
+
+    objects = list_queryset
+    group_by_dict = defaultdict(list)
+
+    for obj in objects:
+        group_by_dict[getattr(obj, group_by_attr)].append(obj)
+
+    return group_by_dict
+
+
+def get_mimetype(filename):
+    mimetype = mimetypes.guess_type(filename)
+    return mimetype[0]
 
 
 def print_color(color_code, text):
@@ -75,9 +100,142 @@ class FuzzyInt(int):
 
 
 # Application utilities
-@keep_lazy(six.text_type)
+@keep_lazy(str)
 def format_lazy(string, *args, **kwargs):
     return string.format(*args, **kwargs)
+
+
+def generate_random_username(length=16, chars=ascii_lowercase + digits, split=4, delimiter='-'):
+    from users.models import User
+
+    username = ''.join([choice(chars) for i in range(length)])
+    if split:
+        username = delimiter.join([username[start:start + split] for start in range(0, len(username), split)])
+    try:
+        User.objects.get(username=username)
+        return generate_random_username(length=length, chars=chars, split=split, delimiter=delimiter)
+    except User.DoesNotExist:
+        return username
+
+
+def markdown_to_html(text, strip_outer_tags=False, extras=['fenced-code-blocks']):
+    if not text:
+        return ''
+    html = markdown2.markdown(text, extras=extras)
+    if strip_outer_tags:
+        html = strip_outer_html_tags(html)
+    return html
+
+
+def save_text_to_file(filename=None, path=None, content=None):
+    if path is None:
+        path = settings.MEDIA_ROOT
+    if filename is None:
+        raise ValueError('Filename required.')
+    full_path = os.path.join(path, filename)
+    f = open(full_path, 'w')
+    file = File(f)
+    file.write(content)
+    file.close()
+
+
+def strip_markdown_text(text):
+    return re.sub('\b(?<!```)(?<![\r\n])(\r?\n|\n?\r)(?![\r\n])', ' ', text)
+
+
+def strip_outer_html_tags(s):
+    ''' strips outer html tags '''
+
+    start = s.find('>') + 1
+    end = len(s) - s[::-1].find('<') - 1
+    return s[start:end]
+
+
+def tag_replace(m):
+    return '<span class="tagged-text">{0}</span>'.format(m.group('tagged'))
+
+
+def tag_text(tags, text):
+    search_str = '(?:(?<=\\W)|(?<=_)|(?<=^))(?P<tagged>{0})(?:(?=\\W)|(?=_)|(?=$))'
+    for tag in tags:
+        match = search_str.format(tag)
+        text = re.sub(match, tag_replace, text, flags=re.IGNORECASE)
+    return text
+
+
+def combine_chunks(total_parts, total_size, source_folder, dest):
+    ''' Combine a chunked file into a whole file again. Goes through each part
+    , in order, and appends that part's bytes to another destination file.
+
+    Chunks are stored in media/chunks
+    Uploads are saved in media/uploads
+    '''
+
+    if not os.path.exists(os.path.dirname(dest)):
+        os.makedirs(os.path.dirname(dest))
+
+    with open(dest, 'wb+') as destination:
+        for i in xrange(total_parts):
+            part = os.path.join(source_folder, str(i))
+            with open(part, 'rb') as source:
+                destination.write(source.read())
+
+
+def save_upload(f, path):
+    ''' Save an upload. Django will automatically 'chunk' incoming files
+    (even when previously chunked by fine-uploader) to prevent large files
+    from taking up your server's memory. If Django has chunked the file, then
+    write the chunks, otherwise, save as you would normally save a file in
+    Python. Uploads are stored in settings.UPLOAD_DIRECTORY
+    '''
+    if not os.path.exists(os.path.dirname(path)):
+        os.makedirs(os.path.dirname(path))
+    with open(path, 'wb+') as destination:
+        if hasattr(f, 'multiple_chunks') and f.multiple_chunks():
+            for chunk in f.chunks():
+                destination.write(chunk)
+        else:
+            destination.write(f.read())
+
+
+def handle_upload(f, fileattrs):
+    '''Handle a chunked or non-chunked upload from Fine Uploader.'''
+    logger.info(fileattrs)
+
+    chunked = False
+    dest_folder = settings.UPLOAD_DIRECTORY
+    dest = os.path.join(dest_folder, fileattrs['qqfilename'])
+
+    # Chunked
+    if fileattrs['qqtotalparts'] and int(fileattrs['qqtotalparts']) > 1:
+        chunked = True
+        dest_folder = os.path.join(settings.CHUNKS_DIRECTORY, fileattrs['qquuid'])
+        dest = os.path.join(dest_folder, fileattrs['qqfilename'], str(fileattrs['qqpartindex']))
+        logger.info('Chunked upload received')
+
+    save_upload(f, dest)
+    logger.info('Upload saved: %s' % dest)
+
+    # If the last chunk has been sent, combine the parts.
+    if chunked and (fileattrs['qqtotalparts'] - 1 == fileattrs['qqpartindex']):
+
+        logger.info('Combining chunks: %s' % os.path.dirname(dest))
+        combine_chunks(
+            fileattrs['qqtotalparts'],
+            fileattrs['qqtotalfilesize'],
+            source_folder=os.path.dirname(dest),
+            dest=os.path.join(settings.UPLOAD_DIRECTORY, fileattrs['qquuid'], fileattrs['qqfilename']))
+        logger.info('Combined: %s' % dest)
+
+        shutil.rmtree(os.path.dirname(os.path.dirname(dest)))
+
+
+def handle_deleted_file(uuid):
+    '''Handles a filesystem delete based on UUID.'''
+
+    logger.info(uuid)
+    loc = os.path.join(settings.UPLOAD_DIRECTORY, uuid)
+    shutil.rmtree(loc)
 
 
 def send_user_token_email(

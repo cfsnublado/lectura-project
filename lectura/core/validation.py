@@ -13,7 +13,7 @@ help_texts = {
 
 # only letters (Spanish characters included) and single spaces.
 name_characters = RegexValidator(
-    regex=r'^([a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]+ ?)+$',
+    regex=r'^([a-zA-ZáéíóúüñÁÉÍÓÚÜÑ.]+ ?)+$',
     message=_('validation_user_name_characters'),
     code='characters'
 )
@@ -52,3 +52,23 @@ username_min_length = MinLengthValidator(
         min_len=USERNAME_MIN_LENGTH
     )
 )
+
+
+def validate_translation_languages(obj, error, language=None):
+    '''
+    Checks if a language is in a model's translations' languages.
+    If so, raise an error.
+
+    obj: Object that inherits from LanguageModel. If obj is parent, it must have a
+         One to Many relation named translations, also inheriting from LanguageModel
+    error: Instance of error to be raised (e.g., ValidationError)
+    '''
+    if language is None:
+        language = obj.language
+    if obj.parent:
+        if language == obj.parent.language:
+            raise error
+    else:
+        translation_languages = obj.translations.values_list('language', flat=True)
+        if language in translation_languages:
+            raise error

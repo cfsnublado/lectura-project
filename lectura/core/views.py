@@ -8,8 +8,10 @@ from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.cache import cache_control
+from django.views.generic import View
 
-from .utils import LazyEncoder
+from .forms import UploadFileForm
+from .utils import LazyEncoder, handle_deleted_file, handle_upload
 
 User = get_user_model()
 
@@ -432,3 +434,47 @@ class AjaxDeleteMixin(MessageMixin, AjaxDataMixin):
             return JsonResponse(self.data, encoder=LazyEncoder)
         else:
             return super(AjaxDeleteMixin, self).delete(request, *args, **kwargs)
+
+
+class UploadView(View):
+    '''
+    View used for Fine Uploader.
+    '''
+
+    def post(self, request, *args, **kwargs):
+        '''A POST request. Validate the form and then handle the upload
+        based ont the POSTed data. Does not handle extra parameters yet.
+        '''
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            handle_upload(request.FILES['qqfile'], form.cleaned_data)
+            data = {
+                'uuid': form.cleaned_data['qquuid'],
+                'success': True,
+            }
+            return JsonResponse(data, encoder=LazyEncoder, status=200)
+        else:
+            data = {
+                'success': False,
+                'error': '{0}'.format(repr(form.errors))
+            }
+            return JsonResponse(data, encoder=LazyEncoder, status=400)
+
+    def delete(self, request, *args, **kwargs):
+        '''A DELETE request. If found, deletes a file with the corresponding
+        UUID from the server's filesystem.
+        '''
+        qquuid = kwargs.get('qquuid', '')
+        if qquuid:
+            try:
+                handle_deleted_file(qquuid)
+                data = {
+                    'success': True,
+                }
+                return JsonResponse(data, encoder=LazyEncoder, status=200)
+            except Exception as e:
+                data = {
+                    'success': False,
+                    'error': '{0}'.format(repr(e))
+                }
+                return JsonResponse(data, encoder=LazyEncoder, status=400)

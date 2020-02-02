@@ -1,0 +1,19 @@
+{% extends "base_error.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans "page_error_403_title" %}
+{% endblock title %}
+
+{% block content %}
+<div class="column is-12 has-text-centered">
+<h1 class="response-error-header">403</h1>
+</div>
+
+<div class="column is-12 has-text-centered">
+<div class="response-error-text">
+{% trans "error_403_message" %}
+</div>
+</div>
+
+{% endblock content %}

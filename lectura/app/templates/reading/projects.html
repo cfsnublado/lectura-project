@@ -1,5 +1,5 @@
 {% extends "reading/reading_base.html" %}
-{% load staticfiles %}
+{% load static %}
 {% load core_extras %}
 {% load i18n %}
 
@@ -8,7 +8,9 @@
 {% block projects_link_active %}is-active{% endblock projects_link_active %}
 
 {% block page_header %}
-<h1> Projects </h1>
+
+<div class="page-header"> {% trans "label_projects" %} </div>
+
 {% endblock page_header %}
 
 {% block content %}

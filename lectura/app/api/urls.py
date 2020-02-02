@@ -22,15 +22,15 @@ app_name = 'app'
 router = DefaultRouter()
 
 # users
-router.register('user', UserViewSet, base_name='user')
-router.register('profile', ProfileViewSet, base_name='profile')
+router.register('user', UserViewSet, basename='user')
+router.register('profile', ProfileViewSet, basename='profile')
 
 # post
-router.register('project', ProjectViewSet, base_name='project')
-router.register('post', PostViewSet, base_name='post')
+router.register('project', ProjectViewSet, basename='project')
+router.register('post', PostViewSet, basename='post')
 
 post_router = NestedSimpleRouter(router, 'project', lookup='project')
-post_router.register('post', NestedPostViewSet, base_name='nested-post')
+post_router.register('post', NestedPostViewSet, basename='nested-post')
 
 urlpatterns = [
     path('api-token-auth/', views.obtain_auth_token, name='auth_token'),
