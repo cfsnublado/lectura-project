@@ -10016,18 +10016,18 @@ label.panel-block:hover {
   padding: 3rem 1.5rem 6rem;
 }
 
-/* line 3, ../../prototype/scss/cfs/_app.scss */
+/* line 3, ../scss/cfs/_app.scss */
 #app-container {
   position: relative;
   min-height: 100vh;
 }
 
-/* line 9, ../../prototype/scss/cfs/_app.scss */
+/* line 9, ../scss/cfs/_app.scss */
 .theme-cloudy {
   background: #f9f9f9;
 }
 
-/* line 13, ../../prototype/scss/cfs/_app.scss */
+/* line 13, ../scss/cfs/_app.scss */
 .small-caps-header {
   font-size: 0.875rem;
   font-weight: bold;
@@ -10035,7 +10035,7 @@ label.panel-block:hover {
   color: #aaa;
 }
 
-/* line 22, ../../prototype/scss/cfs/_app.scss */
+/* line 22, ../scss/cfs/_app.scss */
 .page-header {
   font-size: 1.5rem;
   margin-top: 10px;
@@ -10092,7 +10092,7 @@ blockquote p {
     line-height: 2.375rem;
   }
 }
-/* line 1, ../../prototype/scss/cfs/_layout.scss */
+/* line 1, ../scss/cfs/_layout.scss */
 .centerall {
   display: flex;
   height: 100vh;
@@ -10102,12 +10102,12 @@ blockquote p {
   align-items: center;
 }
 
-/* line 12, ../../prototype/scss/cfs/_layout.scss */
+/* line 12, ../scss/cfs/_layout.scss */
 .main-content {
-  padding-top: 2.5rem;
+  padding-top: 4.375rem;
 }
 
-/* line 16, ../../prototype/scss/cfs/_layout.scss */
+/* line 16, ../scss/cfs/_layout.scss */
 .page-footer {
   display: flex;
   width: 100%;
@@ -10117,7 +10117,7 @@ blockquote p {
   align-items: center;
   justify-content: center;
 }
-/* line 28, ../../prototype/scss/cfs/_layout.scss */
+/* line 28, ../scss/cfs/_layout.scss */
 .page-footer.is-fixed {
   position: fixed;
   right: 0;
@@ -10125,7 +10125,7 @@ blockquote p {
   left: 0;
   width: auto;
 }
-/* line 37, ../../prototype/scss/cfs/_layout.scss */
+/* line 37, ../scss/cfs/_layout.scss */
 .page-footer.is-absolute {
   position: absolute;
   right: 0;
@@ -10133,22 +10133,22 @@ blockquote p {
   left: 0;
   width: auto;
 }
-/* line 46, ../../prototype/scss/cfs/_layout.scss */
+/* line 46, ../scss/cfs/_layout.scss */
 .page-footer.is-bordered {
   border-top: 1px solid #dfe1e3;
 }
 
-/* line 1, ../../prototype/scss/cfs/_breadcrumb.scss */
+/* line 1, ../scss/cfs/_breadcrumb.scss */
 .breadcrumb {
   font-size: 1rem;
 }
-/* line 5, ../../prototype/scss/cfs/_breadcrumb.scss */
+/* line 5, ../scss/cfs/_breadcrumb.scss */
 .breadcrumb li + li::before {
   content: ">";
 }
 
 @media screen and (max-width: 768px) {
-  /* line 12, ../../prototype/scss/cfs/_breadcrumb.scss */
+  /* line 12, ../scss/cfs/_breadcrumb.scss */
   .breadcrumb {
     display: none;
   }
@@ -11518,39 +11518,35 @@ body.sidebar-adaptable .navbar {
   width: 100%;
 }
 /* line 166, ../../prototype/scss/cfs/_sidebar.scss */
-body.sidebar-adaptable .main-content {
-  padding-top: 3.125rem;
-}
-/* line 170, ../../prototype/scss/cfs/_sidebar.scss */
 body.sidebar-adaptable .sidebar {
   top: 3.125rem;
 }
-/* line 174, ../../prototype/scss/cfs/_sidebar.scss */
+/* line 170, ../../prototype/scss/cfs/_sidebar.scss */
 body.sidebar-adaptable .sidebar-navbar {
   display: none;
 }
-/* line 180, ../../prototype/scss/cfs/_sidebar.scss */
+/* line 176, ../../prototype/scss/cfs/_sidebar.scss */
 body.sidebar-adaptable.sidebar-expanded .sidebar-background {
   display: none;
 }
-/* line 184, ../../prototype/scss/cfs/_sidebar.scss */
+/* line 180, ../../prototype/scss/cfs/_sidebar.scss */
 body.sidebar-adaptable.sidebar-expanded .main-content,
 body.sidebar-adaptable.sidebar-expanded .page-footer {
   margin-left: 15.625rem;
 }
-/* line 189, ../../prototype/scss/cfs/_sidebar.scss */
+/* line 185, ../../prototype/scss/cfs/_sidebar.scss */
 body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
   margin-left: 0;
   left: 15.625rem;
 }
 
 @media screen and (max-width: 768px) {
-  /* line 201, ../../prototype/scss/cfs/_sidebar.scss */
+  /* line 197, ../../prototype/scss/cfs/_sidebar.scss */
   body.sidebar-expanded .sidebar-background,
   body.sidebar-adaptable.sidebar-expanded .sidebar-background {
     display: block;
   }
-  /* line 205, ../../prototype/scss/cfs/_sidebar.scss */
+  /* line 201, ../../prototype/scss/cfs/_sidebar.scss */
   body.sidebar-expanded .main-content,
   body.sidebar-expanded .page-footer,
   body.sidebar-adaptable.sidebar-expanded .main-content,
@@ -11558,19 +11554,19 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
     margin-left: 0;
   }
 
-  /* line 212, ../../prototype/scss/cfs/_sidebar.scss */
+  /* line 208, ../../prototype/scss/cfs/_sidebar.scss */
   body.sidebar-adaptable .navbar {
     position: relative;
   }
-  /* line 216, ../../prototype/scss/cfs/_sidebar.scss */
+  /* line 212, ../../prototype/scss/cfs/_sidebar.scss */
   body.sidebar-adaptable .main-content {
-    padding-top: 2.5rem;
+    padding-top: 4.375rem;
   }
-  /* line 220, ../../prototype/scss/cfs/_sidebar.scss */
+  /* line 216, ../../prototype/scss/cfs/_sidebar.scss */
   body.sidebar-adaptable .sidebar {
     top: 0;
   }
-  /* line 224, ../../prototype/scss/cfs/_sidebar.scss */
+  /* line 220, ../../prototype/scss/cfs/_sidebar.scss */
   body.sidebar-adaptable .sidebar-navbar {
     display: -webkit-flex;
     display: flex;
@@ -11879,7 +11875,7 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
   font-size: 1.125rem;
 }
 
-/* line 10, ../../prototype/scss/cfs/_audio_player.scss */
+/* line 10, ../scss/cfs/_audio_player.scss */
 .audio-player-wrapper {
   display: flex;
   height: 100vh;
@@ -11889,7 +11885,7 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
   justify-content: center;
 }
 
-/* line 22, ../../prototype/scss/cfs/_audio_player.scss */
+/* line 22, ../scss/cfs/_audio_player.scss */
 .audio-player {
   display: inline-block;
   line-height: 1.5625;
@@ -11899,30 +11895,30 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
   background-color: #fff;
   box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
 }
-/* line 33, ../../prototype/scss/cfs/_audio_player.scss */
+/* line 33, ../scss/cfs/_audio_player.scss */
 .audio-player.is-loading {
   border: none;
   box-shadow: none;
 }
-/* line 38, ../../prototype/scss/cfs/_audio_player.scss */
+/* line 38, ../scss/cfs/_audio_player.scss */
 .audio-player .loading-icon {
   font-size: 30px;
   colcor: #666;
 }
 
-/* line 45, ../../prototype/scss/cfs/_audio_player.scss */
+/* line 45, ../scss/cfs/_audio_player.scss */
 .audio-player-controls {
   display: flex;
 }
-/* line 48, ../../prototype/scss/cfs/_audio_player.scss */
+/* line 48, ../scss/cfs/_audio_player.scss */
 .audio-player-controls > div.player-control {
   border-right: 1px solid #e0e0e0;
 }
-/* line 51, ../../prototype/scss/cfs/_audio_player.scss */
+/* line 51, ../scss/cfs/_audio_player.scss */
 .audio-player-controls > div.player-control:last-child {
   border-right: none;
 }
-/* line 55, ../../prototype/scss/cfs/_audio_player.scss */
+/* line 55, ../scss/cfs/_audio_player.scss */
 .audio-player-controls > div.player-control a {
   display: block;
   line-height: 0;
@@ -11931,7 +11927,7 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
   color: #404040;
 }
 
-/* line 69, ../../prototype/scss/cfs/_audio_player.scss */
+/* line 69, ../scss/cfs/_audio_player.scss */
 .audio-player-progress {
   position: relative;
   min-width: 200px;
@@ -11939,7 +11935,7 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
   cursor: pointer;
   background-color: #e0e0e0;
 }
-/* line 79, ../../prototype/scss/cfs/_audio_player.scss */
+/* line 79, ../scss/cfs/_audio_player.scss */
 .audio-player-progress .audio-player-seeker {
   position: absolute;
   top: 0;
@@ -11948,17 +11944,17 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
   background-color: #404040;
 }
 
-/* line 89, ../../prototype/scss/cfs/_audio_player.scss */
+/* line 89, ../scss/cfs/_audio_player.scss */
 .audio-player-time {
   display: flex;
   justify-content: space-between;
 }
-/* line 95, ../../prototype/scss/cfs/_audio_player.scss */
+/* line 95, ../scss/cfs/_audio_player.scss */
 .audio-player-time .audio-player-time-current {
   font-weight: 700;
   padding-left: 5px;
 }
-/* line 101, ../../prototype/scss/cfs/_audio_player.scss */
+/* line 101, ../scss/cfs/_audio_player.scss */
 .audio-player-time .audio-player-time-total {
   padding-right: 5px;
   opacity: 0.5;
