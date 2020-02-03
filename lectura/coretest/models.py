@@ -1,7 +1,9 @@
 from django.db import models
 
 from core.models import (
-    TimestampModel, UserstampModel, UUIDModel
+    AccessModel, LanguageModel, ParentModel,
+    TimestampModel, TrackedFieldModel, TranslationModel,
+    UserstampModel, UUIDModel
 )
 
 # These models are only used for testing purposes. They are to be migrated only into the test db.
@@ -38,14 +40,38 @@ class TestColorModel(BaseTestModel):
     )
 
 
-class TestUserstampModel(BaseTestModel, UserstampModel):
+class TestAccessModel(BaseTestModel, AccessModel):
+    pass
 
-    def get_absolute_url(self):
-        return "/"
+
+class TestTrackedFieldModel(BaseTestModel, TrackedFieldModel):
+    tracked_fields = ["name"]
+
+
+class TestLanguageModel(BaseTestModel, LanguageModel):
+
+    class Meta:
+        db_table = "core_tests_testlanguagemodel"
+
+
+class TestParentModel(BaseTestModel, ParentModel):
+    pass
 
 
 class TestTimestampModel(BaseTestModel, TimestampModel):
     pass
+
+
+class TestTranslationModel(BaseTestModel, TranslationModel):
+    @property
+    def translations(self):
+        return self.coretest_testtranslationmodel_children
+
+
+class TestUserstampModel(BaseTestModel, UserstampModel):
+
+    def get_absolute_url(self):
+        return "/"
 
 
 class TestUUIDModel(BaseTestModel, UUIDModel):
