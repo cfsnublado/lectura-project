@@ -368,10 +368,8 @@ msgid "error_500_message"
 msgstr ""
 
 #: lectura/app/templates/base.html:125
-#, fuzzy
-#| msgid "label_home"
 msgid "label_your_menu"
-msgstr "Home"
+msgstr "Your menu"
 
 #: lectura/app/templates/base.html:137
 msgid "label_general"
