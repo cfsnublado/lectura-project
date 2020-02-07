@@ -6,8 +6,8 @@ from django.conf import settings
 from django.contrib.auth import authenticate
 from django.core.management.base import BaseCommand, CommandError
 
-from reading.models import Project
-from reading.utils import export_project
+from project.models import Project
+from ..utils import export_project
 
 
 class Command(BaseCommand):

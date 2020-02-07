@@ -1,6 +1,6 @@
-from .models import Project, Post
+from .models import Post, ReadingProject
 from .serializers import (
-    ProjectSerializer, PostSerializer
+    PostSerializer, ReadingProjectSerializer
 )
 
 
@@ -25,11 +25,11 @@ def import_post(data, user):
     post_serializer.is_valid(raise_exception=True)
 
     try:
-        project = Project.objects.get(
+        project = ReadingProject.objects.get(
             name=project_data['name']
         )
-    except Project.DoesNotExist:
-        project_serializer = ProjectSerializer(
+    except ReadingProject.DoesNotExist:
+        project_serializer = ReadingProjectSerializer(
             data=project_data
         )
         project_serializer.is_valid(raise_exception=True)
@@ -53,12 +53,12 @@ def import_project(data, user):
     project_data = data['project']
     post_data = data['posts']
 
-    Project.objects.filter(
+    ReadingProject.objects.filter(
         owner_id=user_id,
         name=project_data['name']
     ).delete()
 
-    project_serializer = ProjectSerializer(
+    project_serializer = ReadingProjectSerializer(
         data=project_data
     )
     project_serializer.is_valid(raise_exception=True)
@@ -81,7 +81,7 @@ def export_post(post, request=None):
     '''
     Generates a serialized backup of a post.
     '''
-    project_serializer = ProjectSerializer(
+    project_serializer = ReadingProjectSerializer(
         post.project,
         context={'request': request}
     )
@@ -98,7 +98,7 @@ def export_post(post, request=None):
 
 
 def export_project(project, request=None):
-    project_serializer = ProjectSerializer(
+    project_serializer = ReadingProjectSerializer(
         project,
         context={'request': request}
     )

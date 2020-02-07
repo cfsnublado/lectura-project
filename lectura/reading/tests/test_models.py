@@ -5,14 +5,15 @@ from core.models import (
     SerializeModel,
     SlugifyModel, TimestampModel
 )
+from project.models import Project, ProjectContentModel
 from ..managers import (
-    ProjectManager, PostManager
+    PostManager
 )
 from ..models import (
-    Project, ProjectContentModel, Post
+    Post
 )
 from ..serializers import (
-    ProjectSerializer, PostSerializer
+    PostSerializer
 )
 
 User = get_user_model()
@@ -34,38 +35,6 @@ class TestCommon(TestCase):
             name='Some book',
             description='A good book'
         )
-
-
-class ProjectTest(TestCommon):
-
-    def setUp(self):
-        super(ProjectTest, self).setUp()
-
-    def test_inheritance(self):
-        classes = (
-            SerializeModel, SlugifyModel,
-            TimestampModel
-        )
-        for class_name in classes:
-            self.assertTrue(
-                issubclass(Project, class_name)
-            )
-
-    def test_manager_type(self):
-        self.assertIsInstance(Project.objects, ProjectManager)
-
-    def test_string_representation(self):
-        self.assertEqual(str(self.project), self.project.name)
-
-    def test_update_slug_on_save(self):
-        self.project.name = 'El nombre del viento'
-        self.project.full_clean()
-        self.project.save()
-        self.assertEqual('el-nombre-del-viento', self.project.slug)
-
-    def test_get_serializer(self):
-        serializer = self.project.get_serializer()
-        self.assertEqual(serializer, ProjectSerializer)
 
 
 class PostTest(TestCommon):

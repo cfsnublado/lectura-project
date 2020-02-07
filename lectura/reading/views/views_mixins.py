@@ -1,24 +1,8 @@
-from django.core.exceptions import PermissionDenied
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 
-from core.views import CachedObjectMixin, ObjectSessionMixin
-from ..models import Post, Project
-
-
-class PermissionMixin(object):
-    superuser_override = True
-
-    def dispatch(self, request, *args, **kwargs):
-        has_permission = self.check_permission()
-
-        if not has_permission:
-            raise PermissionDenied
-
-        return super(PermissionMixin, self).dispatch(request, *args, **kwargs)
-
-    def check_permission(self, *args, **kwargs):
-        raise NotImplementedError('Method check_permission needs to be implemented.')
+from core.views import CachedObjectMixin, ObjectSessionMixin, PermissionMixin
+from ..models import Post, ReadingProject
 
 
 class ProjectPermissionMixin(PermissionMixin):
@@ -53,19 +37,19 @@ class ProjectMixin(CachedObjectMixin):
     def get_project(self, request, *args, **kwargs):
         if self.project_id in kwargs:
             self.project_obj = get_object_or_404(
-                Project.objects.prefetch_related('owner'),
+                ReadingProject.objects.prefetch_related('owner'),
                 id=kwargs[self.project_id]
             )
         elif self.project_slug in kwargs:
             self.project_obj = get_object_or_404(
-                Project.objects.prefetch_related('owner'),
+                ReadingProject.objects.prefetch_related('owner'),
                 slug=kwargs[self.project_slug]
             )
         else:
             obj = self.get_object()
             if hasattr(obj, 'project_id'):
                 self.project_obj = obj.project
-            elif isinstance(obj, Project):
+            elif isinstance(obj, ReadingProject):
                 self.project_obj = obj
             else:
                 raise Http404('Project not found.')

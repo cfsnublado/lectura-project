@@ -12,13 +12,14 @@ from rest_framework.viewsets import (
 from rest_framework.views import APIView
 
 from core.api.views_api import APIDefaultsMixin
-from ..models import Project, Post
+from core.api.permissions import ReadPermission
+from ..models import Post, ReadingProject
 from ..serializers import (
     PostSerializer
 )
 from .pagination import SmallPagination
 from .permissions import (
-    ProjectOwnerPermission, PostCreatorPermission, ReadPermission
+    ProjectOwnerPermission, PostCreatorPermission
 )
 from ..utils import (
     export_post, import_post
@@ -57,7 +58,7 @@ class NestedPostViewSet(
 
     def get_project(self, project_pk=None):
         if not self.project:
-            self.project = get_object_or_404(Project, id=project_pk)
+            self.project = get_object_or_404(ReadingProject, id=project_pk)
 
         return self.project
 

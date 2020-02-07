@@ -5,18 +5,19 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
 from core.api.views_api import APIDefaultsMixin
-from ..models import Project
-from ..serializers import ProjectSerializer
+from core.api.permissions import ReadPermission
+from ..serializers import ReadingProjectSerializer
+from ..models import ReadingProject
 from ..utils import import_project
 from .pagination import SmallPagination
-from .permissions import ReadPermission, ProjectOwnerPermission
+from .permissions import ProjectOwnerPermission
 
 
 class ProjectViewSet(APIDefaultsMixin, ModelViewSet):
     lookup_field = 'pk'
     lookup_url_kwarg = 'pk'
-    serializer_class = ProjectSerializer
-    queryset = Project.objects.all()
+    serializer_class = ReadingProjectSerializer
+    queryset = ReadingProject.objects.all()
     permission_classes = [ReadPermission, ProjectOwnerPermission]
     pagination_class = SmallPagination
 

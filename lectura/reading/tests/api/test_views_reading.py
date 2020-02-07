@@ -13,15 +13,17 @@ from django.contrib.auth import get_user_model
 from django.urls import resolve, reverse
 
 from core.api.views_api import APIDefaultsMixin
+from core.api.permissions import ReadPermission
 from reading.api.pagination import SmallPagination
 from reading.api.permissions import (
-    ProjectOwnerPermission, PostCreatorPermission, ReadPermission
+    ProjectOwnerPermission, PostCreatorPermission
 )
 from reading.api.views_post import (
     NestedPostViewSet, PostViewSet, PostExportView,
     PostImportView
 )
-from reading.models import Project, Post
+from project.models import Project
+from reading.models import Post
 from reading.serializers import PostSerializer
 from reading.utils import export_post
 from .base_test import TestCommon

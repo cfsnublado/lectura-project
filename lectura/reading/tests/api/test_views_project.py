@@ -8,15 +8,16 @@ from django.contrib.auth import get_user_model
 from django.urls import resolve, reverse
 
 from core.api.views_api import APIDefaultsMixin
+from core.api.permissions import ReadPermission
 from reading.api.pagination import SmallPagination
 from reading.api.permissions import (
-    ProjectOwnerPermission, ReadPermission
+    ProjectOwnerPermission
 )
 from reading.api.views_project import (
     ProjectViewSet, ProjectImportView
 )
-from reading.models import Project
-from reading.serializers import ProjectSerializer
+from project.models import Project
+from project.serializers import ProjectSerializer
 from reading.utils import export_project
 from .base_test import TestCommon
 

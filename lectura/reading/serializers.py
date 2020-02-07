@@ -10,17 +10,17 @@ from core.serializers import (
     BaseSerializer, UUIDEncoder
 )
 from .models import (
-    Post, Project
+    Post, ReadingProject
 )
 
 User = get_user_model()
 
 
-class ProjectListSerializer(ListSerializer):
+class ReadingProjectListSerializer(ListSerializer):
     pass
 
 
-class ProjectSerializer(BaseSerializer, HyperlinkedModelSerializer):
+class ReadingProjectSerializer(BaseSerializer, HyperlinkedModelSerializer):
     json_encoder = UUIDEncoder
     minimal_data_fields = [
         'name', 'description', 'date_created'
@@ -39,8 +39,8 @@ class ProjectSerializer(BaseSerializer, HyperlinkedModelSerializer):
     )
 
     class Meta:
-        list_serializer = ProjectListSerializer
-        model = Project
+        list_serializer = ReadingProjectListSerializer
+        model = ReadingProject
         fields = (
             'url', 'id', 'owner_id', 'owner_url',
             'name', 'description', 'slug', 'date_created', 'date_updated',
@@ -51,7 +51,7 @@ class ProjectSerializer(BaseSerializer, HyperlinkedModelSerializer):
         )
 
     def create(self, validated_data):
-        return Project.objects.create(**validated_data)
+        return ReadingProject.objects.create(**validated_data)
 
 
 class PostListSerializer(ListSerializer):

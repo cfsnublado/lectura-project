@@ -3,59 +3,28 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from core.models import (
-    SerializeModel,
-    SlugifyModel, TimestampModel
+    ProjectModel, ProjectContentModel, ProjectMemberModel,
+    SerializeModel, SlugifyModel, TimestampModel
 )
-from .managers import PostManager, ProjectManager
+from .managers import PostManager, ReadingProjectManager
 
 
-# Abstract models
-class ProjectContentModel(models.Model):
+class ReadingProject(ProjectModel):
 
-    class Meta:
-        abstract = True
-
-    def get_project(self):
-        raise NotImplementedError('Method get_project needs to be implemented.')
-
-
-# Concrete models
-
-class Project(
-    TimestampModel, SlugifyModel,
-    SerializeModel
-):
-    unique_slug = False
-    slug_value_field_name = 'name'
-    slug_max_iterations = 500
-
-    owner = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        related_name='%(app_label)s_%(class)s',
-        on_delete=models.CASCADE
-    )
-    name = models.CharField(
-        verbose_name=_('label_name'),
-        max_length=255,
-    )
-    description = models.TextField(
-        verbose_name=_('label_description'),
-        blank=True
-    )
-
-    objects = ProjectManager()
+    objects = ReadingProjectManager()
 
     def get_serializer(self):
-        from .serializers import ProjectSerializer
-        return ProjectSerializer
+        from .serializers import ReadingProjectSerializer
+        return ReadingProjectSerializer
 
-    class Meta:
-        verbose_name = _('label_project')
-        verbose_name_plural = _('label_project_plural')
-        unique_together = ('owner', 'name')
 
-    def __str__(self):
-        return self.name
+class ReadingProjectMember(ProjectMemberModel):
+
+    project = models.ForeignKey(
+        ReadingProject,
+        related_name='project_team_members',
+        on_delete=models.CASCADE
+    )
 
 
 class Post(
@@ -72,7 +41,7 @@ class Post(
         on_delete=models.CASCADE
     )
     project = models.ForeignKey(
-        Project,
+        ReadingProject,
         related_name='posts',
         on_delete=models.CASCADE
     )
