@@ -2,18 +2,17 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 
 from core.models import (
-    SerializeModel,
-    SlugifyModel, TimestampModel
+    ProjectContentModel, ProjectModel, ProjectPublishMemberModel,
+    SerializeModel, SlugifyModel, TimestampModel
 )
-from project.models import Project, ProjectContentModel
 from ..managers import (
     PostManager
 )
 from ..models import (
-    Post
+    Post, ReadingProject, ReadingProjectMember
 )
 from ..serializers import (
-    PostSerializer
+    PostSerializer, ReadingProjectSerializer
 )
 
 User = get_user_model()
@@ -30,11 +29,52 @@ class TestCommon(TestCase):
             email='cfs7@cfs.com',
             password=self.pwd
         )
-        self.project = Project.objects.create(
+        self.project = ReadingProject.objects.create(
             owner=self.user,
             name='Some book',
             description='A good book'
         )
+
+
+class ReadingProjectTest(TestCommon):
+
+    def setUp(self):
+        super(ReadingProjectTest, self).setUp()
+
+    def test_inheritance(self):
+        classes = (
+            ProjectModel,
+        )
+        for class_name in classes:
+            self.assertTrue(
+                issubclass(ReadingProject, class_name)
+            )
+
+
+class ReadingProjectMemberTest(TestCommon):
+
+    def setUp(self):
+        super(ReadingProjectMemberTest, self).setUp()
+
+    def test_inheritance(self):
+        classes = (
+            ProjectPublishMemberModel,
+        )
+        for class_name in classes:
+            self.assertTrue(
+                issubclass(ReadingProjectMember, class_name)
+            )
+
+    def test_member_project(self):
+        member = ReadingProjectMember.objects.create(
+            project=self.project,
+            member=self.user
+        )
+        self.assertTrue(isinstance(member.project, ReadingProject))
+
+    def test_get_serializer(self):
+        serializer = self.project.get_serializer()
+        self.assertEqual(serializer, ReadingProjectSerializer)
 
 
 class PostTest(TestCommon):

@@ -3,7 +3,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from core.models import (
-    ProjectModel, ProjectContentModel, ProjectMemberModel,
+    ProjectModel, ProjectContentModel, ProjectPublishMemberModel,
     SerializeModel, SlugifyModel, TimestampModel
 )
 from .managers import PostManager, ReadingProjectManager
@@ -18,11 +18,11 @@ class ReadingProject(ProjectModel):
         return ReadingProjectSerializer
 
 
-class ReadingProjectMember(ProjectMemberModel):
+class ReadingProjectMember(ProjectPublishMemberModel):
 
     project = models.ForeignKey(
         ReadingProject,
-        related_name='project_team_members',
+        related_name='project_publish_members',
         on_delete=models.CASCADE
     )
 
