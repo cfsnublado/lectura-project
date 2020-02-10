@@ -3,26 +3,10 @@ from django.shortcuts import get_object_or_404
 
 from core.views import CachedObjectMixin, ObjectSessionMixin, PermissionMixin
 from ..models import Post, ReadingProject
-
-
-class ProjectPermissionMixin(PermissionMixin):
-
-    def check_permission(self):
-        has_permission = False
-
-        if self.superuser_override:
-            if self.request.user.is_superuser or self.project_obj.owner_id == self.request.user.id:
-                has_permission = True
-        else:
-            if self.project_obj.owner_id == self.request.user.id:
-                has_permission = True
-
-        return has_permission
-
-
-class ProjectSessionMixin(ObjectSessionMixin):
-    session_obj = 'project_obj'
-    session_obj_attrs = ['id', 'name', 'slug']
+from ..permissions import (
+    can_create_post, is_project_admin, is_project_editor,
+    is_project_member, is_project_owner
+)
 
 
 class ProjectMixin(CachedObjectMixin):
@@ -32,52 +16,67 @@ class ProjectMixin(CachedObjectMixin):
 
     def dispatch(self, request, *args, **kwargs):
         self.get_project(request, *args, **kwargs)
+
         return super(ProjectMixin, self).dispatch(request, *args, **kwargs)
 
     def get_project(self, request, *args, **kwargs):
         if self.project_id in kwargs:
-            self.project_obj = get_object_or_404(
+            self.project = get_object_or_404(
                 ReadingProject.objects.prefetch_related('owner'),
                 id=kwargs[self.project_id]
             )
         elif self.project_slug in kwargs:
-            self.project_obj = get_object_or_404(
+            self.project = get_object_or_404(
                 ReadingProject.objects.prefetch_related('owner'),
                 slug=kwargs[self.project_slug]
             )
         else:
             obj = self.get_object()
             if hasattr(obj, 'project_id'):
-                self.project_obj = obj.project
+                self.project = obj.project
             elif isinstance(obj, ReadingProject):
-                self.project_obj = obj
+                self.project = obj
             else:
                 raise Http404('Project not found.')
 
     def get_context_data(self, **kwargs):
         context = super(ProjectMixin, self).get_context_data(**kwargs)
-        context['project'] = self.project_obj
+        context['project'] = self.project
 
         return context
 
 
-class PostPermissionMixin(PermissionMixin):
+class ProjectMemberPermissionMixin(PermissionMixin):
+    """
+    To be used in conjunction with ProjectMixin
+    """
 
     def check_permission(self):
-        has_permission = False
-
-        if self.superuser_override:
-            if self.request.user.is_superuser or self.post_obj.creator_id == self.request.user.id:
-                has_permission = True
-        else:
-            if self.post_obj.creator_id == self.request.user.id:
-                has_permission = True
-
-        return has_permission
+        """Owner or project member"""
+        user = self.request.user
+        return is_project_owner(user, self.project) or is_project_member(user, self.project)
 
 
-class PostSessionMixin(ObjectSessionMixin):
-    session_obj = 'post_obj'
+class ProjectOwnerPermissionMixin(PermissionMixin):
+    def check_permission(self):
+        """ Project owner"""
+        return is_project_owner(self.request.user, self.project)
+
+
+class ProjectAdminPermissionMixin(PermissionMixin):
+    def check_permission(self):
+        user = self.request.user
+        return is_project_owner(user, self.project) or is_project_admin(user, self.project)
+
+
+class ProjectEditorPermissionMixin(PermissionMixin):
+    def check_permission(self):
+        user = self.request.user
+        return is_project_owner(user, self.project) or is_project_editor(user, self.project)
+
+
+class ProjectSessionMixin(ObjectSessionMixin):
+    session_obj = 'project'
     session_obj_attrs = ['id', 'name', 'slug']
 
 
@@ -86,15 +85,9 @@ class PostMixin(CachedObjectMixin):
     post_slug = 'post_slug'
     project = None
     post_obj = None
-    post_admin = False
 
     def dispatch(self, request, *args, **kwargs):
         self.get_post(request, *args, **kwargs)
-
-        user_id = request.user.id
-
-        if request.user.is_superuser or user_id == self.post_obj.creator_id or user_id == self.project_obj.owner_id:
-            self.post_admin = True
 
         return super(PostMixin, self).dispatch(request, *args, **kwargs)
 
@@ -119,12 +112,26 @@ class PostMixin(CachedObjectMixin):
             else:
                 raise Http404('Post not found.')
 
-        self.project_obj = self.post_obj.project
+        self.project = self.post_obj.project
 
     def get_context_data(self, **kwargs):
         context = super(PostMixin, self).get_context_data(**kwargs)
-        context['project'] = self.project_obj
+        context['project'] = self.project
         context['post'] = self.post_obj
-        context['post_admin'] = self.post_admin
 
         return context
+
+
+class PostCreatePermissionMixin(PermissionMixin):
+    """
+    This is to be used with PostMixin.
+    """
+
+    def check_permission(self):
+        user = self.request.user
+        return can_create_post(user, self.project)
+
+
+class PostSessionMixin(ObjectSessionMixin):
+    session_obj = 'post_obj'
+    session_obj_attrs = ['id', 'name', 'slug']

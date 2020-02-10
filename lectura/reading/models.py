@@ -6,7 +6,10 @@ from core.models import (
     ProjectModel, ProjectContentModel, ProjectPublishMemberModel,
     SerializeModel, SlugifyModel, TimestampModel
 )
-from .managers import PostManager, ReadingProjectManager
+from .managers import (
+    PostManager, ReadingProjectManager,
+    ReadingProjectMemberManager
+)
 
 
 class ReadingProject(ProjectModel):
@@ -17,14 +20,23 @@ class ReadingProject(ProjectModel):
         from .serializers import ReadingProjectSerializer
         return ReadingProjectSerializer
 
+    def get_member(self, user):
+        member = None
+        try:
+            member = ReadingProjectMember.objects.get(project=self, member=user)
+        except ReadingProjectMember.DoesNotExist:
+            pass
+        return member
+
 
 class ReadingProjectMember(ProjectPublishMemberModel):
-
     project = models.ForeignKey(
         ReadingProject,
         related_name='project_publish_members',
         on_delete=models.CASCADE
     )
+
+    objects = ReadingProjectMemberManager()
 
 
 class Post(
@@ -59,13 +71,6 @@ class Post(
 
     objects = PostManager()
 
-    def get_serializer(self):
-        from .serializers import PostSerializer
-        return PostSerializer
-
-    def get_project(self):
-        return self.project
-
     class Meta:
         verbose_name = _('label_post')
         verbose_name_plural = _('label_post_plural')
@@ -73,6 +78,13 @@ class Post(
 
     def __str__(self):
         return self.name
+
+    def get_serializer(self):
+        from .serializers import PostSerializer
+        return PostSerializer
+
+    def get_project(self):
+        return self.project
 
 
 class Audio(

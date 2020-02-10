@@ -6,7 +6,7 @@ from core.models import (
     SerializeModel, SlugifyModel, TimestampModel
 )
 from ..managers import (
-    PostManager
+    PostManager, ReadingProjectManager
 )
 from ..models import (
     Post, ReadingProject, ReadingProjectMember
@@ -49,6 +49,44 @@ class ReadingProjectTest(TestCommon):
             self.assertTrue(
                 issubclass(ReadingProject, class_name)
             )
+
+        self.assertIsInstance(ReadingProject.objects, ReadingProjectManager)
+
+    def test_string_representation(self):
+        self.assertEqual(str(self.project), self.project.name)
+
+    def test_update_slug_on_save(self):
+        self.project.name = 'El nombre del viento'
+        self.project.full_clean()
+        self.project.save()
+        self.assertEqual('el-nombre-del-viento', self.project.slug)
+
+    def test_get_serializer(self):
+        serializer = self.project.get_serializer()
+        self.assertEqual(serializer, ReadingProjectSerializer)
+
+    def test_get_member(self):
+        user_2 = User.objects.create_user(
+            username='naranjo',
+            first_name='Naranjo',
+            last_name='Oranges',
+            email='naranjo.foo.com',
+            password=self.pwd
+        )
+        user_3 = User.objects.create_user(
+            username='manzano',
+            first_name='Manzano',
+            last_name='Apples',
+            email='manzano.foo.com',
+            password=self.pwd
+        )
+        member = ReadingProjectMember.objects.create(
+            project=self.project,
+            member=user_2
+        )
+
+        self.assertEqual(self.project.get_member(user_2), member)
+        self.assertIsNone(self.project.get_member(user_3))
 
 
 class ReadingProjectMemberTest(TestCommon):

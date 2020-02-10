@@ -37,7 +37,7 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
 
 {% block sidebar_nav_items %}
 
-{% if request.session.session_obj.project_obj %}
+{% if request.session.session_obj.project %}
 
   <div class="menu">
 
@@ -64,6 +64,10 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
     <i class="menu-icon fas fa-edit fa-fw"></i> {% trans "label_edit_project" %}
     </a>
     </li>
+
+  {% endif %}
+
+  {% if is_member %}
 
     <li>
     <a 

@@ -13,14 +13,14 @@ from ..forms import AudioCreateForm, PostCreateForm, PostUpdateForm
 from ..models import Audio, Post
 from .views_mixins import (
     PostMixin, PostPermissionMixin, PostSessionMixin,
-    ProjectMixin, ProjectSessionMixin
+    ProjectMixin, ProjectMemberPermissionMixin, ProjectSessionMixin
 )
 
 APP_NAME = apps.get_app_config('reading').name
 
 
 class PostCreateView(
-    LoginRequiredMixin, ProjectMixin,
+    LoginRequiredMixin, ProjectMixin, ProjectMemberPermissionMixin,
     ProjectSessionMixin, MessageMixin, CreateView
 ):
     model = Post
@@ -29,7 +29,7 @@ class PostCreateView(
 
     def get_form_kwargs(self):
         kwargs = super(PostCreateView, self).get_form_kwargs()
-        kwargs['project'] = self.project_obj
+        kwargs['project'] = self.project
         kwargs['creator'] = self.request.user
 
         return kwargs
