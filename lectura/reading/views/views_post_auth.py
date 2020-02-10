@@ -12,7 +12,7 @@ from django.urls import reverse
 from ..forms import AudioCreateForm, PostCreateForm, PostUpdateForm
 from ..models import Audio, Post
 from .views_mixins import (
-    PostMixin, PostPermissionMixin, PostSessionMixin,
+    PostMixin, PostEditPermissionMixin, PostSessionMixin,
     ProjectMixin, ProjectMemberPermissionMixin, ProjectSessionMixin
 )
 
@@ -46,7 +46,7 @@ class PostCreateView(
 
 class PostUpdateView(
     LoginRequiredMixin, PostMixin,
-    PostSessionMixin, PostPermissionMixin,
+    PostSessionMixin, PostEditPermissionMixin,
     MessageMixin, UpdateView
 ):
     model = Post
@@ -68,7 +68,7 @@ class PostUpdateView(
 
 class AudioCreateView(
     LoginRequiredMixin, PostMixin,
-    PostSessionMixin, PostPermissionMixin,
+    PostSessionMixin, ProjectMemberPermissionMixin,
     MessageMixin, CreateView
 ):
     model = Audio

@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from core.views import CachedObjectMixin, ObjectSessionMixin, PermissionMixin
 from ..models import Post, ReadingProject
 from ..permissions import (
-    can_create_post, is_project_admin, is_project_editor,
+    can_create_post, can_edit_post, is_project_admin, is_project_editor,
     is_project_member, is_project_owner
 )
 
@@ -130,6 +130,16 @@ class PostCreatePermissionMixin(PermissionMixin):
     def check_permission(self):
         user = self.request.user
         return can_create_post(user, self.project)
+
+
+class PostEditPermissionMixin(PermissionMixin):
+    """
+    This is to be used with PostMixin.
+    """
+
+    def check_permission(self):
+        user = self.request.user
+        return can_edit_post(user, self.post)
 
 
 class PostSessionMixin(ObjectSessionMixin):
