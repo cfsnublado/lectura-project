@@ -74,6 +74,7 @@ class TestCommon(TestCase):
 
 
 class ReadingProjectPermissionsTest(TestCommon):
+
     def test_is_project_owner(self):
         self.assertEqual(self.user, self.project.owner)
         self.assertTrue(is_project_owner(self.user, self.project))

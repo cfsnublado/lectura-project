@@ -5,28 +5,26 @@ def is_project_owner(user, project):
     return user.id == project.owner_id
 
 
-def is_project_admin(user, project):
+def is_project_role(user, project, role):
     if is_project_owner(user, project):
         return True
-    else:
+    elif role in (i[0] for i in ReadingProjectMember.ROLE_CHOICES):
         member = project.get_member(user)
-    return bool(member and member.role >= ReadingProjectMember.ROLE_ADMIN)
+        return bool(member and member.role >= role)
+    else:
+        return False
+
+
+def is_project_admin(user, project):
+    return is_project_role(user, project, ReadingProjectMember.ROLE_ADMIN)
 
 
 def is_project_editor(user, project):
-    if is_project_owner(user, project):
-        return True
-    else:
-        member = project.get_member(user)
-    return bool(member and member.role >= ReadingProjectMember.ROLE_EDITOR)
+    return is_project_role(user, project, ReadingProjectMember.ROLE_EDITOR)
 
 
 def is_project_author(user, project):
-    if is_project_owner(user, project):
-        return True
-    else:
-        member = project.get_member(user)
-    return bool(member and member.role >= ReadingProjectMember.ROLE_AUTHOR)
+    return is_project_role(user, project, ReadingProjectMember.ROLE_AUTHOR)
 
 
 def is_project_member(user, project):
