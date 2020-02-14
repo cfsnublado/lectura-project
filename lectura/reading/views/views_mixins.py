@@ -22,12 +22,12 @@ class ProjectMixin(CachedObjectMixin):
     def get_project(self, request, *args, **kwargs):
         if self.project_id in kwargs:
             self.project = get_object_or_404(
-                ReadingProject.objects.prefetch_related('owner'),
+                ReadingProject.objects.select_related('owner'),
                 id=kwargs[self.project_id]
             )
         elif self.project_slug in kwargs:
             self.project = get_object_or_404(
-                ReadingProject.objects.prefetch_related('owner'),
+                ReadingProject.objects.select_related('owner'),
                 slug=kwargs[self.project_slug]
             )
         else:
@@ -46,33 +46,29 @@ class ProjectMixin(CachedObjectMixin):
         return context
 
 
+# Project permission mixins are tu be used with ProjectMixin.
 class ProjectMemberPermissionMixin(PermissionMixin):
-    """
-    To be used in conjunction with ProjectMixin
-    """
 
     def check_permission(self):
-        """Owner or project member"""
-        user = self.request.user
-        return is_project_owner(user, self.project) or is_project_member(user, self.project)
+        return is_project_member(self.request.user, self.project)
 
 
 class ProjectOwnerPermissionMixin(PermissionMixin):
+
     def check_permission(self):
-        """ Project owner"""
         return is_project_owner(self.request.user, self.project)
 
 
 class ProjectAdminPermissionMixin(PermissionMixin):
+
     def check_permission(self):
-        user = self.request.user
-        return is_project_owner(user, self.project) or is_project_admin(user, self.project)
+        is_project_admin(self.request.user, self.project)
 
 
 class ProjectEditorPermissionMixin(PermissionMixin):
+
     def check_permission(self):
-        user = self.request.user
-        return is_project_owner(user, self.project) or is_project_editor(user, self.project)
+        return is_project_editor(self.request.user, self.project)
 
 
 class ProjectSessionMixin(ObjectSessionMixin):
@@ -85,21 +81,23 @@ class PostMixin(CachedObjectMixin):
     post_slug = 'post_slug'
     project = None
     post_obj = None
+    post_admin = False
 
     def dispatch(self, request, *args, **kwargs):
         self.get_post(request, *args, **kwargs)
-
+        if request.user.is_authenticated:
+            self.post_admin = can_edit_post(request.user, self.post_obj)
         return super(PostMixin, self).dispatch(request, *args, **kwargs)
 
     def get_post(self, request, *args, **kwargs):
         if self.post_id in kwargs:
             self.post_obj = get_object_or_404(
-                Post.objects.prefetch_related('creator', 'project'),
+                Post.objects.select_related('creator', 'project'),
                 id=kwargs[self.post_id]
             )
         elif self.post_slug in kwargs:
             self.post_obj = get_object_or_404(
-                Post.objects.prefetch_related('creator', 'project'),
+                Post.objects.select_related('creator', 'project'),
                 slug=kwargs[self.post_slug]
             )
         else:
@@ -118,28 +116,22 @@ class PostMixin(CachedObjectMixin):
         context = super(PostMixin, self).get_context_data(**kwargs)
         context['project'] = self.project
         context['post'] = self.post_obj
+        context['post_admin'] = self.post_admin
 
         return context
 
 
+# Post permission mixins are tu be used with PosttMixin.
 class PostCreatePermissionMixin(PermissionMixin):
-    """
-    This is to be used with PostMixin.
-    """
 
     def check_permission(self):
-        user = self.request.user
-        return can_create_post(user, self.project)
+        return can_create_post(self.request.user, self.project)
 
 
 class PostEditPermissionMixin(PermissionMixin):
-    """
-    This is to be used with PostMixin.
-    """
 
     def check_permission(self):
-        user = self.request.user
-        return can_edit_post(user, self.post)
+        return self.post_admin or can_edit_post(self.request.user, self.post_obj)
 
 
 class PostSessionMixin(ObjectSessionMixin):

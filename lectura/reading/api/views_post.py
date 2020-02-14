@@ -13,9 +13,9 @@ from rest_framework.views import APIView
 
 from core.api.views_api import APIDefaultsMixin
 from core.api.permissions import ReadPermission
-from ..models import Post, ReadingProject
+from ..models import Audio, Post, ReadingProject
 from ..serializers import (
-    PostSerializer
+    AudioSerializer, PostSerializer
 )
 from .pagination import SmallPagination
 from .permissions import (
@@ -50,7 +50,7 @@ class NestedPostViewSet(
 ):
     lookup_field = 'pk'
     lookup_url_kwarg = 'pk'
-    queryset = Post.objects.select_related('project')
+    queryset = Post.objects.select_related('project', 'creator')
     serializer_class = PostSerializer
     project = None
     permission_classes = [ReadPermission, ProjectOwnerPermission]
@@ -112,3 +112,60 @@ class PostExportView(APIDefaultsMixin, APIView):
         self.check_object_permissions(self.request, obj)
 
         return obj
+
+
+class AudioViewSet(
+    APIDefaultsMixin, RetrieveModelMixin, UpdateModelMixin,
+    DestroyModelMixin, ListModelMixin, GenericViewSet
+):
+    lookup_field = 'pk'
+    lookup_url_kwarg = 'pk'
+    serializer_class = AudioSerializer
+    queryset = Audio.objects.select_related('post', 'post__project', 'creator')
+    permission_classes = [ReadPermission, PostCreatorPermission]
+    pagination_class = SmallPagination
+
+    def get_object(self):
+        obj = get_object_or_404(self.get_queryset(), pk=self.kwargs['pk'])
+        self.check_object_permissions(self.request, obj)
+
+        return obj
+
+
+class NestedAudioViewSet(
+    APIDefaultsMixin, CreateModelMixin,
+    ListModelMixin, GenericViewSet
+):
+    lookup_field = 'pk'
+    lookup_url_kwarg = 'pk'
+    queryset = Audio.objects.select_related('post', 'post__project', 'creator')
+    serializer_class = AudioSerializer
+    post = None
+    permission_classes = [ReadPermission, ProjectOwnerPermission]
+    pagination_class = SmallPagination
+
+    def get_post(self, post_pk=None):
+        if not self.post:
+            self.post = get_object_or_404(Post, id=post_pk)
+
+        return self.post
+
+    def get_queryset(self):
+        return self.queryset.filter(post_id=self.kwargs['post_pk'])
+
+    def create(self, request, *args, **kwargs):
+        self.get_post(post_pk=kwargs['post_pk'])
+        self.check_object_permissions(request, self.post)
+
+        return super(NestedAudioViewSet, self).create(request, *args, **kwargs)
+
+    def perform_create(self, serializer):
+        serializer.save(
+            creator=self.request.user,
+            post=self.post
+        )
+
+    def list(self, request, *args, **kwargs):
+        self.get_post(post_pk=kwargs['post_pk'])
+
+        return super(NestedAudioViewSet, self).list(request, *args, **kwargs)

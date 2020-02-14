@@ -89,7 +89,7 @@ class Post(
 
 class Audio(
     TimestampModel, SlugifyModel,
-    SerializeModel
+    SerializeModel, ProjectContentModel
 ):
     unique_slug = False
     slug_value_field_name = 'name'
@@ -112,3 +112,6 @@ class Audio(
     url = models.URLField(
         verbose_name=_('label_url')
     )
+
+    def get_project(self):
+        return self.post.project

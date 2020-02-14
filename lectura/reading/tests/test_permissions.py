@@ -5,8 +5,10 @@ from ..models import (
     Post, ReadingProject, ReadingProjectMember
 )
 from ..permissions import (
-    is_post_creator, is_project_admin, is_project_author,
-    is_project_editor, is_project_member, is_project_owner
+    can_delete_post, can_delete_project, can_edit_post,
+    can_edit_project, is_post_creator, is_project_admin,
+    is_project_author, is_project_editor, is_project_member,
+    is_project_owner
 )
 
 User = get_user_model()
@@ -51,6 +53,13 @@ class TestCommon(TestCase):
             email='limonero@foo.com',
             password=self.pwd
         )
+        self.user_6 = User.objects.create_user(
+            username='durazno',
+            first_name='Durazano',
+            last_name='Peaches',
+            email='durazno@foo.com',
+            password=self.pwd
+        )
         self.project = ReadingProject.objects.create(
             owner=self.user,
             name='Some book',
@@ -59,6 +68,11 @@ class TestCommon(TestCase):
         self.author = ReadingProjectMember.objects.create(
             project=self.project,
             member=self.user_2,
+            role=ReadingProjectMember.ROLE_AUTHOR
+        )
+        self.author_2 = ReadingProjectMember.objects.create(
+            project=self.project,
+            member=self.user_6,
             role=ReadingProjectMember.ROLE_AUTHOR
         )
         self.editor = ReadingProjectMember.objects.create(
@@ -127,6 +141,30 @@ class ReadingProjectPermissionsTest(TestCommon):
         # Non member
         self.assertFalse(is_project_member(self.user_5, self.project))
 
+    def test_can_edit_project(self):
+        # Owner
+        self.assertTrue(can_edit_project(self.user, self.project))
+        # Admin
+        self.assertTrue(can_edit_project(self.admin.member, self.project))
+        # Editor
+        self.assertFalse(can_edit_project(self.editor.member, self.project))
+        # Author
+        self.assertFalse(can_edit_project(self.author.member, self.project))
+        # Non member
+        self.assertFalse(can_edit_project(self.user_5, self.project))
+
+    def test_can_delete_project(self):
+        # Owner
+        self.assertTrue(can_delete_project(self.user, self.project))
+        # Admin
+        self.assertFalse(can_delete_project(self.admin.member, self.project))
+        # Editor
+        self.assertFalse(can_delete_project(self.editor.member, self.project))
+        # Author
+        self.assertFalse(can_delete_project(self.author.member, self.project))
+        # Non member
+        self.assertFalse(can_delete_project(self.user_5, self.project))
+
 
 class PostPermissionsTest(TestCommon):
 
@@ -138,3 +176,43 @@ class PostPermissionsTest(TestCommon):
         )
         self.assertEqual(self.user_2, post.creator)
         self.assertTrue(is_post_creator(self.user_2, post))
+
+    def test_can_edit_post(self):
+        post = Post.objects.create(
+            project=self.project,
+            creator=self.author.member,
+            name="Test post 1"
+        )
+
+        # Owner
+        self.assertTrue(can_edit_post(self.user, post))
+        # Admin
+        self.assertTrue(can_edit_post(self.admin.member, post))
+        # Editor
+        self.assertTrue(can_edit_post(self.editor.member, post))
+        # Author creator
+        self.assertTrue(can_edit_post(self.author.member, post))
+        # Non member
+        self.assertFalse(can_edit_post(self.user_5, post))
+        # Author non-creator
+        self.assertFalse(can_edit_post(self.author_2.member, post))
+
+    def test_can_delete_post(self):
+        post = Post.objects.create(
+            project=self.project,
+            creator=self.author.member,
+            name="Test post 1"
+        )
+
+        # Owner
+        self.assertTrue(can_delete_post(self.user, post))
+        # Admin
+        self.assertTrue(can_delete_post(self.admin.member, post))
+        # Editor
+        self.assertTrue(can_delete_post(self.editor.member, post))
+        # Author creator
+        self.assertTrue(can_delete_post(self.author.member, post))
+        # Non member
+        self.assertFalse(can_delete_post(self.user_5, post))
+        # Author non-creator
+        self.assertFalse(can_delete_post(self.author_2.member, post))

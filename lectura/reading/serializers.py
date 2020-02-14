@@ -10,7 +10,7 @@ from core.serializers import (
     BaseSerializer, UUIDEncoder
 )
 from .models import (
-    Post, ReadingProject
+    Audio, Post, ReadingProject
 )
 
 User = get_user_model()
@@ -37,17 +37,24 @@ class ReadingProjectSerializer(BaseSerializer, HyperlinkedModelSerializer):
         lookup_field='username',
         source='owner'
     )
+    posts_url = HyperlinkedIdentityField(
+        view_name="api:nested-post-list",
+        lookup_url_kwarg="project_pk",
+        lookup_field="pk"
+    )
 
     class Meta:
         list_serializer = ReadingProjectListSerializer
         model = ReadingProject
         fields = (
             'url', 'id', 'owner_id', 'owner_url',
-            'name', 'description', 'slug', 'date_created', 'date_updated',
+            'name', 'description', 'slug', 'posts_url',
+            'date_created', 'date_updated',
         )
         read_only_fields = (
             'url', 'id', 'owner_id', 'owner_url',
-            'slug', 'date_created', 'date_updated'
+            'slug', 'posts_url',
+            'date_created', 'date_updated'
         )
 
     def create(self, validated_data):
@@ -91,6 +98,11 @@ class PostSerializer(BaseSerializer, HyperlinkedModelSerializer):
         lookup_field='username',
         source='creator'
     )
+    audios_url = HyperlinkedIdentityField(
+        view_name="api:nested-audio-list",
+        lookup_url_kwarg="post_pk",
+        lookup_field="pk"
+    )
 
     class Meta:
         list_serializer = PostListSerializer
@@ -98,13 +110,67 @@ class PostSerializer(BaseSerializer, HyperlinkedModelSerializer):
         fields = (
             'url', 'id', 'project_id', 'project', 'project_slug',
             'project_url', 'creator_id', 'creator_url',
-            'name', 'description', 'content', 'slug',
+            'name', 'description', 'content', 'slug', 'audios_url',
             'date_created', 'date_updated'
         )
         read_only_fields = (
-            'url', 'id', 'project_id', 'project_slug', 'project_url', 'creator_id', 'creator_url',
-            'slug', 'date_created', 'date_updated'
+            'url', 'id', 'project_id', 'project_slug', 'project_url',
+            'creator_id', 'creator_url', 'slug', 'audios_url',
+            'date_created', 'date_updated'
         )
 
     def create(self, validated_data):
         return Post.objects.create(**validated_data)
+
+
+class AudioListSerializer(ListSerializer):
+    pass
+
+
+class AudioSerializer(BaseSerializer, HyperlinkedModelSerializer):
+    json_encoder = UUIDEncoder
+    minimal_data_fields = [
+        'name', 'url', 'date_created'
+    ]
+    url = HyperlinkedIdentityField(
+        view_name='api:audio-detail',
+        lookup_field='pk'
+    )
+    post_url = HyperlinkedRelatedField(
+        many=False,
+        read_only=True,
+        view_name='api:post-detail',
+        lookup_field='pk',
+        source='post'
+    )
+    post = StringRelatedField(
+        many=False,
+        source='post.name'
+    )
+    post_slug = StringRelatedField(
+        many=False,
+        source='post.slug'
+    )
+    creator_id = ReadOnlyField(source='creator.id')
+    creator_url = HyperlinkedRelatedField(
+        many=False,
+        read_only=True,
+        view_name='api:user-detail',
+        lookup_field='username',
+        source='creator'
+    )
+
+    class Meta:
+        list_serializer = AudioListSerializer
+        model = Audio
+        fields = (
+            'url', 'id', 'post_id', 'post', 'post_slug',
+            'post_url', 'creator_id', 'creator_url',
+            'name', 'url', 'slug',
+            'date_created', 'date_updated'
+        )
+        read_only_fields = (
+            'url', 'id', 'post_id', 'post_slug', 'post_url',
+            'creator_id', 'creator_url', 'slug',
+            'date_created', 'date_updated'
+        )
