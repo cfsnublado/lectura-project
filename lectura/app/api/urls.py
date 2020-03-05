@@ -13,8 +13,8 @@ from dbx.api.views_api import (
 from users.api.views_api import UserViewSet, ProfileViewSet
 from reading.api.views_project import ProjectViewSet, ProjectImportView
 from reading.api.views_post import (
-    AudioViewSet, NestedAudioViewSet, NestedPostViewSet,
-    PostViewSet, PostExportView, PostImportView
+    NestedPostAudioViewSet, NestedPostViewSet,
+    PostViewSet, PostAudioViewSet, PostExportView, PostImportView
 )
 
 app_name = 'app'
@@ -28,17 +28,25 @@ router.register('profile', ProfileViewSet, basename='profile')
 # post
 router.register('project', ProjectViewSet, basename='project')
 router.register('post', PostViewSet, basename='post')
-router.register('audio', AudioViewSet, basename='audio')
+router.register('post-audio', PostAudioViewSet, basename='post-audio')
 
 post_router = NestedSimpleRouter(router, 'project', lookup='project')
 post_router.register('post', NestedPostViewSet, basename='nested-post')
 
-audio_router = NestedSimpleRouter(router, 'post', lookup='post')
-audio_router.register('audio', NestedAudioViewSet, basename='nested-audio')
+post_audio_router = NestedSimpleRouter(router, 'post', lookup='post')
+post_audio_router.register(
+    'post-audio',
+    NestedPostAudioViewSet,
+    basename='nested-post-audio'
+)
 
 urlpatterns = [
     path('api-token-auth/', views.obtain_auth_token, name='auth_token'),
-    path('reading/project/import/', ProjectImportView.as_view(), name='project_import'),
+    path(
+        'reading/project/import/',
+        ProjectImportView.as_view(),
+        name='project_import'
+    ),
     path('reading/post/import/', PostImportView.as_view(), name='post_import'),
     path(
         'reading/post/<int:post_pk>/export/',
@@ -52,5 +60,5 @@ urlpatterns = [
 
     path('', include(router.urls)),
     path('', include(post_router.urls)),
-    path('', include(audio_router.urls)),
+    path('', include(post_audio_router.urls)),
 ]

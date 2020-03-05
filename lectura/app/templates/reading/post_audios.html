@@ -1,0 +1,38 @@
+{% extends "reading/reading_base.html" %}
+{% load static %}
+{% load core_extras %}
+{% load i18n %}
+
+{% block title %}{{ post.name }} - {% trans 'label_audios' %}{% endblock title %}
+
+
+{% block breadcrumb_content %}
+{{ block.super }}
+<li class="is-active">
+<a href="#">{% trans 'label_audios' %}</a>
+</li>
+{% endblock breadcrumb_content %}
+
+{% block main_section_classes %}main-content post-view-section{% endblock main_section_classes %}
+
+{% block content %}
+
+<div class="post-view">
+
+<div class="post-name">
+<h2>{{ post.name }}</h2>
+</div>
+
+</div><!-- post-view -->
+
+<div id="post-audios-scroll-top"></div>
+
+{% url 'api:nested-post-audio-list' post.id as post_audios_url %}
+{% url 'api:post-audio-detail' 0 as post_audio_delete_url %}
+
+{% include "reading/includes/vue/_post_audios.html" %}
+
+{% endblock content %}
+
+{% block page_footer %}
+{% endblock page_footer %}

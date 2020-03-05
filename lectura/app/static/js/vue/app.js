@@ -11,6 +11,8 @@ Vue.component('projects', Projects)
 Vue.component('project', Project)
 Vue.component('posts', Posts)
 Vue.component('post', Post)
+Vue.component('post-audio', PostAudio)
+Vue.component('post-audios', PostAudios)
 
 // Dropbox
 Vue.component('dbx', Dbx)
@@ -21,9 +23,9 @@ Vue.component('dbx-audio-file-uploader', DbxAudioFileUploader)
 Vue.use(ModalPlugin)
 
 VueScrollTo.setDefaults({
-    container: "body",
+    container: 'body',
     duration: 500,
-    easing: "ease",
+    easing: 'ease',
     offset: 0,
     force: true,
     cancelable: true,
@@ -99,7 +101,7 @@ const vm = new Vue({
       var locked = disableLock ? false : this.showSidebar
       axios.post(this.appSessionUrl, {
         session_data: {
-          "sidebar_locked": locked
+          'sidebar_locked': locked
         }
       })
       .then(response => {

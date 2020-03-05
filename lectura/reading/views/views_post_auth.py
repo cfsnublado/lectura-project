@@ -9,8 +9,11 @@ from core.views import (
 )
 from django.urls import reverse
 
-from ..forms import AudioCreateForm, PostCreateForm, PostUpdateForm
-from ..models import Audio, Post
+from ..forms import (
+    PostAudioCreateForm, PostCreateForm,
+    PostUpdateForm
+)
+from ..models import Post, PostAudio
 from .views_mixins import (
     PostMixin, PostEditPermissionMixin, PostSessionMixin,
     ProjectMixin, ProjectMemberPermissionMixin, ProjectSessionMixin
@@ -66,17 +69,17 @@ class PostUpdateView(
         )
 
 
-class AudioCreateView(
+class PostAudioCreateView(
     LoginRequiredMixin, PostMixin,
     PostSessionMixin, ProjectMemberPermissionMixin,
     MessageMixin, CreateView
 ):
-    model = Audio
-    form_class = AudioCreateForm
+    model = PostAudio
+    form_class = PostAudioCreateForm
     template_name = '{0}/auth/audio_create.html'.format(APP_NAME)
 
     def get_form_kwargs(self):
-        kwargs = super(AudioCreateView, self).get_form_kwargs()
+        kwargs = super(PostAudioCreateView, self).get_form_kwargs()
         kwargs['post'] = self.post_obj
         kwargs['creator'] = self.request.user
 

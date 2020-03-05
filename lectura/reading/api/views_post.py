@@ -13,9 +13,9 @@ from rest_framework.views import APIView
 
 from core.api.views_api import APIDefaultsMixin
 from core.api.permissions import ReadPermission
-from ..models import Audio, Post, ReadingProject
+from ..models import Post, PostAudio, ReadingProject
 from ..serializers import (
-    AudioSerializer, PostSerializer
+    PostAudioSerializer, PostSerializer
 )
 from .pagination import SmallPagination
 from .permissions import (
@@ -114,14 +114,14 @@ class PostExportView(APIDefaultsMixin, APIView):
         return obj
 
 
-class AudioViewSet(
+class PostAudioViewSet(
     APIDefaultsMixin, RetrieveModelMixin, UpdateModelMixin,
     DestroyModelMixin, ListModelMixin, GenericViewSet
 ):
     lookup_field = 'pk'
     lookup_url_kwarg = 'pk'
-    serializer_class = AudioSerializer
-    queryset = Audio.objects.select_related('post', 'post__project', 'creator')
+    serializer_class = PostAudioSerializer
+    queryset = PostAudio.objects.select_related('post', 'post__project', 'creator')
     permission_classes = [ReadPermission, PostCreatorPermission]
     pagination_class = SmallPagination
 
@@ -132,14 +132,14 @@ class AudioViewSet(
         return obj
 
 
-class NestedAudioViewSet(
+class NestedPostAudioViewSet(
     APIDefaultsMixin, CreateModelMixin,
     ListModelMixin, GenericViewSet
 ):
     lookup_field = 'pk'
     lookup_url_kwarg = 'pk'
-    queryset = Audio.objects.select_related('post', 'post__project', 'creator')
-    serializer_class = AudioSerializer
+    queryset = PostAudio.objects.select_related('post', 'post__project', 'creator')
+    serializer_class = PostAudioSerializer
     post = None
     permission_classes = [ReadPermission, ProjectOwnerPermission]
     pagination_class = SmallPagination
@@ -157,7 +157,7 @@ class NestedAudioViewSet(
         self.get_post(post_pk=kwargs['post_pk'])
         self.check_object_permissions(request, self.post)
 
-        return super(NestedAudioViewSet, self).create(request, *args, **kwargs)
+        return super(NestedPostAudioViewSet, self).create(request, *args, **kwargs)
 
     def perform_create(self, serializer):
         serializer.save(
@@ -168,4 +168,4 @@ class NestedAudioViewSet(
     def list(self, request, *args, **kwargs):
         self.get_post(post_pk=kwargs['post_pk'])
 
-        return super(NestedAudioViewSet, self).list(request, *args, **kwargs)
+        return super(NestedPostAudioViewSet, self).list(request, *args, **kwargs)

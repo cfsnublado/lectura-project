@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from core.forms import BaseModelForm
 from .models import (
-    Audio, Post, ReadingProject
+    Post, PostAudio, ReadingProject
 )
 
 
@@ -67,7 +67,7 @@ class PostForm(BaseModelForm):
         }
 
 
-class AudioForm(BaseModelForm):
+class PostAudioForm(BaseModelForm):
 
     class Meta:
         abstract = True
@@ -82,13 +82,13 @@ class AudioForm(BaseModelForm):
         }
 
 
-class AudioCreateForm(AudioForm):
+class PostAudioCreateForm(PostAudioForm):
 
     def __init__(self, *args, **kwargs):
         self.creator = kwargs.pop('creator', None)
         self.post = kwargs.pop('post', None)
 
-        super(AudioCreateForm, self).__init__(*args, **kwargs)
+        super(PostAudioCreateForm, self).__init__(*args, **kwargs)
 
         if not self.creator:
             raise ValueError(_('validation_creator_required'))
@@ -99,8 +99,8 @@ class AudioCreateForm(AudioForm):
         self.instance.creator = self.creator
         self.instance.post = self.post
 
-    class Meta(AudioForm.Meta):
-        model = Audio
+    class Meta(PostAudioForm.Meta):
+        model = PostAudio
 
 
 class PostCreateForm(PostForm):

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-02 15:46-0800\n"
+"POT-Creation-Date: 2020-02-16 11:56-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,62 +18,147 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: config/settings/base.py:115 lectura/core/tests/test_models.py:79
-#: lectura/core/tests/test_models.py:83 lectura/core/tests/test_models.py:86
+#: config/settings/base.py:115 lectura/core/tests/test_models.py:244
+#: lectura/core/tests/test_models.py:248 lectura/core/tests/test_models.py:251
 msgid "English"
 msgstr ""
 
-#: config/settings/base.py:116 lectura/core/tests/test_models.py:86
+#: config/settings/base.py:116 lectura/core/tests/test_models.py:251
 msgid "Spanish"
 msgstr ""
 
 #: lectura/core/models.py:23
+msgid "label_acccess_public"
+msgstr ""
+
+#: lectura/core/models.py:24
+#, fuzzy
+#| msgid "label_new_project"
+msgid "label_acccess_protected"
+msgstr "New project"
+
+#: lectura/core/models.py:25
+#, fuzzy
+#| msgid "label_create"
+msgid "label_acccess_private"
+msgstr "Create"
+
+#: lectura/core/models.py:29
+#, fuzzy
+#| msgid "label_login"
+msgid "label_access_status"
+msgstr "Login"
+
+#: lectura/core/models.py:43
 #, fuzzy
 #| msgid "label_new_reading"
 msgid "label_invite_pending"
 msgstr "New reading"
 
-#: lectura/core/models.py:24
+#: lectura/core/models.py:44
 msgid "label_invite_status_accepted"
 msgstr ""
 
-#: lectura/core/models.py:25
+#: lectura/core/models.py:45
 msgid "label_invite_status_declined"
 msgstr ""
 
-#: lectura/core/models.py:39
+#: lectura/core/models.py:59
 #, fuzzy
 #| msgid "label_login"
 msgid "label_status"
 msgstr "Login"
 
-#: lectura/core/models.py:51
+#: lectura/core/models.py:71
 #, fuzzy
 #| msgid "validation_field_required"
 msgid "validation_invite_sender_receiver_equal"
 msgstr "This field is required."
 
-#: lectura/core/models.py:61 lectura/app/templates/base.html:176
+#: lectura/core/models.py:81 lectura/app/templates/base.html:176
 msgid "label_language"
 msgstr "Language"
 
-#: lectura/core/models.py:127
+#: lectura/core/models.py:148
 #, fuzzy
 #| msgid "label_login"
 msgid "label_slug"
 msgstr "Login"
 
-#: lectura/core/models.py:180
+#: lectura/core/models.py:201
 msgid "label_date_created"
 msgstr ""
 
-#: lectura/core/models.py:185
+#: lectura/core/models.py:206
 msgid "label_date_updated"
 msgstr ""
 
-#: lectura/core/models.py:242
+#: lectura/core/models.py:263
 msgid "validation_translation_languages_equal"
 msgstr ""
+
+#: lectura/core/models.py:351 lectura/reading/models.py:61
+#: lectura/reading/models.py:109
+msgid "label_name"
+msgstr "Name"
+
+#: lectura/core/models.py:355 lectura/reading/models.py:65
+msgid "label_description"
+msgstr "Description"
+
+#: lectura/core/models.py:360
+#: lectura/app/templates/reading/reading_base.html:45
+#: lectura/app/templates/reading/reading_base.html:95
+msgid "label_project"
+msgstr "Project"
+
+#: lectura/core/models.py:361
+#, fuzzy
+#| msgid "label_profile_about"
+msgid "label_project_plural"
+msgstr "About you"
+
+#: lectura/core/models.py:384
+#, fuzzy
+#| msgid "label_project"
+msgid "label_project_member"
+msgstr "Project"
+
+#: lectura/core/models.py:385
+#, fuzzy
+#| msgid "label_profile_about"
+msgid "label_project_member_plural"
+msgstr "About you"
+
+#: lectura/core/models.py:392
+#, fuzzy
+#| msgid "validation_field_required"
+msgid "validation_project_member_is_owner"
+msgstr "This field is required."
+
+#: lectura/core/models.py:404
+#, fuzzy
+#| msgid "label_reading"
+msgid "label_role_admin"
+msgstr "Reading"
+
+#: lectura/core/models.py:405
+#, fuzzy
+#| msgid "label_edit"
+msgid "label_role_editor"
+msgstr "Edit"
+
+#: lectura/core/models.py:406
+#, fuzzy
+#| msgid "label_profile_about"
+msgid "label_role_author"
+msgstr "About you"
+
+#: lectura/core/models.py:410
+#, fuzzy
+#| msgid "label_profile"
+msgid "label_role"
+msgstr "Profile"
 
 #: lectura/core/validation.py:11
 msgid "help_text_password"
@@ -112,11 +197,11 @@ msgstr ""
 msgid "validation_username_min_length {min_len}"
 msgstr ""
 
-#: lectura/core/views.py:251
+#: lectura/core/views.py:265
 msgid "message_success"
 msgstr "Success"
 
-#: lectura/core/views.py:252
+#: lectura/core/views.py:266
 msgid "message_error"
 msgstr "Error"
 
@@ -132,8 +217,9 @@ msgstr "Profile"
 msgid "label_reading_config"
 msgstr "Profile"
 
-#: lectura/reading/forms.py:24 lectura/reading/forms.py:43
-#: lectura/reading/forms.py:55 lectura/reading/forms.py:58
+#: lectura/reading/forms.py:24 lectura/reading/forms.py:65
+#: lectura/reading/forms.py:77 lectura/reading/forms.py:80
+#: lectura/reading/tests/test_views_post_auth.py:215
 #: lectura/security/forms.py:11 lectura/security/forms.py:18
 #: lectura/security/tests/test_forms.py:37
 #: lectura/security/tests/test_forms.py:42
@@ -151,22 +237,22 @@ msgstr "Profile"
 msgid "validation_field_required"
 msgstr "This field is required."
 
-#: lectura/reading/forms.py:72 lectura/reading/forms.py:118
+#: lectura/reading/forms.py:37
+#, fuzzy
+#| msgid "validation_field_required"
+msgid "validation_owner_required"
+msgstr "This field is required."
+
+#: lectura/reading/forms.py:94 lectura/reading/forms.py:118
 #, fuzzy
 #| msgid "validation_field_required"
 msgid "validation_creator_required"
 msgstr "This field is required."
 
-#: lectura/reading/forms.py:75
+#: lectura/reading/forms.py:97
 #, fuzzy
 #| msgid "validation_field_required"
 msgid "validation_post_required"
-msgstr "This field is required."
-
-#: lectura/reading/forms.py:92
-#, fuzzy
-#| msgid "validation_field_required"
-msgid "validation_owner_required"
 msgstr "This field is required."
 
 #: lectura/reading/forms.py:115
@@ -175,41 +261,20 @@ msgstr "This field is required."
 msgid "validation_project_required"
 msgstr "This field is required."
 
-#: lectura/reading/models.py:38 lectura/reading/models.py:80
-#: lectura/reading/models.py:128
-msgid "label_name"
-msgstr "Name"
-
-#: lectura/reading/models.py:42 lectura/reading/models.py:84
-msgid "label_description"
-msgstr "Description"
-
-#: lectura/reading/models.py:53
-#: lectura/app/templates/reading/reading_base.html:45
-#: lectura/app/templates/reading/reading_base.html:91
-msgid "label_project"
-msgstr "Project"
-
-#: lectura/reading/models.py:54
-#, fuzzy
-#| msgid "label_profile_about"
-msgid "label_project_plural"
-msgstr "About you"
-
-#: lectura/reading/models.py:88
+#: lectura/reading/models.py:69
 msgid "label_content"
 msgstr "Content"
 
-#: lectura/reading/models.py:101
-#: lectura/app/templates/reading/reading_base.html:111
+#: lectura/reading/models.py:75
+#: lectura/app/templates/reading/reading_base.html:115
 msgid "label_post"
 msgstr "Post"
 
-#: lectura/reading/models.py:102
+#: lectura/reading/models.py:76
 msgid "label_post_plural"
 msgstr "Posts"
 
-#: lectura/reading/models.py:132
+#: lectura/reading/models.py:113
 msgid "label_url"
 msgstr "URL"
 
@@ -456,10 +521,9 @@ msgid "page_audio_create_title"
 msgstr "Create audio"
 
 #: lectura/app/templates/reading/auth/audio_create.html:12
-#, fuzzy
-#| msgid "label_create_reading"
-msgid "label_create_audio"
-msgstr "Create a reading"
+#: lectura/app/templates/reading/reading_base.html:144
+msgid "label_add_audio"
+msgstr "Add audio"
 
 #: lectura/app/templates/reading/auth/audio_create.html:30
 #: lectura/app/templates/reading/auth/post_create.html:30
@@ -524,6 +588,11 @@ msgstr "There are no projects."
 msgid "label_create_project"
 msgstr "Create a project"
 
+#: lectura/app/templates/reading/post_audios.html:6
+#: lectura/app/templates/reading/post_audios.html:12
+msgid "label_audios"
+msgstr "Audios"
+
 #: lectura/app/templates/reading/projects.html:6
 msgid "page_projects_title"
 msgstr "Projects"
@@ -532,17 +601,13 @@ msgstr "Projects"
 msgid "label_edit_project"
 msgstr "Edit project"
 
-#: lectura/app/templates/reading/reading_base.html:74
+#: lectura/app/templates/reading/reading_base.html:78
 msgid "label_new_post"
 msgstr "New post"
 
-#: lectura/app/templates/reading/reading_base.html:130
+#: lectura/app/templates/reading/reading_base.html:134
 msgid "label_edit_post"
 msgstr "Edit post"
-
-#: lectura/app/templates/reading/reading_base.html:140
-msgid "label_add_audio"
-msgstr "Add audio"
 
 #: lectura/app/templates/security/login.html:8
 msgid "page_login_title"
@@ -669,8 +734,10 @@ msgstr "Change user password"
 msgid "page_view_profile_title"
 msgstr "View profile"
 
-#~ msgid "label_new_project"
-#~ msgstr "New project"
+#, fuzzy
+#~| msgid "label_create_reading"
+#~ msgid "label_create_audio"
+#~ msgstr "Create a reading"
 
 #, fuzzy
 #~| msgid "validation_field_required"
@@ -684,9 +751,6 @@ msgstr "View profile"
 
 #~ msgid "page_reading_update_title"
 #~ msgstr "Update reading"
-
-#~ msgid "label_reading"
-#~ msgstr "Reading"
 
 #, fuzzy
 #~| msgid "label_send_email"

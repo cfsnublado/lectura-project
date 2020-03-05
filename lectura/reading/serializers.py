@@ -10,7 +10,7 @@ from core.serializers import (
     BaseSerializer, UUIDEncoder
 )
 from .models import (
-    Audio, Post, ReadingProject
+    Post, PostAudio, ReadingProject
 )
 
 User = get_user_model()
@@ -98,8 +98,8 @@ class PostSerializer(BaseSerializer, HyperlinkedModelSerializer):
         lookup_field='username',
         source='creator'
     )
-    audios_url = HyperlinkedIdentityField(
-        view_name="api:nested-audio-list",
+    post_audios_url = HyperlinkedIdentityField(
+        view_name="api:nested-post-audio-list",
         lookup_url_kwarg="post_pk",
         lookup_field="pk"
     )
@@ -110,12 +110,12 @@ class PostSerializer(BaseSerializer, HyperlinkedModelSerializer):
         fields = (
             'url', 'id', 'project_id', 'project', 'project_slug',
             'project_url', 'creator_id', 'creator_url',
-            'name', 'description', 'content', 'slug', 'audios_url',
+            'name', 'description', 'content', 'slug', 'post_audios_url',
             'date_created', 'date_updated'
         )
         read_only_fields = (
             'url', 'id', 'project_id', 'project_slug', 'project_url',
-            'creator_id', 'creator_url', 'slug', 'audios_url',
+            'creator_id', 'creator_url', 'slug', 'post_audios_url',
             'date_created', 'date_updated'
         )
 
@@ -123,17 +123,17 @@ class PostSerializer(BaseSerializer, HyperlinkedModelSerializer):
         return Post.objects.create(**validated_data)
 
 
-class AudioListSerializer(ListSerializer):
+class PostAudioListSerializer(ListSerializer):
     pass
 
 
-class AudioSerializer(BaseSerializer, HyperlinkedModelSerializer):
+class PostAudioSerializer(BaseSerializer, HyperlinkedModelSerializer):
     json_encoder = UUIDEncoder
     minimal_data_fields = [
         'name', 'url', 'date_created'
     ]
     url = HyperlinkedIdentityField(
-        view_name='api:audio-detail',
+        view_name='api:post-audio-detail',
         lookup_field='pk'
     )
     post_url = HyperlinkedRelatedField(
@@ -161,8 +161,8 @@ class AudioSerializer(BaseSerializer, HyperlinkedModelSerializer):
     )
 
     class Meta:
-        list_serializer = AudioListSerializer
-        model = Audio
+        list_serializer = PostAudioListSerializer
+        model = PostAudio
         fields = (
             'url', 'id', 'post_id', 'post', 'post_slug',
             'post_url', 'creator_id', 'creator_url',

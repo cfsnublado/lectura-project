@@ -139,7 +139,7 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
     <a 
     id="sidebar-nav-post-edit" 
     class="{% block audio_create_link_active %}{% endblock audio_create_link_active %}" 
-    href="{% url 'reading:audio_create' post.id post.slug %}"
+    href="{% url 'reading:post_audio_create' post.id post.slug %}"
     >
     <i class="menu-icon fas fa-plus fa-fw"></i> {% trans "label_add_audio" %}
     </a>

@@ -5,9 +5,11 @@ from .views.views_project_auth import (
     ProjectCreateView,
     ProjectUpdateView
 )
-from .views.views_post import PostView
+from .views.views_post import (
+    PostView, PostAudiosView
+)
 from .views.views_post_auth import (
-    AudioCreateView, PostCreateView, PostUpdateView
+    PostAudioCreateView, PostCreateView, PostUpdateView
 )
 
 app_name = 'reading'
@@ -35,8 +37,8 @@ auth_urls = [
     ),
     path(
         'post/<int:post_pk>-<slug:post_slug>/audio/create/',
-        AudioCreateView.as_view(),
-        name='audio_create'
+        PostAudioCreateView.as_view(),
+        name='post_audio_create'
     ),
 ]
 
@@ -55,6 +57,11 @@ urlpatterns = [
         'post/<int:post_pk>-<slug:post_slug>/',
         PostView.as_view(),
         name='post'
+    ),
+    path(
+        'post/<int:post_pk>-<slug:post_slug>/audios/',
+        PostAudiosView.as_view(),
+        name='post_audios'
     ),
     path('auth/', include(auth_urls)),
 ]

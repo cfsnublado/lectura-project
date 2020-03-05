@@ -87,7 +87,7 @@ class Post(
         return self.project
 
 
-class Audio(
+class PostAudio(
     TimestampModel, SlugifyModel,
     SerializeModel, ProjectContentModel
 ):
@@ -102,7 +102,7 @@ class Audio(
     )
     post = models.ForeignKey(
         Post,
-        related_name='audios',
+        related_name='post_audios',
         on_delete=models.CASCADE
     )
     name = models.CharField(

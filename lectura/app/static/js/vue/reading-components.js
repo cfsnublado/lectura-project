@@ -249,3 +249,115 @@ const Posts = {
   }
 }
 
+const PostAudio = {
+  mixins: [
+    AdminMixin,
+    VisibleMixin,
+    MarkdownMixin
+  ],
+  props: {
+    initAudio: {
+      type: Object,
+      required: true
+    },
+    initViewUrl: {
+      type: String,
+      default: ''
+    },
+    initEditUrl: {
+      type: String,
+      default: ''
+    },
+    initDeleteUrl: {
+      type: String,
+      default: ''
+    }
+  },
+  data() {
+    return {
+      audio: this.initAudio,
+      viewUrl: this.initViewUrl,
+      editUrl: this.initEditUrl,
+      deleteUrl: this.initDeleteUrl
+    }
+  },
+  methods: {
+    remove() {
+      this.$emit('delete-post-audio', this.audio.id)
+    }
+  },
+  created() {
+    if (this.initDeleteUrl) {
+      this.deleteUrl = this.initDeleteUrl
+        .replace(0, this.audio.id)
+    }
+  }
+}
+
+const PostAudios = {
+  components: {
+    'post-audio': PostAudio
+  },
+  mixins: [
+    AdminMixin,
+    AjaxProcessMixin,
+    PaginationMixin
+  ],
+  props: {
+    postAudiosUrl: {
+      type: String,
+      default: ''
+    }
+  },
+  data() {
+    return {
+      postAudios: null
+    }
+  },
+  methods: {
+    getPostAudios(page=1) {
+      this.process()
+
+      params = {
+        page: page
+      }
+
+      axios.get(this.postAudiosUrl, {
+        params: params
+      })
+      .then(response => {
+        this.postAudios = response.data.results
+        this.setPagination(
+          response.data.previous,
+          response.data.next,
+          response.data.page_num,
+          response.data.count,
+          response.data.num_pages
+        )
+        VueScrollTo.scrollTo({
+          el: '#post-audios-scroll-top',
+        })
+        this.success()
+      })
+      .catch(error => {
+        if (error.response) {
+          console.log(error.response)
+        } else if (error.request) {
+          console.log(error.request)
+        } else {
+          console.log(error.message)
+        }
+        console.log(error.config)
+      })
+      .finally(() => {
+        this.complete()
+      })
+    },
+    onDeletePostAudio(index) {
+      this.$delete(this.postAudios, index)
+    }
+  },
+  created() {
+    this.getPostAudios()
+  }
+}

@@ -1,0 +1,79 @@
+{% load i18n %}
+
+
+<post-audios
+post-audios-url="{{ post_audios_url }}"
+:init-is-admin="{{ user.is_admin|yesno:"true,false" }}"
+inline-template
+>
+
+<div 
+class="post-audios"
+v-cloak
+>
+
+<div v-if="postAudios && postAudios.length == 0">
+
+<p>{% trans 'msg_no_post_audios' %}</p>
+
+<a class="button is-info" href="{% url 'reading:post_audio_create' post.id post.slug %}">
+{% trans 'label_add_audio' %}
+</a>
+
+</div>
+
+<post-audio
+v-for="(postAudio, index) in postAudios"
+:key="postAudio.id"
+:init-audio="postAudio"
+inline-template
+>
+<transition name="fade-transition" v-on:after-enter="isVisible = true" v-on:after-leave="remove">
+
+<div class="card project-card" v-show="isVisible">
+
+<div class="card-controls">
+
+<ajax-delete
+v-if="isAdmin"
+delete-confirm-id="delete-post-audio"
+:delete-url="deleteUrl"
+@ajax-success="isVisible = false"
+inline-template
+>
+
+<span class="control">
+<a
+href="#"
+@click.prevent="confirmDelete"
+>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+</span>
+
+</ajax-delete>
+
+</div>
+
+<div class="card-content">
+
+<a
+href="#"
+@click.prevent="view"
+>
+<span
+class="name"
+v-html="markdownToHtml(audio.name)"
+>
+</span>
+</a>
+
+</div>
+</div>
+
+</transition>
+</post-audio>
+
+</div>
+
+</post-audios>
