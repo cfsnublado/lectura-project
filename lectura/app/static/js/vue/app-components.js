@@ -209,6 +209,10 @@ const AudioPlayer = {
       type: Boolean,
       default: true
     },
+    hasStopBtn: {
+      type: Boolean,
+      default: true
+    },
     hasMuteBtn: {
       type: Boolean,
       default: true
@@ -225,7 +229,9 @@ const AudioPlayer = {
   data() {
     return {
       audio: null,
+      seekBar: null,
       playing: false,
+      dragging: false,
       loaded: false,
       currentSeconds: 0,
       durationSeconds: 0,
@@ -234,8 +240,6 @@ const AudioPlayer = {
       previousVolume: 35,
       volume: 100,
       hasError: false,
-      seekBar: null,
-      dragging: false
     }
   },
   computed: {
@@ -342,6 +346,7 @@ const AudioPlayer = {
     this.seekBar = this.$refs.audioPlayerSeekBar
   },
 }
+
 
 const Modal = {
   mixins: [BaseModal],

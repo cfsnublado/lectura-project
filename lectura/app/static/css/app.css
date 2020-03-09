@@ -10093,6 +10093,11 @@ blockquote p {
   }
 }
 /* line 1, ../scss/cfs/_layout.scss */
+a {
+  outline: 0;
+}
+
+/* line 5, ../scss/cfs/_layout.scss */
 .centerall {
   display: flex;
   height: 100vh;
@@ -10102,22 +10107,22 @@ blockquote p {
   align-items: center;
 }
 
-/* line 12, ../scss/cfs/_layout.scss */
+/* line 16, ../scss/cfs/_layout.scss */
 .main-content {
   padding-top: 4.375rem;
 }
 
-/* line 16, ../scss/cfs/_layout.scss */
+/* line 20, ../scss/cfs/_layout.scss */
 .page-footer {
   display: flex;
   width: 100%;
-  height: 3.125rem;
+  padding: 10px;
   background-color: #444;
   color: #eee;
   align-items: center;
   justify-content: center;
 }
-/* line 28, ../scss/cfs/_layout.scss */
+/* line 32, ../scss/cfs/_layout.scss */
 .page-footer.is-fixed {
   position: fixed;
   right: 0;
@@ -10125,7 +10130,7 @@ blockquote p {
   left: 0;
   width: auto;
 }
-/* line 37, ../scss/cfs/_layout.scss */
+/* line 41, ../scss/cfs/_layout.scss */
 .page-footer.is-absolute {
   position: absolute;
   right: 0;
@@ -10133,7 +10138,7 @@ blockquote p {
   left: 0;
   width: auto;
 }
-/* line 46, ../scss/cfs/_layout.scss */
+/* line 50, ../scss/cfs/_layout.scss */
 .page-footer.is-bordered {
   border-top: 1px solid #dfe1e3;
 }
@@ -11875,47 +11880,43 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
   font-size: 1.125rem;
 }
 
-/* line 19, ../scss/cfs/_audio_player_2.scss */
-.audio-player-wrapper {
-  display: flex;
-  height: 100vh;
-  background-color: #fff;
-  background-image: linear-gradient(90deg, #ffffff 0%, #e0e0e0);
-  align-items: center;
-  justify-content: center;
+/* line 21, ../scss/cfs/_audio_player.scss */
+.audio-title {
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
-/* line 31, ../scss/cfs/_audio_player_2.scss */
+/* line 27, ../scss/cfs/_audio_player.scss */
 .audio-player {
-  display: flex;
+  display: inline-flex;
   color: #404040;
   border: 1px solid #e0e0e0;
   background-color: #fff;
 }
-/* line 38, ../scss/cfs/_audio_player_2.scss */
+/* line 34, ../scss/cfs/_audio_player.scss */
 .audio-player.is-loading {
   border: none;
   box-shadow: none;
 }
-/* line 43, ../scss/cfs/_audio_player_2.scss */
+/* line 39, ../scss/cfs/_audio_player.scss */
 .audio-player .loading-icon {
   font-size: 30px;
   color: #666;
 }
 
-/* line 50, ../scss/cfs/_audio_player_2.scss */
+/* line 46, ../scss/cfs/_audio_player.scss */
 .audio-player-controls {
   display: flex;
 }
-/* line 53, ../scss/cfs/_audio_player_2.scss */
+/* line 49, ../scss/cfs/_audio_player.scss */
 .audio-player-controls > div.player-control {
   border-right: 1px solid #e0e0e0;
 }
-/* line 56, ../scss/cfs/_audio_player_2.scss */
+/* line 52, ../scss/cfs/_audio_player.scss */
 .audio-player-controls > div.player-control:last-child {
   border-right: none;
 }
-/* line 60, ../scss/cfs/_audio_player_2.scss */
+/* line 56, ../scss/cfs/_audio_player.scss */
 .audio-player-controls > div.player-control a {
   display: block;
   line-height: 0;
@@ -11924,30 +11925,27 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
   color: #404040;
 }
 
-/* line 74, ../scss/cfs/_audio_player_2.scss */
+/* line 70, ../scss/cfs/_audio_player.scss */
 .audio-progress-container {
-  flex-basis: 350px;
-  flex-grow: 2;
-  flex-shrink: 2;
   min-width: 25rem;
   height: 30px;
-  padding: 10px;
+  padding: 10px 10px 10px 12px;
 }
-/* line 83, ../scss/cfs/_audio_player_2.scss */
+/* line 75, ../scss/cfs/_audio_player.scss */
 .audio-progress-container .audio-progress {
   height: 8px;
-  margin: 0 50px;
+  margin-bottom: 5px;
   border-radius: 5px;
   background-color: #000;
 }
-/* line 90, ../scss/cfs/_audio_player_2.scss */
+/* line 82, ../scss/cfs/_audio_player.scss */
 .audio-progress-container .audio-progress .seek-bar {
   height: 8px;
   cursor: pointer;
   border-radius: 5px;
   background-color: #000;
 }
-/* line 98, ../scss/cfs/_audio_player_2.scss */
+/* line 90, ../scss/cfs/_audio_player.scss */
 .audio-progress-container .audio-progress .seek-bar .play-bar {
   float: left;
   overflow: visible !important;
@@ -11956,62 +11954,65 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
   border-radius: 5px;
   background-color: #00c85f;
 }
-/* line 109, ../scss/cfs/_audio_player_2.scss */
+/* line 101, ../scss/cfs/_audio_player.scss */
 .audio-progress-container .audio-progress .seek-bar .play-bar .bullet {
   position: absolute;
-  content: "";
-  top: -5px;
-  right: -7px;
-  height: 18px;
+  top: -4px;
+  right: -12px;
   width: 18px;
-  background: #777;
-  border-radius: 50%;
-}
-
-/* line 124, ../scss/cfs/_audio_player_2.scss */
-.audio-player-progress {
-  position: relative;
-  min-width: 25rem;
-  height: 50%;
-  cursor: pointer;
-  background-color: #000;
-}
-/* line 134, ../scss/cfs/_audio_player_2.scss */
-.audio-player-progress .audio-player-seeker {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  background-color: #00c85f;
-}
-/* line 142, ../scss/cfs/_audio_player_2.scss */
-.audio-player-progress .audio-player-seeker .bullet {
-  position: absolute;
-  top: -5px;
-  right: -7px;
-  width: 30px;
-  height: 30px;
+  height: 18px;
   content: '';
   border-radius: 50%;
-  background: #fff;
+  background: #777;
 }
 
-/* line 158, ../scss/cfs/_audio_player_2.scss */
+/* line 119, ../scss/cfs/_audio_player.scss */
 .audio-player-time {
   display: flex;
+  font-size: 14px;
   justify-content: space-between;
 }
-/* line 164, ../scss/cfs/_audio_player_2.scss */
+/* line 126, ../scss/cfs/_audio_player.scss */
 .audio-player-time .audio-player-time-current {
   font-weight: 700;
   padding-left: 5px;
 }
-/* line 170, ../scss/cfs/_audio_player_2.scss */
+/* line 132, ../scss/cfs/_audio_player.scss */
 .audio-player-time .audio-player-time-total {
   padding-right: 5px;
   opacity: 0.5;
 }
 
+/* Themes */
+/* line 141, ../scss/cfs/_audio_player.scss */
+.audio-player.dark {
+  color: #eee;
+  border: none;
+  background-color: #444;
+}
+/* line 146, ../scss/cfs/_audio_player.scss */
+.audio-player.dark .audio-player-time-total {
+  opacity: 1;
+}
+/* line 150, ../scss/cfs/_audio_player.scss */
+.audio-player.dark div.player-control {
+  border: none;
+}
+/* line 154, ../scss/cfs/_audio_player.scss */
+.audio-player.dark div.player-control:first-child a {
+  padding-left: 0;
+}
+/* line 159, ../scss/cfs/_audio_player.scss */
+.audio-player.dark div.player-control a {
+  color: #eee;
+}
+
+@media screen and (max-width: 499px) {
+  /* line 166, ../scss/cfs/_audio_player.scss */
+  .audio-progress-container {
+    min-width: 12.5rem;
+  }
+}
 /* line 1, ../scss/cfs/_themes.scss */
 .theme-cloudy {
   background: #f9f9f9;

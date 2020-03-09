@@ -26,15 +26,97 @@
 {% block page_footer %}
 
 <footer class="page-footer post-view-footer is-fixed is-bordered">
+
 <audio-player
 audio-player-id="post-audio"
-audio-file="{{ post_audio_url }}"
+audio-file="https://www.dropbox.com/s/3di40f872jdfrb5/mediorey.mp3?dl=1"
 :has-loop-btn="false"
 :has-download-btn="false"
 :has-mute-btn="false"
+:has-stop-btn="false"
 :has-volume-btn="false"
+inline-template
 >
+
+<div>
+
+<div class="audio-title">
+cfs - Juramento de venganza
+</div>
+
+<div 
+class="audio-player dark"
+>
+
+<div
+class="audio-player-controls"
+>
+
+<div 
+class="player-control"
+v-if="hasStopButton"
+>
+<a @click.prevent="stop" title="Stop" href="#">
+<i class="fas fa-stop"></i>
+</a>
+</div>
+
+<div class="player-control">
+<a @click.prevent="playing = !playing" title="Play/Pause" href="#">
+<i v-if="!playing" class="fas fa-play"></i>
+<i v-else class="fas fa-pause"></i>
+</a>
+</div>
+
+<div class="audio-progress-container">
+
+<div class="audio-progress">
+
+<div 
+class="seek-bar"
+ref="audioPlayerSeekBar"
+@mousedown="onProgressMousedown"
+>
+
+<div 
+class="play-bar"
+:style="{ width: this.percentComplete + '%' }"
+>
+
+<div class="bullet"></div>
+
+</div><!-- play-bar -->
+
+</div><!-- seek-bar -->
+
+</div><!-- progress -->
+
+<div class="audio-player-time">
+
+<div class="audio-player-time-current">[[ currentTime ]]</div>
+<div class="audio-player-time-total">[[ durationTime ]]</div>
+
+</div><!-- audio-player-time -->
+
+</div><!-- progress-container -->
+
+</div><!-- audio-player-controls -->
+
+<audio
+:id="audioPlayerId" 
+:loop="loop"
+:src="audioFile" 
+preload="auto"
+style="display: none;"
+ref="audiofile"
+>
+</audio>
+
+</div><!-- audio-player -->
+
+</div>
 </audio-player>
+
 </footer>
 
 {% endblock page_footer %}
