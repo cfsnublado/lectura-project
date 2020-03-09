@@ -27,7 +27,9 @@ const Project = {
       project: this.initProject,
       viewUrl: this.initViewUrl,
       editUrl: this.initEditUrl,
-      deleteUrl: this.initDeleteUrl
+      deleteUrl: this.initDeleteUrl,
+      idPlaceholder: '0',
+      slugPlaceholder: 'zzz'
     }
   },
   methods: {
@@ -44,13 +46,13 @@ const Project = {
   created() {
     if (this.initViewUrl) {
       this.viewUrl = this.initViewUrl
-        .replace(0, this.project.id)
-        .replace('zzz', this.project.slug)   
+        .replace(this.idPlaceholder, this.project.id)
+        .replace(this.slugPlaceholder, this.project.slug)   
     }
 
     if (this.initDeleteUrl) {
       this.deleteUrl = this.initDeleteUrl
-        .replace(0, this.project.id)
+        .replace(this.idPlaceholder, this.project.id)
     }
   }
 }
@@ -152,7 +154,9 @@ const Post = {
       post: this.initPost,
       viewUrl: this.initViewUrl,
       editUrl: this.initEditUrl,
-      deleteUrl: this.initDeleteUrl
+      deleteUrl: this.initDeleteUrl,
+      idPlaceholder: '0',
+      slugPlaceholder: 'zzz'
     }
   },
   methods: {
@@ -169,13 +173,13 @@ const Post = {
   created() {
     if (this.initViewUrl) {
       this.viewUrl = this.initViewUrl
-        .replace(0, this.post.id)
-        .replace('zzz', this.post.slug)
+        .replace(this.idPlaceholder, this.post.id)
+        .replace(this.slugPlaceholder, this.post.slug)
     }
 
     if (this.initDeleteUrl) {
       this.deleteUrl = this.initDeleteUrl
-        .replace(0, this.post.id)
+        .replace(this.idPlaceholder, this.post.id)
     }
   }
 }
@@ -278,7 +282,8 @@ const PostAudio = {
       audio: this.initAudio,
       viewUrl: this.initViewUrl,
       editUrl: this.initEditUrl,
-      deleteUrl: this.initDeleteUrl
+      deleteUrl: this.initDeleteUrl,
+      idPlaceholder: '0'
     }
   },
   methods: {
@@ -289,7 +294,7 @@ const PostAudio = {
   created() {
     if (this.initDeleteUrl) {
       this.deleteUrl = this.initDeleteUrl
-        .replace(0, this.audio.id)
+        .replace(this.idPlaceholder, this.audio.id)
     }
   }
 }

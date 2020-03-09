@@ -25,20 +25,16 @@
 
 {% block page_footer %}
 
-{% if post_audio_url %}
-
-  <footer class="page-footer post-view-footer is-fixed is-bordered">
-  <audio-player
-  audio-player-id="post-audio"
-  audio-file="{{ post_audio_url }}"
-  :has-loop-btn="false"
-  :has-download-btn="false"
-  :has-mute-btn="false"
-  :has-volume-btn="false"
-  >
+<footer class="page-footer post-view-footer is-fixed is-bordered">
+<audio-player
+audio-player-id="post-audio"
+audio-file="{{ post_audio_url }}"
+:has-loop-btn="false"
+:has-download-btn="false"
+:has-mute-btn="false"
+:has-volume-btn="false"
+>
 </audio-player>
 </footer>
-
-{% endif %}
 
 {% endblock page_footer %}
