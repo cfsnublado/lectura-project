@@ -1,4 +1,5 @@
 from rest_framework import status
+from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404
 from rest_framework.mixins import (
     CreateModelMixin, DestroyModelMixin, ListModelMixin,
@@ -169,3 +170,10 @@ class NestedPostAudioViewSet(
         self.get_post(post_pk=kwargs['post_pk'])
 
         return super(NestedPostAudioViewSet, self).list(request, *args, **kwargs)
+
+    @action(detail=False)
+    def list_all(self, request, *args, **kwargs):
+        """ Returns list with no pagination. """
+
+        self.pagination_class = None
+        return self.list(request, *args, **kwargs)

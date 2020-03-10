@@ -366,3 +366,47 @@ const PostAudios = {
     this.getPostAudios()
   }
 }
+
+const PostAudioPlayer = {
+  mixins: [
+    AudioPlayer,
+    AjaxProcessMixin,
+  ],
+  props: {
+    audiosUrl: {
+      type: String,
+      required: true
+    },
+  },
+  methods: {
+    getAudios() {
+      if (this.audiosUrl) {
+        this.process()
+
+        axios.get(this.audiosUrl)
+        .then(response => {
+          this.audios = response.data
+          console.log(this.audios)
+          this.success()
+        })
+        .catch(error => {
+          if (error.response) {
+            console.log(error.response)
+          } else if (error.request) {
+            console.log(error.request)
+          } else {
+            console.log(error.message)
+          }
+          console.log(error.config)
+        })
+        .finally(() => {
+          this.complete()
+        })
+      }
+    },
+  },
+  created() {
+    this.loop = this.initLoop
+    this.getAudios()
+  },
+}

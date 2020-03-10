@@ -272,7 +272,6 @@ const AudioPlayer = {
   methods: {
     download() {
       this.stop()
-     // window.open(this.audioFile, 'download')
       window.location.assign(this.audioFile)
     },
     load() {
@@ -333,6 +332,11 @@ const AudioPlayer = {
   },
   mounted() {
     this.audio = this.$el.querySelector('#' + this.audioPlayerId)
+
+    if (this.audioFile) {
+      this.audio.src = this.audioFile
+    }
+    
     this.audio.addEventListener('error', this.error)
     this.audio.addEventListener('play', () => { this.playing = true })
     this.audio.addEventListener('pause', () => { this.playing = false });

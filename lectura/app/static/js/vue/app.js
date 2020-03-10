@@ -13,6 +13,7 @@ Vue.component('posts', Posts)
 Vue.component('post', Post)
 Vue.component('post-audio', PostAudio)
 Vue.component('post-audios', PostAudios)
+Vue.component('post-audio-player', PostAudioPlayer)
 
 // Dropbox
 Vue.component('dbx', Dbx)

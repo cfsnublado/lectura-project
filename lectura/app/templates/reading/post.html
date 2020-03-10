@@ -27,9 +27,12 @@
 
 <footer class="page-footer post-view-footer is-fixed is-bordered">
 
-<audio-player
+{% url 'api:nested-post-audio-list-all' post.id as post_audios_url %}
+
+<post-audio-player
 audio-player-id="post-audio"
 audio-file="https://www.dropbox.com/s/3di40f872jdfrb5/mediorey.mp3?dl=1"
+audios-url="{{ post_audios_url }}"
 :has-loop-btn="false"
 :has-download-btn="false"
 :has-mute-btn="false"
@@ -54,7 +57,7 @@ class="audio-player-controls"
 
 <div 
 class="player-control"
-v-if="hasStopButton"
+v-if="hasStopBtn"
 >
 <a @click.prevent="stop" title="Stop" href="#">
 <i class="fas fa-stop"></i>
@@ -105,7 +108,6 @@ class="play-bar"
 <audio
 :id="audioPlayerId" 
 :loop="loop"
-:src="audioFile" 
 preload="auto"
 style="display: none;"
 ref="audiofile"
@@ -115,7 +117,7 @@ ref="audiofile"
 </div><!-- audio-player -->
 
 </div>
-</audio-player>
+</post-audio-player>
 
 </footer>
 
