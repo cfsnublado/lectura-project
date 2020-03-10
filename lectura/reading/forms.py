@@ -71,12 +71,12 @@ class PostAudioForm(BaseModelForm):
 
     class Meta:
         abstract = True
-        fields = ['name', 'url']
+        fields = ['name', 'audio_url']
         error_messages = {
             'name': {
                 'required': _('validation_field_required'),
             },
-            'url': {
+            'audio_url': {
                 'required': _('validation_field_required'),
             }
         }

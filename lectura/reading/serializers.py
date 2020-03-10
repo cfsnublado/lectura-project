@@ -152,6 +152,7 @@ class PostAudioSerializer(BaseSerializer, HyperlinkedModelSerializer):
         source='post.slug'
     )
     creator_id = ReadOnlyField(source='creator.id')
+    creator_username = ReadOnlyField(source='creator.username')
     creator_url = HyperlinkedRelatedField(
         many=False,
         read_only=True,
@@ -165,8 +166,8 @@ class PostAudioSerializer(BaseSerializer, HyperlinkedModelSerializer):
         model = PostAudio
         fields = (
             'url', 'id', 'post_id', 'post', 'post_slug',
-            'post_url', 'creator_id', 'creator_url',
-            'name', 'url', 'slug',
+            'post_url', 'creator_id', 'creator_username',
+            'creator_url', 'name', 'audio_url', 'slug',
             'date_created', 'date_updated'
         )
         read_only_fields = (

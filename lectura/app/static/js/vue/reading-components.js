@@ -378,6 +378,12 @@ const PostAudioPlayer = {
       required: true
     },
   },
+  data() {
+    return {
+      audios: null,
+      selectedAudio: null
+    }
+  },  
   methods: {
     getAudios() {
       if (this.audiosUrl) {
@@ -386,23 +392,31 @@ const PostAudioPlayer = {
         axios.get(this.audiosUrl)
         .then(response => {
           this.audios = response.data
-          console.log(this.audios)
+
+          if (this.audios.length > 0) {
+            this.selectAudio(0)
+          }
+
           this.success()
         })
         .catch(error => {
           if (error.response) {
-            console.log(error.response)
+            console.error(error.response)
           } else if (error.request) {
-            console.log(error.request)
+            console.error(error.request)
           } else {
-            console.log(error.message)
+            console.error(error.message)
           }
-          console.log(error.config)
+          console.error(error.config)
         })
         .finally(() => {
           this.complete()
         })
       }
+    },
+    selectAudio(index) {
+      this.selectedAudio = this.audios[index]
+      this.audio.src = this.selectedAudio.audio_url
     },
   },
   created() {

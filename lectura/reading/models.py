@@ -109,8 +109,8 @@ class PostAudio(
         verbose_name=_('label_name'),
         max_length=255,
     )
-    url = models.URLField(
-        verbose_name=_('label_url')
+    audio_url = models.URLField(
+        verbose_name=_('label_audio_url')
     )
 
     def get_project(self):

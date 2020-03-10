@@ -193,7 +193,7 @@ const AudioPlayer = {
       type: String,
       default: 'audio-player'
     },
-    audioFile: {
+    audioUrl: {
       type: String,
       default: null
     },
@@ -272,7 +272,7 @@ const AudioPlayer = {
   methods: {
     download() {
       this.stop()
-      window.location.assign(this.audioFile)
+      window.location.assign(this.audioUrl)
     },
     load() {
       if (this.audio.readyState >= 2) {
@@ -309,7 +309,7 @@ const AudioPlayer = {
     },
     error() {
       this.hasError = true
-      console.error('Error loading ' + this.audioFile)
+      console.error('Error loading ' + this.audioUrl)
     },
     onProgressMousedown(e) {
       this.dragging = true
@@ -333,8 +333,8 @@ const AudioPlayer = {
   mounted() {
     this.audio = this.$el.querySelector('#' + this.audioPlayerId)
 
-    if (this.audioFile) {
-      this.audio.src = this.audioFile
+    if (this.audioUrl) {
+      this.audio.src = this.audioUrl
     }
     
     this.audio.addEventListener('error', this.error)

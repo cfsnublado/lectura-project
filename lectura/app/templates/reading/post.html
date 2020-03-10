@@ -31,7 +31,6 @@
 
 <post-audio-player
 audio-player-id="post-audio"
-audio-file="https://www.dropbox.com/s/3di40f872jdfrb5/mediorey.mp3?dl=1"
 audios-url="{{ post_audios_url }}"
 :has-loop-btn="false"
 :has-download-btn="false"
@@ -41,10 +40,13 @@ audios-url="{{ post_audios_url }}"
 inline-template
 >
 
-<div>
+<div v-cloak>
 
-<div class="audio-title">
-cfs - Juramento de venganza
+<div 
+class="audio-title"
+v-if="selectedAudio"
+>
+[[ selectedAudio.creator_username ]] - [[ selectedAudio.name ]]
 </div>
 
 <div 
@@ -110,7 +112,6 @@ class="play-bar"
 :loop="loop"
 preload="auto"
 style="display: none;"
-ref="audiofile"
 >
 </audio>
 
