@@ -25,6 +25,8 @@
 
 {% block page_footer %}
 
+{% if has_post_audio %}
+
 <footer class="page-footer post-view-footer is-fixed is-bordered">
 
 {% url 'api:nested-post-audio-list-all' post.id as post_audios_url %}
@@ -42,32 +44,43 @@ inline-template
 
 <div v-cloak>
 
-<div 
-class="audio-title"
-v-if="selectedAudio"
+<audio
+:id="audioPlayerId" 
+:loop="loop"
+preload="auto"
+style="display: none;"
 >
-[[ selectedAudio.creator_username ]] - [[ selectedAudio.name ]]
-</div>
+</audio>
 
 <div 
 class="audio-player dark"
->
-
-<div
-class="audio-player-controls"
+v-bind:class="[{ 'is-loading': !audioLoaded }]"
 >
 
 <div 
-class="player-control"
-v-if="hasStopBtn"
+class="audio-title"
 >
-<a @click.prevent="stop" title="Stop" href="#">
-<i class="fas fa-stop"></i>
-</a>
+<span v-if="!audioLoaded">
+Loading audio
+</span>
+<span v-else>[[ selectedAudio.creator_username ]] - [[ selectedAudio.name ]]</span>
+
 </div>
 
-<div class="player-control">
-<a @click.prevent="playing = !playing" title="Play/Pause" href="#">
+<div class="audio-player-controls">
+
+<div 
+class="player-control"
+>
+<a href="#" v-if="!audioLoaded">
+<i class="fas fa-spinner fa-pulse"></i>
+</a>
+<a 
+href="#"
+title="Play/Pause"
+@click.prevent="playing = !playing" 
+v-else
+>
 <i v-if="!playing" class="fas fa-play"></i>
 <i v-else class="fas fa-pause"></i>
 </a>
@@ -107,19 +120,13 @@ class="play-bar"
 
 </div><!-- audio-player-controls -->
 
-<audio
-:id="audioPlayerId" 
-:loop="loop"
-preload="auto"
-style="display: none;"
->
-</audio>
-
 </div><!-- audio-player -->
 
 </div>
 </post-audio-player>
 
 </footer>
+
+{% endif %}
 
 {% endblock page_footer %}

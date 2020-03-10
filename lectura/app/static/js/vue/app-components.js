@@ -231,8 +231,9 @@ const AudioPlayer = {
       audio: null,
       seekBar: null,
       playing: false,
+      resumePlaying: false, // after mouseup
       dragging: false,
-      loaded: false,
+      audioLoaded: false,
       currentSeconds: 0,
       durationSeconds: 0,
       loop: false,
@@ -276,7 +277,8 @@ const AudioPlayer = {
     },
     load() {
       if (this.audio.readyState >= 2) {
-        this.loaded = true
+        console.log('audio loaded')
+        this.audioLoaded = true
         this.durationSeconds = parseInt(this.audio.duration)
 
         return this.playing = this.autoPlay
@@ -294,7 +296,7 @@ const AudioPlayer = {
     },
     seek(e) {
       this.playing = false
-      
+
       const el = this.seekBar.getBoundingClientRect()
       const seekPos = (e.clientX - el.left) / el.width
 
@@ -312,13 +314,19 @@ const AudioPlayer = {
       console.error('Error loading ' + this.audioUrl)
     },
     onProgressMousedown(e) {
-      this.dragging = true
+      if (this.audioLoaded) {
+        this.dragging = true
+        this.resumePlaying = this.playing
+      }
     },
     onProgressMouseup(e) {
       if (this.dragging) {
         this.dragging = false
         this.seek(e)
-        this.playing = true
+
+        if (this.resumePlaying && !this.playing) {
+          this.playing = true
+        }
       }
     },
     onProgressMousemove(e) {

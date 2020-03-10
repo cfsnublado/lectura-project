@@ -25,7 +25,12 @@ novalidate
 {% csrf_token %}
 {% include "reading/includes/forms/_post_form.html" %}
 
-<button id="submit-btn" class="button is-info" type="submit" form="edit-form" style="margin-right: 20px;">
+<button 
+id="submit-btn" 
+class="button is-info" 
+type="submit" 
+form="edit-form" style="margin-right: 20px;"
+>
 {% trans "label_update" %}
 </button>
 
