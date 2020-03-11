@@ -377,11 +377,16 @@ const PostAudioPlayer = {
       type: String,
       required: true
     },
+    playlistOpenClass: {
+      type: String,
+      default: 'playlist-expanded'
+    }
   },
   data() {
     return {
       audios: null,
-      selectedAudio: null
+      selectedAudio: null,
+      showPlaylist: false
     }
   },  
   methods: {
@@ -418,6 +423,16 @@ const PostAudioPlayer = {
       this.selectedAudio = this.audios[index]
       this.audio.src = this.selectedAudio.audio_url
     },
+    togglePlaylist() {
+      this.showPlaylist = !this.showPlaylist
+      
+      if (this.showPlaylist) {
+        document.body.classList.add(this.playlistOpenClass)
+      } 
+      else {
+        document.body.classList.remove(this.playlistOpenClass)
+      }
+    }
   },
   created() {
     this.loop = this.initLoop
