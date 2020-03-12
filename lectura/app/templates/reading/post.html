@@ -26,8 +26,6 @@
 
 {% if has_post_audio %}
 
-<footer class="page-footer post-view-footer is-fixed is-bordered">
-
 {% url 'api:nested-post-audio-list-all' post.id as post_audios_url %}
 
 <post-audio-player
@@ -41,7 +39,10 @@ audios-url="{{ post_audios_url }}"
 inline-template
 >
 
-<div v-cloak>
+<div 
+class="audio-player-container dark-player fixed-bottom center"
+v-cloak
+>
 
 <audio
 :id="audioPlayerId" 
@@ -52,78 +53,9 @@ style="display: none;"
 </audio>
 
 <div 
-class="audio-player dark"
+class="audio-player"
 v-bind:class="[{ 'is-loading': !audioLoaded }]"
 >
-
-<div class="audio-playlist">
-<ul>
-
-<li>
-<div>
-<a class="audio-playlist-item">
-This is an audio
-<span class="audio-creator">Some person</span>
-</a>
-</div>
-</li>
-
-<li>
-<div>
-<a class="audio-playlist-item">
-This is an audio
-<span class="audio-creator">Some person</span>
-</a>
-</div>
-</li>
-
-<li>
-<div>
-<a class="audio-playlist-item">
-This is an audio
-<span class="audio-creator">Some person</span>
-</a>
-</div>
-</li>
-
-<li>
-<div>
-<a class="audio-playlist-item">
-This is an audio
-<span class="audio-creator">Some person</span>
-</a>
-</div>
-</li>
-
-<li>
-<div>
-<a class="audio-playlist-item">
-This is an audio
-<span class="audio-creator">Some person</span>
-</a>
-</div>
-</li>
-
-<li>
-<div>
-<a class="audio-playlist-item">
-This is an audio
-<span class="audio-creator">Some person</span>
-</a>
-</div>
-</li>
-
-<li>
-<div>
-<a class="audio-playlist-item">
-This is an audio
-<span class="audio-creator">Some person</span>
-</a>
-</div>
-</li>
-
-</ul>
-</div>
 
 <div class="audio-title">
 
@@ -135,6 +67,12 @@ Loading audio
 </div>
 
 <div class="audio-player-controls">
+
+<div class="player-control playlist-toggle"> 
+<a href="#" @click.prevent="togglePlaylist">
+<i class="fas fa-chevron-up"></i>
+</a> 
+</div>
 
 <div class="player-control">
 
@@ -186,15 +124,51 @@ class="play-bar"
 
 </div><!-- progress-container -->
 
-<div> <a href="#" @click.prevent="togglePlaylist">ASDF</a> </div>
 </div><!-- audio-player-controls -->
 
 </div><!-- audio-player -->
 
-</div>
-</post-audio-player>
+<div class="audio-playlist">
 
-</footer>
+<a
+class="playlist-close"
+@click.prevent="togglePlaylist(false)"
+>
+<i class="fas fa-times"></i>
+</a>
+
+<ul>
+
+<li
+v-for="(audio, index) in audios"
+:key="audio.id"
+>
+
+<a 
+class="audio-playlist-item"
+@click.prevent="selectAudio(index)"
+v-bind:class="[{ 'selected-audio': (index == selectedAudioIndex) }]"
+v-if="(index != selectedAudioIndex)"
+>
+<span class="audio-creator">[[ audio.creator_username ]]</span> - 
+[[ audio.name ]]
+</a>
+
+<div
+class="audio-playlist-item selected-audio"
+v-else
+>
+<span class="audio-creator">[[ audio.creator_username ]]</span> - 
+<span class="audio-name">[[ audio.name ]]</span>
+</div>
+
+</li>
+
+</ul>
+</div><!-- audio-playlist -->
+
+</div><!-- audio-player-container -->
+</post-audio-player>
 
 {% endif %}
 

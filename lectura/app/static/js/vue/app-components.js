@@ -359,7 +359,6 @@ const AudioPlayer = {
   },
 }
 
-
 const Modal = {
   mixins: [BaseModal],
   created() {

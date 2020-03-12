@@ -66,10 +66,10 @@ const vm = new Vue({
         this.toggleSidebar(false)
       }
     },
-    toggleSidebar(manual) {
-      // If manual is set to true or false, override toggle.
-      if (manual === true || manual === false) {
-        this.showSidebar = manual
+    toggleSidebar(boolVal) {
+      // If boolVal is set to true or false, override toggle.
+      if (boolVal === true || boolVal === false) {
+        this.showSidebar = boolVal
       } else {
         this.showSidebar = !this.showSidebar
       }
@@ -84,10 +84,10 @@ const vm = new Vue({
         this.setSidebarSession()
       }
     },
-    toggleNavbarMenu(manual) {
-      // If manual is set to true or false, override toggle.
-      if (manual === true || manual === false) {
-        this.showNavbarMenu = manual
+    toggleNavbarMenu(boolVal) {
+      // If boolVal is set to true or false, override toggle.
+      if (boolVal === true || boolVal === false) {
+        this.showNavbarMenu = boolVal
       } else {
         this.showNavbarMenu = !this.showNavbarMenu
       }

@@ -379,13 +379,14 @@ const PostAudioPlayer = {
     },
     playlistOpenClass: {
       type: String,
-      default: 'playlist-expanded'
+      default: 'playlist-open'
     }
   },
   data() {
     return {
       audios: null,
       selectedAudio: null,
+      selectedAudioIndex: null,
       showPlaylist: false
     }
   },  
@@ -420,17 +421,25 @@ const PostAudioPlayer = {
       }
     },
     selectAudio(index) {
+      this.audioLoaded = false
       this.selectedAudio = this.audios[index]
+      this.selectedAudioIndex = index
       this.audio.src = this.selectedAudio.audio_url
+      this.togglePlaylist(false)
     },
-    togglePlaylist() {
-      this.showPlaylist = !this.showPlaylist
+    togglePlaylist(boolVal) {
+      if (boolVal === true || boolVal === false) {
+        this.showPlaylist = boolVal
+      }
+      else {
+        this.showPlaylist = !this.showPlaylist
+      }
       
       if (this.showPlaylist) {
-        document.body.classList.add(this.playlistOpenClass)
+        this.$el.classList.add(this.playlistOpenClass)
       } 
       else {
-        document.body.classList.remove(this.playlistOpenClass)
+        this.$el.classList.remove(this.playlistOpenClass)
       }
     }
   },
