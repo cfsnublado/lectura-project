@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-16 11:56-0800\n"
+"POT-Creation-Date: 2020-03-12 15:58-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -275,8 +275,10 @@ msgid "label_post_plural"
 msgstr "Entradas"
 
 #: lectura/reading/models.py:113
-msgid "label_url"
-msgstr "URL"
+#, fuzzy
+#| msgid "label_audios"
+msgid "label_audio_url"
+msgstr "Audios"
 
 #: lectura/security/forms.py:8 lectura/users/models.py:20
 msgid "label_username"
@@ -403,24 +405,20 @@ msgid "message_password_reset_success"
 msgstr ""
 
 #: lectura/app/templates/403.html:5
-#, fuzzy
-#| msgid "page_home_title"
 msgid "page_error_403_title"
-msgstr "Inicio"
+msgstr "403"
 
 #: lectura/app/templates/403.html:15
 msgid "error_403_message"
-msgstr ""
+msgstr "Acceso prohibido"
 
 #: lectura/app/templates/404.html:5
-#, fuzzy
-#| msgid "page_home_title"
 msgid "page_error_404_title"
-msgstr "Inicio"
+msgstr "404"
 
 #: lectura/app/templates/404.html:15
 msgid "error_404_message"
-msgstr ""
+msgstr "Contenido no encontrado"
 
 #: lectura/app/templates/500.html:5
 #, fuzzy
@@ -521,6 +519,7 @@ msgid "page_audio_create_title"
 msgstr "Agregar audio"
 
 #: lectura/app/templates/reading/auth/audio_create.html:12
+#: lectura/app/templates/reading/includes/vue/_post_audios.html:20
 #: lectura/app/templates/reading/reading_base.html:144
 msgid "label_add_audio"
 msgstr "Agregar audio"
@@ -549,13 +548,13 @@ msgstr "Editar entrada"
 msgid "label_edit"
 msgstr "Editar"
 
-#: lectura/app/templates/reading/auth/post_update.html:29
+#: lectura/app/templates/reading/auth/post_update.html:34
 #: lectura/app/templates/reading/auth/project_update.html:30
 #: lectura/app/templates/users/auth/profile_update.html:110
 msgid "label_update"
 msgstr "Actualizar"
 
-#: lectura/app/templates/reading/auth/post_update.html:44
+#: lectura/app/templates/reading/auth/post_update.html:49
 #: lectura/app/templates/reading/auth/project_update.html:45
 msgid "label_delete"
 msgstr "Eliminar"
@@ -575,6 +574,12 @@ msgstr "¿Eliminar entrada?"
 #: lectura/app/templates/reading/includes/_project_delete_modal.html:9
 msgid "msg_confirm_delete_project"
 msgstr "¿Eliminar proyecto?"
+
+#: lectura/app/templates/reading/includes/vue/_post_audios.html:17
+#, fuzzy
+#| msgid "msg_no_posts_in_project"
+msgid "msg_no_post_audios"
+msgstr "No hay entradas en este proyecto."
 
 #: lectura/app/templates/reading/includes/vue/_posts.html:16
 msgid "msg_no_posts_in_project"
@@ -733,6 +738,9 @@ msgstr "Cambiar contraseña de usuario"
 #: lectura/app/templates/users/profile_view.html:6
 msgid "page_view_profile_title"
 msgstr "Ver perfil"
+
+#~ msgid "label_url"
+#~ msgstr "URL"
 
 #, fuzzy
 #~| msgid "label_create_reading"

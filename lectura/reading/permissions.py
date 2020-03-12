@@ -7,6 +7,7 @@ def is_project_owner(user, project):
 
 def is_project_role(user, project, role):
     if is_project_owner(user, project):
+        print("OWNER")
         return True
     elif role in (i[0] for i in ReadingProjectMember.ROLE_CHOICES):
         member = project.get_member(user)

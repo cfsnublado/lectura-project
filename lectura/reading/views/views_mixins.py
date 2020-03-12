@@ -62,7 +62,7 @@ class ProjectOwnerPermissionMixin(PermissionMixin):
 class ProjectAdminPermissionMixin(PermissionMixin):
 
     def check_permission(self):
-        is_project_admin(self.request.user, self.project)
+        return is_project_admin(self.request.user, self.project)
 
 
 class ProjectEditorPermissionMixin(PermissionMixin):
