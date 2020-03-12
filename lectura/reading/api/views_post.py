@@ -20,7 +20,8 @@ from ..serializers import (
 )
 from .pagination import SmallPagination
 from .permissions import (
-    ProjectOwnerPermission, PostCreatorPermission
+    ProjectOwnerPermission, PostCreatorPermission,
+    ReadAllPermission
 )
 from ..utils import (
     export_post, import_post
@@ -142,7 +143,7 @@ class NestedPostAudioViewSet(
     queryset = PostAudio.objects.select_related('post', 'post__project', 'creator')
     serializer_class = PostAudioSerializer
     post = None
-    permission_classes = [ReadPermission, ProjectOwnerPermission]
+    permission_classes = [ReadAllPermission, ProjectOwnerPermission]
     pagination_class = SmallPagination
 
     def get_post(self, post_pk=None):
@@ -168,10 +169,13 @@ class NestedPostAudioViewSet(
 
     def list(self, request, *args, **kwargs):
         self.get_post(post_pk=kwargs['post_pk'])
-
+        print("SHITTTT")
         return super(NestedPostAudioViewSet, self).list(request, *args, **kwargs)
 
-    @action(detail=False)
+    @action(
+        methods=['get'],
+        detail=False,
+    )
     def list_all(self, request, *args, **kwargs):
         """ Returns list with no pagination. """
 

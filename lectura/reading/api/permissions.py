@@ -1,6 +1,11 @@
 from rest_framework.permissions import BasePermission
 
+from core.api.permissions import ReadPermission
 from reading.models import ReadingProjectMember
+
+
+class ReadAllPermission(ReadPermission):
+    read_actions = ['retrieve', 'list', 'list_all']
 
 
 class PostCreatorPermission(BasePermission):
