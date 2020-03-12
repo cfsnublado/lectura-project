@@ -354,7 +354,6 @@ const AudioPlayer = {
 
     window.addEventListener('mouseup', this.onProgressMouseup)
     window.addEventListener('mousemove', this.onProgressMousemove)
-    window.addEventListener('touchmove', this.onProgressMousemove)
 
     this.seekBar = this.$refs.audioPlayerSeekBar
   },

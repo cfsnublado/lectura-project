@@ -100,6 +100,8 @@ v-else
 class="seek-bar"
 ref="audioPlayerSeekBar"
 @mousedown="onProgressMousedown"
+@touchstart.prevent="onProgressMousedown"
+@touchmove.prevent="onProgressMousemove"
 >
 
 <div 
