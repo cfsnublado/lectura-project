@@ -71,14 +71,6 @@ class ObjectSessionMixin(object):
 
 class PermissionMixin(object):
 
-    def dispatch(self, request, *args, **kwargs):
-        has_permission = self.check_permission()
-
-        if not has_permission:
-            raise PermissionDenied
-
-        return super(PermissionMixin, self).dispatch(request, *args, **kwargs)
-
     def check_permission(self, *args, **kwargs):
         raise NotImplementedError('Method check_permission needs to be implemented.')
 

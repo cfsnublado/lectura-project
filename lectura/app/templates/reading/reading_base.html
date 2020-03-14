@@ -67,7 +67,7 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
 
   {% endif %}
 
-  {% if is_member %}
+  {% if is_project_member %}
 
     <li>
     <a 
@@ -123,7 +123,7 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
 
   <ul class="menu-list">
 
-  {% if post_admin %}
+  {% if is_post_admin %}
 
     <li>
     <a 

@@ -10143,6 +10143,12 @@ a {
   border-top: 1px solid #dfe1e3;
 }
 
+@media screen and (max-width: 768px) {
+  /* line 56, ../scss/cfs/_layout.scss */
+  .main-content {
+    padding-top: 20px;
+  }
+}
 /* line 1, ../../prototype/scss/cfs/_breadcrumb.scss */
 .breadcrumb {
   font-size: 1rem;
@@ -11565,7 +11571,7 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
   }
   /* line 212, ../../prototype/scss/cfs/_sidebar.scss */
   body.sidebar-adaptable .main-content {
-    padding-top: 4.375rem;
+    padding-top: 20px;
   }
   /* line 216, ../../prototype/scss/cfs/_sidebar.scss */
   body.sidebar-adaptable .sidebar {

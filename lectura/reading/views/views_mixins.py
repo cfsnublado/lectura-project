@@ -1,21 +1,33 @@
+from django.core.exceptions import PermissionDenied
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 
 from core.views import CachedObjectMixin, ObjectSessionMixin, PermissionMixin
-from ..models import Post, ReadingProject
+from ..models import Post, ReadingProject, ReadingProjectMember
 from ..permissions import (
-    can_create_post, can_edit_post, is_project_admin, is_project_editor,
-    is_project_member, is_project_owner
+    can_edit_post, is_project_member, is_project_owner,
+    is_project_role
 )
 
 
-class ProjectMixin(CachedObjectMixin):
+class ProjectMixin(CachedObjectMixin, PermissionMixin):
     project_id = 'project_pk'
     project_slug = 'project_slug'
     project = None
+    project_role_access = None
+    is_project_member = False
 
     def dispatch(self, request, *args, **kwargs):
         self.get_project(request, *args, **kwargs)
+        if request.user.is_authenticated:
+            if self.project_role_access:
+                has_permission = self.check_permission()
+                if has_permission:
+                    self.is_project_member = True
+                else:
+                    raise PermissionDenied
+            else:
+                self.is_project_member = is_project_member(request.user, self.project)
 
         return super(ProjectMixin, self).dispatch(request, *args, **kwargs)
 
@@ -42,33 +54,18 @@ class ProjectMixin(CachedObjectMixin):
     def get_context_data(self, **kwargs):
         context = super(ProjectMixin, self).get_context_data(**kwargs)
         context['project'] = self.project
-
+        context['is_project_member'] = self.is_project_member
         return context
 
-
-# Project permission mixins are tu be used with ProjectMixin.
-class ProjectMemberPermissionMixin(PermissionMixin):
-
     def check_permission(self):
-        return is_project_member(self.request.user, self.project)
-
-
-class ProjectOwnerPermissionMixin(PermissionMixin):
-
-    def check_permission(self):
-        return is_project_owner(self.request.user, self.project)
-
-
-class ProjectAdminPermissionMixin(PermissionMixin):
-
-    def check_permission(self):
-        return is_project_admin(self.request.user, self.project)
-
-
-class ProjectEditorPermissionMixin(PermissionMixin):
-
-    def check_permission(self):
-        return is_project_editor(self.request.user, self.project)
+        if self.project_role_access == ReadingProjectMember.ROLE_OWNER:
+            return is_project_owner(self.request.user, self.project)
+        else:
+            return is_project_role(
+                self.request.user,
+                self.project,
+                self.project_role_access
+            )
 
 
 class ProjectSessionMixin(ObjectSessionMixin):
@@ -76,17 +73,24 @@ class ProjectSessionMixin(ObjectSessionMixin):
     session_obj_attrs = ['id', 'name', 'slug']
 
 
-class PostMixin(CachedObjectMixin):
+class PostMixin(CachedObjectMixin, PermissionMixin):
     post_id = 'post_pk'
     post_slug = 'post_slug'
     project = None
     post_obj = None
-    post_admin = False
+    check_post_admin_access = False
+    is_post_admin = False
 
     def dispatch(self, request, *args, **kwargs):
         self.get_post(request, *args, **kwargs)
         if request.user.is_authenticated:
-            self.post_admin = can_edit_post(request.user, self.post_obj)
+            if self.check_post_admin_access:
+                has_permission = self.check_permission()
+                if has_permission:
+                    self.is_post_admin = True
+                else:
+                    raise PermissionDenied
+            self.is_post_admin = can_edit_post(request.user, self.post_obj)
         return super(PostMixin, self).dispatch(request, *args, **kwargs)
 
     def get_post(self, request, *args, **kwargs):
@@ -116,19 +120,9 @@ class PostMixin(CachedObjectMixin):
         context = super(PostMixin, self).get_context_data(**kwargs)
         context['project'] = self.project
         context['post'] = self.post_obj
-        context['post_admin'] = self.post_admin
+        context['is_post_admin'] = self.is_post_admin
 
         return context
-
-
-# Post permission mixins are tu be used with PosttMixin.
-class PostCreatePermissionMixin(PermissionMixin):
-
-    def check_permission(self):
-        return can_create_post(self.request.user, self.project)
-
-
-class PostEditPermissionMixin(PermissionMixin):
 
     def check_permission(self):
         return self.post_admin or can_edit_post(self.request.user, self.post_obj)

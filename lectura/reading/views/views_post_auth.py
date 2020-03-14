@@ -13,21 +13,22 @@ from ..forms import (
     PostAudioCreateForm, PostCreateForm,
     PostUpdateForm
 )
-from ..models import Post, PostAudio
+from ..models import Post, PostAudio, ReadingProjectMember
 from .views_mixins import (
-    PostMixin, PostEditPermissionMixin, PostSessionMixin,
-    ProjectMixin, ProjectMemberPermissionMixin, ProjectSessionMixin
+    PostMixin, PostSessionMixin,
+    ProjectMixin, ProjectSessionMixin
 )
 
 APP_NAME = apps.get_app_config('reading').name
 
 
 class PostCreateView(
-    LoginRequiredMixin, ProjectMixin, ProjectMemberPermissionMixin,
+    LoginRequiredMixin, ProjectMixin,
     ProjectSessionMixin, MessageMixin, CreateView
 ):
     model = Post
     form_class = PostCreateForm
+    project_role_access = ReadingProjectMember.ROLE_AUTHOR
     template_name = '{0}/auth/post_create.html'.format(APP_NAME)
 
     def get_form_kwargs(self):
@@ -49,11 +50,12 @@ class PostCreateView(
 
 class PostUpdateView(
     LoginRequiredMixin, PostMixin,
-    PostSessionMixin, PostEditPermissionMixin,
+    PostSessionMixin,
     MessageMixin, UpdateView
 ):
     model = Post
     form_class = PostUpdateForm
+    check_post_admin_access = True
     template_name = '{0}/auth/post_update.html'.format(APP_NAME)
 
     def get_object(self, **kwargs):
@@ -71,11 +73,12 @@ class PostUpdateView(
 
 class PostAudioCreateView(
     LoginRequiredMixin, PostMixin,
-    PostSessionMixin, ProjectMemberPermissionMixin,
+    PostSessionMixin,
     MessageMixin, CreateView
 ):
     model = PostAudio
     form_class = PostAudioCreateForm
+    check_post_admin_access = True
     template_name = '{0}/auth/audio_create.html'.format(APP_NAME)
 
     def get_form_kwargs(self):
