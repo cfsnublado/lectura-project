@@ -3,14 +3,14 @@ from django.views.generic import TemplateView
 
 from ..models import PostAudio
 from .views_mixins import (
-    PostMixin, PostSessionMixin
+    PostViewMixin, PostSessionMixin
 )
 
 APP_NAME = apps.get_app_config('reading').name
 
 
 class PostView(
-    PostMixin, PostSessionMixin,
+    PostViewMixin, PostSessionMixin,
     TemplateView
 ):
     template_name = '{0}/post.html'.format(APP_NAME)
@@ -26,7 +26,7 @@ class PostView(
 
 
 class PostAudiosView(
-    PostMixin, PostSessionMixin,
+    PostViewMixin, PostSessionMixin,
     TemplateView
 ):
     template_name = '{0}/post_audios.html'.format(APP_NAME)

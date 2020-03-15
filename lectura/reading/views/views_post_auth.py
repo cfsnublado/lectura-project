@@ -15,15 +15,15 @@ from ..forms import (
 )
 from ..models import Post, PostAudio, ReadingProjectMember
 from .views_mixins import (
-    PostMixin, PostSessionMixin,
-    ProjectMixin, ProjectSessionMixin
+    PostEditMixin, PostSessionMixin,
+    ProjectMemberMixin, ProjectSessionMixin
 )
 
 APP_NAME = apps.get_app_config('reading').name
 
 
 class PostCreateView(
-    LoginRequiredMixin, ProjectMixin,
+    LoginRequiredMixin, ProjectMemberMixin,
     ProjectSessionMixin, MessageMixin, CreateView
 ):
     model = Post
@@ -49,7 +49,7 @@ class PostCreateView(
 
 
 class PostUpdateView(
-    LoginRequiredMixin, PostMixin,
+    LoginRequiredMixin, PostEditMixin,
     PostSessionMixin,
     MessageMixin, UpdateView
 ):
@@ -72,7 +72,7 @@ class PostUpdateView(
 
 
 class PostAudioCreateView(
-    LoginRequiredMixin, PostMixin,
+    LoginRequiredMixin, ProjectMemberMixin,
     PostSessionMixin,
     MessageMixin, CreateView
 ):

@@ -3,10 +3,10 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404
 
 from core.views import CachedObjectMixin, ObjectSessionMixin, PermissionMixin
-from ..models import Post, ReadingProject, ReadingProjectMember
+from ..models import Post, ReadingProject
 from ..permissions import (
-    can_edit_post, is_project_member, is_project_owner,
-    is_project_role
+    can_delete_project, can_edit_post, can_edit_project,
+    is_project_member
 )
 
 
@@ -14,13 +14,13 @@ class ProjectMixin(CachedObjectMixin, PermissionMixin):
     project_id = 'project_pk'
     project_slug = 'project_slug'
     project = None
-    project_role_access = None
+    check_access = True
     is_project_member = False
 
     def dispatch(self, request, *args, **kwargs):
         self.get_project(request, *args, **kwargs)
         if request.user.is_authenticated:
-            if self.project_role_access:
+            if self.check_access:
                 has_permission = self.check_permission()
                 if has_permission:
                     self.is_project_member = True
@@ -58,14 +58,7 @@ class ProjectMixin(CachedObjectMixin, PermissionMixin):
         return context
 
     def check_permission(self):
-        if self.project_role_access == ReadingProjectMember.ROLE_OWNER:
-            return is_project_owner(self.request.user, self.project)
-        else:
-            return is_project_role(
-                self.request.user,
-                self.project,
-                self.project_role_access
-            )
+        return False
 
 
 class ProjectSessionMixin(ObjectSessionMixin):
@@ -73,18 +66,43 @@ class ProjectSessionMixin(ObjectSessionMixin):
     session_obj_attrs = ['id', 'name', 'slug']
 
 
+class ProjectViewMixin(ProjectMixin):
+    check_access = False
+
+
+class ProjectEditMixin(ProjectMixin):
+    check_access = True
+
+    def check_permission(self):
+        return can_edit_project(self.request.user, self.project)
+
+
+class ProjectDeleteMixin(ProjectMixin):
+    check_access = True
+
+    def check_permission(self):
+        return can_delete_project(self.request.user, self.project)
+
+
+class ProjectMemberMixin(ProjectMixin):
+    check_access = True
+
+    def check_permission(self):
+        return is_project_member(self.request.user, self.project)
+
+
 class PostMixin(CachedObjectMixin, PermissionMixin):
     post_id = 'post_pk'
     post_slug = 'post_slug'
     project = None
     post_obj = None
-    check_post_admin_access = False
+    check_access = True
     is_post_admin = False
 
     def dispatch(self, request, *args, **kwargs):
         self.get_post(request, *args, **kwargs)
         if request.user.is_authenticated:
-            if self.check_post_admin_access:
+            if self.check_access:
                 has_permission = self.check_permission()
                 if has_permission:
                     self.is_post_admin = True
@@ -125,7 +143,25 @@ class PostMixin(CachedObjectMixin, PermissionMixin):
         return context
 
     def check_permission(self):
-        return self.post_admin or can_edit_post(self.request.user, self.post_obj)
+        return False
+
+
+class PostViewMixin(PostMixin):
+    check_access = False
+
+
+class PostEditMixin(PostMixin):
+    check_access = True
+
+    def check_permission(self):
+        return self.is_post_admin or can_edit_post(self.request.user, self.post_obj)
+
+
+class PostDeleteMixin(PostMixin):
+    check_access = True
+
+    def check_permission(self):
+        return self.is_post_admin or can_edit_post(self.request.user, self.post_obj)
 
 
 class PostSessionMixin(ObjectSessionMixin):

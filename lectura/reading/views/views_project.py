@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 from core.views import (
     ObjectSessionMixin
 )
-from .views_mixins import ProjectMixin, ProjectSessionMixin
+from .views_mixins import ProjectViewMixin, ProjectSessionMixin
 
 APP_NAME = apps.get_app_config('reading').name
 
@@ -14,7 +14,7 @@ class ProjectsView(ObjectSessionMixin, TemplateView):
 
 
 class ProjectView(
-    ProjectMixin, ProjectSessionMixin,
+    ProjectViewMixin, ProjectSessionMixin,
     TemplateView
 ):
     template_name = '{0}/project.html'.format(APP_NAME)

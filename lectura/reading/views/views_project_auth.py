@@ -12,7 +12,7 @@ from django.urls import reverse
 from ..forms import ProjectCreateForm, ProjectUpdateForm
 from ..models import ReadingProject, ReadingProjectMember
 from .views_mixins import (
-    ProjectMixin, ProjectSessionMixin
+    ProjectEditMixin, ProjectSessionMixin
 )
 
 APP_NAME = apps.get_app_config('reading').name
@@ -42,7 +42,7 @@ class ProjectCreateView(
 
 
 class ProjectUpdateView(
-    LoginRequiredMixin, ProjectMixin,
+    LoginRequiredMixin, ProjectEditMixin,
     ProjectSessionMixin,
     MessageMixin, UpdateView
 ):
