@@ -13,9 +13,9 @@ from core.views import (
 )
 from ..conf import settings
 from ..forms import PostCreateForm
-from ..models import Post, ReadingProject
+from ..models import Post, ReadingProject, ReadingProjectMember
 from ..views.views_mixins import (
-    ProjectMixin, ProjectMemberPermissionMixin,
+    ProjectMixin, ProjectMemberMixin,
     ProjectSessionMixin
 )
 from ..views.views_post_auth import PostCreateView
@@ -42,6 +42,61 @@ class TestCommon(TestCase):
             owner=self.user,
             name='test project'
         )
+        self.admin = User.objects.create_user(
+            username='admin7',
+            first_name='Admin',
+            last_name='Admin',
+            email='admin7@foo.com',
+            password=self.pwd
+        )
+        ReadingProjectMember.objects.create(
+            member=self.admin,
+            project=self.project,
+            role=ReadingProjectMember.ROLE_ADMIN
+        )
+        self.editor = User.objects.create_user(
+            username='editor7',
+            first_name='Editor',
+            last_name='Editor',
+            email='editor7@foo.com',
+            password=self.pwd
+        )
+        ReadingProjectMember.objects.create(
+            member=self.editor,
+            project=self.project,
+            role=ReadingProjectMember.ROLE_EDITOR
+        )
+        self.author_1 = User.objects.create_user(
+            username='author1',
+            first_name='AuthorOne',
+            last_name='AuthorOne',
+            email='author_1@foo.com',
+            password=self.pwd
+        )
+        ReadingProjectMember.objects.create(
+            member=self.author_1,
+            project=self.project,
+            role=ReadingProjectMember.ROLE_AUTHOR
+        )
+        self.author_2 = User.objects.create_user(
+            username='author2',
+            first_name='AuthorTwo',
+            last_name='AuthorTwo',
+            email='author_2@foo.com',
+            password=self.pwd
+        )
+        ReadingProjectMember.objects.create(
+            member=self.author_2,
+            project=self.project,
+            role=ReadingProjectMember.ROLE_AUTHOR
+        )
+        self.non_member = User.objects.create_user(
+            username='nonmember7',
+            first_name='Nonmember',
+            last_name='Nonmember',
+            email='nonmember7@foo.com',
+            password=self.pwd
+        )
 
     def login_test_user(self, username=None):
         self.client.login(username=username, password=self.pwd)
@@ -67,7 +122,7 @@ class PostCreateViewTest(TestCommon):
         classes = (
             LoginRequiredMixin,
             ProjectMixin,
-            ProjectMemberPermissionMixin,
+            ProjectMemberMixin,
             ProjectSessionMixin,
             MessageMixin,
             CreateView
@@ -242,3 +297,68 @@ class PostCreateViewTest(TestCommon):
             target_status_code=200,
             msg_prefix=''
         )
+
+    def test_view_permissions(self):
+        self.login_test_user(self.user.username)
+        response = self.client.get(
+            reverse(
+                'reading:post_create',
+                kwargs={
+                    'project_pk': self.project.id,
+                    'project_slug': self.project.slug
+                }
+            )
+        )
+        self.assertEqual(response.status_code, 200)
+
+        self.client.logout()
+        self.login_test_user(self.admin.username)
+        response = self.client.get(
+            reverse(
+                'reading:post_create',
+                kwargs={
+                    'project_pk': self.project.id,
+                    'project_slug': self.project.slug
+                }
+            )
+        )
+        self.assertEqual(response.status_code, 200)
+
+        self.client.logout()
+        self.login_test_user(self.editor.username)
+        response = self.client.get(
+            reverse(
+                'reading:post_create',
+                kwargs={
+                    'project_pk': self.project.id,
+                    'project_slug': self.project.slug
+                }
+            )
+        )
+        self.assertEqual(response.status_code, 200)
+
+        self.client.logout()
+        self.login_test_user(self.author_1.username)
+        response = self.client.get(
+            reverse(
+                'reading:post_create',
+                kwargs={
+                    'project_pk': self.project.id,
+                    'project_slug': self.project.slug
+                }
+            )
+        )
+        self.assertEqual(response.status_code, 200)
+
+        self.client.logout()
+        self.login_test_user(self.non_member.username)
+        response = self.client.get(
+            reverse(
+                'reading:post_create',
+                kwargs={
+                    'project_pk': self.project.id,
+                    'project_slug': self.project.slug
+                }
+            )
+        )
+        self.assertEqual(response.status_code, 403)
