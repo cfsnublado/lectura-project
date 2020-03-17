@@ -15,7 +15,7 @@ from ..forms import (
 )
 from ..models import Post, PostAudio, ReadingProjectMember
 from .views_mixins import (
-    PostEditMixin, PostSessionMixin,
+    PostAudioCreateMixin, PostEditMixin, PostSessionMixin,
     ProjectMemberMixin, ProjectSessionMixin
 )
 
@@ -72,7 +72,7 @@ class PostUpdateView(
 
 
 class PostAudioCreateView(
-    LoginRequiredMixin, ProjectMemberMixin,
+    LoginRequiredMixin, PostAudioCreateMixin,
     PostSessionMixin,
     MessageMixin, CreateView
 ):

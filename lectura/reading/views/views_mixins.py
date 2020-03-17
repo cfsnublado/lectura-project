@@ -61,9 +61,11 @@ class ProjectMixin(CachedObjectMixin, PermissionMixin):
         return False
 
 
-class ProjectSessionMixin(ObjectSessionMixin):
-    session_obj = 'project'
-    session_obj_attrs = ['id', 'name', 'slug']
+class ProjectMemberMixin(ProjectMixin):
+    check_access = True
+
+    def check_permission(self):
+        return is_project_member(self.request.user, self.project)
 
 
 class ProjectViewMixin(ProjectMixin):
@@ -84,11 +86,9 @@ class ProjectDeleteMixin(ProjectMixin):
         return can_delete_project(self.request.user, self.project)
 
 
-class ProjectMemberMixin(ProjectMixin):
-    check_access = True
-
-    def check_permission(self):
-        return is_project_member(self.request.user, self.project)
+class ProjectSessionMixin(ObjectSessionMixin):
+    session_obj = 'project'
+    session_obj_attrs = ['id', 'name', 'slug']
 
 
 class PostMixin(CachedObjectMixin, PermissionMixin):
@@ -108,7 +108,8 @@ class PostMixin(CachedObjectMixin, PermissionMixin):
                     self.is_post_admin = True
                 else:
                     raise PermissionDenied
-            self.is_post_admin = can_edit_post(request.user, self.post_obj)
+            else:
+                self.is_post_admin = can_edit_post(request.user, self.post_obj)
         return super(PostMixin, self).dispatch(request, *args, **kwargs)
 
     def get_post(self, request, *args, **kwargs):
@@ -154,14 +155,21 @@ class PostEditMixin(PostMixin):
     check_access = True
 
     def check_permission(self):
-        return self.is_post_admin or can_edit_post(self.request.user, self.post_obj)
+        return can_edit_post(self.request.user, self.post_obj)
 
 
 class PostDeleteMixin(PostMixin):
     check_access = True
 
     def check_permission(self):
-        return self.is_post_admin or can_edit_post(self.request.user, self.post_obj)
+        return can_edit_post(self.request.user, self.post_obj)
+
+
+class PostAudioCreateMixin(PostMixin):
+    check_access = True
+
+    def check_permission(self):
+        return is_project_member(self.request.user, self.project)
 
 
 class PostSessionMixin(ObjectSessionMixin):

@@ -49,8 +49,8 @@ def can_create_post(user, project):
 
 def can_edit_post(user, post):
     """
-    Project Owner, Admin, Editor: yes
-    Author: yes, if post creator
+    True: Project Owner, Admin, Editor, Author (post creator)
+    False: Author (not post creator)
     """
     project = post.project
     can_edit = False
@@ -70,20 +70,7 @@ def can_edit_post(user, post):
 
 def can_delete_post(user, post):
     """
-    Project Owner, Admin, Editor: yes
-    Author: yes, if post creator
+    True: Project Owner, Admin, Editor, Author (post creator)
+    False: Author (not post creator)
     """
-    project = post.project
-    can_delete = False
-
-    if is_project_owner(user, project):
-        can_delete = True
-    else:
-        member = project.get_member(user)
-        if member:
-            if member.role >= ReadingProjectMember.ROLE_EDITOR:
-                can_delete = True
-            elif member.role == ReadingProjectMember.ROLE_AUTHOR and is_post_creator(user, post):
-                can_delete = True
-
-    return can_delete
+    return can_edit_post(user, post)

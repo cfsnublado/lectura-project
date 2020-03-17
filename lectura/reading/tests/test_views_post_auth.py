@@ -5,20 +5,24 @@ from django.test import RequestFactory, TestCase
 from django.urls import resolve, reverse
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import (
-    CreateView
+    CreateView, UpdateView
 )
 
 from core.views import (
     MessageMixin
 )
 from ..conf import settings
-from ..forms import PostCreateForm
-from ..models import Post, ReadingProject, ReadingProjectMember
-from ..views.views_mixins import (
-    ProjectMixin, ProjectMemberMixin,
-    ProjectSessionMixin
+from ..forms import PostCreateForm, PostUpdateForm
+from ..models import (
+    Post, ReadingProject, ReadingProjectMember
 )
-from ..views.views_post_auth import PostCreateView
+from ..views.views_mixins import (
+    PostEditMixin, PostSessionMixin, ProjectMixin,
+    ProjectMemberMixin, ProjectSessionMixin
+)
+from ..views.views_post_auth import (
+    PostCreateView, PostUpdateView
+)
 
 User = get_user_model()
 
@@ -358,6 +362,200 @@ class PostCreateViewTest(TestCommon):
                 kwargs={
                     'project_pk': self.project.id,
                     'project_slug': self.project.slug
+                }
+            )
+        )
+        self.assertEqual(response.status_code, 403)
+
+
+class PostUpdateViewTest(TestCommon):
+
+    def setUp(self):
+        super(PostUpdateViewTest, self).setUp()
+        self.post_1 = Post.objects.create(
+            creator=self.author_1,
+            project=self.project,
+            name="test post 1",
+            content="test post 1"
+        )
+
+    def test_inheritance(self):
+        classes = (
+            LoginRequiredMixin,
+            PostEditMixin,
+            PostSessionMixin,
+            MessageMixin,
+            UpdateView
+        )
+        for class_name in classes:
+            self.assertTrue(issubclass(PostUpdateView, class_name))
+
+    def test_correct_view_used(self):
+        found = resolve(
+            reverse(
+                'reading:post_update',
+                kwargs={
+                    'post_pk': self.post_1.id,
+                    'post_slug': self.post_1.slug
+                }
+            )
+        )
+        self.assertEqual(found.func.__name__, PostUpdateView.as_view().__name__)
+
+    def test_view_non_authenticated_user_redirected_to_login(self):
+        response = self.client.get(
+            reverse(
+                'reading:post_update',
+                kwargs={
+                    'post_pk': self.post_1.id,
+                    'post_slug': self.post_1.slug
+                }
+            )
+        )
+        self.assertRedirects(
+            response,
+            expected_url='{0}?next=/{1}/auth/post/{2}-{3}/update/'.format(
+                reverse(settings.LOGIN_URL),
+                URL_PREFIX,
+                self.post_1.id,
+                self.post_1.slug
+            ),
+            status_code=302,
+            target_status_code=200,
+            msg_prefix=''
+        )
+
+    def test_view_returns_correct_status_code(self):
+        self.login_test_user(self.author_1.username)
+        response = self.client.get(
+            reverse(
+                'reading:post_update',
+                kwargs={
+                    'post_pk': self.post_1.id,
+                    'post_slug': self.post_1.slug
+                }
+            )
+        )
+        self.assertEqual(response.status_code, 200)
+
+    def test_view_renders_correct_template(self):
+        self.login_test_user(self.author_1.username)
+        response = self.client.get(
+            reverse(
+                'reading:post_update',
+                kwargs={
+                    'post_pk': self.post_1.id,
+                    'post_slug': self.post_1.slug
+                }
+            )
+        )
+        self.assertTemplateUsed(response, '{0}/auth/post_update.html'.format(APP_NAME))
+
+    def test_view_uses_correct_form(self):
+        self.login_test_user(self.author_1.username)
+        response = self.client.get(
+            reverse(
+                'reading:post_update',
+                kwargs={
+                    'post_pk': self.post_1.id,
+                    'post_slug': self.post_1.slug
+                }
+            )
+        )
+        self.assertIsInstance(response.context['form'], PostUpdateForm)
+
+    def test_view_updates_post(self):
+        post_data = {
+            'name': 'changed name',
+            'content': 'changed content'
+        }
+        self.login_test_user(self.user.username)
+        self.client.post(
+            reverse(
+                'reading:post_update',
+                kwargs={
+                    'post_pk': self.post_1.id,
+                    'post_slug': self.post_1.slug
+                }
+            ),
+            data=post_data
+        )
+        self.post_1.refresh_from_db()
+        self.assertEqual(self.post_1.name, post_data['name'])
+
+    def test_view_permissions(self):
+        self.login_test_user(self.user.username)
+        response = self.client.get(
+            reverse(
+                'reading:post_update',
+                kwargs={
+                    'post_pk': self.post_1.id,
+                    'post_slug': self.post_1.slug
+                }
+            )
+        )
+        self.assertEqual(response.status_code, 200)
+
+        self.client.logout()
+        self.login_test_user(self.admin.username)
+        response = self.client.get(
+            reverse(
+                'reading:post_update',
+                kwargs={
+                    'post_pk': self.post_1.id,
+                    'post_slug': self.post_1.slug
+                }
+            )
+        )
+        self.assertEqual(response.status_code, 200)
+
+        self.client.logout()
+        self.login_test_user(self.editor.username)
+        response = self.client.get(
+            reverse(
+                'reading:post_update',
+                kwargs={
+                    'post_pk': self.post_1.id,
+                    'post_slug': self.post_1.slug
+                }
+            )
+        )
+        self.assertEqual(response.status_code, 200)
+
+        self.client.logout()
+        self.login_test_user(self.author_1.username)
+        response = self.client.get(
+            reverse(
+                'reading:post_update',
+                kwargs={
+                    'post_pk': self.post_1.id,
+                    'post_slug': self.post_1.slug
+                }
+            )
+        )
+        self.assertEqual(response.status_code, 200)
+
+        self.client.logout()
+        self.login_test_user(self.author_2.username)
+        response = self.client.get(
+            reverse(
+                'reading:post_update',
+                kwargs={
+                    'post_pk': self.post_1.id,
+                    'post_slug': self.post_1.slug
+                }
+            )
+        )
+        self.assertEqual(response.status_code, 403)
+
+        self.client.logout()
+        self.login_test_user(self.non_member.username)
+        response = self.client.get(
+            reverse(
+                'reading:post_update',
+                kwargs={
+                    'post_pk': self.post_1.id,
+                    'post_slug': self.post_1.slug
                 }
             )
         )
