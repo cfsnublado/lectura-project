@@ -1,5 +1,4 @@
 from rest_framework import status
-from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404
 from rest_framework.mixins import (
     CreateModelMixin, DestroyModelMixin, ListModelMixin,
@@ -14,14 +13,14 @@ from rest_framework.views import APIView
 
 from core.api.views_api import APIDefaultsMixin
 from core.api.permissions import ReadPermission
+from core.utils import str_to_bool
 from ..models import Post, PostAudio, ReadingProject
 from ..serializers import (
     PostAudioSerializer, PostSerializer
 )
 from .pagination import SmallPagination
 from .permissions import (
-    ProjectOwnerPermission, PostCreatorPermission,
-    ReadAllPermission
+    ProjectOwnerPermission, PostCreatorPermission
 )
 from ..utils import (
     export_post, import_post
@@ -143,7 +142,7 @@ class NestedPostAudioViewSet(
     queryset = PostAudio.objects.select_related('post', 'post__project', 'creator')
     serializer_class = PostAudioSerializer
     post = None
-    permission_classes = [ReadAllPermission, ProjectOwnerPermission]
+    permission_classes = [ReadPermission, ProjectOwnerPermission]
     pagination_class = SmallPagination
 
     def get_post(self, post_pk=None):
@@ -158,7 +157,6 @@ class NestedPostAudioViewSet(
     def create(self, request, *args, **kwargs):
         self.get_post(post_pk=kwargs['post_pk'])
         self.check_object_permissions(request, self.post)
-
         return super(NestedPostAudioViewSet, self).create(request, *args, **kwargs)
 
     def perform_create(self, serializer):
@@ -169,15 +167,7 @@ class NestedPostAudioViewSet(
 
     def list(self, request, *args, **kwargs):
         self.get_post(post_pk=kwargs['post_pk'])
-        print("SHITTTT")
+        no_pagination = self.request.query_params.get('no_pagination', None)
+        if str_to_bool(no_pagination):
+            self.pagination_class = None
         return super(NestedPostAudioViewSet, self).list(request, *args, **kwargs)
-
-    @action(
-        methods=['get'],
-        detail=False,
-    )
-    def list_all(self, request, *args, **kwargs):
-        """ Returns list with no pagination. """
-
-        self.pagination_class = None
-        return self.list(request, *args, **kwargs)

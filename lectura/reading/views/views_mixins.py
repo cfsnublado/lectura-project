@@ -5,8 +5,8 @@ from django.shortcuts import get_object_or_404
 from core.views import CachedObjectMixin, ObjectSessionMixin, PermissionMixin
 from ..models import Post, ReadingProject
 from ..permissions import (
-    can_delete_project, can_edit_post, can_edit_project,
-    is_project_member
+    can_create_post_audio, can_delete_project, can_edit_post,
+    can_edit_project, is_project_member
 )
 
 
@@ -169,7 +169,7 @@ class PostAudioCreateMixin(PostMixin):
     check_access = True
 
     def check_permission(self):
-        return is_project_member(self.request.user, self.project)
+        return can_create_post_audio(self.request.user, self.post_obj)
 
 
 class PostSessionMixin(ObjectSessionMixin):

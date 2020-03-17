@@ -26,7 +26,7 @@
 
 {% if has_post_audio %}
 
-{% url 'api:nested-post-audio-list-all' post.id as post_audios_url %}
+{% url_set_param 'api:nested-post-audio-list' post.id no_pagination='True' as post_audios_url %}
 
 <post-audio-player
 audio-player-id="post-audio"

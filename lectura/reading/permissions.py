@@ -74,3 +74,7 @@ def can_delete_post(user, post):
     False: Author (not post creator)
     """
     return can_edit_post(user, post)
+
+
+def can_create_post_audio(user, post):
+    return is_project_member(user, post.project)

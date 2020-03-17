@@ -22,6 +22,16 @@ from django.utils.http import urlsafe_base64_encode
 logger = logging.getLogger('django')
 
 
+def str_to_bool(value):
+    if value == 'False' or value == 'false' or value == '0' or value == 0:
+        value = False
+    elif value == 'True' or value == 'true' or value == '1' or value == 1:
+        value = True
+    else:
+        value = None
+    return value
+
+
 def get_group_by_dict(list_queryset, group_by_attr):
     '''
     Returns a dictionary of lists of objects,  indexed by a grouped attribute value.
