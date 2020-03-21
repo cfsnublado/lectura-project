@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-12 15:58-0700\n"
+"POT-Creation-Date: 2020-03-21 15:31-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -197,11 +197,11 @@ msgstr ""
 msgid "validation_username_min_length {min_len}"
 msgstr ""
 
-#: lectura/core/views.py:265
+#: lectura/core/views.py:257
 msgid "message_success"
 msgstr "Éxito"
 
-#: lectura/core/views.py:266
+#: lectura/core/views.py:258
 msgid "message_error"
 msgstr "Error"
 
@@ -219,7 +219,7 @@ msgstr "Perfil"
 
 #: lectura/reading/forms.py:24 lectura/reading/forms.py:65
 #: lectura/reading/forms.py:77 lectura/reading/forms.py:80
-#: lectura/reading/tests/test_views_post_auth.py:215
+#: lectura/reading/tests/test_views_post_auth.py:274
 #: lectura/security/forms.py:11 lectura/security/forms.py:18
 #: lectura/security/tests/test_forms.py:37
 #: lectura/security/tests/test_forms.py:42
@@ -275,10 +275,8 @@ msgid "label_post_plural"
 msgstr "Entradas"
 
 #: lectura/reading/models.py:113
-#, fuzzy
-#| msgid "label_audios"
 msgid "label_audio_url"
-msgstr "Audios"
+msgstr "URL del audio"
 
 #: lectura/security/forms.py:8 lectura/users/models.py:20
 msgid "label_username"
@@ -514,17 +512,17 @@ msgstr "Iniciar sesión"
 msgid "label_logout"
 msgstr "Salir"
 
-#: lectura/app/templates/reading/auth/audio_create.html:5
+#: lectura/app/templates/reading/auth/post_audio_create.html:5
 msgid "page_audio_create_title"
 msgstr "Agregar audio"
 
-#: lectura/app/templates/reading/auth/audio_create.html:12
+#: lectura/app/templates/reading/auth/post_audio_create.html:12
 #: lectura/app/templates/reading/includes/vue/_post_audios.html:20
 #: lectura/app/templates/reading/reading_base.html:144
 msgid "label_add_audio"
 msgstr "Agregar audio"
 
-#: lectura/app/templates/reading/auth/audio_create.html:30
+#: lectura/app/templates/reading/auth/post_audio_create.html:30
 #: lectura/app/templates/reading/auth/post_create.html:30
 #: lectura/app/templates/reading/auth/project_create.html:23
 msgid "label_create"

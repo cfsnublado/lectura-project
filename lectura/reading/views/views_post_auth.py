@@ -79,7 +79,7 @@ class PostAudioCreateView(
     model = PostAudio
     form_class = PostAudioCreateForm
     check_post_admin_access = True
-    template_name = '{0}/auth/audio_create.html'.format(APP_NAME)
+    template_name = '{0}/auth/post_audio_create.html'.format(APP_NAME)
 
     def get_form_kwargs(self):
         kwargs = super(PostAudioCreateView, self).get_form_kwargs()
