@@ -5,6 +5,7 @@
 
 {% block title %}{{ post.name }} - {% trans 'label_audios' %}{% endblock title %}
 
+{% block post_audios_link_active %}is-active{% endblock post_audios_link_active %}
 
 {% block breadcrumb_content %}
 {{ block.super }}
@@ -36,3 +37,9 @@
 
 {% block page_footer %}
 {% endblock page_footer %}
+
+{% block modal_content %}
+
+{% include 'reading/includes/_post_audio_delete_modal.html' with modal_id='delete-post-audio' modal_name='confirmation-modal' %} 
+
+{% endblock modal_content %}

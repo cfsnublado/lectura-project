@@ -137,6 +137,16 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
 
     <li>
     <a 
+    id="sidebar-nav-post-audios" 
+    class="{% block post_audios_link_active %}{% endblock post_audios_link_active %}" 
+    href="{% url 'reading:post_audios' post.id post.slug %}"
+    >
+    <i class="menu-icon fas fa-music fa-fw"></i> {% trans "label_post_audios" %}
+    </a>
+    </li>
+
+    <li>
+    <a 
     id="sidebar-nav-post-edit" 
     class="{% block audio_create_link_active %}{% endblock audio_create_link_active %}" 
     href="{% url 'reading:post_audio_create' post.id post.slug %}"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-21 15:31-0700\n"
+"POT-Creation-Date: 2020-04-01 09:11-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -518,7 +518,7 @@ msgstr "Create audio"
 
 #: lectura/app/templates/reading/auth/post_audio_create.html:12
 #: lectura/app/templates/reading/includes/vue/_post_audios.html:20
-#: lectura/app/templates/reading/reading_base.html:144
+#: lectura/app/templates/reading/reading_base.html:154
 msgid "label_add_audio"
 msgstr "Add audio"
 
@@ -565,6 +565,10 @@ msgstr "Create project"
 msgid "page_project_update_title"
 msgstr "Edit project"
 
+#: lectura/app/templates/reading/includes/_post_audio_delete_modal.html:9
+msgid "msg_confirm_delete_post_audio"
+msgstr "Delete audio?"
+
 #: lectura/app/templates/reading/includes/_post_delete_modal.html:9
 msgid "msg_confirm_delete_post"
 msgstr "Delete post?"
@@ -591,8 +595,12 @@ msgstr "There are no projects."
 msgid "label_create_project"
 msgstr "Create a project"
 
+#: lectura/app/templates/reading/post.html:63
+msgid "label_loading_audio"
+msgstr "Loading audio"
+
 #: lectura/app/templates/reading/post_audios.html:6
-#: lectura/app/templates/reading/post_audios.html:12
+#: lectura/app/templates/reading/post_audios.html:13
 msgid "label_audios"
 msgstr "Audios"
 
@@ -611,6 +619,10 @@ msgstr "New post"
 #: lectura/app/templates/reading/reading_base.html:134
 msgid "label_edit_post"
 msgstr "Edit post"
+
+#: lectura/app/templates/reading/reading_base.html:144
+msgid "label_post_audios"
+msgstr "Audios"
 
 #: lectura/app/templates/security/login.html:8
 msgid "page_login_title"

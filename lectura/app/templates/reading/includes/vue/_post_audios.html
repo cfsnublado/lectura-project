@@ -3,7 +3,7 @@
 
 <post-audios
 post-audios-url="{{ post_audios_url }}"
-:init-is-admin="{{ user.is_admin|yesno:"true,false" }}"
+:init-is-admin="{{ is_post_admin|yesno:"true,false" }}"
 inline-template
 >
 
@@ -26,6 +26,8 @@ v-cloak
 v-for="(postAudio, index) in postAudios"
 :key="postAudio.id"
 :init-audio="postAudio"
+:init-is-admin="isAdmin"
+init-delete-url="{{ post_audio_delete_url }}"
 inline-template
 >
 <transition name="fade-transition" v-on:after-enter="isVisible = true" v-on:after-leave="remove">

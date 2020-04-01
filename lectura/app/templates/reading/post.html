@@ -60,7 +60,7 @@ v-bind:class="[{ 'is-loading': !audioLoaded }]"
 <div class="audio-title">
 
 <span v-if="!audioLoaded">
-Loading audio
+{% trans 'label_loading_audio' %}
 </span>
 <span v-else>[[ selectedAudio.creator_username ]] - [[ selectedAudio.name ]]</span>
 

@@ -60,13 +60,13 @@ const DbxUserFiles = {
       })
       .catch(error => {
         if (error.response) {
-          console.log(error.response)
+          console.error(error.response)
         } else if (error.request) {
-          console.log(error.request)
+          console.error(error.request)
         } else {
-          console.log(error.message)
+          console.error(error.message)
         }
-        console.log(error.config)
+        console.error(error.config)
       })
       .finally(() => {
         this.complete()
@@ -195,8 +195,6 @@ const Dbx = {
   methods: {
     getSharedLink(dbxPath) {
       this.processing = true
-
-      console.log(dbxPath)
       
       axios.post(
         this.sharedLinkUrl,
@@ -209,13 +207,13 @@ const Dbx = {
       })
       .catch(error => {
         if (error.response) {
-          console.log(error.response)
+          console.error(error.response)
         } else if (error.request) {
-          console.log(error.request)
+          console.error(error.request)
         } else {
-          console.log(error)
+          console.error(error)
         }
-        console.log(error.config)
+        console.error(error.config)
       })
       .finally(() => {
         this.processing = false
@@ -232,5 +230,5 @@ const Dbx = {
       this.sharedLink = ''
       this.$refs['dbx-audio-file-uploader'].clear()
     }
-  },
+  }
 }

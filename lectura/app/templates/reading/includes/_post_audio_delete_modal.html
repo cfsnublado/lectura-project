@@ -1,0 +1,10 @@
+{% extends 'includes/_confirmation_modal.html' %}
+{% load i18n %}
+
+{% block ok_id %}post-audio-delete-ok{% endblock ok_id %}
+
+{% block cancel_id %}post-audio-delete-close{% endblock cancel_id %}
+
+{% block modal_header %} 
+{% trans 'msg_confirm_delete_post_audio' %} 
+{% endblock modal_header %}
