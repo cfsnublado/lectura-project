@@ -477,23 +477,19 @@ msgstr "Un vistazo a Lectura"
 
 #: lectura/app/templates/home.html:50
 msgid "msg_block_1"
-msgstr ""
+msgstr "Personaliza tus entradas"
 
 #: lectura/app/templates/home.html:55
-#, fuzzy
-#| msgid "msg_project_banner_desc"
 msgid "msg_block_1_desc"
-msgstr "Comparte lecturas y practica tu pronunciación."
+msgstr "Crea una entrada, y después agrega audio con narración."
 
 #: lectura/app/templates/home.html:65
 msgid "msg_block_2"
-msgstr ""
+msgstr "Comparte con tu equipo"
 
 #: lectura/app/templates/home.html:69
-#, fuzzy
-#| msgid "msg_project_banner_desc"
 msgid "msg_block_2_desc"
-msgstr "Comparte lecturas y practica tu pronunciación."
+msgstr "Puedes agregar narrraciones a las entradas de los demás miembros de tu equipo."
 
 #: lectura/app/templates/includes/_confirmation_modal.html:16
 msgid "label_no"

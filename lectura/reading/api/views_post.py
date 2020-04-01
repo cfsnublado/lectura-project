@@ -123,7 +123,7 @@ class PostAudioViewSet(
 
     def get_object(self):
         obj = get_object_or_404(self.get_queryset(), pk=self.kwargs['pk'])
-        self.check_object_permissions(self.request, obj)
+        self.check_object_permissions(self.request, obj.post)
         return obj
 
 
@@ -141,7 +141,10 @@ class NestedPostAudioViewSet(
 
     def get_post(self, post_pk=None):
         if not self.post:
-            self.post = get_object_or_404(Post, id=post_pk)
+            self.post = get_object_or_404(
+                Post.objects.select_related('project'),
+                id=post_pk
+            )
         return self.post
 
     def get_queryset(self):
