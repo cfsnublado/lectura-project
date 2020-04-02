@@ -11639,43 +11639,43 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
     font-size: 1.625rem;
   }
 }
-/* line 9, ../../prototype/scss/cfs/_blocks.scss */
+/* line 10, ../../prototype/scss/cfs/_blocks.scss */
 .icon-blocks .icon-blocks-header {
   font-size: 3rem;
-  margin-bottom: 20px;
+  margin-bottom: 1.875rem;
   text-align: center;
 }
 
-/* line 18, ../../prototype/scss/cfs/_blocks.scss */
+/* line 19, ../../prototype/scss/cfs/_blocks.scss */
 .icon-block {
   padding-top: 1.875rem;
   padding-bottom: 1.875rem;
   text-align: center;
 }
-/* line 24, ../../prototype/scss/cfs/_blocks.scss */
+/* line 25, ../../prototype/scss/cfs/_blocks.scss */
 .icon-block a {
   color: #818a91;
 }
-/* line 27, ../../prototype/scss/cfs/_blocks.scss */
+/* line 28, ../../prototype/scss/cfs/_blocks.scss */
 .icon-block a:hover {
-  color: #373A3C;
+  color: #373a3c;
 }
-/* line 32, ../../prototype/scss/cfs/_blocks.scss */
+/* line 33, ../../prototype/scss/cfs/_blocks.scss */
 .icon-block .icon-block-icon {
   font-size: 3.75rem;
 }
-/* line 36, ../../prototype/scss/cfs/_blocks.scss */
+/* line 37, ../../prototype/scss/cfs/_blocks.scss */
 .icon-block .icon-block-header {
-  font-size: 2rem;
+  font-size: 1.875rem;
 }
 
 @media screen and (max-width: 768px) {
-  /* line 43, ../../prototype/scss/cfs/_blocks.scss */
+  /* line 44, ../../prototype/scss/cfs/_blocks.scss */
   .icon-blocks .icon-blocks-header {
-    font-size: 2rem;
+    font-size: 2.625rem;
   }
 
-  /* line 48, ../../prototype/scss/cfs/_blocks.scss */
+  /* line 49, ../../prototype/scss/cfs/_blocks.scss */
   .icon-block:not(:last-of-type) {
     border-bottom: 1px solid #eaeaea;
   }
