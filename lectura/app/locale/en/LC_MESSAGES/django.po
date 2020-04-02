@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-02 03:18-0700\n"
+"POT-Creation-Date: 2020-04-02 16:06-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,7 +75,7 @@ msgstr "Login"
 msgid "validation_invite_sender_receiver_equal"
 msgstr "This field is required."
 
-#: lectura/core/models.py:81 lectura/app/templates/base.html:176
+#: lectura/core/models.py:81 lectura/app/templates/base.html:185
 msgid "label_language"
 msgstr "Language"
 
@@ -432,20 +432,20 @@ msgstr ""
 msgid "label_your_menu"
 msgstr "Your menu"
 
-#: lectura/app/templates/base.html:137
-msgid "label_general"
-msgstr "General"
-
-#: lectura/app/templates/base.html:147
-msgid "label_home"
-msgstr "Home"
-
-#: lectura/app/templates/base.html:156
+#: lectura/app/templates/base.html:135 lectura/app/templates/base.html:165
 #: lectura/app/templates/reading/includes/_reading_breadcrumbs.html:8
 #: lectura/app/templates/reading/includes/_reading_breadcrumbs.html:28
 #: lectura/app/templates/reading/projects.html:12
 msgid "label_projects"
 msgstr "Projects"
+
+#: lectura/app/templates/base.html:146
+msgid "label_general"
+msgstr "General"
+
+#: lectura/app/templates/base.html:156
+msgid "label_home"
+msgstr "Home"
 
 #: lectura/app/templates/dbx/dbx.html:27
 msgid "label_dbx_audio_shared_link"
@@ -561,6 +561,14 @@ msgstr "Create project"
 msgid "page_project_update_title"
 msgstr "Edit project"
 
+#: lectura/app/templates/reading/auth/projects.html:6
+msgid "page_your_projects_title"
+msgstr "Your projects"
+
+#: lectura/app/templates/reading/auth/projects.html:12
+msgid "label_your_projects"
+msgstr "Your projects"
+
 #: lectura/app/templates/reading/includes/_post_audio_delete_modal.html:9
 msgid "msg_confirm_delete_post_audio"
 msgstr "Delete audio?"
@@ -591,7 +599,7 @@ msgstr "There are no projects."
 msgid "label_create_project"
 msgstr "Create a project"
 
-#: lectura/app/templates/reading/post.html:63
+#: lectura/app/templates/reading/post.html:67
 msgid "label_loading_audio"
 msgstr "Loading audio"
 

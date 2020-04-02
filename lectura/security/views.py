@@ -49,7 +49,7 @@ class LoginView(FormView):
     def get_success_url(self):
         redirect_to = self.request.POST.get('next', '')
         url_is_safe = is_safe_url(redirect_to, allowed_hosts={settings.PROJECT_DOMAIN})
-        if redirect_to and url_is_safe:
+        if redirect_to and redirect_to != reverse('app:home') and url_is_safe:
             return redirect_to
         else:
             return reverse(settings.LOGIN_REDIRECT_URL)
