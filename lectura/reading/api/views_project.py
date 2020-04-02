@@ -6,6 +6,7 @@ from rest_framework.viewsets import ModelViewSet
 
 from core.api.views_api import APIDefaultsMixin
 from core.api.permissions import ReadPermission
+from core.utils import str_to_bool
 from ..serializers import ReadingProjectSerializer
 from ..models import ReadingProject
 from ..utils import import_project
@@ -17,7 +18,7 @@ class ProjectViewSet(APIDefaultsMixin, ModelViewSet):
     lookup_field = 'pk'
     lookup_url_kwarg = 'pk'
     serializer_class = ReadingProjectSerializer
-    queryset = ReadingProject.objects.all()
+    queryset = ReadingProject.objects.order_by('date_created')
     permission_classes = [ReadPermission, ProjectOwnerPermission]
     pagination_class = SmallPagination
 
@@ -29,6 +30,12 @@ class ProjectViewSet(APIDefaultsMixin, ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+    def list(self, request, *args, **kwargs):
+        auth = self.request.query_params.get('auth', None)
+        if str_to_bool(auth):
+            self.queryset = self.queryset.filter(owner=request.user)
+        return super(ProjectViewSet, self).list(request, *args, **kwargs)
 
 
 class ProjectImportView(APIDefaultsMixin, APIView):

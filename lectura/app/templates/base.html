@@ -127,6 +127,15 @@ aria-label="sidebar-trigger"
 
   <ul class="menu-list">
 
+  <li>
+  <a 
+  class="{% block your_projects_link_active %}{% endblock your_projects_link_active %}"
+  href="{% url 'reading:projects_auth' %}"
+  >
+  <i class="fas fa-fw fa-project-diagram menu-icon"></i> {% trans 'label_projects' %}
+  </a>
+  </li>
+
   <li class="sidebar-divider"></li>
 
   </ul>

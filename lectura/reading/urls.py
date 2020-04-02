@@ -2,7 +2,7 @@ from django.urls import include, path
 
 from .views.views_project import ProjectsView, ProjectView
 from .views.views_project_auth import (
-    ProjectCreateView,
+    ProjectCreateView, ProjectsView as ProjectsAuthView,
     ProjectUpdateView
 )
 from .views.views_post import (
@@ -15,6 +15,11 @@ from .views.views_post_auth import (
 app_name = 'reading'
 
 auth_urls = [
+    path(
+        'projects/',
+        ProjectsAuthView.as_view(),
+        name='projects_auth'
+    ),
     path(
         'project/create/',
         ProjectCreateView.as_view(),

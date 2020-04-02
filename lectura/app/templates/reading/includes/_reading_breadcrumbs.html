@@ -2,7 +2,7 @@
 
 {% with url_name=request.resolver_match.url_name %}
 
-  {% if request.session.session_obj.project_obj %}
+  {% if request.session.session_obj.project %}
 
     <li>
     <a href="{% url 'reading:projects' %}">{% trans 'label_projects' %}</a>

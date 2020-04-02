@@ -12269,32 +12269,32 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
 /* line 66, ../scss/cfs/reading/_reading.scss */
 .post-view .post-name {
   font-size: 3.125rem;
-  margin-bottom: 40px;
 }
-/* line 72, ../scss/cfs/reading/_reading.scss */
+/* line 70, ../scss/cfs/reading/_reading.scss */
 .post-view .post-audio {
   margin-top: 10px;
   margin-bottom: 30px;
   text-align: center;
 }
-/* line 79, ../scss/cfs/reading/_reading.scss */
+/* line 77, ../scss/cfs/reading/_reading.scss */
 .post-view .post-content {
   font-size: 1.375rem;
+  margin-top: 40px;
   margin-bottom: 60px;
 }
 
-/* line 86, ../scss/cfs/reading/_reading.scss */
+/* line 85, ../scss/cfs/reading/_reading.scss */
 .post-view-section {
   padding-bottom: 6.25rem;
 }
 
 @media screen and (max-width: 768px) {
-  /* line 92, ../scss/cfs/reading/_reading.scss */
+  /* line 91, ../scss/cfs/reading/_reading.scss */
   .post-view .post-name {
     font-size: 2rem;
   }
 
-  /* line 99, ../scss/cfs/reading/_reading.scss */
+  /* line 98, ../scss/cfs/reading/_reading.scss */
   .project-card .name,
   .post-card .name {
     font-size: 1.125rem;

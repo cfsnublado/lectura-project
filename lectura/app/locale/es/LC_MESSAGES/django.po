@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-01 09:11-0700\n"
+"POT-Creation-Date: 2020-04-02 03:18-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -108,7 +108,7 @@ msgstr "Descripción"
 
 #: lectura/core/models.py:360
 #: lectura/app/templates/reading/reading_base.html:45
-#: lectura/app/templates/reading/reading_base.html:95
+#: lectura/app/templates/reading/reading_base.html:97
 msgid "label_project"
 msgstr "Proyecto"
 
@@ -266,7 +266,7 @@ msgid "label_content"
 msgstr "Contenido"
 
 #: lectura/reading/models.py:75
-#: lectura/app/templates/reading/reading_base.html:115
+#: lectura/app/templates/reading/reading_base.html:117
 msgid "label_post"
 msgstr "Entrada"
 
@@ -483,13 +483,15 @@ msgstr "Personaliza tus entradas"
 msgid "msg_block_1_desc"
 msgstr "Crea una entrada, y después agrega audio con narración."
 
-#: lectura/app/templates/home.html:65
+#: lectura/app/templates/home.html:63
 msgid "msg_block_2"
 msgstr "Comparte con tu equipo"
 
-#: lectura/app/templates/home.html:69
+#: lectura/app/templates/home.html:67
 msgid "msg_block_2_desc"
-msgstr "Puedes agregar narrraciones a las entradas de los demás miembros de tu equipo."
+msgstr ""
+"Puedes agregar narrraciones a las entradas de los demás miembros de tu "
+"equipo."
 
 #: lectura/app/templates/includes/_confirmation_modal.html:16
 msgid "label_no"
@@ -514,7 +516,7 @@ msgstr "Agregar audio"
 
 #: lectura/app/templates/reading/auth/post_audio_create.html:12
 #: lectura/app/templates/reading/includes/vue/_post_audios.html:20
-#: lectura/app/templates/reading/reading_base.html:154
+#: lectura/app/templates/reading/reading_base.html:156
 msgid "label_add_audio"
 msgstr "Agregar audio"
 
@@ -600,23 +602,27 @@ msgstr "Descargando audio"
 msgid "label_audios"
 msgstr "Audios"
 
+#: lectura/app/templates/reading/project.html:10
+msgid "label_posts"
+msgstr "Entradas"
+
 #: lectura/app/templates/reading/projects.html:6
 msgid "page_projects_title"
 msgstr "Proyectos"
 
-#: lectura/app/templates/reading/reading_base.html:64
+#: lectura/app/templates/reading/reading_base.html:66
 msgid "label_edit_project"
 msgstr "Editar proyecto"
 
-#: lectura/app/templates/reading/reading_base.html:78
+#: lectura/app/templates/reading/reading_base.html:80
 msgid "label_new_post"
 msgstr "Nueva entrada"
 
-#: lectura/app/templates/reading/reading_base.html:134
+#: lectura/app/templates/reading/reading_base.html:136
 msgid "label_edit_post"
 msgstr "Editar entrada"
 
-#: lectura/app/templates/reading/reading_base.html:144
+#: lectura/app/templates/reading/reading_base.html:146
 msgid "label_post_audios"
 msgstr "Audios"
 

@@ -1,9 +1,8 @@
 from django.apps import apps
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
-    CreateView, UpdateView
+    CreateView, TemplateView, UpdateView
 )
-
 from core.views import (
     MessageMixin, ObjectSessionMixin
 )
@@ -16,6 +15,13 @@ from .views_mixins import (
 )
 
 APP_NAME = apps.get_app_config('reading').name
+
+
+class ProjectsView(
+    LoginRequiredMixin, ObjectSessionMixin,
+    TemplateView
+):
+    template_name = '{0}/auth/projects.html'.format(APP_NAME)
 
 
 class ProjectCreateView(

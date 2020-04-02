@@ -34,7 +34,7 @@ class PostViewSet(
     lookup_field = 'pk'
     lookup_url_kwarg = 'pk'
     serializer_class = PostSerializer
-    queryset = Post.objects.select_related('project', 'creator')
+    queryset = Post.objects.select_related('project', 'creator').order_by('date_created')
     permission_classes = [ReadPermission, PostEditPermission]
     pagination_class = SmallPagination
 
@@ -50,7 +50,7 @@ class NestedPostViewSet(
 ):
     lookup_field = 'pk'
     lookup_url_kwarg = 'pk'
-    queryset = Post.objects.select_related('project', 'creator')
+    queryset = Post.objects.select_related('project', 'creator').order_by('date_created')
     serializer_class = PostSerializer
     project = None
     permission_classes = [ReadPermission, ProjectMemberPermission]

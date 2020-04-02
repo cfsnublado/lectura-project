@@ -5,7 +5,7 @@
 
 {% block title %}{% trans "page_projects_title" %}{% endblock title %}
 
-{% block projects_link_active %}is-active{% endblock projects_link_active %}
+{% block your_projects_link_active %}is-active{% endblock your_projects_link_active %}
 
 {% block page_header %}
 
@@ -17,10 +17,10 @@
 
 <div id="projects-scroll-top"></div>
 
-{% url 'api:project-list' as projects_url %}
+{% url_set_param 'api:project-list' auth='True' as projects_url %}
 {% url 'reading:project' 0 'zzz' as project_url %}
 {% url 'api:project-detail' 0 as project_delete_url %}
-{% alias user.is_admin as is_admin %}
+{% alias user.is_authenticated as is_admin %}
 
 {% include "reading/includes/vue/_projects.html" %}
 
