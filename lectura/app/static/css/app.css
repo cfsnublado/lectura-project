@@ -10062,7 +10062,7 @@ p {
 
 /* line 10, ../../prototype/scss/cfs/_typography.scss */
 .quote {
-  margin: 0;
+  margin-bottom: 1.875rem;
 }
 /* line 13, ../../prototype/scss/cfs/_typography.scss */
 .quote blockquote {
