@@ -10062,7 +10062,7 @@ p {
 
 /* line 10, ../../prototype/scss/cfs/_typography.scss */
 .quote {
-  margin-bottom: 1.875rem;
+  margin-bottom: 2.5rem;
 }
 /* line 13, ../../prototype/scss/cfs/_typography.scss */
 .quote blockquote {
@@ -10071,7 +10071,7 @@ p {
   line-height: 3.25rem;
   position: relative;
   margin-top: 2.5rem;
-  margin-bottom: 1.875rem;
+  margin-bottom: 1.75rem;
   padding-left: 1.25rem;
   color: #888;
   border-left: 4px solid;
