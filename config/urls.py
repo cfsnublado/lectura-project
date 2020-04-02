@@ -14,10 +14,11 @@ USER_URL_PREFIX = ProfileConf.URL_PREFIX
 DBX_URL_PREFIX = DbxConf.URL_PREFIX
 
 urlpatterns = i18n_patterns(
+    path("", include("social_django.urls", namespace="social")),
+    path('', include("core.urls", namespace="core")),
     path('', include('app.urls')),
     path('api/', include('app.api.urls', namespace='api')),
     path('djangoadmin/', admin.site.urls),
-    path("", include("social_django.urls", namespace="social")),
     path('{0}/'.format(SECURITY_URL_PREFIX), include('security.urls', namespace='security')),
     path('{0}/'.format(USER_URL_PREFIX), include('users.urls', namespace='users')),
     path('{0}/'.format(READING_URL_PREFIX), include('reading.urls', namespace='reading')),
