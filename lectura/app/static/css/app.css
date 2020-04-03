@@ -10062,7 +10062,7 @@ p {
 
 /* line 10, ../../prototype/scss/cfs/_typography.scss */
 blockquote {
-  font-size: 1.875rem;
+  font-size: 1.75rem;
   font-weight: 100;
   line-height: 3.25rem;
   position: relative;
@@ -10090,19 +10090,23 @@ blockquote p {
   margin-bottom: 3rem;
 }
 /* line 41, ../../prototype/scss/cfs/_typography.scss */
+.quote blockquote {
+  margin-bottom: 0.625rem;
+}
+/* line 45, ../../prototype/scss/cfs/_typography.scss */
 .quote figcaption {
-  font-size: 1.125rem;
+  font-size: 1rem;
   margin-left: 1.25rem;
 }
 
 @media screen and (max-width: 768px) {
-  /* line 51, ../../prototype/scss/cfs/_typography.scss */
+  /* line 54, ../../prototype/scss/cfs/_typography.scss */
   blockquote {
     font-size: 1.5rem;
-    line-height: 2.375rem;
+    line-height: 2.125rem;
   }
 
-  /* line 56, ../../prototype/scss/cfs/_typography.scss */
+  /* line 60, ../../prototype/scss/cfs/_typography.scss */
   .quote figcaption {
     font-size: 1rem;
   }
@@ -12286,16 +12290,16 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
   font-size: 3.125rem;
 }
 /* line 70, ../scss/cfs/reading/_reading.scss */
+.post-view .post-content {
+  font-size: 1.375rem;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+/* line 77, ../scss/cfs/reading/_reading.scss */
 .post-view .post-audio {
   margin-top: 10px;
   margin-bottom: 30px;
   text-align: center;
-}
-/* line 77, ../scss/cfs/reading/_reading.scss */
-.post-view .post-content {
-  font-size: 1.375rem;
-  margin-top: 40px;
-  margin-bottom: 60px;
 }
 
 /* line 85, ../scss/cfs/reading/_reading.scss */
