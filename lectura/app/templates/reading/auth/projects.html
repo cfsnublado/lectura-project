@@ -19,7 +19,9 @@
 
 {% url_set_param 'api:project-list' auth='True' as projects_url %}
 {% url 'reading:project' 0 'zzz' as project_url %}
+{% url 'reading:project_update' 0 'zzz' as project_update_url %}
 {% url 'api:project-detail' 0 as project_delete_url %}
+
 {% alias user.is_authenticated as is_admin %}
 
 {% include "reading/includes/vue/_projects.html" %}

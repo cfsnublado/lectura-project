@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-02 16:06-0700\n"
+"POT-Creation-Date: 2020-04-03 17:18-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -108,7 +108,7 @@ msgstr "Description"
 
 #: lectura/core/models.py:360
 #: lectura/app/templates/reading/reading_base.html:45
-#: lectura/app/templates/reading/reading_base.html:97
+#: lectura/app/templates/reading/reading_base.html:107
 msgid "label_project"
 msgstr "Project"
 
@@ -266,7 +266,7 @@ msgid "label_content"
 msgstr "Content"
 
 #: lectura/reading/models.py:75
-#: lectura/app/templates/reading/reading_base.html:117
+#: lectura/app/templates/reading/reading_base.html:127
 msgid "label_post"
 msgstr "Post"
 
@@ -432,12 +432,10 @@ msgstr ""
 msgid "label_your_menu"
 msgstr "Your menu"
 
-#: lectura/app/templates/base.html:135 lectura/app/templates/base.html:165
-#: lectura/app/templates/reading/includes/_reading_breadcrumbs.html:8
-#: lectura/app/templates/reading/includes/_reading_breadcrumbs.html:28
-#: lectura/app/templates/reading/projects.html:12
-msgid "label_projects"
-msgstr "Projects"
+#: lectura/app/templates/base.html:135
+#: lectura/app/templates/reading/auth/projects.html:12
+msgid "label_your_projects"
+msgstr "Your projects"
 
 #: lectura/app/templates/base.html:146
 msgid "label_general"
@@ -446,6 +444,13 @@ msgstr "General"
 #: lectura/app/templates/base.html:156
 msgid "label_home"
 msgstr "Home"
+
+#: lectura/app/templates/base.html:165
+#: lectura/app/templates/reading/includes/_reading_breadcrumbs.html:8
+#: lectura/app/templates/reading/includes/_reading_breadcrumbs.html:28
+#: lectura/app/templates/reading/projects.html:12
+msgid "label_projects"
+msgstr "Projects"
 
 #: lectura/app/templates/dbx/dbx.html:27
 msgid "label_dbx_audio_shared_link"
@@ -489,7 +494,7 @@ msgstr "Share with your team"
 
 #: lectura/app/templates/home.html:67
 msgid "msg_block_2_desc"
-msgstr "You can add narrations to posts of other members in your group."
+msgstr "Add narrations to posts of other members in your group."
 
 #: lectura/app/templates/includes/_confirmation_modal.html:16
 msgid "label_no"
@@ -514,7 +519,7 @@ msgstr "Create audio"
 
 #: lectura/app/templates/reading/auth/post_audio_create.html:12
 #: lectura/app/templates/reading/includes/vue/_post_audios.html:20
-#: lectura/app/templates/reading/reading_base.html:156
+#: lectura/app/templates/reading/reading_base.html:166
 msgid "label_add_audio"
 msgstr "Add audio"
 
@@ -563,10 +568,6 @@ msgstr "Edit project"
 
 #: lectura/app/templates/reading/auth/projects.html:6
 msgid "page_your_projects_title"
-msgstr "Your projects"
-
-#: lectura/app/templates/reading/auth/projects.html:12
-msgid "label_your_projects"
 msgstr "Your projects"
 
 #: lectura/app/templates/reading/includes/_post_audio_delete_modal.html:9
@@ -620,15 +621,19 @@ msgstr "Projects"
 msgid "label_edit_project"
 msgstr "Edit project"
 
-#: lectura/app/templates/reading/reading_base.html:80
+#: lectura/app/templates/reading/reading_base.html:76
+msgid "label_project_team"
+msgstr "Project team"
+
+#: lectura/app/templates/reading/reading_base.html:90
 msgid "label_new_post"
 msgstr "New post"
 
-#: lectura/app/templates/reading/reading_base.html:136
+#: lectura/app/templates/reading/reading_base.html:146
 msgid "label_edit_post"
 msgstr "Edit post"
 
-#: lectura/app/templates/reading/reading_base.html:146
+#: lectura/app/templates/reading/reading_base.html:156
 msgid "label_post_audios"
 msgstr "Audios"
 

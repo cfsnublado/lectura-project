@@ -6,13 +6,13 @@ from core.models import (
     SerializeModel, SlugifyModel, TimestampModel
 )
 from ..managers import (
-    PostManager, ReadingProjectManager
+    PostManager, ProjectManager
 )
 from ..models import (
-    Post, ReadingProject, ReadingProjectMember
+    Post, Project, ProjectMember
 )
 from ..serializers import (
-    PostSerializer, ReadingProjectSerializer
+    PostSerializer, ProjectSerializer
 )
 
 User = get_user_model()
@@ -29,17 +29,17 @@ class TestCommon(TestCase):
             email='cfs7@cfs.com',
             password=self.pwd
         )
-        self.project = ReadingProject.objects.create(
+        self.project = Project.objects.create(
             owner=self.user,
             name='Some book',
             description='A good book'
         )
 
 
-class ReadingProjectTest(TestCommon):
+class ProjectTest(TestCommon):
 
     def setUp(self):
-        super(ReadingProjectTest, self).setUp()
+        super(ProjectTest, self).setUp()
 
     def test_inheritance(self):
         classes = (
@@ -47,10 +47,10 @@ class ReadingProjectTest(TestCommon):
         )
         for class_name in classes:
             self.assertTrue(
-                issubclass(ReadingProject, class_name)
+                issubclass(Project, class_name)
             )
 
-        self.assertIsInstance(ReadingProject.objects, ReadingProjectManager)
+        self.assertIsInstance(Project.objects, ProjectManager)
 
     def test_string_representation(self):
         self.assertEqual(str(self.project), self.project.name)
@@ -63,7 +63,7 @@ class ReadingProjectTest(TestCommon):
 
     def test_get_serializer(self):
         serializer = self.project.get_serializer()
-        self.assertEqual(serializer, ReadingProjectSerializer)
+        self.assertEqual(serializer, ProjectSerializer)
 
     def test_get_member(self):
         user_2 = User.objects.create_user(
@@ -80,7 +80,7 @@ class ReadingProjectTest(TestCommon):
             email='manzano.foo.com',
             password=self.pwd
         )
-        member = ReadingProjectMember.objects.create(
+        member = ProjectMember.objects.create(
             project=self.project,
             member=user_2
         )
@@ -89,10 +89,10 @@ class ReadingProjectTest(TestCommon):
         self.assertIsNone(self.project.get_member(user_3))
 
 
-class ReadingProjectMemberTest(TestCommon):
+class ProjectMemberTest(TestCommon):
 
     def setUp(self):
-        super(ReadingProjectMemberTest, self).setUp()
+        super(ProjectMemberTest, self).setUp()
 
     def test_inheritance(self):
         classes = (
@@ -100,19 +100,19 @@ class ReadingProjectMemberTest(TestCommon):
         )
         for class_name in classes:
             self.assertTrue(
-                issubclass(ReadingProjectMember, class_name)
+                issubclass(ProjectMember, class_name)
             )
 
     def test_member_project(self):
-        member = ReadingProjectMember.objects.create(
+        member = ProjectMember.objects.create(
             project=self.project,
             member=self.user
         )
-        self.assertTrue(isinstance(member.project, ReadingProject))
+        self.assertTrue(isinstance(member.project, Project))
 
     def test_get_serializer(self):
         serializer = self.project.get_serializer()
-        self.assertEqual(serializer, ReadingProjectSerializer)
+        self.assertEqual(serializer, ProjectSerializer)
 
 
 class PostTest(TestCommon):

@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from core.forms import BaseModelForm
 from .models import (
-    Post, PostAudio, ReadingProject
+    Post, PostAudio, Project
 )
 
 
@@ -39,13 +39,13 @@ class ProjectCreateForm(ProjectForm):
         self.instance.owner = self.owner
 
     class Meta(ProjectForm.Meta):
-        model = ReadingProject
+        model = Project
 
 
 class ProjectUpdateForm(ProjectForm):
 
     class Meta(ProjectForm.Meta):
-        model = ReadingProject
+        model = Project
 
 
 class PostForm(BaseModelForm):

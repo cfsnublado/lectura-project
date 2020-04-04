@@ -1,11 +1,11 @@
 from django.db import models
 
 
-class ReadingProjectManager(models.Manager):
+class ProjectManager(models.Manager):
     pass
 
 
-class ReadingProjectMemberManager(models.Manager):
+class ProjectMemberManager(models.Manager):
     pass
 
 

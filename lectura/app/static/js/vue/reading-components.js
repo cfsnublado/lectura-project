@@ -38,7 +38,11 @@ const Project = {
         window.location.replace(this.viewUrl)
       }
     },
-    edit() {},
+    edit() {
+      if (this.editUrl) {
+        window.location.replace(this.editUrl)
+      }
+    },
     remove() {
       this.$emit('delete-project', this.project.id)
     }
@@ -49,6 +53,13 @@ const Project = {
         .replace(this.idPlaceholder, this.project.id)
         .replace(this.slugPlaceholder, this.project.slug)   
     }
+
+    if (this.initEditUrl) {
+      this.editUrl = this.initEditUrl
+        .replace(this.idPlaceholder, this.project.id)
+        .replace(this.slugPlaceholder, this.project.slug)   
+    }
+
 
     if (this.initDeleteUrl) {
       this.deleteUrl = this.initDeleteUrl

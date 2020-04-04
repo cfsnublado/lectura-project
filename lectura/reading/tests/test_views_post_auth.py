@@ -14,7 +14,7 @@ from core.views import (
 from ..conf import settings
 from ..forms import PostCreateForm, PostUpdateForm
 from ..models import (
-    Post, ReadingProject, ReadingProjectMember
+    Post, Project, ProjectMember
 )
 from ..views.views_mixins import (
     PostEditMixin, PostSessionMixin, ProjectMixin,
@@ -42,7 +42,7 @@ class TestCommon(TestCase):
             email='cfs7@foo.com',
             password=self.pwd
         )
-        self.project = ReadingProject.objects.create(
+        self.project = Project.objects.create(
             owner=self.user,
             name='test project'
         )
@@ -53,10 +53,10 @@ class TestCommon(TestCase):
             email='admin7@foo.com',
             password=self.pwd
         )
-        ReadingProjectMember.objects.create(
+        ProjectMember.objects.create(
             member=self.admin,
             project=self.project,
-            role=ReadingProjectMember.ROLE_ADMIN
+            role=ProjectMember.ROLE_ADMIN
         )
         self.editor = User.objects.create_user(
             username='editor7',
@@ -65,10 +65,10 @@ class TestCommon(TestCase):
             email='editor7@foo.com',
             password=self.pwd
         )
-        ReadingProjectMember.objects.create(
+        ProjectMember.objects.create(
             member=self.editor,
             project=self.project,
-            role=ReadingProjectMember.ROLE_EDITOR
+            role=ProjectMember.ROLE_EDITOR
         )
         self.author_1 = User.objects.create_user(
             username='author1',
@@ -77,10 +77,10 @@ class TestCommon(TestCase):
             email='author_1@foo.com',
             password=self.pwd
         )
-        ReadingProjectMember.objects.create(
+        ProjectMember.objects.create(
             member=self.author_1,
             project=self.project,
-            role=ReadingProjectMember.ROLE_AUTHOR
+            role=ProjectMember.ROLE_AUTHOR
         )
         self.author_2 = User.objects.create_user(
             username='author2',
@@ -89,10 +89,10 @@ class TestCommon(TestCase):
             email='author_2@foo.com',
             password=self.pwd
         )
-        ReadingProjectMember.objects.create(
+        ProjectMember.objects.create(
             member=self.author_2,
             project=self.project,
-            role=ReadingProjectMember.ROLE_AUTHOR
+            role=ProjectMember.ROLE_AUTHOR
         )
         self.non_member = User.objects.create_user(
             username='nonmember7',

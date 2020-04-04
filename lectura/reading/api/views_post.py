@@ -11,10 +11,10 @@ from rest_framework.viewsets import (
 )
 from rest_framework.views import APIView
 
-from core.api.views_api import APIDefaultsMixin
 from core.api.permissions import ReadPermission
+from core.api.views_api import APIDefaultsMixin
 from core.utils import str_to_bool
-from ..models import Post, PostAudio, ReadingProject
+from ..models import Post, PostAudio, Project
 from ..serializers import (
     PostAudioSerializer, PostSerializer
 )
@@ -58,7 +58,7 @@ class NestedPostViewSet(
 
     def get_project(self, project_pk=None):
         if not self.project:
-            self.project = get_object_or_404(ReadingProject, id=project_pk)
+            self.project = get_object_or_404(Project, id=project_pk)
         return self.project
 
     def get_queryset(self):

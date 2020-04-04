@@ -13,7 +13,7 @@ from ..forms import (
     PostAudioCreateForm, PostCreateForm,
     PostUpdateForm
 )
-from ..models import Post, PostAudio, ReadingProjectMember
+from ..models import Post, PostAudio, ProjectMember
 from .views_mixins import (
     PostAudioCreateMixin, PostEditMixin, PostSessionMixin,
     ProjectMemberMixin, ProjectSessionMixin
@@ -28,7 +28,7 @@ class PostCreateView(
 ):
     model = Post
     form_class = PostCreateForm
-    project_role_access = ReadingProjectMember.ROLE_AUTHOR
+    project_role_access = ProjectMember.ROLE_AUTHOR
     template_name = '{0}/auth/post_create.html'.format(APP_NAME)
 
     def get_form_kwargs(self):

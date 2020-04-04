@@ -1,4 +1,4 @@
-from .models import ReadingProjectMember
+from .models import ProjectMember
 
 
 def is_project_owner(user, project):
@@ -8,7 +8,7 @@ def is_project_owner(user, project):
 def is_project_role(user, project, role):
     if is_project_owner(user, project):
         return True
-    elif role in (i[0] for i in ReadingProjectMember.ROLE_CHOICES):
+    elif role in (i[0] for i in ProjectMember.ROLE_CHOICES):
         member = project.get_member(user)
         return bool(member and member.role >= role)
     else:
@@ -16,27 +16,27 @@ def is_project_role(user, project, role):
 
 
 def is_project_admin(user, project):
-    return is_project_role(user, project, ReadingProjectMember.ROLE_ADMIN)
+    return is_project_role(user, project, ProjectMember.ROLE_ADMIN)
 
 
 def is_project_editor(user, project):
-    return is_project_role(user, project, ReadingProjectMember.ROLE_EDITOR)
+    return is_project_role(user, project, ProjectMember.ROLE_EDITOR)
 
 
 def is_project_author(user, project):
-    return is_project_role(user, project, ReadingProjectMember.ROLE_AUTHOR)
+    return is_project_role(user, project, ProjectMember.ROLE_AUTHOR)
 
 
 def is_project_member(user, project):
     return bool(is_project_owner(user, project) or project.get_member(user))
 
 
-def can_edit_project(user, project):
-    return is_project_admin(user, project)
+def can_edit_project(user, project, superuser_override=True):
+    return (superuser_override and user.is_superuser) or is_project_admin(user, project)
 
 
-def can_delete_project(user, project):
-    return is_project_owner(user, project)
+def can_delete_project(user, project, superuser_override=True):
+    return (superuser_override and user.is_superuser) or is_project_owner(user, project)
 
 
 def is_post_creator(user, post):
@@ -47,7 +47,7 @@ def can_create_post(user, project):
     return is_project_member(user, project)
 
 
-def can_edit_post(user, post):
+def can_edit_post(user, post, superuser_override=True):
     """
     True: Project Owner, Admin, Editor, Author (post creator)
     False: Author (not post creator)
@@ -60,20 +60,20 @@ def can_edit_post(user, post):
     else:
         member = project.get_member(user)
         if member:
-            if member.role >= ReadingProjectMember.ROLE_EDITOR:
+            if member.role >= ProjectMember.ROLE_EDITOR:
                 can_edit = True
-            elif member.role == ReadingProjectMember.ROLE_AUTHOR and is_post_creator(user, post):
+            elif member.role == ProjectMember.ROLE_AUTHOR and is_post_creator(user, post):
                 can_edit = True
 
-    return can_edit
+    return (superuser_override and user.is_superuser) or can_edit
 
 
-def can_delete_post(user, post):
+def can_delete_post(user, post, superuser_override=True):
     """
     True: Project Owner, Admin, Editor, Author (post creator)
     False: Author (not post creator)
     """
-    return can_edit_post(user, post)
+    return (superuser_override and user.is_superuser) or can_edit_post(user, post)
 
 
 def can_create_post_audio(user, post):

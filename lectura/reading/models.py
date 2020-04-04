@@ -7,36 +7,36 @@ from core.models import (
     SerializeModel, SlugifyModel, TimestampModel
 )
 from .managers import (
-    PostManager, ReadingProjectManager,
-    ReadingProjectMemberManager
+    PostManager, ProjectManager,
+    ProjectMemberManager
 )
 
 
-class ReadingProject(ProjectModel):
+class Project(ProjectModel):
 
-    objects = ReadingProjectManager()
+    objects = ProjectManager()
 
     def get_serializer(self):
-        from .serializers import ReadingProjectSerializer
-        return ReadingProjectSerializer
+        from .serializers import ProjectSerializer
+        return ProjectSerializer
 
     def get_member(self, user):
         member = None
         try:
-            member = ReadingProjectMember.objects.get(project=self, member=user)
-        except ReadingProjectMember.DoesNotExist:
+            member = ProjectMember.objects.get(project=self, member=user)
+        except ProjectMember.DoesNotExist:
             pass
         return member
 
 
-class ReadingProjectMember(ProjectPublishMemberModel):
+class ProjectMember(ProjectPublishMemberModel):
     project = models.ForeignKey(
-        ReadingProject,
+        Project,
         related_name='project_publish_members',
         on_delete=models.CASCADE
     )
 
-    objects = ReadingProjectMemberManager()
+    objects = ProjectMemberManager()
 
 
 class Post(
@@ -53,7 +53,7 @@ class Post(
         on_delete=models.CASCADE
     )
     project = models.ForeignKey(
-        ReadingProject,
+        Project,
         related_name='posts',
         on_delete=models.CASCADE
     )

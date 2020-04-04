@@ -27,6 +27,7 @@ v-for="(project, index) in projects"
 :init-project="project"
 :init-is-admin="isAdmin"
 init-view-url="{{ project_url }}"
+init-edit-url="{{ project_update_url }}"
 init-delete-url="{{ project_delete_url }}"
 @delete-project="onDeleteProject(index)"
 inline-template
@@ -36,6 +37,18 @@ inline-template
 <div class="card project-card" v-show="isVisible">
 
 <div class="card-controls">
+
+<span
+v-if="isAdmin"
+class="control"
+>
+<a
+href="#"
+@click.prevent="edit"
+>
+<i class="fas fa-edit fa-fw"></i>
+</a>
+</span>
 
 <ajax-delete
 v-if="isAdmin"

@@ -9,7 +9,7 @@ from core.views import (
 from django.urls import reverse
 
 from ..forms import ProjectCreateForm, ProjectUpdateForm
-from ..models import ReadingProject, ReadingProjectMember
+from ..models import Project, ProjectMember
 from .views_mixins import (
     ProjectEditMixin, ProjectSessionMixin
 )
@@ -28,7 +28,7 @@ class ProjectCreateView(
     LoginRequiredMixin, ObjectSessionMixin,
     MessageMixin, CreateView
 ):
-    model = ReadingProject
+    model = Project
     form_class = ProjectCreateForm
     template_name = '{0}/auth/project_create.html'.format(APP_NAME)
 
@@ -52,9 +52,9 @@ class ProjectUpdateView(
     ProjectSessionMixin,
     MessageMixin, UpdateView
 ):
-    model = ReadingProject
+    model = Project
     form_class = ProjectUpdateForm
-    project_role_access = ReadingProjectMember.ROLE_ADMIN
+    project_role_access = ProjectMember.ROLE_ADMIN
     template_name = '{0}/auth/project_update.html'.format(APP_NAME)
 
     def get_object(self, **kwargs):

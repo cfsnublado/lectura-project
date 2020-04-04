@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 
 from ..models import (
-    Post, ReadingProject, ReadingProjectMember
+    Post, Project, ProjectMember
 )
 from ..permissions import (
     can_create_post_audio, can_delete_post, can_delete_project, can_edit_post,
@@ -60,34 +60,34 @@ class TestCommon(TestCase):
             email='limonero@foo.com',
             password=self.pwd
         )
-        self.project = ReadingProject.objects.create(
+        self.project = Project.objects.create(
             owner=self.user,
             name='Some book',
             description='A good book'
         )
-        ReadingProjectMember.objects.create(
+        ProjectMember.objects.create(
             project=self.project,
             member=self.admin,
-            role=ReadingProjectMember.ROLE_ADMIN
+            role=ProjectMember.ROLE_ADMIN
         )
-        ReadingProjectMember.objects.create(
+        ProjectMember.objects.create(
             project=self.project,
             member=self.editor,
-            role=ReadingProjectMember.ROLE_EDITOR
+            role=ProjectMember.ROLE_EDITOR
         )
-        ReadingProjectMember.objects.create(
+        ProjectMember.objects.create(
             project=self.project,
             member=self.author,
-            role=ReadingProjectMember.ROLE_AUTHOR
+            role=ProjectMember.ROLE_AUTHOR
         )
-        ReadingProjectMember.objects.create(
+        ProjectMember.objects.create(
             project=self.project,
             member=self.author_2,
-            role=ReadingProjectMember.ROLE_AUTHOR
+            role=ProjectMember.ROLE_AUTHOR
         )
 
 
-class ReadingProjectPermissionsTest(TestCommon):
+class ProjectPermissionsTest(TestCommon):
 
     def test_is_project_owner(self):
         self.assertEqual(self.user, self.project.owner)

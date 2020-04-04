@@ -11,7 +11,7 @@ from ..models import (
     Post
 )
 from ..serializers import (
-    PostSerializer, ReadingProjectSerializer
+    PostSerializer, ProjectSerializer
 )
 
 User = get_user_model()
@@ -35,12 +35,12 @@ class TestCommon(TestCase):
         )
 
 
-class ReadingProjectSerializerTest(TestCommon):
+class ProjectSerializerTest(TestCommon):
 
     def setUp(self):
-        super(ReadingProjectSerializerTest, self).setUp()
+        super(ProjectSerializerTest, self).setUp()
         self.request = self.client.get(reverse('api:project-list')).wsgi_request
-        self.serializer = ReadingProjectSerializer(
+        self.serializer = ProjectSerializer(
             self.project,
             context={'request': self.request}
         )
@@ -107,7 +107,7 @@ class ReadingProjectSerializerTest(TestCommon):
 
     def test_validation_no_name(self):
         data = {'name': ''}
-        self.serializer = ReadingProjectSerializer(self.project, data=data, partial=True)
+        self.serializer = ProjectSerializer(self.project, data=data, partial=True)
         self.assertFalse(self.serializer.is_valid())
         self.assertEqual(len(self.serializer.errors), 1)
         self.assertTrue(self.serializer.errors['name'])

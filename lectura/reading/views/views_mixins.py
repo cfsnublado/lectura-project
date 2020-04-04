@@ -3,7 +3,7 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404
 
 from core.views import CachedObjectMixin, ObjectSessionMixin, PermissionMixin
-from ..models import Post, ReadingProject
+from ..models import Post, Project
 from ..permissions import (
     can_create_post_audio, can_delete_project, can_edit_post,
     can_edit_project, is_project_member
@@ -34,19 +34,19 @@ class ProjectMixin(CachedObjectMixin, PermissionMixin):
     def get_project(self, request, *args, **kwargs):
         if self.project_id in kwargs:
             self.project = get_object_or_404(
-                ReadingProject.objects.select_related('owner'),
+                Project.objects.select_related('owner'),
                 id=kwargs[self.project_id]
             )
         elif self.project_slug in kwargs:
             self.project = get_object_or_404(
-                ReadingProject.objects.select_related('owner'),
+                Project.objects.select_related('owner'),
                 slug=kwargs[self.project_slug]
             )
         else:
             obj = self.get_object()
             if hasattr(obj, 'project_id'):
                 self.project = obj.project
-            elif isinstance(obj, ReadingProject):
+            elif isinstance(obj, Project):
                 self.project = obj
             else:
                 raise Http404('Project not found.')

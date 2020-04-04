@@ -7,8 +7,8 @@ from rest_framework.viewsets import ModelViewSet
 from core.api.views_api import APIDefaultsMixin
 from core.api.permissions import ReadPermission
 from core.utils import str_to_bool
-from ..serializers import ReadingProjectSerializer
-from ..models import ReadingProject
+from ..serializers import ProjectSerializer
+from ..models import Project
 from ..utils import import_project
 from .pagination import SmallPagination
 from .permissions import ProjectOwnerPermission
@@ -17,8 +17,8 @@ from .permissions import ProjectOwnerPermission
 class ProjectViewSet(APIDefaultsMixin, ModelViewSet):
     lookup_field = 'pk'
     lookup_url_kwarg = 'pk'
-    serializer_class = ReadingProjectSerializer
-    queryset = ReadingProject.objects.order_by('date_created')
+    serializer_class = ProjectSerializer
+    queryset = Project.objects.order_by('date_created')
     permission_classes = [ReadPermission, ProjectOwnerPermission]
     pagination_class = SmallPagination
 

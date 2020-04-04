@@ -10,17 +10,18 @@ from core.serializers import (
     BaseSerializer, UUIDEncoder
 )
 from .models import (
-    Post, PostAudio, ReadingProject
+    Post, PostAudio, Project,
+    ProjectMember
 )
 
 User = get_user_model()
 
 
-class ReadingProjectListSerializer(ListSerializer):
+class ProjectListSerializer(ListSerializer):
     pass
 
 
-class ReadingProjectSerializer(BaseSerializer, HyperlinkedModelSerializer):
+class ProjectSerializer(BaseSerializer, HyperlinkedModelSerializer):
     json_encoder = UUIDEncoder
     minimal_data_fields = [
         'name', 'description', 'date_created'
@@ -44,8 +45,8 @@ class ReadingProjectSerializer(BaseSerializer, HyperlinkedModelSerializer):
     )
 
     class Meta:
-        list_serializer = ReadingProjectListSerializer
-        model = ReadingProject
+        list_serializer = ProjectListSerializer
+        model = Project
         fields = (
             'url', 'id', 'owner_id', 'owner_url',
             'name', 'description', 'slug', 'posts_url',
@@ -58,7 +59,59 @@ class ReadingProjectSerializer(BaseSerializer, HyperlinkedModelSerializer):
         )
 
     def create(self, validated_data):
-        return ReadingProject.objects.create(**validated_data)
+        return Project.objects.create(**validated_data)
+
+
+class ProjectMemberListSerializer(ListSerializer):
+    pass
+
+
+class ProjectMemberSerializer(
+    BaseSerializer, HyperlinkedModelSerializer
+):
+    json_encoder = UUIDEncoder
+    minimal_data_fields = [
+        'role', 'date_created'
+    ]
+    url = HyperlinkedIdentityField(
+        view_name='api:project-member-detail',
+        lookup_field='pk'
+    )
+    project_url = HyperlinkedRelatedField(
+        many=False,
+        read_only=True,
+        view_name='api:project-detail',
+        lookup_field='pk',
+        source='project'
+    )
+    project = StringRelatedField(
+        many=False,
+        source='project.name'
+    )
+    project_slug = StringRelatedField(
+        many=False,
+        source='project.slug'
+    )
+    member_id = ReadOnlyField(source='member.id')
+    member_url = HyperlinkedRelatedField(
+        many=False,
+        read_only=True,
+        view_name='api:user-detail',
+        lookup_field='username',
+        source='member'
+    )
+
+    class Meta:
+        list_serializer = ProjectMemberListSerializer
+        model = ProjectMember
+        fields = (
+            'url', 'id', 'member_id', 'member_url',
+            'role', 'date_created', 'date_updated',
+        )
+        read_only_fields = (
+            'url', 'id', 'member_id', 'member_url',
+            'role', 'date_created', 'date_updated'
+        )
 
 
 class PostListSerializer(ListSerializer):

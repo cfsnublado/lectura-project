@@ -42,7 +42,7 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
   <div class="menu">
 
   <p class="menu-label">
-  {% trans "label_project" %}
+  {% trans 'label_project' %}
   </p>
 
   <p class="menu-header">
@@ -59,11 +59,21 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
 
     <li>
     <a 
+    id="sidebar-nav-project-team" 
+    class="{% block project_team_link_active %}{% endblock project_team_link_active %}" 
+    href=""
+    >
+    <i class="menu-icon fas fa-users fa-fw"></i> {% trans 'label_project_team' %}
+    </a>
+    </li>
+
+    <li>
+    <a 
     id="sidebar-nav-project-edit" 
     class="{% block project_update_link_active %}{% endblock project_update_link_active %}" 
     href="{% url 'reading:project_update' project.id project.slug %}"
     >
-    <i class="menu-icon fas fa-edit fa-fw"></i> {% trans "label_edit_project" %}
+    <i class="menu-icon fas fa-edit fa-fw"></i> {% trans 'label_edit_project' %}
     </a>
     </li>
 
@@ -77,7 +87,7 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
     class="{% block post_create_link_active %}{% endblock post_create_link_active %}" 
     href="{% url 'reading:post_create' project.id project.slug %}"
     >
-    <i class="menu-icon fas fa-plus fa-fw"></i> {% trans "label_new_post" %}
+    <i class="menu-icon fas fa-plus fa-fw"></i> {% trans 'label_new_post' %}
     </a>
     </li>
 
@@ -94,7 +104,7 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
   <div class="menu">
 
   <p class="menu-label">
-  {% trans "label_project" %}
+  {% trans 'label_project' %}
   </p>
 
   <p class="menu-header">
@@ -114,7 +124,7 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
   <div class="menu">
 
   <p class="menu-label">
-  {% trans "label_post" %}
+  {% trans 'label_post' %}
   </p>
 
   <p class="menu-header">
@@ -133,7 +143,7 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
     class="{% block post_update_link_active %}{% endblock post_update_link_active %}" 
     href="{% url 'reading:post_update' post.id post.slug %}"
     >
-    <i class="menu-icon fas fa-edit fa-fw"></i> {% trans "label_edit_post" %}
+    <i class="menu-icon fas fa-edit fa-fw"></i> {% trans 'label_edit_post' %}
     </a>
     </li>
 
@@ -143,7 +153,7 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
     class="{% block post_audios_link_active %}{% endblock post_audios_link_active %}" 
     href="{% url 'reading:post_audios' post.id post.slug %}"
     >
-    <i class="menu-icon fas fa-music fa-fw"></i> {% trans "label_post_audios" %}
+    <i class="menu-icon fas fa-music fa-fw"></i> {% trans 'label_post_audios' %}
     </a>
     </li>
 
@@ -153,7 +163,7 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
     class="{% block audio_create_link_active %}{% endblock audio_create_link_active %}" 
     href="{% url 'reading:post_audio_create' post.id post.slug %}"
     >
-    <i class="menu-icon fas fa-plus fa-fw"></i> {% trans "label_add_audio" %}
+    <i class="menu-icon fas fa-plus fa-fw"></i> {% trans 'label_add_audio' %}
     </a>
     </li>
 
