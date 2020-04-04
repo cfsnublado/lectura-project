@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-03 17:18-0700\n"
+"POT-Creation-Date: 2020-04-04 09:39-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,7 +75,7 @@ msgstr "Login"
 msgid "validation_invite_sender_receiver_equal"
 msgstr "This field is required."
 
-#: lectura/core/models.py:81 lectura/app/templates/base.html:185
+#: lectura/core/models.py:81 lectura/app/templates/base.html:194
 msgid "label_language"
 msgstr "Language"
 
@@ -437,15 +437,19 @@ msgstr "Your menu"
 msgid "label_your_projects"
 msgstr "Your projects"
 
-#: lectura/app/templates/base.html:146
+#: lectura/app/templates/base.html:144
+msgid "label_new_project"
+msgstr "New project"
+
+#: lectura/app/templates/base.html:155
 msgid "label_general"
 msgstr "General"
 
-#: lectura/app/templates/base.html:156
+#: lectura/app/templates/base.html:165
 msgid "label_home"
 msgstr "Home"
 
-#: lectura/app/templates/base.html:165
+#: lectura/app/templates/base.html:174
 #: lectura/app/templates/reading/includes/_reading_breadcrumbs.html:8
 #: lectura/app/templates/reading/includes/_reading_breadcrumbs.html:28
 #: lectura/app/templates/reading/projects.html:12
@@ -618,12 +622,12 @@ msgid "page_projects_title"
 msgstr "Projects"
 
 #: lectura/app/templates/reading/reading_base.html:66
-msgid "label_edit_project"
-msgstr "Edit project"
-
-#: lectura/app/templates/reading/reading_base.html:76
 msgid "label_project_team"
 msgstr "Project team"
+
+#: lectura/app/templates/reading/reading_base.html:76
+msgid "label_edit_project"
+msgstr "Edit project"
 
 #: lectura/app/templates/reading/reading_base.html:90
 msgid "label_new_post"

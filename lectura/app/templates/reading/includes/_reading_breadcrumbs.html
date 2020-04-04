@@ -46,6 +46,12 @@
 
     {% endif %}
 
+  {% else %}
+
+    <li>
+    <a href="{% url 'reading:projects' %}">{% trans 'label_projects' %}</a>
+    </li>
+
   {% endif %}
 
 {% endwith %}

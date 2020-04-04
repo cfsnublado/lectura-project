@@ -6,6 +6,13 @@
 
 {% block project_create_link_active %}is-active{% endblock project_create_link_active %}
 
+{% block breadcrumb_content %}
+{{ block.super }}
+<li class="is-active">
+<a href="#">{% trans 'label_create_project' %}</a>
+</li>
+{% endblock breadcrumb_content %}
+
 {% block content %}
 
 <form 

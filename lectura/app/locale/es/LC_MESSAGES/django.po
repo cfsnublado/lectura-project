@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-03 17:18-0700\n"
+"POT-Creation-Date: 2020-04-04 09:39-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,7 +75,7 @@ msgstr "Iniciar sesión"
 msgid "validation_invite_sender_receiver_equal"
 msgstr "Este campo es requerido"
 
-#: lectura/core/models.py:81 lectura/app/templates/base.html:185
+#: lectura/core/models.py:81 lectura/app/templates/base.html:194
 msgid "label_language"
 msgstr "Idioma"
 
@@ -437,15 +437,19 @@ msgstr "Tu menú"
 msgid "label_your_projects"
 msgstr "Tus proyectos"
 
-#: lectura/app/templates/base.html:146
+#: lectura/app/templates/base.html:144
+msgid "label_new_project"
+msgstr "Nuevo proyecto"
+
+#: lectura/app/templates/base.html:155
 msgid "label_general"
 msgstr "General"
 
-#: lectura/app/templates/base.html:156
+#: lectura/app/templates/base.html:165
 msgid "label_home"
 msgstr "Inicio"
 
-#: lectura/app/templates/base.html:165
+#: lectura/app/templates/base.html:174
 #: lectura/app/templates/reading/includes/_reading_breadcrumbs.html:8
 #: lectura/app/templates/reading/includes/_reading_breadcrumbs.html:28
 #: lectura/app/templates/reading/projects.html:12
@@ -494,9 +498,7 @@ msgstr "Comparte con tu equipo"
 
 #: lectura/app/templates/home.html:67
 msgid "msg_block_2_desc"
-msgstr ""
-"Agrega narrraciones a las entradas de los demás miembros de tu "
-"equipo."
+msgstr "Agrega narrraciones a las entradas de los demás miembros de tu equipo."
 
 #: lectura/app/templates/includes/_confirmation_modal.html:16
 msgid "label_no"
@@ -620,12 +622,12 @@ msgid "page_projects_title"
 msgstr "Proyectos"
 
 #: lectura/app/templates/reading/reading_base.html:66
-msgid "label_edit_project"
-msgstr "Editar proyecto"
-
-#: lectura/app/templates/reading/reading_base.html:76
 msgid "label_project_team"
 msgstr "Equipo del proyecto"
+
+#: lectura/app/templates/reading/reading_base.html:76
+msgid "label_edit_project"
+msgstr "Editar proyecto"
 
 #: lectura/app/templates/reading/reading_base.html:90
 msgid "label_new_post"
