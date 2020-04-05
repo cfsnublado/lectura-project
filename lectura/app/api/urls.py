@@ -12,6 +12,9 @@ from dbx.api.views_api import (
 )
 from users.api.views_api import UserViewSet, ProfileViewSet
 from reading.api.views_project import ProjectViewSet, ProjectImportView
+from reading.api.views_project_member import (
+    NestedProjectMemberViewSet, ProjectMemberViewSet
+)
 from reading.api.views_post import (
     NestedPostAudioViewSet, NestedPostViewSet,
     PostViewSet, PostAudioViewSet, PostExportView, PostImportView
@@ -25,14 +28,33 @@ router = DefaultRouter()
 router.register('user', UserViewSet, basename='user')
 router.register('profile', ProfileViewSet, basename='profile')
 
-# post
+# project
 router.register('project', ProjectViewSet, basename='project')
-router.register('post', PostViewSet, basename='post')
-router.register('post-audio', PostAudioViewSet, basename='post-audio')
 
+# project member
+router.register(
+    'project-member',
+    ProjectMemberViewSet,
+    basename='project-member'
+)
+project_member_router = NestedSimpleRouter(
+    router,
+    'project',
+    lookup='project'
+)
+project_member_router.register(
+    'project-member',
+    NestedProjectMemberViewSet,
+    basename='nested-project-member'
+)
+
+# post
+router.register('post', PostViewSet, basename='post')
 post_router = NestedSimpleRouter(router, 'project', lookup='project')
 post_router.register('post', NestedPostViewSet, basename='nested-post')
 
+# post audio
+router.register('post-audio', PostAudioViewSet, basename='post-audio')
 post_audio_router = NestedSimpleRouter(router, 'post', lookup='post')
 post_audio_router.register(
     'post-audio',
@@ -59,6 +81,7 @@ urlpatterns = [
     path('dbx-upload-audio/', DbxUploadAudioView.as_view(), name='dbx_upload_audio'),
 
     path('', include(router.urls)),
+    path('', include(project_member_router.urls)),
     path('', include(post_router.urls)),
     path('', include(post_audio_router.urls)),
 ]

@@ -34,7 +34,9 @@ class PostViewSet(
     lookup_field = 'pk'
     lookup_url_kwarg = 'pk'
     serializer_class = PostSerializer
-    queryset = Post.objects.select_related('project', 'creator').order_by('date_created')
+    queryset = Post.objects.select_related(
+        'project', 'creator'
+    ).order_by('-date_created')
     permission_classes = [ReadPermission, PostEditPermission]
     pagination_class = SmallPagination
 
@@ -50,7 +52,9 @@ class NestedPostViewSet(
 ):
     lookup_field = 'pk'
     lookup_url_kwarg = 'pk'
-    queryset = Post.objects.select_related('project', 'creator').order_by('date_created')
+    queryset = Post.objects.select_related(
+        'project', 'creator'
+    ).order_by('-date_created')
     serializer_class = PostSerializer
     project = None
     permission_classes = [ReadPermission, ProjectMemberPermission]
@@ -117,7 +121,9 @@ class PostAudioViewSet(
     lookup_field = 'pk'
     lookup_url_kwarg = 'pk'
     serializer_class = PostAudioSerializer
-    queryset = PostAudio.objects.select_related('post', 'post__project', 'creator')
+    queryset = PostAudio.objects.select_related(
+        'post', 'post__project', 'creator'
+    ).order_by('-date_created')
     permission_classes = [ReadPermission, PostEditPermission]
     pagination_class = SmallPagination
 
@@ -133,7 +139,9 @@ class NestedPostAudioViewSet(
 ):
     lookup_field = 'pk'
     lookup_url_kwarg = 'pk'
-    queryset = PostAudio.objects.select_related('post', 'post__project', 'creator')
+    queryset = PostAudio.objects.select_related(
+        'post', 'post__project', 'creator'
+    ).order_by('-date_created')
     serializer_class = PostAudioSerializer
     post = None
     permission_classes = [ReadPermission, ProjectMemberPermission]

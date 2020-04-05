@@ -38,6 +38,11 @@ class ProjectSerializer(BaseSerializer, HyperlinkedModelSerializer):
         lookup_field='username',
         source='owner'
     )
+    members_url = HyperlinkedIdentityField(
+        view_name='api:nested-project-member-list',
+        lookup_url_kwarg='project_pk',
+        lookup_field='pk'
+    )
     posts_url = HyperlinkedIdentityField(
         view_name="api:nested-post-list",
         lookup_url_kwarg="project_pk",
@@ -49,12 +54,13 @@ class ProjectSerializer(BaseSerializer, HyperlinkedModelSerializer):
         model = Project
         fields = (
             'url', 'id', 'owner_id', 'owner_url',
-            'name', 'description', 'slug', 'posts_url',
+            'name', 'description', 'slug',
+            'members_url', 'posts_url',
             'date_created', 'date_updated',
         )
         read_only_fields = (
             'url', 'id', 'owner_id', 'owner_url',
-            'slug', 'posts_url',
+            'slug', 'members_url', 'posts_url',
             'date_created', 'date_updated'
         )
 
@@ -100,17 +106,28 @@ class ProjectMemberSerializer(
         lookup_field='username',
         source='member'
     )
+    member_username = ReadOnlyField(source='member.username')
+    member_first_name = ReadOnlyField(source='member.first_name')
+    member_last_name = ReadOnlyField(source='member.last_name')
+    member_email = ReadOnlyField(source='member.email')
+    member_avatar_url = ReadOnlyField(source='member.profile.avatar_url')
 
     class Meta:
         list_serializer = ProjectMemberListSerializer
         model = ProjectMember
         fields = (
-            'url', 'id', 'member_id', 'member_url',
-            'role', 'date_created', 'date_updated',
+            'url', 'id', 'project_id', 'project', 'project_slug',
+            'project_url', 'member_id', 'member_url',
+            'member_username', 'member_first_name', 'member_last_name',
+            'member_email', 'member_avatar_url', 'role',
+            'date_created', 'date_updated',
         )
         read_only_fields = (
-            'url', 'id', 'member_id', 'member_url',
-            'role', 'date_created', 'date_updated'
+            'url', 'id', 'project_id', 'project', 'project_slug',
+            'project_url', 'member_id', 'member_url',
+            'member_username', 'member_first_name', 'member_last_name',
+            'member_email', 'member_avatar_url', 'role',
+            'date_created', 'date_updated'
         )
 
 

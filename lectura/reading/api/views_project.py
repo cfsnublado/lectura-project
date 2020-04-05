@@ -18,7 +18,7 @@ class ProjectViewSet(APIDefaultsMixin, ModelViewSet):
     lookup_field = 'pk'
     lookup_url_kwarg = 'pk'
     serializer_class = ProjectSerializer
-    queryset = Project.objects.order_by('date_created')
+    queryset = Project.objects.order_by('-date_created')
     permission_classes = [ReadPermission, ProjectOwnerPermission]
     pagination_class = SmallPagination
 
