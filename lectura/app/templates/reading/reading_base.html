@@ -15,8 +15,6 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
 
 {% block breadcrumbs %}
 
-{% if request.session.session_obj %}
-
   <nav class="breadcrumb">
 
   <ul>
@@ -28,8 +26,6 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
   </ul>
 
   </nav>
-
-{% endif %}
 
 {% endblock breadcrumbs %}
 
