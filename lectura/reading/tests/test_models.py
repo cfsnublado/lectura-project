@@ -9,7 +9,7 @@ from ..managers import (
     PostManager, ProjectManager
 )
 from ..models import (
-    Post, Project, ProjectMember
+    Post, PostAudio, Project, ProjectMember
 )
 from ..serializers import (
     PostSerializer, ProjectSerializer
@@ -113,6 +113,55 @@ class ProjectMemberTest(TestCommon):
     def test_get_serializer(self):
         serializer = self.project.get_serializer()
         self.assertEqual(serializer, ProjectSerializer)
+
+    def test_delete_project_member_deletes_posts(self):
+        user_2 = User.objects.create_user(
+            username='naranjo',
+            first_name='Orange',
+            last_name='Tree',
+            email='naranjo.foo.com',
+            password=self.pwd
+        )
+        member = ProjectMember.objects.create(
+            project=self.project,
+            member=user_2,
+            role=ProjectMember.ROLE_AUTHOR
+        )
+        post = Post.objects.create(
+            creator=user_2,
+            project=self.project,
+            name='post2',
+            content='asdf'
+        )
+        PostAudio.objects.create(
+            creator=user_2,
+            post=post,
+            name='some audio',
+            audio_url='https://foo.com/foo.mp3'
+        )
+        self.assertTrue(
+            Post.objects.filter(
+                creator=user_2,
+                project=self.project
+            ).exists()
+        )
+        self.assertTrue(
+            PostAudio.objects.filter(
+                creator=user_2
+            ).exists()
+        )
+        member.delete()
+        self.assertFalse(
+            Post.objects.filter(
+                creator=user_2,
+                project=self.project
+            ).exists()
+        )
+        self.assertFalse(
+            PostAudio.objects.filter(
+                creator=user_2
+            ).exists()
+        )
 
 
 class PostTest(TestCommon):

@@ -7,4 +7,4 @@ class ReadingConfig(AppConfig):
     verbose_name = _('label_reading_config')
 
     def ready(self):
-        pass
+        from . import signals
