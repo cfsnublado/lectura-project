@@ -90,7 +90,8 @@ class Profile(TimestampModel):
     )
     avatar_url = models.URLField(
         verbose_name=_('label_avatar_url'),
-        blank=True
+        blank=True,
+        default=settings.USERS_IMAGE_DEFAULT_URL
     )
 
     @property

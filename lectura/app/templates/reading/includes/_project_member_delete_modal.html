@@ -1,0 +1,10 @@
+{% extends 'includes/_confirmation_modal.html' %}
+{% load i18n %}
+
+{% block ok_id %}project-member-delete-ok{% endblock ok_id %}
+
+{% block cancel_id %}project-member-delete-close{% endblock cancel_id %}
+
+{% block modal_header %} 
+{% trans 'msg_confirm_delete_project_member' %} 
+{% endblock modal_header %}

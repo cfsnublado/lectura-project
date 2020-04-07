@@ -1,6 +1,8 @@
+{% load static %}
+
 <img 
 class="avatar"
-src="{{ url }}" 
+src="{% if url %}{{ url }}{% else %}{% static 'images/default-profile.jpg' %}{% endif %}"
 alt="{{ alt }}" 
 width="{{ size }}" 
 height="{{ size }}" 

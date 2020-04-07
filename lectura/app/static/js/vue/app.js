@@ -9,6 +9,8 @@ Vue.component('audio-player', AudioPlayer)
 // Reading components
 Vue.component('projects', Projects)
 Vue.component('project', Project)
+Vue.component('project-members', ProjectMembers)
+Vue.component('project-member', ProjectMember)
 Vue.component('posts', Posts)
 Vue.component('post', Post)
 Vue.component('post-audio', PostAudio)

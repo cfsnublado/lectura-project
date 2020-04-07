@@ -1,7 +1,8 @@
 from rest_framework.serializers import (
     HyperlinkedIdentityField, HyperlinkedRelatedField,
     HyperlinkedModelSerializer,
-    ListSerializer, ReadOnlyField, StringRelatedField
+    ListSerializer, ReadOnlyField,
+    SerializerMethodField, StringRelatedField
 )
 
 from django.contrib.auth import get_user_model
@@ -98,6 +99,11 @@ class ProjectMemberSerializer(
         many=False,
         source='project.slug'
     )
+    role_name = SerializerMethodField()
+
+    def get_role_name(self, obj):
+        return obj.get_role_display()
+
     member_id = ReadOnlyField(source='member.id')
     member_url = HyperlinkedRelatedField(
         many=False,
@@ -119,14 +125,14 @@ class ProjectMemberSerializer(
             'url', 'id', 'project_id', 'project', 'project_slug',
             'project_url', 'member_id', 'member_url',
             'member_username', 'member_first_name', 'member_last_name',
-            'member_email', 'member_avatar_url', 'role',
+            'member_email', 'member_avatar_url', 'role', 'role_name',
             'date_created', 'date_updated',
         )
         read_only_fields = (
             'url', 'id', 'project_id', 'project', 'project_slug',
             'project_url', 'member_id', 'member_url',
             'member_username', 'member_first_name', 'member_last_name',
-            'member_email', 'member_avatar_url', 'role',
+            'member_email', 'member_avatar_url', 'role', 'role_name',
             'date_created', 'date_updated'
         )
 

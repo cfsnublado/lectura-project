@@ -12234,24 +12234,76 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
 }
 
 /* line 11, ../scss/cfs/reading/_reading.scss */
+.user-card {
+  padding-top: 0.3125rem;
+}
+
+/* line 15, ../scss/cfs/reading/_reading.scss */
+.user-card-top {
+  display: flex;
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+/* line 22, ../scss/cfs/reading/_reading.scss */
+.user-card-top .user-card-label {
+  font-weight: bold;
+}
+/* line 25, ../scss/cfs/reading/_reading.scss */
+.user-card-top .user-card-label .label-4 {
+  color: black;
+}
+/* line 29, ../scss/cfs/reading/_reading.scss */
+.user-card-top .user-card-label .label-3 {
+  color: red;
+}
+/* line 33, ../scss/cfs/reading/_reading.scss */
+.user-card-top .user-card-label .label-2 {
+  color: blue;
+}
+/* line 37, ../scss/cfs/reading/_reading.scss */
+.user-card-top .user-card-label .label-1 {
+  color: green;
+}
+
+/* line 43, ../scss/cfs/reading/_reading.scss */
+.user-card-controls {
+  display: flex;
+}
+/* line 46, ../scss/cfs/reading/_reading.scss */
+.user-card-controls .control a {
+  font-size: 1.125rem;
+  margin-left: 0.3125rem;
+  color: rgba(10, 10, 10, 0.2);
+}
+/* line 53, ../scss/cfs/reading/_reading.scss */
+.user-card-controls .control a:hover {
+  color: rgba(10, 10, 10, 0.3);
+}
+
+/* line 60, ../scss/cfs/reading/_reading.scss */
+.user-card-body .about {
+  margin-top: 0.625rem;
+}
+
+/* line 67, ../scss/cfs/reading/_reading.scss */
 .project-card,
 .post-card {
   margin-bottom: 1.875rem;
   text-align: center;
 }
-/* line 17, ../scss/cfs/reading/_reading.scss */
+/* line 73, ../scss/cfs/reading/_reading.scss */
 .project-card .name,
 .post-card .name {
   font-size: 1.375rem;
   margin-bottom: 1.25rem;
 }
-/* line 22, ../scss/cfs/reading/_reading.scss */
+/* line 78, ../scss/cfs/reading/_reading.scss */
 .project-card .name p,
 .post-card .name p {
   margin-top: 0;
   margin-bottom: 0;
 }
-/* line 31, ../scss/cfs/reading/_reading.scss */
+/* line 87, ../scss/cfs/reading/_reading.scss */
 .project-card .card-content,
 .post-card .card-content {
   padding-top: 0.625rem;
@@ -12259,7 +12311,7 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
   padding-bottom: 1rem;
   padding-left: 1rem;
 }
-/* line 38, ../scss/cfs/reading/_reading.scss */
+/* line 94, ../scss/cfs/reading/_reading.scss */
 .project-card .card-controls,
 .post-card .card-controls {
   display: flex;
@@ -12268,52 +12320,52 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
   padding-left: 0.625rem;
   justify-content: flex-end;
 }
-/* line 47, ../scss/cfs/reading/_reading.scss */
+/* line 103, ../scss/cfs/reading/_reading.scss */
 .project-card .card-controls .control,
 .post-card .card-controls .control {
   padding-left: 0.25rem;
 }
-/* line 50, ../scss/cfs/reading/_reading.scss */
+/* line 106, ../scss/cfs/reading/_reading.scss */
 .project-card .card-controls .control a,
 .post-card .card-controls .control a {
   font-size: 1.125rem;
   color: rgba(10, 10, 10, 0.2);
 }
-/* line 55, ../scss/cfs/reading/_reading.scss */
+/* line 111, ../scss/cfs/reading/_reading.scss */
 .project-card .card-controls .control a:hover,
 .post-card .card-controls .control a:hover {
   color: rgba(10, 10, 10, 0.3);
 }
 
-/* line 66, ../scss/cfs/reading/_reading.scss */
+/* line 122, ../scss/cfs/reading/_reading.scss */
 .post-view .post-name {
   font-size: 3.125rem;
 }
-/* line 70, ../scss/cfs/reading/_reading.scss */
+/* line 126, ../scss/cfs/reading/_reading.scss */
 .post-view .post-content {
   font-size: 1.375rem;
   margin-top: 50px;
   margin-bottom: 60px;
 }
-/* line 77, ../scss/cfs/reading/_reading.scss */
+/* line 133, ../scss/cfs/reading/_reading.scss */
 .post-view .post-audio {
   margin-top: 10px;
   margin-bottom: 30px;
   text-align: center;
 }
 
-/* line 85, ../scss/cfs/reading/_reading.scss */
+/* line 141, ../scss/cfs/reading/_reading.scss */
 .post-view-section {
   padding-bottom: 6.25rem;
 }
 
 @media screen and (max-width: 768px) {
-  /* line 91, ../scss/cfs/reading/_reading.scss */
+  /* line 147, ../scss/cfs/reading/_reading.scss */
   .post-view .post-name {
     font-size: 2rem;
   }
 
-  /* line 98, ../scss/cfs/reading/_reading.scss */
+  /* line 154, ../scss/cfs/reading/_reading.scss */
   .project-card .name,
   .post-card .name {
     font-size: 1.125rem;

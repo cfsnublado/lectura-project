@@ -1,3 +1,4 @@
+
 const Project = {
   mixins: [
     AdminMixin,
@@ -59,7 +60,6 @@ const Project = {
         .replace(this.idPlaceholder, this.project.id)
         .replace(this.slugPlaceholder, this.project.slug)   
     }
-
 
     if (this.initDeleteUrl) {
       this.deleteUrl = this.initDeleteUrl
@@ -135,6 +135,140 @@ const Projects = {
     this.getProjects()
   }
 }
+
+const ProjectMember = {
+  mixins: [
+    AdminMixin,
+    VisibleMixin
+  ],
+  props: {
+    initProjectMember: {
+      type: Object,
+      required: true
+    },
+    initViewUrl: {
+      type: String,
+      default: ''
+    },
+    initEditUrl: {
+      type: String,
+      default: ''
+    },
+    initDeleteUrl: {
+      type: String,
+      default: ''
+    }
+  },
+  data() {
+    return {
+      projectMember: this.initProjectMember,
+      viewUrl: this.initViewUrl,
+      editUrl: this.initEditUrl,
+      deleteUrl: this.initDeleteUrl,
+      idPlaceholder: '0',
+    }
+  },
+  methods: {
+    view() {
+      if (this.viewUrl) {
+        window.location.replace(this.viewUrl)
+      }
+    },
+    edit() {
+      if (this.editUrl) {
+        window.location.replace(this.editUrl)
+      }
+    },
+    remove() {
+      this.$emit('delete-project-member', this.projectMember.id)
+    }
+  },
+  created() {
+    if (this.initViewUrl) {
+      this.viewUrl = this.initViewUrl
+        .replace(this.idPlaceholder, this.projectMember.id)
+    }
+
+    if (this.initEditUrl) {
+      this.editUrl = this.initEditUrl
+        .replace(this.idPlaceholder, this.projectMember.id)
+    }
+
+    if (this.initDeleteUrl) {
+      this.deleteUrl = this.initDeleteUrl
+        .replace(this.idPlaceholder, this.projectMember.id)
+    }
+  }
+}
+
+const ProjectMembers = {
+  components: {
+    'project-member': ProjectMember
+  },
+  mixins: [
+    AdminMixin,
+    AjaxProcessMixin,
+    PaginationMixin
+  ],
+  props: {
+    projectMembersUrl: {
+      type: String,
+      required: true
+    }
+  },
+  data() {
+    return {
+      projectMembers: null
+    }
+  },
+  methods: {
+    getProjectMembers(page=1) {
+      this.process()
+
+      params = {
+        page: page
+      }
+
+      axios.get(this.projectMembersUrl, {
+        params: params
+      })
+      .then(response => {
+        this.projectMembers = response.data.results
+        this.setPagination(
+          response.data.previous,
+          response.data.next,
+          response.data.page_num,
+          response.data.count,
+          response.data.num_pages
+        )
+        VueScrollTo.scrollTo({
+          el: '#project-members-scroll-top',
+        })
+        this.success()
+      })
+      .catch(error => {
+        if (error.response) {
+          console.log(error.response)
+        } else if (error.request) {
+          console.log(error.request)
+        } else {
+          console.log(error.message)
+        }
+        console.log(error.config)
+      })
+      .finally(() => {
+        this.complete()
+      })
+    },
+    onDeleteProjectMember(index) {
+      this.$delete(this.projectMembers, index)
+    }
+  },
+  created() {
+    this.getProjectMembers()
+  }
+}
+
 
 const Post = {
   mixins: [

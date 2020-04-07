@@ -42,7 +42,7 @@ class NestedProjectMemberViewSet(
     lookup_url_kwarg = 'pk'
     queryset = ProjectMember.objects.select_related(
         'project', 'member', 'member__profile'
-    ).order_by('-date_created')
+    ).order_by('-role')
     serializer_class = ProjectMemberSerializer
     project = None
     permission_classes = [ReadPermission, ProjectOwnerPermission]

@@ -1,0 +1,40 @@
+{% extends 'reading/reading_base.html' %}
+{% load static %}
+{% load core_extras %}
+{% load i18n %}
+
+{% block title %}{{ project.name }} - {% trans 'label_project_members' %}{% endblock title %}
+
+{% block project_team_link_active %}is-active{% endblock project_team_link_active %}
+
+{% block breadcrumb_content %}
+{{ block.super }}
+<li class="is-active">
+<a href="#">{% trans 'label_project_team' %}</a>
+</li>
+{% endblock breadcrumb_content %}
+
+{% block page_header %}
+
+<div class="page-header"> {% trans 'label_project_team' %} </div>
+
+{% endblock page_header %}
+
+{% block content %}
+
+<div id="project-members-scroll-top"></div>
+
+{% url 'api:nested-project-member-list' project.id as project_members_url %}
+{% url 'api:project-member-detail' 0 as project_member_delete_url %}
+
+{% alias user.is_superuser as is_admin %}
+
+{% include 'reading/includes/vue/_project_members.html' %}
+
+{% endblock content %}
+
+{% block modal_content %}
+
+{% include 'reading/includes/_project_member_delete_modal.html' with modal_id='delete-project-member' modal_name='confirmation-modal' %} 
+
+{% endblock modal_content %}

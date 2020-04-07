@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-04 09:39-0700\n"
+"POT-Creation-Date: 2020-04-06 21:27-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -137,22 +137,16 @@ msgid "validation_project_member_is_owner"
 msgstr "This field is required."
 
 #: lectura/core/models.py:404
-#, fuzzy
-#| msgid "label_reading"
 msgid "label_role_admin"
-msgstr "Reading"
+msgstr "Admin"
 
 #: lectura/core/models.py:405
-#, fuzzy
-#| msgid "label_edit"
 msgid "label_role_editor"
-msgstr "Edit"
+msgstr "Editor"
 
 #: lectura/core/models.py:406
-#, fuzzy
-#| msgid "label_profile_about"
 msgid "label_role_author"
-msgstr "About you"
+msgstr "Author"
 
 #: lectura/core/models.py:410
 #, fuzzy
@@ -378,11 +372,11 @@ msgstr "About you"
 msgid "label_avatar_url"
 msgstr "Audio URL"
 
-#: lectura/users/models.py:101
+#: lectura/users/models.py:102
 msgid "label_profile"
 msgstr "Profile"
 
-#: lectura/users/models.py:102
+#: lectura/users/models.py:103
 msgid "label_profile_plural"
 msgstr ""
 
@@ -452,6 +446,7 @@ msgstr "Home"
 #: lectura/app/templates/base.html:174
 #: lectura/app/templates/reading/includes/_reading_breadcrumbs.html:8
 #: lectura/app/templates/reading/includes/_reading_breadcrumbs.html:28
+#: lectura/app/templates/reading/includes/_reading_breadcrumbs.html:52
 #: lectura/app/templates/reading/projects.html:12
 msgid "label_projects"
 msgstr "Projects"
@@ -529,7 +524,7 @@ msgstr "Add audio"
 
 #: lectura/app/templates/reading/auth/post_audio_create.html:30
 #: lectura/app/templates/reading/auth/post_create.html:30
-#: lectura/app/templates/reading/auth/project_create.html:23
+#: lectura/app/templates/reading/auth/project_create.html:30
 msgid "label_create"
 msgstr "Create"
 
@@ -566,6 +561,23 @@ msgstr "Delete"
 msgid "page_project_create_title"
 msgstr "Create project"
 
+#: lectura/app/templates/reading/auth/project_create.html:12
+#: lectura/app/templates/reading/includes/vue/_projects.html:19
+msgid "label_create_project"
+msgstr "Create a project"
+
+#: lectura/app/templates/reading/auth/project_members.html:6
+#, fuzzy
+#| msgid "label_project"
+msgid "label_project_members"
+msgstr "Project"
+
+#: lectura/app/templates/reading/auth/project_members.html:13
+#: lectura/app/templates/reading/auth/project_members.html:19
+#: lectura/app/templates/reading/reading_base.html:66
+msgid "label_project_team"
+msgstr "Project team"
+
 #: lectura/app/templates/reading/auth/project_update.html:5
 msgid "page_project_update_title"
 msgstr "Edit project"
@@ -586,6 +598,10 @@ msgstr "Delete post?"
 msgid "msg_confirm_delete_project"
 msgstr "Delete project?"
 
+#: lectura/app/templates/reading/includes/_project_member_delete_modal.html:9
+msgid "msg_confirm_delete_project_member"
+msgstr "Remove user from project?"
+
 #: lectura/app/templates/reading/includes/vue/_post_audios.html:17
 #, fuzzy
 #| msgid "msg_no_posts_in_project"
@@ -596,13 +612,21 @@ msgstr "There are no posts in this project."
 msgid "msg_no_posts_in_project"
 msgstr "There are no posts in this project."
 
+#: lectura/app/templates/reading/includes/vue/_project_members.html:17
+#, fuzzy
+#| msgid "msg_no_projects"
+msgid "msg_no_project_members"
+msgstr "There are no projects."
+
+#: lectura/app/templates/reading/includes/vue/_project_members.html:20
+#, fuzzy
+#| msgid "label_project"
+msgid "label_add_project_member"
+msgstr "Project"
+
 #: lectura/app/templates/reading/includes/vue/_projects.html:16
 msgid "msg_no_projects"
 msgstr "There are no projects."
-
-#: lectura/app/templates/reading/includes/vue/_projects.html:19
-msgid "label_create_project"
-msgstr "Create a project"
 
 #: lectura/app/templates/reading/post.html:67
 msgid "label_loading_audio"
@@ -620,10 +644,6 @@ msgstr "Posts"
 #: lectura/app/templates/reading/projects.html:6
 msgid "page_projects_title"
 msgstr "Projects"
-
-#: lectura/app/templates/reading/reading_base.html:66
-msgid "label_project_team"
-msgstr "Project team"
 
 #: lectura/app/templates/reading/reading_base.html:76
 msgid "label_edit_project"

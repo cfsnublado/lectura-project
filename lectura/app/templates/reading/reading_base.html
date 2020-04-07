@@ -61,7 +61,7 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
     <a 
     id="sidebar-nav-project-team" 
     class="{% block project_team_link_active %}{% endblock project_team_link_active %}" 
-    href=""
+    href="{% url 'reading:project_members_auth' project.id project.slug %}"
     >
     <i class="menu-icon fas fa-users fa-fw"></i> {% trans 'label_project_team' %}
     </a>

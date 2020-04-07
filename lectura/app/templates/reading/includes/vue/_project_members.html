@@ -1,0 +1,114 @@
+{% load i18n %}
+{% load profile_image_tags %}
+
+<project-members
+project-members-url="{{ project_members_url }}"
+:init-is-admin="{{ is_admin|yesno:"true,false" }}"
+inline-template
+>
+
+<div 
+class="project-members"
+v-cloak
+>
+
+<div v-if="projectMembers && projectMembers.length == 0">
+
+<p>{% trans 'msg_no_project_members' %}</p>
+
+<a class="button is-info" href="">
+{% trans 'label_add_project_member' %}
+</a>
+
+</div>
+
+<project-member
+v-for="(projectMember, index) in projectMembers"
+:key="projectMember.id"
+:init-project-member="projectMember"
+:init-is-admin="isAdmin"
+init-delete-url="{{ project_member_delete_url }}"
+@delete-project-member="onDeleteProjectMember(index)"
+inline-template
+>
+<transition name="fade-transition" v-on:after-enter="isVisible = true" v-on:after-leave="remove">
+
+<div class="box user-card">
+
+<div class="user-card-top">
+
+<div class="user-card-label">
+<span 
+v-bind:class="'label-' + projectMember.role"
+>
+<i class="fas fa-square fa-fw"></i>
+[[ projectMember.role_name ]]
+</span>
+</div>
+
+<div class="user-card-controls">
+
+<span class="control">
+<a href="">
+<i class="fas fa-edit fa-fw"></i>
+</a>
+</span>
+
+<ajax-delete
+v-if="isAdmin"
+delete-confirm-id="delete-project-member"
+:delete-url="deleteUrl"
+@ajax-success="isVisible = false"
+inline-template
+>
+
+<span class="control">
+<a
+href="#"
+@click.prevent="confirmDelete"
+>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+</span>
+
+</ajax-delete>
+
+</div>
+
+</div>
+
+<article class="media user-card-body">
+
+<div class="media-left user-avatar">
+<figure class="image is-96x96">
+<img 
+class="is-rounded" 
+v-bind:src="[[ projectMember.member_avatar_url ]]" 
+alt="Image"
+>
+</figure>
+</div>
+
+<div class="media-content user-details">
+<div class="content">
+
+<span class="name">
+<strong>[[ projectMember.member_first_name ]] [[ projectMember.member_last_name ]]</strong>
+</span>
+<br>
+<span class="username">@[[ projectMember.member_username ]]</span>
+
+<div class="about">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas
+</div>
+
+</div>
+</div>
+
+</article>
+
+</div><!-- user-card -->
+
+</div>
+
+</project-members>
