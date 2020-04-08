@@ -48,6 +48,7 @@ class ProjectUpdateForm(ProjectForm):
 
 
 class ProjectMemberForm(BaseModelForm):
+    username = forms.CharField(max_length=100, required=True)
 
     def clean(self):
         # super(ProjectMemberForm, self).clean()
@@ -56,26 +57,30 @@ class ProjectMemberForm(BaseModelForm):
             try:
                 user = User.objects.get(username=username)
                 if ProjectMember.objects.filter(member=user, project=self.project).exists():
-                    raise forms.ValidationError(
-                        _('validation_user_is_project_member')
+                    self.add_error(
+                        'username',
+                        forms.ValidationError(
+                            _('validation_user_is_project_member')
+                        )
                     )
                 elif user.id == self.project.owner_id:
-                    raise forms.ValidationError(
-                        _('validation_user_is_project_owner')
+                    self.add_error(
+                        'username',
+                        forms.ValidationError(
+                            _('validation_user_is_project_owner')
+                        )
                     )
-                self.instance.member = user
+                else:
+                    self.instance.member = user
             except User.DoesNotExist:
-                raise forms.ValidationError(
-                    _('validation_user_does_not_exist')
+                self.add_error(
+                    'username',
+                    forms.ValidationError(_('validation_user_does_not_exist'))
                 )
-        else:
-            raise forms.ValidationError(
-                _('validation_username_required')
-            )
 
     class Meta:
         abstract = True
-        fields = ['role']
+        fields = ['username', 'role']
 
 
 class ProjectMemberCreateForm(ProjectMemberForm):

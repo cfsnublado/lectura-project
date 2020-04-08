@@ -1,4 +1,3 @@
-{% extends 'includes/vue/_search_base.html' %}
 {% load core_extras %}
 {% load i18n %}
 
@@ -70,18 +69,6 @@ v-bind:class="[{ 'is-active': isOpen }]"
 </div>
 
 {% block control_addons %}
-
-<div class="control">
-<a 
-:id="(id + '-btn')"
-class="button" 
-href="#"
-@click.prevent="search"
->
-<i class="fas fa-search fa-fw"></i>
-</a>
-</div>
-
 {% endblock control_addons %}
 
 </div>
