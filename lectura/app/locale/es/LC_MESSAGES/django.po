@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-08 02:33-0700\n"
+"POT-Creation-Date: 2020-04-08 07:25-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -130,25 +130,25 @@ msgstr "Proyecto"
 msgid "label_project_member_plural"
 msgstr "Acerca de ti"
 
-#: lectura/core/models.py:392
+#: lectura/core/models.py:393
 #, fuzzy
 #| msgid "validation_field_required"
 msgid "validation_project_member_is_owner"
 msgstr "Este campo es requerido"
 
-#: lectura/core/models.py:404
+#: lectura/core/models.py:405
 msgid "label_role_admin"
 msgstr "Admin"
 
-#: lectura/core/models.py:405
+#: lectura/core/models.py:406
 msgid "label_role_editor"
 msgstr "Editor"
 
-#: lectura/core/models.py:406
+#: lectura/core/models.py:407
 msgid "label_role_author"
 msgstr "Autor"
 
-#: lectura/core/models.py:410
+#: lectura/core/models.py:411
 msgid "label_role"
 msgstr "Rol"
 
@@ -209,8 +209,8 @@ msgstr "Perfil"
 msgid "label_reading_config"
 msgstr "Perfil"
 
-#: lectura/reading/forms.py:24 lectura/reading/forms.py:78
-#: lectura/reading/forms.py:90 lectura/reading/forms.py:93
+#: lectura/reading/forms.py:26 lectura/reading/forms.py:107
+#: lectura/reading/forms.py:119 lectura/reading/forms.py:122
 #: lectura/reading/tests/test_views_post_auth.py:274
 #: lectura/security/forms.py:11 lectura/security/forms.py:18
 #: lectura/security/tests/test_forms.py:37
@@ -235,22 +235,35 @@ msgstr "Este campo es requerido"
 msgid "validation_owner_required"
 msgstr "Este campo es requerido"
 
-#: lectura/reading/forms.py:107 lectura/reading/forms.py:131
-#, fuzzy
-#| msgid "validation_field_required"
-msgid "validation_creator_required"
-msgstr "Este campo es requerido"
+#: lectura/reading/forms.py:60
+msgid "validation_user_is_project_member"
+msgstr "El usuario ya es miembro del proyecto."
 
-#: lectura/reading/forms.py:110
+#: lectura/reading/forms.py:64
+msgid "validation_user_is_project_owner"
+msgstr "El usuario es el dueño del proyecto."
+
+#: lectura/reading/forms.py:69
+msgid "validation_user_does_not_exist"
+msgstr "El usuario no existe."
+
+#: lectura/reading/forms.py:73 lectura/users/managers.py:9
+#: lectura/users/managers.py:33
+msgid "validation_username_required"
+msgstr "Nombre de usuario es requerido."
+
+#: lectura/reading/forms.py:86 lectura/reading/forms.py:157
+msgid "validation_project_required"
+msgstr "Proyecto es requerido."
+
+#: lectura/reading/forms.py:136 lectura/reading/forms.py:160
+msgid "validation_creator_required"
+msgstr "Creador es requerido."
+
+#: lectura/reading/forms.py:139
 #, fuzzy
 #| msgid "validation_field_required"
 msgid "validation_post_required"
-msgstr "Este campo es requerido"
-
-#: lectura/reading/forms.py:128
-#, fuzzy
-#| msgid "validation_field_required"
-msgid "validation_project_required"
 msgstr "Este campo es requerido"
 
 #: lectura/reading/models.py:69
@@ -332,10 +345,6 @@ msgstr ""
 #: lectura/users/forms.py:100 lectura/users/models.py:26
 msgid "label_email"
 msgstr "Correo"
-
-#: lectura/users/managers.py:9 lectura/users/managers.py:33
-msgid "validation_username_required"
-msgstr ""
 
 #: lectura/users/managers.py:11 lectura/users/managers.py:35
 msgid "validation_email_required"
@@ -511,7 +520,7 @@ msgstr "Iniciar sesión"
 msgid "label_logout"
 msgstr "Salir"
 
-#: lectura/app/templates/includes/vue/_search.html:43
+#: lectura/app/templates/includes/vue/_search.html:41
 #, fuzzy
 #| msgid "placeholder_email"
 msgid "placeholder_search"
@@ -530,7 +539,7 @@ msgstr "Agregar audio"
 #: lectura/app/templates/reading/auth/post_audio_create.html:30
 #: lectura/app/templates/reading/auth/post_create.html:30
 #: lectura/app/templates/reading/auth/project_create.html:34
-#: lectura/app/templates/reading/auth/project_member_create.html:43
+#: lectura/app/templates/reading/auth/project_member_create.html:41
 msgid "label_create"
 msgstr "Crear"
 
