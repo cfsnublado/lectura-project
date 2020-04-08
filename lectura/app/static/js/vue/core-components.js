@@ -66,6 +66,101 @@ const ClickOutsideMixin = {
   }
 }
 
+// Search
+
+const BaseSearch = {
+  mixins: [
+    ClickOutsideMixin,
+  ],
+  props: {
+    id: {
+      type: String,
+      default: "search"
+    },
+    initAutocompleteUrl: {
+      type: String,
+      required: true
+    },
+    initSearchUrl: {
+      type: String,
+      default: ""
+    },
+    searchOnSelect: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data() {
+    return {
+      searchTerm: '',
+      searchParams: {
+        term: ''
+      },
+      results: [],
+      isOpen: false,
+      searchTimerId: null,
+      searchDelay: 600,
+      minSearchLength: 2,
+      autocompleteUrl: this.initAutocompleteUrl,
+      searchUrl: this.initSearchUrl
+    }
+  },
+  methods: {
+    setResult(result) {
+      this.searchTerm = result
+      this.isOpen = false
+    },
+    search() {
+      console.log('search')
+    },
+    success(response) {
+      if (response.data.length) {
+        this.results = response.data
+        this.isOpen = true
+      } else {
+        this.isOpen = false
+      }
+    },
+    onAutocomplete() {
+      clearTimeout(this.searchTimerId)
+      this.searchTimerId = setTimeout(()=>{
+        if (this.searchTerm.length >= this.minSearchLength) {
+
+          this.searchParams.term = this.searchTerm
+
+          axios.get(this.autocompleteUrl, {
+            params: this.searchParams
+          })
+          .then(response => {
+            this.success(response)
+          })
+          .catch(error => {
+            this.error(error)
+            if (error.response) {
+              console.log(error.response)
+            } else if (error.request) {
+              console.log(error.request)
+            } else {
+              console.log(error.message)
+            }
+            console.log(error.config)
+          })
+          .finally(() => {})
+        } else {
+          this.isOpen = false
+        }
+      }, this.searchDelay)
+    },
+    onFocus() {
+      this.$emit('search-focus')
+    },
+    onClickOutside() {
+      this.isOpen = false
+      this.searchTerm = ''
+    },   
+  }
+}
+
 const PaginationMixin = {
   data() {
     return {

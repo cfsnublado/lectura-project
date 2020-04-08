@@ -5,7 +5,8 @@ from django.shortcuts import get_object_or_404
 from core.views import CachedObjectMixin, ObjectSessionMixin, PermissionMixin
 from ..models import Post, Project
 from ..permissions import (
-    can_create_post_audio, can_delete_project, can_edit_post,
+    can_create_post_audio, can_create_project_member,
+    can_delete_project, can_edit_post,
     can_edit_project, is_project_member
 )
 
@@ -19,16 +20,17 @@ class ProjectMixin(CachedObjectMixin, PermissionMixin):
 
     def dispatch(self, request, *args, **kwargs):
         self.get_project(request, *args, **kwargs)
-        if request.user.is_authenticated:
-            if self.check_access:
+        if self.check_access:
+            if request.user.is_authenticated:
                 has_permission = self.check_permission()
                 if has_permission:
                     self.is_project_member = True
                 else:
                     raise PermissionDenied
             else:
-                self.is_project_member = is_project_member(request.user, self.project)
-
+                raise PermissionDenied
+        elif request.user.is_authenticated:
+            self.is_project_member = is_project_member(request.user, self.project)
         return super(ProjectMixin, self).dispatch(request, *args, **kwargs)
 
     def get_project(self, request, *args, **kwargs):
@@ -86,6 +88,13 @@ class ProjectDeleteMixin(ProjectMixin):
         return can_delete_project(self.request.user, self.project)
 
 
+class ProjectMemberCreateMixin(ProjectMixin):
+    check_access = True
+
+    def check_permission(self):
+        return can_create_project_member(self.request.user, self.project)
+
+
 class ProjectSessionMixin(ObjectSessionMixin):
     session_obj = 'project'
     session_obj_attrs = ['id', 'name', 'slug']
@@ -101,15 +110,17 @@ class PostMixin(CachedObjectMixin, PermissionMixin):
 
     def dispatch(self, request, *args, **kwargs):
         self.get_post(request, *args, **kwargs)
-        if request.user.is_authenticated:
-            if self.check_access:
+        if self.check_access:
+            if request.user.is_authenticated:
                 has_permission = self.check_permission()
                 if has_permission:
                     self.is_post_admin = True
                 else:
                     raise PermissionDenied
             else:
-                self.is_post_admin = can_edit_post(request.user, self.post_obj)
+                raise PermissionDenied
+        elif request.user.is_authenticated:
+            self.is_post_admin = can_edit_post(request.user, self.post_obj)
         return super(PostMixin, self).dispatch(request, *args, **kwargs)
 
     def get_post(self, request, *args, **kwargs):

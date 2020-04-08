@@ -388,8 +388,9 @@ class ProjectMemberModel(TimestampModel):
 
     def clean(self):
         # Make sure member isn't the project owner.
-        if self.member == self.project.owner:
-            raise ValidationError(_('validation_project_member_is_owner'))
+        if hasattr(self, 'member'):
+            if self.member == self.project.owner:
+                raise ValidationError(_('validation_project_member_is_owner'))
 
 
 class ProjectPublishMemberModel(ProjectMemberModel):

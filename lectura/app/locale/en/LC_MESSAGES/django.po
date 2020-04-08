@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-06 21:27-0700\n"
+"POT-Creation-Date: 2020-04-08 02:33-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -107,8 +107,8 @@ msgid "label_description"
 msgstr "Description"
 
 #: lectura/core/models.py:360
-#: lectura/app/templates/reading/reading_base.html:45
-#: lectura/app/templates/reading/reading_base.html:107
+#: lectura/app/templates/reading/reading_base.html:41
+#: lectura/app/templates/reading/reading_base.html:103
 msgid "label_project"
 msgstr "Project"
 
@@ -149,10 +149,8 @@ msgid "label_role_author"
 msgstr "Author"
 
 #: lectura/core/models.py:410
-#, fuzzy
-#| msgid "label_profile"
 msgid "label_role"
-msgstr "Profile"
+msgstr "Role"
 
 #: lectura/core/validation.py:11
 msgid "help_text_password"
@@ -211,8 +209,8 @@ msgstr "Profile"
 msgid "label_reading_config"
 msgstr "Profile"
 
-#: lectura/reading/forms.py:24 lectura/reading/forms.py:65
-#: lectura/reading/forms.py:77 lectura/reading/forms.py:80
+#: lectura/reading/forms.py:24 lectura/reading/forms.py:78
+#: lectura/reading/forms.py:90 lectura/reading/forms.py:93
 #: lectura/reading/tests/test_views_post_auth.py:274
 #: lectura/security/forms.py:11 lectura/security/forms.py:18
 #: lectura/security/tests/test_forms.py:37
@@ -237,19 +235,19 @@ msgstr "This field is required."
 msgid "validation_owner_required"
 msgstr "This field is required."
 
-#: lectura/reading/forms.py:94 lectura/reading/forms.py:118
+#: lectura/reading/forms.py:107 lectura/reading/forms.py:131
 #, fuzzy
 #| msgid "validation_field_required"
 msgid "validation_creator_required"
 msgstr "This field is required."
 
-#: lectura/reading/forms.py:97
+#: lectura/reading/forms.py:110
 #, fuzzy
 #| msgid "validation_field_required"
 msgid "validation_post_required"
 msgstr "This field is required."
 
-#: lectura/reading/forms.py:115
+#: lectura/reading/forms.py:128
 #, fuzzy
 #| msgid "validation_field_required"
 msgid "validation_project_required"
@@ -260,7 +258,7 @@ msgid "label_content"
 msgstr "Content"
 
 #: lectura/reading/models.py:75
-#: lectura/app/templates/reading/reading_base.html:127
+#: lectura/app/templates/reading/reading_base.html:123
 msgid "label_post"
 msgstr "Post"
 
@@ -273,8 +271,9 @@ msgid "label_audio_url"
 msgstr "Audio URL"
 
 #: lectura/security/forms.py:8 lectura/users/models.py:20
+#: lectura/app/templates/reading/auth/project_member_create.html:23
 msgid "label_username"
-msgstr ""
+msgstr "Username"
 
 #: lectura/security/forms.py:15 lectura/users/forms.py:45
 msgid "label_password"
@@ -444,9 +443,9 @@ msgid "label_home"
 msgstr "Home"
 
 #: lectura/app/templates/base.html:174
+#: lectura/app/templates/reading/auth/project_create.html:12
 #: lectura/app/templates/reading/includes/_reading_breadcrumbs.html:8
 #: lectura/app/templates/reading/includes/_reading_breadcrumbs.html:28
-#: lectura/app/templates/reading/includes/_reading_breadcrumbs.html:52
 #: lectura/app/templates/reading/projects.html:12
 msgid "label_projects"
 msgstr "Projects"
@@ -512,19 +511,26 @@ msgstr "Login"
 msgid "label_logout"
 msgstr "Logout"
 
+#: lectura/app/templates/includes/vue/_search.html:43
+#, fuzzy
+#| msgid "placeholder_email"
+msgid "placeholder_search"
+msgstr "Email"
+
 #: lectura/app/templates/reading/auth/post_audio_create.html:5
 msgid "page_audio_create_title"
 msgstr "Create audio"
 
 #: lectura/app/templates/reading/auth/post_audio_create.html:12
 #: lectura/app/templates/reading/includes/vue/_post_audios.html:20
-#: lectura/app/templates/reading/reading_base.html:166
+#: lectura/app/templates/reading/reading_base.html:162
 msgid "label_add_audio"
 msgstr "Add audio"
 
 #: lectura/app/templates/reading/auth/post_audio_create.html:30
 #: lectura/app/templates/reading/auth/post_create.html:30
-#: lectura/app/templates/reading/auth/project_create.html:30
+#: lectura/app/templates/reading/auth/project_create.html:34
+#: lectura/app/templates/reading/auth/project_member_create.html:43
 msgid "label_create"
 msgstr "Create"
 
@@ -561,22 +567,30 @@ msgstr "Delete"
 msgid "page_project_create_title"
 msgstr "Create project"
 
-#: lectura/app/templates/reading/auth/project_create.html:12
+#: lectura/app/templates/reading/auth/project_create.html:16
 #: lectura/app/templates/reading/includes/vue/_projects.html:19
 msgid "label_create_project"
 msgstr "Create a project"
+
+#: lectura/app/templates/reading/auth/project_member_create.html:6
+#: lectura/app/templates/reading/auth/project_member_create.html:17
+#, fuzzy
+#| msgid "label_project"
+msgid "label_create_project_member"
+msgstr "Project"
+
+#: lectura/app/templates/reading/auth/project_member_create.html:12
+#: lectura/app/templates/reading/auth/project_members.html:13
+#: lectura/app/templates/reading/auth/project_members.html:19
+#: lectura/app/templates/reading/reading_base.html:62
+msgid "label_project_team"
+msgstr "Project team"
 
 #: lectura/app/templates/reading/auth/project_members.html:6
 #, fuzzy
 #| msgid "label_project"
 msgid "label_project_members"
 msgstr "Project"
-
-#: lectura/app/templates/reading/auth/project_members.html:13
-#: lectura/app/templates/reading/auth/project_members.html:19
-#: lectura/app/templates/reading/reading_base.html:66
-msgid "label_project_team"
-msgstr "Project team"
 
 #: lectura/app/templates/reading/auth/project_update.html:5
 msgid "page_project_update_title"
@@ -645,19 +659,19 @@ msgstr "Posts"
 msgid "page_projects_title"
 msgstr "Projects"
 
-#: lectura/app/templates/reading/reading_base.html:76
+#: lectura/app/templates/reading/reading_base.html:72
 msgid "label_edit_project"
 msgstr "Edit project"
 
-#: lectura/app/templates/reading/reading_base.html:90
+#: lectura/app/templates/reading/reading_base.html:86
 msgid "label_new_post"
 msgstr "New post"
 
-#: lectura/app/templates/reading/reading_base.html:146
+#: lectura/app/templates/reading/reading_base.html:142
 msgid "label_edit_post"
 msgstr "Edit post"
 
-#: lectura/app/templates/reading/reading_base.html:156
+#: lectura/app/templates/reading/reading_base.html:152
 msgid "label_post_audios"
 msgstr "Audios"
 
@@ -785,6 +799,11 @@ msgstr "Change user password"
 #: lectura/app/templates/users/profile_view.html:6
 msgid "page_view_profile_title"
 msgstr "View profile"
+
+#, fuzzy
+#~| msgid "label_login"
+#~ msgid "label_search_users"
+#~ msgstr "Login"
 
 #~ msgid "label_url"
 #~ msgstr "URL"

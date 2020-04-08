@@ -2,8 +2,10 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 from core.forms import BaseModelForm
+from users.models import User
+
 from .models import (
-    Post, PostAudio, Project
+    Post, PostAudio, Project, ProjectMember
 )
 
 
@@ -30,12 +32,9 @@ class ProjectCreateForm(ProjectForm):
 
     def __init__(self, *args, **kwargs):
         self.owner = kwargs.pop('owner', None)
-
         super(ProjectCreateForm, self).__init__(*args, **kwargs)
-
         if not self.owner:
             raise ValueError(_('validation_owner_required'))
-
         self.instance.owner = self.owner
 
     class Meta(ProjectForm.Meta):
@@ -46,6 +45,49 @@ class ProjectUpdateForm(ProjectForm):
 
     class Meta(ProjectForm.Meta):
         model = Project
+
+
+class ProjectMemberForm(BaseModelForm):
+
+    def clean(self):
+        # super(ProjectMemberForm, self).clean()
+        username = self.data.get('username', None)
+        if username:
+            try:
+                user = User.objects.get(username=username)
+                if ProjectMember.objects.filter(member=user, project=self.project).exists():
+                    raise forms.ValidationError(
+                        _('validation_user_is_project_member')
+                    )
+                elif user.id == self.project.owner_id:
+                    raise forms.ValidationError(
+                        _('validation_user_is_project_owner')
+                    )
+                self.instance.member = user
+            except User.DoesNotExist:
+                raise forms.ValidationError(
+                    _('validation_user_does_not_exist')
+                )
+        else:
+            raise forms.ValidationError(
+                _('validation_username_required')
+            )
+
+    class Meta:
+        abstract = True
+        fields = ['role']
+
+
+class ProjectMemberCreateForm(ProjectMemberForm):
+    def __init__(self, *args, **kwargs):
+        self.project = kwargs.pop('project', None)
+        super(ProjectMemberCreateForm, self).__init__(*args, **kwargs)
+        if not self.project:
+            raise ValueError(_('validation_project_required'))
+        self.instance.project = self.project
+
+    class Meta(ProjectMemberForm.Meta):
+        model = ProjectMember
 
 
 class PostForm(BaseModelForm):

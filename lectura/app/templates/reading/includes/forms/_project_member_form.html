@@ -1,0 +1,22 @@
+{% load i18n %}
+{% load widget_tweaks %}
+
+<div id="__all__-errors" class="errors">
+{{ form.non_field_errors }}
+</div>
+
+<div class="field">
+
+<label class="label" for="role">
+{{ form.role.label }}
+</label>
+
+<div class="control select">
+{% render_field form.role class+="select" %}
+</div>
+
+<div id="{{ form.role.auto_id }}-errors" class="errors">
+{{ form.role.errors }}
+</div>
+
+</div>

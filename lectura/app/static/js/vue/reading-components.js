@@ -1,4 +1,22 @@
-
+const UserSearch = {
+  mixins: [
+    BaseSearch
+  ],
+  methods: {
+    setResult(result) {
+      this.searchTerm = result
+      this.isOpen = false
+      if (this.searchOnSelect) {
+        this.search()
+      }
+    },
+    search() {
+      clearTimeout(this.searchTimerId)
+      url = this.searchUrl + "?username=" + encodeURIComponent(this.searchTerm)
+      window.location.replace(url)
+    }
+  }
+}
 const Project = {
   mixins: [
     AdminMixin,
@@ -181,6 +199,8 @@ const ProjectMember = {
     },
     remove() {
       this.$emit('delete-project-member', this.projectMember.id)
+      console.log(this.projectMember.id)
+      console.log('delete project member')
     }
   },
   created() {
@@ -261,6 +281,7 @@ const ProjectMembers = {
       })
     },
     onDeleteProjectMember(index) {
+      console.log("FUCK")
       this.$delete(this.projectMembers, index)
     }
   },

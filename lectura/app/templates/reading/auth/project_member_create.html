@@ -1,0 +1,46 @@
+{% extends 'reading/reading_base.html' %}
+{% load static %}
+{% load core_extras %}
+{% load i18n %}
+
+{% block title %}{{ project.name }} - {% trans 'label_create_project_member' %}{% endblock title %}
+
+{% block breadcrumb_content %}
+{{ block.super }}
+<li>
+<a href="{% url 'reading:project_members_auth' project.id project.slug %}">
+{% trans 'label_project_team' %}
+</a>
+</li>
+
+<li class="is-active">
+<a href="#">{% trans 'label_create_project_member' %}</a>
+</li>
+{% endblock breadcrumb_content %}
+
+{% block content %}
+
+{% trans 'label_username' as search_label %}
+{% url 'reading:project_nonmember_autocomplete' project.id as autocomplete_url %}
+{% url 'reading:project_member_create' project.id project.slug as search_url %}
+
+<form 
+id="create-form" 
+action="" 
+method="post" 
+novalidate
+>
+
+{% csrf_token %}
+
+{% include 'includes/vue/_search.html' with comp_name='user-search' search_input_name='username' %}
+
+{% include "reading/includes/forms/_project_member_form.html" %}
+
+<button id="submit-btn" class="button is-info" type="submit" form="create-form">
+{% trans "label_create" %}
+</button>
+
+</form>
+
+{% endblock content %}

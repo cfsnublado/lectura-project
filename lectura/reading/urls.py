@@ -1,5 +1,8 @@
 from django.urls import include, path
 
+from .views.views_reading_autocomplete import (
+    NonMemberAutocompleteView
+)
 from .views.views_project import ProjectsView, ProjectView
 from .views.views_project_auth import (
     ProjectCreateView, ProjectsView as ProjectsAuthView,
@@ -9,6 +12,7 @@ from .views.views_post import (
     PostView, PostAudiosView
 )
 from .views.views_project_member_auth import (
+    ProjectMemberCreateView,
     ProjectMembersView as ProjectMembersAuthView
 )
 from .views.views_post_auth import (
@@ -34,9 +38,14 @@ auth_urls = [
         name='project_update'
     ),
     path(
-        'project/<int:project_pk>-<slug:project_slug>/team/',
+        'project/<int:project_pk>-<slug:project_slug>/project-members/',
         ProjectMembersAuthView.as_view(),
         name='project_members_auth'
+    ),
+    path(
+        'project/<int:project_pk>-<slug:project_slug>/project-member/create',
+        ProjectMemberCreateView.as_view(),
+        name='project_member_create'
     ),
     path(
         'project/<int:project_pk>-<slug:project_slug>/post/create/',
@@ -56,6 +65,11 @@ auth_urls = [
 ]
 
 urlpatterns = [
+    path(
+        'autocomplete/nonmember/project/<int:project_pk>/',
+        NonMemberAutocompleteView.as_view(),
+        name="project_nonmember_autocomplete"
+    ),
     path(
         'projects/',
         ProjectsView.as_view(),

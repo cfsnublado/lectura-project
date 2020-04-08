@@ -32,11 +32,16 @@ def is_project_member(user, project):
 
 
 def can_edit_project(user, project, superuser_override=True):
+    print("FUCK")
     return (superuser_override and user.is_superuser) or is_project_admin(user, project)
 
 
 def can_delete_project(user, project, superuser_override=True):
     return (superuser_override and user.is_superuser) or is_project_owner(user, project)
+
+
+def can_create_project_member(user, project):
+    return is_project_owner(user, project)
 
 
 def is_post_creator(user, post):

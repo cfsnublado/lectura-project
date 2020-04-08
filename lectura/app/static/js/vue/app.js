@@ -17,6 +17,10 @@ Vue.component('post-audio', PostAudio)
 Vue.component('post-audios', PostAudios)
 Vue.component('post-audio-player', PostAudioPlayer)
 
+// Search
+Vue.component('user-search', UserSearch)
+
+
 // Dropbox
 Vue.component('dbx', Dbx)
 Vue.component('dbx-file', DbxFile)

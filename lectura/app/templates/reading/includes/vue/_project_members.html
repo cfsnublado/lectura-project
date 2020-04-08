@@ -33,7 +33,7 @@ inline-template
 >
 <transition name="fade-transition" v-on:after-enter="isVisible = true" v-on:after-leave="remove">
 
-<div class="box user-card">
+<div class="box user-card" v-show="isVisible">
 
 <div class="user-card-top">
 
