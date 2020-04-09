@@ -46,7 +46,7 @@ novalidate
 {{ form.username.label }}
 </label>
 
-{% include 'includes/vue/_search_base_form.html' with comp_name='user-search' search_input_name='username' %}
+{% include 'includes/vue/_search_base_form.html' with comp_name='user-search' search_input_name='username' search_term=form.username.value|default_if_none:'' %}
 
 <div id="{{ form.username.auto_id }}-errors" class="errors">
 {{ form.username.errors }}

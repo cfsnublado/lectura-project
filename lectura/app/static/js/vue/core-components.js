@@ -75,7 +75,11 @@ const BaseSearch = {
   props: {
     id: {
       type: String,
-      default: "search"
+      default: 'search'
+    },
+    initSearchTerm: {
+      type: String,
+      default: ''
     },
     initAutocompleteUrl: {
       type: String,
@@ -83,7 +87,7 @@ const BaseSearch = {
     },
     initSearchUrl: {
       type: String,
-      default: ""
+      default: ''
     },
     searchOnSelect: {
       type: Boolean,
@@ -92,7 +96,7 @@ const BaseSearch = {
   },
   data() {
     return {
-      searchTerm: '',
+      searchTerm: this.initSearchTerm,
       searchParams: {
         term: ''
       },

@@ -5,6 +5,7 @@
 
 {% if not comp_name %}{% alias 'search' as comp_name %}{% endif %}
 {% if not search_url %}{% alias '/search/' as search_url %}{% endif %}
+{% if not search_term %}{% alias '' as search_term %}{% endif %}
 {% if not search_input_name %}{% alias 'search-input' as search_input_name %}{% endif %}
 {% if not autocomplete_url %}{% alias '/autocomplete/' as autocomplete_url %}{% endif %}
 {% if not comp_extra %}{% alias '' as comp_extra %}{% endif %}
@@ -12,6 +13,7 @@
 {% endblock aliases %}
 
 <{{ comp_name }} 
+init-search-term="{{ search_term }}"
 init-search-url="{{ search_url }}" 
 init-autocomplete-url="{{ autocomplete_url }}" 
 {{ comp_extra }}
