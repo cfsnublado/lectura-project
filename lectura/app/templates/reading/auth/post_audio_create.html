@@ -1,4 +1,4 @@
-{% extends "reading/reading_base.html" %}
+{% extends 'reading/reading_base.html' %}
 {% load static %}
 {% load i18n %}
 
@@ -24,11 +24,15 @@ novalidate
 
 {% csrf_token %}
 
-{% include "reading/includes/forms/_post_audio_form.html" %}
+{% include 'reading/includes/forms/_post_audio_form.html' %}
+
+<div class="form-buttons">
 
 <button id="submit-btn" class="button is-info" type="submit" form="create-form">
-{% trans "label_create" %}
+{% trans 'label_create' %}
 </button>
+
+</div>
 
 </form>
 

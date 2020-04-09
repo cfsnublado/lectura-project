@@ -29,7 +29,9 @@
 {% url 'reading:project_nonmember_autocomplete' project.id as autocomplete_url %}
 {% url 'reading:project_member_create' project.id project.slug as search_url %}
 
-<h1 style="font-size: 30px; margin-bottom: 20px;"> @{{ project_member.member.username }} </h1>
+<h1 style="font-size: 30px; color:#777; margin-bottom: 20px;"> 
+@{{ project_member.member.username }}
+</h1>
 
 <form 
 id="edit-form" 
@@ -40,12 +42,39 @@ novalidate
 
 {% csrf_token %}
 
-{% include "reading/includes/forms/_project_member_form.html" %}
+{% include 'reading/includes/forms/_project_member_form.html' %}
+
+<div class="form-buttons">
 
 <button id="submit-btn" class="button is-info" type="submit" form="edit-form">
-{% trans "label_edit" %}
+{% trans 'label_update' %}
 </button>
+
+<ajax-delete
+delete-confirm-id="delete-project-member"
+delete-url="{% url 'api:project-member-detail' project_member.id %}" 
+delete-redirect-url="{% url 'reading:project_members_auth' project.id project.slug %}"
+inline-template
+>
+
+<button 
+id="post-delete-trigger" 
+class="button is-danger"
+@click.prevent="confirmDelete"
+>
+{% trans 'label_delete' %}
+</button>
+
+</ajax-delete>
+
+</div>
 
 </form>
 
 {% endblock content %}
+
+{% block modal_content %}
+
+{% include 'reading/includes/_project_member_delete_modal.html' with modal_id='delete-project-member' modal_name='confirmation-modal' %} 
+
+{% endblock modal_content %}

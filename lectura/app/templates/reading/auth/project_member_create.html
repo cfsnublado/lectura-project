@@ -38,7 +38,7 @@ novalidate
 
 {% csrf_token %}
 
-{% include "reading/includes/forms/_project_member_form.html" %}
+{% include 'reading/includes/forms/_project_member_form.html' %}
 
 <div class="field">
 
@@ -54,9 +54,13 @@ novalidate
 
 </div>
 
+<div class="form-buttons">
+
 <button id="submit-btn" class="button is-info" type="submit" form="create-form">
-{% trans "label_create" %}
+{% trans 'label_create' %}
 </button>
+
+</div>
 
 </form>
 
