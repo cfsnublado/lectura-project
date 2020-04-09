@@ -20,7 +20,12 @@
 
 {% block page_header %}
 
-<div class="page-header"> {% trans 'label_edit_project_member' %} </div>
+<div class="page-header"> 
+{% trans 'label_edit_project_member' %} - 
+<span style="font-size: 28px; color:#666; font-weight: bold;"> 
+@{{ project_member.member.username }}
+</span>
+</div>
 
 {% endblock page_header %}
 
@@ -28,10 +33,6 @@
 
 {% url 'reading:project_nonmember_autocomplete' project.id as autocomplete_url %}
 {% url 'reading:project_member_create' project.id project.slug as search_url %}
-
-<h1 style="font-size: 30px; color:#777; margin-bottom: 20px;"> 
-@{{ project_member.member.username }}
-</h1>
 
 <form 
 id="edit-form" 

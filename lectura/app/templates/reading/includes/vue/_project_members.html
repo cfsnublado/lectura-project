@@ -16,14 +16,15 @@ v-cloak
 
 <p>{% trans 'msg_no_project_members' %}</p>
 
+</div>
+
 <a 
 class="button is-info" 
 href="{% url 'reading:project_member_create' project.id project.slug %}"
+style="margin-top: 20px; margin-bottom: 40px;"
 >
 {% trans 'label_add_project_member' %}
 </a>
-
-</div>
 
 <project-member
 v-for="(projectMember, index) in projectMembers"

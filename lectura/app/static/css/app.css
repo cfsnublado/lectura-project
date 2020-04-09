@@ -10129,9 +10129,10 @@ a {
 /* line 16, ../scss/cfs/_layout.scss */
 .main-content {
   padding-top: 4.375rem;
+  padding-bottom: 6.25rem;
 }
 
-/* line 20, ../scss/cfs/_layout.scss */
+/* line 21, ../scss/cfs/_layout.scss */
 .page-footer {
   display: flex;
   width: 100%;
@@ -10141,7 +10142,7 @@ a {
   align-items: center;
   justify-content: center;
 }
-/* line 32, ../scss/cfs/_layout.scss */
+/* line 33, ../scss/cfs/_layout.scss */
 .page-footer.is-fixed {
   position: fixed;
   right: 0;
@@ -10149,7 +10150,7 @@ a {
   left: 0;
   width: auto;
 }
-/* line 41, ../scss/cfs/_layout.scss */
+/* line 42, ../scss/cfs/_layout.scss */
 .page-footer.is-absolute {
   position: absolute;
   right: 0;
@@ -10157,13 +10158,13 @@ a {
   left: 0;
   width: auto;
 }
-/* line 50, ../scss/cfs/_layout.scss */
+/* line 51, ../scss/cfs/_layout.scss */
 .page-footer.is-bordered {
   border-top: 1px solid #dfe1e3;
 }
 
 @media screen and (max-width: 768px) {
-  /* line 56, ../scss/cfs/_layout.scss */
+  /* line 57, ../scss/cfs/_layout.scss */
   .main-content {
     padding-top: 20px;
   }
