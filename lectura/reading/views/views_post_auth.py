@@ -13,7 +13,7 @@ from ..forms import (
     PostAudioCreateForm, PostCreateForm,
     PostUpdateForm
 )
-from ..models import Post, PostAudio, ProjectMember
+from ..models import Post, PostAudio
 from .views_mixins import (
     PostAudioCreateMixin, PostEditMixin, PostSessionMixin,
     ProjectMemberMixin, ProjectSessionMixin
@@ -28,7 +28,6 @@ class PostCreateView(
 ):
     model = Post
     form_class = PostCreateForm
-    project_role_access = ProjectMember.ROLE_AUTHOR
     template_name = '{0}/auth/post_create.html'.format(APP_NAME)
 
     def get_form_kwargs(self):
@@ -55,7 +54,6 @@ class PostUpdateView(
 ):
     model = Post
     form_class = PostUpdateForm
-    check_post_admin_access = True
     template_name = '{0}/auth/post_update.html'.format(APP_NAME)
 
     def get_object(self, **kwargs):
@@ -78,7 +76,6 @@ class PostAudioCreateView(
 ):
     model = PostAudio
     form_class = PostAudioCreateForm
-    check_post_admin_access = True
     template_name = '{0}/auth/post_audio_create.html'.format(APP_NAME)
 
     def get_form_kwargs(self):

@@ -7,8 +7,8 @@ from ..models import Post, Project
 from ..permissions import (
     can_create_post_audio, can_create_project_member,
     can_delete_project, can_edit_post,
-    can_edit_project, is_project_member,
-    is_project_owner
+    can_edit_project, can_edit_project_member,
+    is_project_member, is_project_owner
 )
 
 
@@ -95,6 +95,13 @@ class ProjectMemberCreateMixin(ProjectMixin):
 
     def check_permission(self):
         return can_create_project_member(self.request.user, self.project)
+
+
+class ProjectMemberEditMixin(ProjectMixin):
+    check_access = True
+
+    def check_permission(self):
+        return can_edit_project_member(self.request.user, self.project)
 
 
 class ProjectSessionMixin(ObjectSessionMixin):

@@ -12,7 +12,7 @@ from .views.views_post import (
     PostView, PostAudiosView
 )
 from .views.views_project_member_auth import (
-    ProjectMemberCreateView,
+    ProjectMemberCreateView, ProjectMemberUpdateView,
     ProjectMembersView as ProjectMembersAuthView
 )
 from .views.views_post_auth import (
@@ -46,6 +46,11 @@ auth_urls = [
         'project/<int:project_pk>-<slug:project_slug>/project-member/create',
         ProjectMemberCreateView.as_view(),
         name='project_member_create'
+    ),
+    path(
+        'project-member/<int:pk>/update',
+        ProjectMemberUpdateView.as_view(),
+        name='project_member_update'
     ),
     path(
         'project/<int:project_pk>-<slug:project_slug>/post/create/',

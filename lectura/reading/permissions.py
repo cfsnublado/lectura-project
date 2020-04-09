@@ -44,6 +44,10 @@ def can_create_project_member(user, project):
     return is_project_owner(user, project)
 
 
+def can_edit_project_member(user, project):
+    return is_project_owner(user, project)
+
+
 def is_post_creator(user, post):
     return user.id == post.creator_id
 

@@ -54,7 +54,6 @@ class ProjectUpdateView(
 ):
     model = Project
     form_class = ProjectUpdateForm
-    project_role_access = ProjectMember.ROLE_ADMIN
     template_name = '{0}/auth/project_update.html'.format(APP_NAME)
 
     def get_object(self, **kwargs):

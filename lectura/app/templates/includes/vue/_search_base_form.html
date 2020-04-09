@@ -1,0 +1,75 @@
+{% load core_extras %}
+{% load i18n %}
+
+{% block aliases %}
+
+{% if not comp_name %}{% alias 'search' as comp_name %}{% endif %}
+{% if not search_url %}{% alias '/search/' as search_url %}{% endif %}
+{% if not search_input_name %}{% alias 'search-input' as search_input_name %}{% endif %}
+{% if not autocomplete_url %}{% alias '/autocomplete/' as autocomplete_url %}{% endif %}
+{% if not comp_extra %}{% alias '' as comp_extra %}{% endif %}
+
+{% endblock aliases %}
+
+<{{ comp_name }} 
+init-search-url="{{ search_url }}" 
+init-autocomplete-url="{{ autocomplete_url }}" 
+{{ comp_extra }}
+inline-template
+>
+
+<div class="searchbox">
+{% if search_label %}
+  <label class="label" for="search-input">{{ search_label }}</label>
+{% endif %}
+
+<div class="field has-addons">
+
+<div class="control">
+
+<div 
+class="dropdown"
+v-bind:class="[{ 'is-active': isOpen }]"
+>
+
+<div class="dropdown-trigger">
+
+<input
+  id="{{ search_input_name }}"
+  name="{{ search_input_name }}"
+  class="input"
+  placeholder="{% trans 'placeholder_search' %}"
+  type="text" 
+  v-model.trim="searchTerm"
+  @input="onAutocomplete"
+  @focus="onFocus"
+/>
+
+</div>
+
+<div class="dropdown-menu">
+<div class="dropdown-content">
+
+<a
+  v-for="(result, i) in results"
+  :key="i"
+  class="dropdown-item"
+  href="" 
+  @click.prevent="setResult(result.value)"
+>
+[[ result.value ]]
+</a>
+
+</div>
+</div>
+
+</div>
+
+</div>
+
+{% block control_addons %}
+{% endblock control_addons %}
+
+</div>
+</div>
+</{{ comp_name }}>

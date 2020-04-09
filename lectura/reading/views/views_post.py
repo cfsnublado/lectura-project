@@ -21,7 +21,6 @@ class PostView(
             post_id=self.post_obj.id
         ).exists()
         context['has_post_audio'] = has_audio
-
         return context
 
 

@@ -1,15 +1,20 @@
 from django.apps import apps
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views.generic import (
-    CreateView, TemplateView
+    CreateView, TemplateView, UpdateView
 )
 
-from ..forms import ProjectMemberCreateForm
+from core.views import MessageMixin
+from ..forms import (
+    ProjectMemberCreateForm,
+    ProjectMemberUpdateForm
+)
 from ..models import ProjectMember
 from .views_mixins import (
     ProjectEditMixin, ProjectMemberCreateMixin,
-    ProjectSessionMixin
+    ProjectMemberEditMixin, ProjectSessionMixin
 )
 
 APP_NAME = apps.get_app_config('reading').name
@@ -24,7 +29,7 @@ class ProjectMembersView(
 
 class ProjectMemberCreateView(
     LoginRequiredMixin, ProjectMemberCreateMixin,
-    ProjectSessionMixin, CreateView
+    ProjectSessionMixin, MessageMixin, CreateView
 ):
     model = ProjectMember
     form_class = ProjectMemberCreateForm
@@ -43,3 +48,34 @@ class ProjectMemberCreateView(
                 'project_slug': self.project.slug
             }
         )
+
+
+class ProjectMemberUpdateView(
+    LoginRequiredMixin, ProjectMemberEditMixin,
+    ProjectSessionMixin,
+    MessageMixin, UpdateView
+):
+    model = ProjectMember
+    form_class = ProjectMemberUpdateForm
+    template_name = '{0}/auth/project_member_update.html'.format(APP_NAME)
+
+    def get_object(self, **kwargs):
+        self.project_member = get_object_or_404(
+            ProjectMember.objects.select_related('member', 'project'),
+            id=self.kwargs['pk']
+        )
+        return self.project_member
+
+    def get_success_url(self):
+        return reverse(
+            'reading:project_members_auth',
+            kwargs={
+                'project_pk': self.project.id,
+                'project_slug': self.project.slug
+            }
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super(ProjectMemberUpdateView, self).get_context_data(**kwargs)
+        context['project_member'] = self.project_member
+        return context

@@ -30,6 +30,7 @@ v-for="(projectMember, index) in projectMembers"
 :key="projectMember.id"
 :init-project-member="projectMember"
 :init-is-admin="isAdmin"
+init-edit-url="{{ project_member_update_url }}"
 init-delete-url="{{ project_member_delete_url }}"
 @delete-project-member="onDeleteProjectMember(index)"
 inline-template
@@ -51,8 +52,11 @@ v-bind:class="'label-' + projectMember.role"
 
 <div class="user-card-controls">
 
-<span class="control">
-<a href="">
+<span class="control" v-if="isAdmin">
+<a 
+href=""
+@click.prevent="edit"
+>
 <i class="fas fa-edit fa-fw"></i>
 </a>
 </span>

@@ -48,7 +48,21 @@ class ProjectUpdateForm(ProjectForm):
 
 
 class ProjectMemberForm(BaseModelForm):
+
+    class Meta:
+        abstract = True
+        fields = ['role']
+
+
+class ProjectMemberCreateForm(ProjectMemberForm):
     username = forms.CharField(max_length=100, required=True)
+
+    def __init__(self, *args, **kwargs):
+        self.project = kwargs.pop('project', None)
+        super(ProjectMemberCreateForm, self).__init__(*args, **kwargs)
+        if not self.project:
+            raise ValueError(_('validation_project_required'))
+        self.instance.project = self.project
 
     def clean(self):
         # super(ProjectMemberForm, self).clean()
@@ -78,18 +92,12 @@ class ProjectMemberForm(BaseModelForm):
                     forms.ValidationError(_('validation_user_does_not_exist'))
                 )
 
-    class Meta:
-        abstract = True
-        fields = ['username', 'role']
+    class Meta(ProjectMemberForm.Meta):
+        model = ProjectMember
+        fields = ProjectMemberForm.Meta.fields + ['username']
 
 
-class ProjectMemberCreateForm(ProjectMemberForm):
-    def __init__(self, *args, **kwargs):
-        self.project = kwargs.pop('project', None)
-        super(ProjectMemberCreateForm, self).__init__(*args, **kwargs)
-        if not self.project:
-            raise ValueError(_('validation_project_required'))
-        self.instance.project = self.project
+class ProjectMemberUpdateForm(ProjectMemberForm):
 
     class Meta(ProjectMemberForm.Meta):
         model = ProjectMember

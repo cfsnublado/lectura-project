@@ -184,6 +184,7 @@ const ProjectMember = {
       editUrl: this.initEditUrl,
       deleteUrl: this.initDeleteUrl,
       idPlaceholder: '0',
+      slugPlaceholder: 'zzz'
     }
   },
   methods: {

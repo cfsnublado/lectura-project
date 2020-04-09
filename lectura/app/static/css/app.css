@@ -11739,7 +11739,7 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
 /* line 2, ../../prototype/scss/cfs/_notification.scss */
 .notification.msg-notification {
   position: absolute;
-  z-index: 1000;
+  z-index: 2000;
   width: 100%;
 }
 
@@ -11763,7 +11763,7 @@ body.sidebar-adaptable.sidebar-expanded .page-footer.is-fixed {
 /* line 29, ../../prototype/scss/cfs/_alert.scss */
 .alert.abs-alert {
   position: absolute;
-  z-index: 1000;
+  z-index: 2000;
   width: 100%;
 }
 /* line 36, ../../prototype/scss/cfs/_alert.scss */

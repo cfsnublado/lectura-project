@@ -25,9 +25,10 @@
 <div id="project-members-scroll-top"></div>
 
 {% url 'api:nested-project-member-list' project.id as project_members_url %}
+{% url 'reading:project_member_update' 0 as project_member_update_url %}
 {% url 'api:project-member-detail' 0 as project_member_delete_url %}
 
-{% alias user.is_superuser as is_admin %}
+{% alias is_project_owner as is_admin %}
 
 {% include 'reading/includes/vue/_project_members.html' %}
 
