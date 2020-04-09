@@ -7,7 +7,8 @@ from ..models import Post, Project
 from ..permissions import (
     can_create_post_audio, can_create_project_member,
     can_delete_project, can_edit_post,
-    can_edit_project, is_project_member
+    can_edit_project, is_project_member,
+    is_project_owner
 )
 
 
@@ -56,6 +57,7 @@ class ProjectMixin(CachedObjectMixin, PermissionMixin):
     def get_context_data(self, **kwargs):
         context = super(ProjectMixin, self).get_context_data(**kwargs)
         context['project'] = self.project
+        context['is_project_owner'] = is_project_owner(self.request.user, self.project)
         context['is_project_member'] = self.is_project_member
         return context
 
@@ -143,7 +145,6 @@ class PostMixin(CachedObjectMixin, PermissionMixin):
                     self.post_obj = obj
             else:
                 raise Http404('Post not found.')
-
         self.project = self.post_obj.project
 
     def get_context_data(self, **kwargs):
@@ -151,7 +152,7 @@ class PostMixin(CachedObjectMixin, PermissionMixin):
         context['project'] = self.project
         context['post'] = self.post_obj
         context['is_post_admin'] = self.is_post_admin
-
+        context['is_project_owner'] = is_project_owner(self.request.user, self.project)
         return context
 
     def check_permission(self):

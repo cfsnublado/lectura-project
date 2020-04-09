@@ -154,9 +154,9 @@ const BaseSearch = {
     onFocus() {
       this.$emit('search-focus')
     },
-    onClickOutside() {
+    onCloseOutside() {
       this.isOpen = false
-      this.searchTerm = ''
+      // this.searchTerm = ''
     },   
   }
 }

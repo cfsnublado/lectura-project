@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-08 07:25-0700\n"
+"POT-Creation-Date: 2020-04-08 19:24-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -209,8 +209,8 @@ msgstr "Perfil"
 msgid "label_reading_config"
 msgstr "Perfil"
 
-#: lectura/reading/forms.py:26 lectura/reading/forms.py:107
-#: lectura/reading/forms.py:119 lectura/reading/forms.py:122
+#: lectura/reading/forms.py:26 lectura/reading/forms.py:112
+#: lectura/reading/forms.py:124 lectura/reading/forms.py:127
 #: lectura/reading/tests/test_views_post_auth.py:274
 #: lectura/security/forms.py:11 lectura/security/forms.py:18
 #: lectura/security/tests/test_forms.py:37
@@ -235,32 +235,27 @@ msgstr "Este campo es requerido"
 msgid "validation_owner_required"
 msgstr "Este campo es requerido"
 
-#: lectura/reading/forms.py:60
+#: lectura/reading/forms.py:63
 msgid "validation_user_is_project_member"
 msgstr "El usuario ya es miembro del proyecto."
 
-#: lectura/reading/forms.py:64
+#: lectura/reading/forms.py:70
 msgid "validation_user_is_project_owner"
 msgstr "El usuario es el dueño del proyecto."
 
-#: lectura/reading/forms.py:69
+#: lectura/reading/forms.py:78
 msgid "validation_user_does_not_exist"
 msgstr "El usuario no existe."
 
-#: lectura/reading/forms.py:73 lectura/users/managers.py:9
-#: lectura/users/managers.py:33
-msgid "validation_username_required"
-msgstr "Nombre de usuario es requerido."
-
-#: lectura/reading/forms.py:86 lectura/reading/forms.py:157
+#: lectura/reading/forms.py:91 lectura/reading/forms.py:162
 msgid "validation_project_required"
 msgstr "Proyecto es requerido."
 
-#: lectura/reading/forms.py:136 lectura/reading/forms.py:160
+#: lectura/reading/forms.py:141 lectura/reading/forms.py:165
 msgid "validation_creator_required"
 msgstr "Creador es requerido."
 
-#: lectura/reading/forms.py:139
+#: lectura/reading/forms.py:144
 #, fuzzy
 #| msgid "validation_field_required"
 msgid "validation_post_required"
@@ -284,7 +279,6 @@ msgid "label_audio_url"
 msgstr "URL del audio"
 
 #: lectura/security/forms.py:8 lectura/users/models.py:20
-#: lectura/app/templates/reading/auth/project_member_create.html:23
 msgid "label_username"
 msgstr "Nombre de usuario"
 
@@ -345,6 +339,10 @@ msgstr ""
 #: lectura/users/forms.py:100 lectura/users/models.py:26
 msgid "label_email"
 msgstr "Correo"
+
+#: lectura/users/managers.py:9 lectura/users/managers.py:33
+msgid "validation_username_required"
+msgstr "Nombre de usuario es requerido."
 
 #: lectura/users/managers.py:11 lectura/users/managers.py:35
 msgid "validation_email_required"
@@ -520,7 +518,8 @@ msgstr "Iniciar sesión"
 msgid "label_logout"
 msgstr "Salir"
 
-#: lectura/app/templates/includes/vue/_search.html:41
+#: lectura/app/templates/includes/vue/_search.html:42
+#: lectura/app/templates/includes/vue/_search_base.html:41
 #, fuzzy
 #| msgid "placeholder_email"
 msgid "placeholder_search"
@@ -539,7 +538,7 @@ msgstr "Agregar audio"
 #: lectura/app/templates/reading/auth/post_audio_create.html:30
 #: lectura/app/templates/reading/auth/post_create.html:30
 #: lectura/app/templates/reading/auth/project_create.html:34
-#: lectura/app/templates/reading/auth/project_member_create.html:41
+#: lectura/app/templates/reading/auth/project_member_create.html:58
 msgid "label_create"
 msgstr "Crear"
 
@@ -550,7 +549,7 @@ msgstr "Crear entrada"
 #: lectura/app/templates/reading/auth/post_create.html:12
 #: lectura/app/templates/reading/includes/vue/_posts.html:19
 msgid "label_create_post"
-msgstr "Crear una entrada"
+msgstr "Crear entrada"
 
 #: lectura/app/templates/reading/auth/post_update.html:5
 msgid "page_post_update_title"
@@ -579,7 +578,7 @@ msgstr "Crear proyecto"
 #: lectura/app/templates/reading/auth/project_create.html:16
 #: lectura/app/templates/reading/includes/vue/_projects.html:19
 msgid "label_create_project"
-msgstr "Crear un proyecto"
+msgstr "Crear proyecto"
 
 #: lectura/app/templates/reading/auth/project_member_create.html:6
 #: lectura/app/templates/reading/auth/project_member_create.html:17
@@ -593,7 +592,12 @@ msgstr "Proyecto"
 #: lectura/app/templates/reading/auth/project_members.html:19
 #: lectura/app/templates/reading/reading_base.html:62
 msgid "label_project_team"
-msgstr "Equipo del proyecto"
+msgstr "Equipo"
+
+#: lectura/app/templates/reading/auth/project_member_create.html:23
+#: lectura/app/templates/reading/includes/vue/_project_members.html:20
+msgid "label_add_project_member"
+msgstr "Agregar usuario al proyecto"
 
 #: lectura/app/templates/reading/auth/project_members.html:6
 #, fuzzy
@@ -636,16 +640,8 @@ msgid "msg_no_posts_in_project"
 msgstr "No hay entradas en este proyecto."
 
 #: lectura/app/templates/reading/includes/vue/_project_members.html:17
-#, fuzzy
-#| msgid "msg_no_projects"
 msgid "msg_no_project_members"
-msgstr "No hay proyectos."
-
-#: lectura/app/templates/reading/includes/vue/_project_members.html:20
-#, fuzzy
-#| msgid "label_project"
-msgid "label_add_project_member"
-msgstr "Proyecto"
+msgstr "No hay miembros del proyecto."
 
 #: lectura/app/templates/reading/includes/vue/_projects.html:16
 msgid "msg_no_projects"

@@ -16,7 +16,10 @@ v-cloak
 
 <p>{% trans 'msg_no_project_members' %}</p>
 
-<a class="button is-info" href="">
+<a 
+class="button is-info" 
+href="{% url 'reading:project_member_create' project.id project.slug %}"
+>
 {% trans 'label_add_project_member' %}
 </a>
 
