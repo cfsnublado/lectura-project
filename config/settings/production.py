@@ -20,7 +20,7 @@ DATABASES = {
 # Parse database configuration from $DATABASE_URL
 DATABASES['default'] = dj_database_url.config()
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-USERS_USE_GRAVATAR = True
+USERS_USE_GRAVATAR = False
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587

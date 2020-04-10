@@ -206,7 +206,7 @@ class PostAudioListSerializer(ListSerializer):
 class PostAudioSerializer(BaseSerializer, HyperlinkedModelSerializer):
     json_encoder = UUIDEncoder
     minimal_data_fields = [
-        'name', 'url', 'date_created'
+        'name', 'audio_url', 'date_created'
     ]
     url = HyperlinkedIdentityField(
         view_name='api:post-audio-detail',
@@ -251,3 +251,6 @@ class PostAudioSerializer(BaseSerializer, HyperlinkedModelSerializer):
             'creator_id', 'creator_url', 'slug',
             'date_created', 'date_updated'
         )
+
+    def create(self, validated_data):
+        return PostAudio.objects.create(**validated_data)

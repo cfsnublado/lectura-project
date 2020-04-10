@@ -6,12 +6,12 @@ from django.conf import settings
 from django.contrib.auth import authenticate
 from django.core.management.base import BaseCommand, CommandError
 
-from project.models import Project
-from ..utils import export_project
+from reading.models import Project
+from reading.utils import export_project
 
 
 class Command(BaseCommand):
-    help = 'Backs up a project and its posts in a single json file.'
+    help = 'Backs up a project and its related data in a single json file.'
 
     def login_user(self):
         username = input('Username: ')
@@ -34,8 +34,8 @@ class Command(BaseCommand):
             base_dir = Path(options['output_path'][0])
         else:
             base_dir = Path('{0}/docs/lectura_json/projects'.format(settings.BASE_DIR))
-        base_dir.mkdir(parents=True, exist_ok=True)
 
+        base_dir.mkdir(parents=True, exist_ok=True)
         projects = Project.objects.filter(owner=user)
 
         for project in projects:
