@@ -19,7 +19,7 @@ Options:
 '''
 
 LOCALHOST = 'http://127.0.0.1:8000'
-PRODUCTION_HOST = 'http://cfslectura.herokuapp.com'
+PRODUCTION_HOST = 'https://cfslectura.herokuapp.com'
 TOKEN_PATH = 'api/api-token-auth/'
 IMPORT_PATH = 'api/reading/project/import/'
 
