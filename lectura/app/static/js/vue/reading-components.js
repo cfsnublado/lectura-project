@@ -454,6 +454,11 @@ const PostAudio = {
     }
   },
   methods: {
+    edit() {
+      if (this.editUrl) {
+        window.location.replace(this.editUrl)
+      }
+    },
     remove() {
       this.$emit('delete-post-audio', this.audio.id)
     }
@@ -462,6 +467,12 @@ const PostAudio = {
     if (this.initDeleteUrl) {
       this.deleteUrl = this.initDeleteUrl
         .replace(this.idPlaceholder, this.audio.id)
+    }
+
+    if (this.initEditUrl) {
+      this.editUrl = this.initEditUrl
+        .replace(this.idPlaceholder, this.audio.id)
+      console.log(this.editUrl)
     }
   }
 }

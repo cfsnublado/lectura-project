@@ -3,7 +3,7 @@
 
 <post-audios
 post-audios-url="{{ post_audios_url }}"
-:init-is-admin="{{ is_post_admin|yesno:"true,false" }}"
+:init-is-admin="{{ is_admin|yesno:"true,false" }}"
 inline-template
 >
 
@@ -27,6 +27,7 @@ v-for="(postAudio, index) in postAudios"
 :key="postAudio.id"
 :init-audio="postAudio"
 :init-is-admin="isAdmin"
+init-edit-url="{{ post_audio_update_url }}"
 init-delete-url="{{ post_audio_delete_url }}"
 inline-template
 >
@@ -35,6 +36,18 @@ inline-template
 <div class="card project-card" v-show="isVisible">
 
 <div class="card-controls">
+
+<span
+v-if="isAdmin"
+class="control"
+>
+<a
+href="#"
+@click.prevent="edit"
+>
+<i class="fas fa-edit fa-fw"></i>
+</a>
+</span>
 
 <ajax-delete
 v-if="isAdmin"

@@ -158,6 +158,12 @@ class PostAudioCreateForm(PostAudioForm):
         model = PostAudio
 
 
+class PostAudioUpdateForm(PostAudioForm):
+
+    class Meta(PostAudioForm.Meta):
+        model = PostAudio
+
+
 class PostCreateForm(PostForm):
 
     def __init__(self, *args, **kwargs):

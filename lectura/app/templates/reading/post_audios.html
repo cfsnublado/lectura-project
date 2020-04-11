@@ -28,6 +28,9 @@
 
 {% url 'api:nested-post-audio-list' post.id as post_audios_url %}
 {% url 'api:post-audio-detail' 0 as post_audio_delete_url %}
+{% url 'reading:post_audio_update' 0 as post_audio_update_url %}
+
+{% alias is_post_admin as is_admin %}
 
 {% include "reading/includes/vue/_post_audios.html" %}
 

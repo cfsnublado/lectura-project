@@ -87,3 +87,7 @@ def can_delete_post(user, post, superuser_override=True):
 
 def can_create_post_audio(user, post):
     return is_project_member(user, post.project)
+
+
+def can_edit_post_audio(user, post, superuser_override=True):
+    return (superuser_override and user.is_superuser) or can_edit_post(user, post)

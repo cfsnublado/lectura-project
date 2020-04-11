@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-09 00:08-0700\n"
+"POT-Creation-Date: 2020-04-10 20:24-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -235,7 +235,7 @@ msgstr "This field is required."
 msgid "validation_owner_required"
 msgstr "This field is required."
 
-#: lectura/reading/forms.py:64 lectura/reading/forms.py:170
+#: lectura/reading/forms.py:64 lectura/reading/forms.py:176
 msgid "validation_project_required"
 msgstr "Project is required."
 
@@ -251,7 +251,7 @@ msgstr "User is project owner."
 msgid "validation_user_does_not_exist"
 msgstr "User does not exist."
 
-#: lectura/reading/forms.py:149 lectura/reading/forms.py:173
+#: lectura/reading/forms.py:149 lectura/reading/forms.py:179
 msgid "validation_creator_required"
 msgstr "Creator is required."
 
@@ -520,7 +520,7 @@ msgstr "Logout"
 
 #: lectura/app/templates/includes/vue/_search.html:42
 #: lectura/app/templates/includes/vue/_search_base.html:41
-#: lectura/app/templates/includes/vue/_search_base_form.html:41
+#: lectura/app/templates/includes/vue/_search_base_form.html:43
 #, fuzzy
 #| msgid "placeholder_email"
 msgid "placeholder_search"
@@ -531,17 +531,40 @@ msgid "page_audio_create_title"
 msgstr "Create audio"
 
 #: lectura/app/templates/reading/auth/post_audio_create.html:12
+#: lectura/app/templates/reading/auth/post_audio_create.html:18
 #: lectura/app/templates/reading/includes/vue/_post_audios.html:20
 #: lectura/app/templates/reading/reading_base.html:162
 msgid "label_add_audio"
 msgstr "Add audio"
 
-#: lectura/app/templates/reading/auth/post_audio_create.html:30
-#: lectura/app/templates/reading/auth/post_create.html:36
-#: lectura/app/templates/reading/auth/project_create.html:40
-#: lectura/app/templates/reading/auth/project_member_create.html:58
+#: lectura/app/templates/reading/auth/post_audio_create.html:38
+#: lectura/app/templates/reading/auth/post_create.html:38
+#: lectura/app/templates/reading/auth/project_create.html:42
+#: lectura/app/templates/reading/auth/project_member_create.html:60
 msgid "label_create"
 msgstr "Create"
+
+#: lectura/app/templates/reading/auth/post_audio_update.html:5
+msgid "page_post_audio_update_title"
+msgstr "Edit audio"
+
+#: lectura/app/templates/reading/auth/post_audio_update.html:12
+msgid "label_edit_post_audio"
+msgstr "Edit audio"
+
+#: lectura/app/templates/reading/auth/post_audio_update.html:18
+#, fuzzy
+#| msgid "label_add_audio"
+msgid "label_Edit_audio"
+msgstr "Add audio"
+
+#: lectura/app/templates/reading/auth/post_audio_update.html:38
+#: lectura/app/templates/reading/auth/post_update.html:42
+#: lectura/app/templates/reading/auth/project_member_update.html:51
+#: lectura/app/templates/reading/auth/project_update.html:38
+#: lectura/app/templates/users/auth/profile_update.html:110
+msgid "label_update"
+msgstr "Update"
 
 #: lectura/app/templates/reading/auth/post_create.html:5
 msgid "page_post_create_title"
@@ -558,7 +581,6 @@ msgid "page_post_update_title"
 msgstr "Edit post"
 
 #: lectura/app/templates/reading/auth/post_update.html:12
-#: lectura/app/templates/reading/auth/project_member_update.html:44
 #: lectura/app/templates/reading/auth/project_update.html:12
 msgid "label_edit"
 msgstr "Edit"
@@ -568,14 +590,9 @@ msgstr "Edit"
 msgid "label_edit_post"
 msgstr "Edit post"
 
-#: lectura/app/templates/reading/auth/post_update.html:40
-#: lectura/app/templates/reading/auth/project_update.html:36
-#: lectura/app/templates/users/auth/profile_update.html:110
-msgid "label_update"
-msgstr "Update"
-
-#: lectura/app/templates/reading/auth/post_update.html:55
-#: lectura/app/templates/reading/auth/project_update.html:51
+#: lectura/app/templates/reading/auth/post_update.html:57
+#: lectura/app/templates/reading/auth/project_member_update.html:66
+#: lectura/app/templates/reading/auth/project_update.html:53
 msgid "label_delete"
 msgstr "Delete"
 
@@ -590,7 +607,6 @@ msgid "label_create_project"
 msgstr "Create project"
 
 #: lectura/app/templates/reading/auth/project_member_create.html:6
-#: lectura/app/templates/reading/auth/project_member_update.html:6
 #, fuzzy
 #| msgid "label_project"
 msgid "label_create_project_member"
@@ -606,12 +622,13 @@ msgstr "Team"
 
 #: lectura/app/templates/reading/auth/project_member_create.html:17
 #: lectura/app/templates/reading/auth/project_member_create.html:23
-#: lectura/app/templates/reading/includes/vue/_project_members.html:23
+#: lectura/app/templates/reading/includes/vue/_project_members.html:26
 msgid "label_add_project_member"
 msgstr "Add user to project"
 
+#: lectura/app/templates/reading/auth/project_member_update.html:6
 #: lectura/app/templates/reading/auth/project_member_update.html:17
-#: lectura/app/templates/reading/auth/project_member_update.html:23
+#: lectura/app/templates/reading/auth/project_member_update.html:24
 msgid "label_edit_project_member"
 msgstr "Edit project member"
 
@@ -674,6 +691,7 @@ msgstr "Loading audio"
 
 #: lectura/app/templates/reading/post_audios.html:6
 #: lectura/app/templates/reading/post_audios.html:13
+#: lectura/app/templates/reading/post_audios.html:21
 msgid "label_audios"
 msgstr "Audios"
 

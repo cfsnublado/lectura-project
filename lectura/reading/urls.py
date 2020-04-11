@@ -16,7 +16,8 @@ from .views.views_project_member_auth import (
     ProjectMembersView as ProjectMembersAuthView
 )
 from .views.views_post_auth import (
-    PostAudioCreateView, PostCreateView, PostUpdateView
+    PostAudioCreateView, PostAudioUpdateView,
+    PostCreateView, PostUpdateView
 )
 
 app_name = 'reading'
@@ -66,6 +67,11 @@ auth_urls = [
         'post/<int:post_pk>-<slug:post_slug>/audio/create/',
         PostAudioCreateView.as_view(),
         name='post_audio_create'
+    ),
+    path(
+        'post-audio/<int:pk>/update/',
+        PostAudioUpdateView.as_view(),
+        name='post_audio_update'
     ),
 ]
 

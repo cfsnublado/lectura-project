@@ -1,5 +1,6 @@
 from django.apps import apps
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404
 from django.views.generic import (
     CreateView, UpdateView
 )
@@ -10,12 +11,13 @@ from core.views import (
 from django.urls import reverse
 
 from ..forms import (
-    PostAudioCreateForm, PostCreateForm,
-    PostUpdateForm
+    PostAudioCreateForm, PostAudioUpdateForm,
+    PostCreateForm, PostUpdateForm
 )
 from ..models import Post, PostAudio
 from .views_mixins import (
-    PostAudioCreateMixin, PostEditMixin, PostSessionMixin,
+    PostAudioCreateMixin, PostAudioEditMixin,
+    PostEditMixin, PostSessionMixin,
     ProjectMemberMixin, ProjectSessionMixin
 )
 
@@ -93,3 +95,34 @@ class PostAudioCreateView(
                 'post_slug': self.post_obj.slug
             }
         )
+
+
+class PostAudioUpdateView(
+    LoginRequiredMixin, PostAudioEditMixin,
+    PostSessionMixin,
+    MessageMixin, UpdateView
+):
+    model = PostAudio
+    form_class = PostAudioUpdateForm
+    template_name = '{0}/auth/post_audio_update.html'.format(APP_NAME)
+
+    def get_object(self, **kwargs):
+        self.post_audio = get_object_or_404(
+            PostAudio.objects.select_related('post', 'creator'),
+            id=self.kwargs['pk']
+        )
+        return self.post_audio
+
+    def get_success_url(self):
+        return reverse(
+            'reading:post',
+            kwargs={
+                'post_pk': self.post_audio.post.pk,
+                'post_slug': self.post_audio.post.slug
+            }
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super(PostAudioUpdateView, self).get_context_data(**kwargs)
+        context['post_audio'] = self.post_audio
+        return context

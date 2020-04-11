@@ -6,7 +6,7 @@ from core.views import CachedObjectMixin, ObjectSessionMixin, PermissionMixin
 from ..models import Post, Project
 from ..permissions import (
     can_create_post_audio, can_create_project_member,
-    can_delete_project, can_edit_post,
+    can_delete_project, can_edit_post, can_edit_post_audio,
     can_edit_project, can_edit_project_member,
     is_project_member, is_project_owner
 )
@@ -189,6 +189,13 @@ class PostAudioCreateMixin(PostMixin):
 
     def check_permission(self):
         return can_create_post_audio(self.request.user, self.post_obj)
+
+
+class PostAudioEditMixin(PostMixin):
+    check_access = True
+
+    def check_permission(self):
+        return can_edit_post_audio(self.request.user, self.post_obj)
 
 
 class PostSessionMixin(ObjectSessionMixin):
