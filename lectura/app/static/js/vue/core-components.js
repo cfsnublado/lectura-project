@@ -12,7 +12,6 @@ const AdminMixin = {
   },
 }
 
-
 const AjaxProcessMixin = {
   props: {
     parentProcessing: {

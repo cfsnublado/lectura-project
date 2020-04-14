@@ -13,7 +13,7 @@ const UserSearch = {
     search() {
       clearTimeout(this.searchTimerId)
       url = this.searchUrl + "?username=" + encodeURIComponent(this.searchTerm)
-      window.location.replace(url)
+      window.location.assign(url)
     }
   }
 }
@@ -54,12 +54,12 @@ const Project = {
   methods: {
     view() {
       if (this.viewUrl) {
-        window.location.replace(this.viewUrl)
+        window.location.assign(this.viewUrl)
       }
     },
     edit() {
       if (this.editUrl) {
-        window.location.replace(this.editUrl)
+        window.location.assign(this.editUrl)
       }
     },
     remove() {
@@ -190,12 +190,12 @@ const ProjectMember = {
   methods: {
     view() {
       if (this.viewUrl) {
-        window.location.replace(this.viewUrl)
+        window.location.assign(this.viewUrl)
       }
     },
     edit() {
       if (this.editUrl) {
-        window.location.replace(this.editUrl)
+        window.location.assign(this.editUrl)
       }
     },
     remove() {
@@ -329,7 +329,7 @@ const Post = {
   methods: {
     view() {
       if (this.viewUrl) {
-        window.location.replace(this.viewUrl)
+        window.location.assign(this.viewUrl)
       }
     },
     edit() {},
@@ -456,7 +456,7 @@ const PostAudio = {
   methods: {
     edit() {
       if (this.editUrl) {
-        window.location.replace(this.editUrl)
+        window.location.assign(this.editUrl)
       }
     },
     remove() {

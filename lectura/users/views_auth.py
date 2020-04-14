@@ -7,9 +7,10 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.generic import UpdateView
 
 from core.views import (
-    ObjectSessionMixin, UserRequiredMixin
+    CachedObjectMixin, ObjectSessionMixin,
+    UserRequiredMixin
 )
-from .forms import UserPasswordResetForm
+from .forms import ProfileUpdateForm, UserPasswordResetForm
 from .models import User
 
 APP_NAME = apps.get_app_config('users').name
@@ -36,13 +37,13 @@ class UserPasswordResetView(
         return reverse(settings.LOGIN_URL)
 
 
-# class ProfileUpdateView(
-#     LoginRequiredMixin, UserRequiredMixin,
-#     CachedObjectMixin, AjaxMultiFormMixin,
-#     ObjectSessionMixin, UpdateView
-# ):
-#     model = User
-#     form_class = ProfileUpdateMultiForm
+class ProfileUpdateView(
+    LoginRequiredMixin, UserRequiredMixin,
+    CachedObjectMixin, ObjectSessionMixin,
+    UpdateView
+):
+    model = User
+    form_class = ProfileUpdateForm
 #     template_name = '{0}/auth/profile_update.html'.format(APP_NAME)
 #     context_object_name = 'user_profile'
 

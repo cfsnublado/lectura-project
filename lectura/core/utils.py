@@ -208,38 +208,6 @@ def save_upload(f, path):
             destination.write(f.read())
 
 
-def handle_upload(f, fileattrs):
-    '''Handle a chunked or non-chunked upload from Fine Uploader.'''
-    logger.info(fileattrs)
-
-    chunked = False
-    dest_folder = settings.UPLOAD_DIRECTORY
-    dest = os.path.join(dest_folder, fileattrs['qqfilename'])
-
-    # Chunked
-    if fileattrs['qqtotalparts'] and int(fileattrs['qqtotalparts']) > 1:
-        chunked = True
-        dest_folder = os.path.join(settings.CHUNKS_DIRECTORY, fileattrs['qquuid'])
-        dest = os.path.join(dest_folder, fileattrs['qqfilename'], str(fileattrs['qqpartindex']))
-        logger.info('Chunked upload received')
-
-    save_upload(f, dest)
-    logger.info('Upload saved: %s' % dest)
-
-    # If the last chunk has been sent, combine the parts.
-    if chunked and (fileattrs['qqtotalparts'] - 1 == fileattrs['qqpartindex']):
-
-        logger.info('Combining chunks: %s' % os.path.dirname(dest))
-        combine_chunks(
-            fileattrs['qqtotalparts'],
-            fileattrs['qqtotalfilesize'],
-            source_folder=os.path.dirname(dest),
-            dest=os.path.join(settings.UPLOAD_DIRECTORY, fileattrs['qquuid'], fileattrs['qqfilename']))
-        logger.info('Combined: %s' % dest)
-
-        shutil.rmtree(os.path.dirname(os.path.dirname(dest)))
-
-
 def handle_deleted_file(uuid):
     '''Handles a filesystem delete based on UUID.'''
 
