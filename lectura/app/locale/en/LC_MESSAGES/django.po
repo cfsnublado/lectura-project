@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-10 20:24-0700\n"
+"POT-Creation-Date: 2020-04-15 11:44-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -189,11 +189,11 @@ msgstr ""
 msgid "validation_username_min_length {min_len}"
 msgstr ""
 
-#: lectura/core/views.py:257
+#: lectura/core/views.py:265
 msgid "message_success"
 msgstr "Success"
 
-#: lectura/core/views.py:258
+#: lectura/core/views.py:266
 msgid "message_error"
 msgstr "Error"
 
@@ -373,10 +373,8 @@ msgid "label_profile_about"
 msgstr "About you"
 
 #: lectura/users/models.py:92
-#, fuzzy
-#| msgid "label_audio_url"
 msgid "label_avatar_url"
-msgstr "Audio URL"
+msgstr "Avatar URL"
 
 #: lectura/users/models.py:102
 msgid "label_profile"
@@ -398,7 +396,7 @@ msgstr "Thank you. An email has been sent to reset your password."
 msgid "user_password_reset_success_msg"
 msgstr ""
 
-#: lectura/users/views_auth.py:26
+#: lectura/users/views_auth.py:27
 msgid "message_password_reset_success"
 msgstr ""
 
@@ -515,6 +513,10 @@ msgid "label_login"
 msgstr "Login"
 
 #: lectura/app/templates/includes/_user_nav.html:39
+msgid "label_edit_profile"
+msgstr "Edit profile"
+
+#: lectura/app/templates/includes/_user_nav.html:48
 msgid "label_logout"
 msgstr "Logout"
 
@@ -553,8 +555,6 @@ msgid "label_edit_post_audio"
 msgstr "Edit audio"
 
 #: lectura/app/templates/reading/auth/post_audio_update.html:18
-#, fuzzy
-#| msgid "label_add_audio"
 msgid "label_Edit_audio"
 msgstr "Add audio"
 
@@ -562,7 +562,7 @@ msgstr "Add audio"
 #: lectura/app/templates/reading/auth/post_update.html:42
 #: lectura/app/templates/reading/auth/project_member_update.html:51
 #: lectura/app/templates/reading/auth/project_update.html:38
-#: lectura/app/templates/users/auth/profile_update.html:110
+#: lectura/app/templates/users/auth/profile_update.html:64
 msgid "label_update"
 msgstr "Update"
 
@@ -761,30 +761,9 @@ msgstr "Confirm password"
 msgid "label_change_password"
 msgstr "Change password"
 
-#: lectura/app/templates/users/auth/profile_update.html:8
+#: lectura/app/templates/users/auth/profile_update.html:7
 msgid "page_edit_profile_title"
 msgstr "Edit profile"
-
-#: lectura/app/templates/users/auth/profile_update.html:21
-msgid "label_gravatar_change"
-msgstr "Change Gravatar image"
-
-#: lectura/app/templates/users/auth/profile_update.html:42
-msgid "placeholder_first_name"
-msgstr "First name"
-
-#: lectura/app/templates/users/auth/profile_update.html:59
-msgid "placeholder_last_name"
-msgstr "Last name"
-
-#: lectura/app/templates/users/auth/profile_update.html:76
-#: lectura/app/templates/users/password_reset_request.html:38
-msgid "placeholder_email"
-msgstr "Email"
-
-#: lectura/app/templates/users/auth/profile_update.html:93
-msgid "placeholder_profile_about"
-msgstr "About you"
 
 #: lectura/app/templates/users/forgot_password_reset.html:7
 msgid "page_change_password_title"
@@ -812,6 +791,10 @@ msgstr ""
 "Enter your account's email and a link to reset your password will be sent to "
 "you."
 
+#: lectura/app/templates/users/password_reset_request.html:38
+msgid "placeholder_email"
+msgstr "Email"
+
 #: lectura/app/templates/users/password_reset_request.html:45
 msgid "label_send_email"
 msgstr "Send email"
@@ -835,6 +818,18 @@ msgstr "Change user password"
 #: lectura/app/templates/users/profile_view.html:6
 msgid "page_view_profile_title"
 msgstr "View profile"
+
+#~ msgid "label_gravatar_change"
+#~ msgstr "Change Gravatar image"
+
+#~ msgid "placeholder_first_name"
+#~ msgstr "First name"
+
+#~ msgid "placeholder_last_name"
+#~ msgstr "Last name"
+
+#~ msgid "placeholder_profile_about"
+#~ msgstr "About you"
 
 #, fuzzy
 #~| msgid "label_login"

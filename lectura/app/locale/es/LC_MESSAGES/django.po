@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-10 20:24-0700\n"
+"POT-Creation-Date: 2020-04-15 11:44-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -189,11 +189,11 @@ msgstr ""
 msgid "validation_username_min_length {min_len}"
 msgstr ""
 
-#: lectura/core/views.py:257
+#: lectura/core/views.py:265
 msgid "message_success"
 msgstr "Éxito"
 
-#: lectura/core/views.py:258
+#: lectura/core/views.py:266
 msgid "message_error"
 msgstr "Error"
 
@@ -373,10 +373,8 @@ msgid "label_profile_about"
 msgstr "Acerca de ti"
 
 #: lectura/users/models.py:92
-#, fuzzy
-#| msgid "label_audio_url"
 msgid "label_avatar_url"
-msgstr "URL del audio"
+msgstr "URL de avatar"
 
 #: lectura/users/models.py:102
 msgid "label_profile"
@@ -398,7 +396,7 @@ msgstr "Gracias. Un correo ha sido enviado para cambiar tu contraseña."
 msgid "user_password_reset_success_msg"
 msgstr ""
 
-#: lectura/users/views_auth.py:26
+#: lectura/users/views_auth.py:27
 msgid "message_password_reset_success"
 msgstr ""
 
@@ -515,6 +513,10 @@ msgid "label_login"
 msgstr "Iniciar sesión"
 
 #: lectura/app/templates/includes/_user_nav.html:39
+msgid "label_edit_profile"
+msgstr "Editar perfil"
+
+#: lectura/app/templates/includes/_user_nav.html:48
 msgid "label_logout"
 msgstr "Salir"
 
@@ -562,7 +564,7 @@ msgstr "Agregar audio"
 #: lectura/app/templates/reading/auth/post_update.html:42
 #: lectura/app/templates/reading/auth/project_member_update.html:51
 #: lectura/app/templates/reading/auth/project_update.html:38
-#: lectura/app/templates/users/auth/profile_update.html:110
+#: lectura/app/templates/users/auth/profile_update.html:64
 msgid "label_update"
 msgstr "Actualizar"
 
@@ -761,30 +763,9 @@ msgstr "Confirmar contraseña"
 msgid "label_change_password"
 msgstr "Cambiar contraseña"
 
-#: lectura/app/templates/users/auth/profile_update.html:8
+#: lectura/app/templates/users/auth/profile_update.html:7
 msgid "page_edit_profile_title"
 msgstr "Editar perfil"
-
-#: lectura/app/templates/users/auth/profile_update.html:21
-msgid "label_gravatar_change"
-msgstr "Cambiar imagen de Gravatar"
-
-#: lectura/app/templates/users/auth/profile_update.html:42
-msgid "placeholder_first_name"
-msgstr "Nombre de pila"
-
-#: lectura/app/templates/users/auth/profile_update.html:59
-msgid "placeholder_last_name"
-msgstr "Apellido(s)"
-
-#: lectura/app/templates/users/auth/profile_update.html:76
-#: lectura/app/templates/users/password_reset_request.html:38
-msgid "placeholder_email"
-msgstr "Correo"
-
-#: lectura/app/templates/users/auth/profile_update.html:93
-msgid "placeholder_profile_about"
-msgstr "Acerca de ti"
 
 #: lectura/app/templates/users/forgot_password_reset.html:7
 msgid "page_change_password_title"
@@ -812,6 +793,10 @@ msgstr ""
 "Ingresa el correo de tu cuenta y se te enviará un link para cambiar tu "
 "contraseña."
 
+#: lectura/app/templates/users/password_reset_request.html:38
+msgid "placeholder_email"
+msgstr "Correo"
+
 #: lectura/app/templates/users/password_reset_request.html:45
 msgid "label_send_email"
 msgstr "Enviar correo"
@@ -835,6 +820,18 @@ msgstr "Cambiar contraseña de usuario"
 #: lectura/app/templates/users/profile_view.html:6
 msgid "page_view_profile_title"
 msgstr "Ver perfil"
+
+#~ msgid "label_gravatar_change"
+#~ msgstr "Cambiar imagen de Gravatar"
+
+#~ msgid "placeholder_first_name"
+#~ msgstr "Nombre de pila"
+
+#~ msgid "placeholder_last_name"
+#~ msgstr "Apellido(s)"
+
+#~ msgid "placeholder_profile_about"
+#~ msgstr "Acerca de ti"
 
 #, fuzzy
 #~| msgid "label_login"

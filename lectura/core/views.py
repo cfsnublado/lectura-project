@@ -17,7 +17,7 @@ from .utils import (
 User = get_user_model()
 
 
-def get_requested_user_by_username(request, username=None):
+def get_requested_user_by_username(username=None):
     user = get_object_or_404(
         User.objects.select_related('profile'),
         username=username
@@ -208,7 +208,7 @@ class UserMixin(object):
 
     def dispatch(self, request, *args, **kwargs):
         self.requested_user = get_requested_user_by_username(
-            request, kwargs['username']
+            kwargs['username']
         )
         return super(UserMixin, self).dispatch(request, *args, **kwargs)
 
@@ -218,20 +218,22 @@ class UserMixin(object):
         return context
 
 
-class UserRequiredMixin(PermissionMixin):
+class UserRequiredMixin(object):
     """
     Requesting user must be the the requested user or superuser.
     """
 
-    check_access = True
+    requested_user = None
 
     def dispatch(self, request, *args, **kwargs):
-        if self.check_access:
+        if request.user.is_authenticated:
             self.requested_user = get_requested_user_by_username(
-                request, kwargs['username']
+                kwargs['username']
             )
             if not is_requested_user(request.user, self.requested_user):
                 raise PermissionDenied
+        else:
+            raise PermissionDenied
         return super(UserRequiredMixin, self).dispatch(request, *args, **kwargs)
 
 
