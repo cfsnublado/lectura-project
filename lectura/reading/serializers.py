@@ -25,7 +25,9 @@ class ProjectListSerializer(ListSerializer):
 class ProjectSerializer(BaseSerializer, HyperlinkedModelSerializer):
     json_encoder = UUIDEncoder
     minimal_data_fields = [
-        'name', 'description', 'date_created'
+        'name', 'description',
+        'thumb_url', 'banner_url',
+        'date_created'
     ]
     url = HyperlinkedIdentityField(
         view_name='api:project-detail',
@@ -56,12 +58,14 @@ class ProjectSerializer(BaseSerializer, HyperlinkedModelSerializer):
         fields = (
             'url', 'id', 'owner_id', 'owner_url',
             'name', 'description', 'slug',
+            'thumb_url', 'banner_url',
             'members_url', 'posts_url',
             'date_created', 'date_updated',
         )
         read_only_fields = (
             'url', 'id', 'owner_id', 'owner_url',
-            'slug', 'members_url', 'posts_url',
+            'slug', 'thumb_url', 'banner_url',
+            'members_url', 'posts_url',
             'date_created', 'date_updated'
         )
 
@@ -145,6 +149,7 @@ class PostSerializer(BaseSerializer, HyperlinkedModelSerializer):
     json_encoder = UUIDEncoder
     minimal_data_fields = [
         'name', 'description', 'content',
+        'thumb_url', 'banner_url',
         'date_created'
     ]
     url = HyperlinkedIdentityField(
@@ -186,12 +191,15 @@ class PostSerializer(BaseSerializer, HyperlinkedModelSerializer):
         fields = (
             'url', 'id', 'project_id', 'project', 'project_slug',
             'project_url', 'creator_id', 'creator_url',
-            'name', 'description', 'content', 'slug', 'post_audios_url',
+            'name', 'description', 'content', 'slug',
+            'thumb_url', 'banner_url',
+            'post_audios_url',
             'date_created', 'date_updated'
         )
         read_only_fields = (
             'url', 'id', 'project_id', 'project_slug', 'project_url',
             'creator_id', 'creator_url', 'slug', 'post_audios_url',
+            'thumb_url', 'banner_url',
             'date_created', 'date_updated'
         )
 

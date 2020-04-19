@@ -10,8 +10,8 @@ from django.conf import settings
 
 from core.api.views_api import APIDefaultsMixin
 from ..utils import (
-    get_dbx_object, get_dbx_shared_link, get_user_dbx_files_json,
-    upload_file_to_dbx
+    get_dbx_object, get_dbx_shared_link,
+    get_user_dbx_files_json, upload_file_to_dbx
 )
 
 

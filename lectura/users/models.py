@@ -98,6 +98,18 @@ class Profile(TimestampModel):
     def username(self):
         return self.user.username
 
+    @property
+    def email(self):
+        return self.user.email
+
+    @property
+    def first_name(self):
+        return self.user.first_name
+
+    @property
+    def last_name(self):
+        return self.user.last_name
+
     class Meta:
         verbose_name = _('label_profile')
         verbose_name_plural = _('label_profile_plural')

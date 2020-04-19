@@ -16,7 +16,6 @@ IMG_CIRCLE = 'circle'
 @register.simple_tag
 def profile_gravatar_url(user, size=settings.USERS_IMAGE_DEFAULT_SIZE):
     if settings.USERS_USE_GRAVATAR:
-        print("SHITTTT")
         params = {'s': str(size)}
 
         if settings.USERS_GRAVATAR_DEFAULT:

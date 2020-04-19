@@ -13,6 +13,15 @@ from .managers import (
 
 
 class Project(ProjectModel):
+    thumb_url = models.URLField(
+        verbose_name=_('label_thumb_url'),
+        blank=True
+    )
+    banner_url = models.URLField(
+        verbose_name=_('label_banner_url'),
+        blank=True,
+        default=settings.USERS_IMAGE_DEFAULT_URL
+    )
 
     objects = ProjectManager()
 
@@ -67,6 +76,14 @@ class Post(
     )
     content = models.TextField(
         verbose_name=_('label_content'),
+    )
+    thumb_url = models.URLField(
+        verbose_name=_('label_thumb_url'),
+        blank=True
+    )
+    banner_url = models.URLField(
+        verbose_name=_('label_banner_url'),
+        blank=True
     )
 
     objects = PostManager()
