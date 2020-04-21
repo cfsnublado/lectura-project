@@ -19,8 +19,7 @@ class Project(ProjectModel):
     )
     banner_url = models.URLField(
         verbose_name=_('label_banner_url'),
-        blank=True,
-        default=settings.USERS_IMAGE_DEFAULT_URL
+        blank=True
     )
 
     objects = ProjectManager()
