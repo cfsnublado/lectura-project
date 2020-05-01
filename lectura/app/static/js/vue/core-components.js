@@ -42,19 +42,19 @@ const AjaxProcessMixin = {
 
 const ClickOutsideMixin = {
   methods: {
-    onCloseOutside() {
+    onClickOutside() {
       console.log('clicked outside')
     },
-    closeOutside(event) {
+    clickOutside(event) {
       if (!this.$el.contains(event.target)) {
-        this.onCloseOutside()
+        this.onClickOutside()
       }
     },
     addClickOutsideHandler() {
-      window.addEventListener('click', this.closeOutside)
+      window.addEventListener('click', this.clickOutside)
     },
     removeClickOutsideHandler() {
-      window.removeEventListener('click', this.closeOutside)
+      window.removeEventListener('click', this.clickOutside)
     }
   },
   created() {
@@ -157,7 +157,7 @@ const BaseSearch = {
     onFocus() {
       this.$emit('search-focus')
     },
-    onCloseOutside() {
+    onClickOutside() {
       this.isOpen = false
       // this.searchTerm = ''
     },   
@@ -280,7 +280,7 @@ const BaseDropdown = {
           this.isOpen = !this.isOpen
       }
     },
-    onCloseOutside() {
+    onClickOutside() {
       this.isOpen = false
     }
   }

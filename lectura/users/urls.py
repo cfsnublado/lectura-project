@@ -11,16 +11,16 @@ from .views_auth import (
 app_name = 'users'
 
 auth_urls = [
-    path(
-        '<slug:username>/update/',
+    re_path(
+        r'^(?P<username>[0-9A-Za-z_\-\.]+)/update/$',
         ProfileUpdateView.as_view(),
         name='profile_update'
     ),
 ]
 
 urlpatterns = [
-    path(
-        '<slug:username>',
+    re_path(
+        r'^(?P<username>[0-9A-Za-z_\-\.]+)/$',
         ProfileDetailView.as_view(),
         name='profile_view'
     ),
