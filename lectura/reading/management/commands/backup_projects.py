@@ -1,28 +1,15 @@
-import getpass
 import json
 from pathlib import Path
 
 from django.conf import settings
-from django.contrib.auth import authenticate
-from django.core.management.base import BaseCommand, CommandError
 
+from core.management.base import LoginCommand
 from reading.models import Project
 from reading.utils import export_project
 
 
-class Command(BaseCommand):
-    help = 'Backs up a project and its related data in a single json file.'
-
-    def login_user(self):
-        username = input('Username: ')
-        password = getpass.getpass('Password: ')
-
-        user = authenticate(username=username, password=password)
-
-        if user is not None:
-            return user
-        else:
-            raise CommandError('Invalid login')
+class Command(LoginCommand):
+    help = "Backs up a user's projects in respective json files."
 
     def add_arguments(self, parser):
         parser.add_argument('--output_path', nargs=1, type=str)
