@@ -10029,13 +10029,14 @@ label.panel-block:hover {
 
 /* line 13, ../scss/cfs/_app.scss */
 .small-caps-header {
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: bold;
   text-transform: uppercase;
   color: #aaa;
+  margin-bottom: 0.75rem;
 }
 
-/* line 22, ../scss/cfs/_app.scss */
+/* line 24, ../scss/cfs/_app.scss */
 .page-header {
   font-size: 1.5rem;
   margin-top: 10px;

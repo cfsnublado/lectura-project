@@ -10,6 +10,12 @@ sidebar-adaptable theme-cloudy {{ sidebar_expanded|yesno:'sidebar-expanded,' }}
 
 {% block content_top %}
 
+{% block project_header %}
+{% if project %}
+  <div class="small-caps-header">{{ project.name }}</div>
+{% endif %}
+{% endblock project_header %}
+
 {% block page_header %}
 {% endblock page_header %}
 

@@ -14,14 +14,14 @@ from .views_mixins import (
     ProjectEditMixin, ProjectSessionMixin
 )
 
-APP_NAME = apps.get_app_config('reading').name
+APP_NAME = apps.get_app_config("reading").name
 
 
 class ProjectsView(
     LoginRequiredMixin, ObjectSessionMixin,
     TemplateView
 ):
-    template_name = '{0}/auth/projects.html'.format(APP_NAME)
+    template_name = "{0}/auth/projects.html".format(APP_NAME)
 
 
 class ProjectCreateView(
@@ -30,19 +30,19 @@ class ProjectCreateView(
 ):
     model = Project
     form_class = ProjectCreateForm
-    template_name = '{0}/auth/project_create.html'.format(APP_NAME)
+    template_name = "{0}/auth/project_create.html".format(APP_NAME)
 
     def get_form_kwargs(self):
         kwargs = super(ProjectCreateView, self).get_form_kwargs()
-        kwargs['owner'] = self.request.user
+        kwargs["owner"] = self.request.user
         return kwargs
 
     def get_success_url(self):
         return reverse(
-            'reading:project',
+            "reading:project",
             kwargs={
-                'project_pk': self.object.id,
-                'project_slug': self.object.slug
+                "project_pk": self.object.id,
+                "project_slug": self.object.slug
             }
         )
 
@@ -54,16 +54,16 @@ class ProjectUpdateView(
 ):
     model = Project
     form_class = ProjectUpdateForm
-    template_name = '{0}/auth/project_update.html'.format(APP_NAME)
+    template_name = "{0}/auth/project_update.html".format(APP_NAME)
 
     def get_object(self, **kwargs):
         return self.project
 
     def get_success_url(self):
         return reverse(
-            'reading:project',
+            "reading:project_update",
             kwargs={
-                'project_pk': self.object.pk,
-                'project_slug': self.object.slug
+                "project_pk": self.object.pk,
+                "project_slug": self.object.slug
             }
         )
