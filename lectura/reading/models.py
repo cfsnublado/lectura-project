@@ -14,11 +14,11 @@ from .managers import (
 
 class Project(ProjectModel):
     thumb_url = models.URLField(
-        verbose_name=_('label_thumb_url'),
+        verbose_name=_("label_thumb_url"),
         blank=True
     )
     banner_url = models.URLField(
-        verbose_name=_('label_banner_url'),
+        verbose_name=_("label_banner_url"),
         blank=True
     )
 
@@ -40,7 +40,7 @@ class Project(ProjectModel):
 class ProjectMember(ProjectPublishMemberModel):
     project = models.ForeignKey(
         Project,
-        related_name='project_publish_members',
+        related_name="project_publish_members",
         on_delete=models.CASCADE
     )
 
@@ -52,45 +52,45 @@ class Post(
     ProjectContentModel
 ):
     unique_slug = False
-    slug_value_field_name = 'name'
+    slug_value_field_name = "name"
     slug_max_iterations = 500
 
     creator = models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        related_name='%(app_label)s_%(class)s',
+        related_name="%(app_label)s_%(class)s",
         on_delete=models.CASCADE
     )
     project = models.ForeignKey(
         Project,
-        related_name='posts',
+        related_name="posts",
         on_delete=models.CASCADE
     )
     name = models.CharField(
-        verbose_name=_('label_name'),
+        verbose_name=_("label_name"),
         max_length=255,
     )
     description = models.TextField(
-        verbose_name=_('label_description'),
+        verbose_name=_("label_description"),
         blank=True
     )
     content = models.TextField(
-        verbose_name=_('label_content'),
+        verbose_name=_("label_content"),
     )
     thumb_url = models.URLField(
-        verbose_name=_('label_thumb_url'),
+        verbose_name=_("label_thumb_url"),
         blank=True
     )
     banner_url = models.URLField(
-        verbose_name=_('label_banner_url'),
+        verbose_name=_("label_banner_url"),
         blank=True
     )
 
     objects = PostManager()
 
     class Meta:
-        verbose_name = _('label_post')
-        verbose_name_plural = _('label_post_plural')
-        unique_together = ('project', 'name')
+        verbose_name = _("label_post")
+        verbose_name_plural = _("label_post_plural")
+        unique_together = ("project", "name")
 
     def __str__(self):
         return self.name
@@ -108,25 +108,25 @@ class PostAudio(
     SerializeModel, ProjectContentModel
 ):
     unique_slug = False
-    slug_value_field_name = 'name'
+    slug_value_field_name = "name"
     slug_max_iterations = 500
 
     creator = models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        related_name='%(app_label)s_%(class)s',
+        related_name="%(app_label)s_%(class)s",
         on_delete=models.CASCADE
     )
     post = models.ForeignKey(
         Post,
-        related_name='post_audios',
+        related_name="post_audios",
         on_delete=models.CASCADE
     )
     name = models.CharField(
-        verbose_name=_('label_name'),
+        verbose_name=_("label_name"),
         max_length=255,
     )
     audio_url = models.URLField(
-        verbose_name=_('label_audio_url')
+        verbose_name=_("label_audio_url")
     )
 
     def get_project(self):

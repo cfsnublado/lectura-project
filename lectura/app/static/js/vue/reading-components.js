@@ -17,6 +17,7 @@ const UserSearch = {
     }
   }
 }
+
 const Project = {
   mixins: [
     AdminMixin,
@@ -282,7 +283,6 @@ const ProjectMembers = {
       })
     },
     onDeleteProjectMember(index) {
-      console.log("FUCK")
       this.$delete(this.projectMembers, index)
     }
   },
