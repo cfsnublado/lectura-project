@@ -1,38 +1,38 @@
-Vue.component('ajax-delete', AjaxDelete)
-Vue.component('alert-message', AlertMessage)
-Vue.component('dropdown', Dropdown)
-Vue.component('navbar-dropdown', NavbarDropdown)
-Vue.component('confirmation-modal', ConfirmationModal)
-Vue.component('audio-file-uploader', AudioFileUploader)
-Vue.component('audio-player', AudioPlayer)
+Vue.component("ajax-delete", AjaxDelete)
+Vue.component("alert-message", AlertMessage)
+Vue.component("dropdown", Dropdown)
+Vue.component("navbar-dropdown", NavbarDropdown)
+Vue.component("confirmation-modal", ConfirmationModal)
+Vue.component("audio-file-uploader", AudioFileUploader)
+Vue.component("audio-player", AudioPlayer)
 
 // Reading components
-Vue.component('projects', Projects)
-Vue.component('project', Project)
-Vue.component('project-members', ProjectMembers)
-Vue.component('project-member', ProjectMember)
-Vue.component('posts', Posts)
-Vue.component('post', Post)
-Vue.component('post-audio', PostAudio)
-Vue.component('post-audios', PostAudios)
-Vue.component('post-audio-player', PostAudioPlayer)
+Vue.component("projects", Projects)
+Vue.component("project", Project)
+Vue.component("project-members", ProjectMembers)
+Vue.component("project-member", ProjectMember)
+Vue.component("posts", Posts)
+Vue.component("post", Post)
+Vue.component("post-audio", PostAudio)
+Vue.component("post-audios", PostAudios)
+Vue.component("post-audio-player", PostAudioPlayer)
 
 // Search
-Vue.component('user-search', UserSearch)
+Vue.component("user-search", UserSearch)
 
 
 // Dropbox
-Vue.component('dbx', Dbx)
-Vue.component('dbx-file', DbxFile)
-Vue.component('dbx-user-files', DbxUserFiles)
-Vue.component('dbx-audio-file-uploader', DbxAudioFileUploader)
+Vue.component("dbx", Dbx)
+Vue.component("dbx-file", DbxFile)
+Vue.component("dbx-user-files", DbxUserFiles)
+Vue.component("dbx-audio-file-uploader", DbxAudioFileUploader)
 
 Vue.use(ModalPlugin)
 
 VueScrollTo.setDefaults({
-    container: 'body',
+    container: "body",
     duration: 500,
-    easing: 'ease',
+    easing: "ease",
     offset: 0,
     force: true,
     cancelable: true,
@@ -45,15 +45,15 @@ VueScrollTo.setDefaults({
 
 // Instantiate main app instance.
 const vm = new Vue({
-  el: '#app-container',
-  delimiters: ['[[', ']]'],
+  el: "#app-container",
+  delimiters: ["[[", "]]"],
   data: {
     appSessionUrl: appSessionUrl,
     showSidebar: sidebarExpanded,
     sidebarSessionEnabled: initSidebarSessionEnabled,
-    sidebarOpenClass: 'sidebar-expanded',
+    sidebarOpenClass: "sidebar-expanded",
     showNavbarMenu: false,
-    navbarMenuOpenClass: 'is-active',
+    navbarMenuOpenClass: "is-active",
     windowWidth: 0,
     windowWidthSmall: 640,
     windowResizeTimer: null,
@@ -108,7 +108,7 @@ const vm = new Vue({
       var locked = disableLock ? false : this.showSidebar
       axios.post(this.appSessionUrl, {
         session_data: {
-          'sidebar_locked': locked
+          "sidebar_locked": locked
         }
       })
       .then(response => {
@@ -124,7 +124,7 @@ const vm = new Vue({
       this.windowResizeTimer = setTimeout(()=>{
         this.windowWidth = document.documentElement.clientWidth
         if (this.smallWindow) {
-          console.log('small')
+          console.log("small")
           if (this.sidebarSessionEnabled) {
             this.setSidebarSession(true)
             this.sidebarSessionEnabled = false
@@ -140,11 +140,11 @@ const vm = new Vue({
   },
   mounted() {
     this.$nextTick(function() {
-      window.addEventListener('resize', this.windowResize);
+      window.addEventListener("resize", this.windowResize);
       this.windowResize()
     })
   },
   beforeDestroy() {
-    window.removeEventListener('resize', this.windowResize);
+    window.removeEventListener("resize", this.windowResize);
   }
 })

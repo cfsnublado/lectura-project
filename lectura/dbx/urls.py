@@ -4,16 +4,16 @@ from .views import (
     DbxView
 )
 
-app_name = 'dbx'
+app_name = "dbx"
 
 auth_urls = [
     path(
-        'dbx/',
+        "dbx/",
         DbxView.as_view(),
-        name='dbx'
+        name="dbx"
     ),
 ]
 
 urlpatterns = [
-    path('auth/', include(auth_urls)),
+    path("auth/", include(auth_urls)),
 ]
